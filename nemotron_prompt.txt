@@ -1,0 +1,107 @@
+You are a distinguished Professor of Computer Science & Engineering and lead academic author specializing in Digital Logic and Computer Design (DLCD).
+
+I have uploaded my complete course revision package in the attached file:
+`DLCD_Complete_Study_Package.md`
+
+This package contains three interconnected, deduplicated components for both Unit 1 and Unit 2:
+1. Core Clean Lecture Slides (curriculum scope, foundational theorems, and architectural definitions)
+2. Descriptive Question Banks (with complete step-by-step model solutions, logic derivations, and Verilog implementations)
+3. Multiple Choice Questions (with correct options, distractor analysis, and detailed technical explanations)
+
+================================================================================
+YOUR CORE OBJECTIVE
+================================================================================
+Synthesize all three resources into an exhaustive, mathematically rigorous, and crystal-clear set of university-level study notes covering UNIT 1 and UNIT 2.
+
+================================================================================
+THREE-LAYER SYNTHESIS RULES
+================================================================================
+1. SLIDE-GROUNDED STRUCTURE:
+   - Use the lecture slides to establish the logical progression, naming conventions, and syllabus boundaries.
+2. QUESTION BANK DEPTH:
+   - Use the solved Question Bank to provide full mathematical proofs, algebraic minimizations, hardware trade-offs (e.g., Ripple-Carry Adder vs. Carry-Lookahead Adder delays), complete FSM design pipelines (State Diagram -> State Table -> State Assignment -> K-Maps -> Logic Circuit), and IEEE 754 floating-point 8-step addition procedures.
+3. MCQ INSIGHTS & TRAPS:
+   - Use the MCQs and their explanations to highlight subtle timing hazards, edge cases, setup/hold-time constraints ($t_{setup}, t_{hold}$), clock skew, and common student pitfalls.
+4. ZERO PLACEHOLDERS:
+   - Never skip steps, compress derivations, or use placeholders like "etc.", "similarly...", or "refer to the notes". Every single step of logic minimization and arithmetic must be written out completely.
+
+================================================================================
+DIAGRAM & VISUALIZATION STANDARDS
+================================================================================
+Reconstruct all circuit figures, K-maps, and state machines using clean, text-based visual syntax:
+- STATE DIAGRAMS & FSMs: Use Mermaid syntax (`stateDiagram-v2` or `flowchart TD`) showing all states, directed transitions, input conditions, and outputs.
+- CIRCUIT SCHEMATICS: Draw clean ASCII logic gate diagrams showing gates (AND, OR, XOR, NOT, NAND, NOR), flip-flops, multiplexers, decoders, and labeled signal nets.
+- K-MAPS & BIT FIELDS: Format structured Markdown tables for 2-, 3-, and 4-variable K-maps with Gray code headers (00, 01, 11, 10) and IEEE 754 32-bit single-precision bit layouts.
+
+================================================================================
+REQUIRED STRUCTURE FOR EVERY TOPIC
+================================================================================
+Format every topic using this consistent framework:
+1. Core Concept & Intuition: Academic explanation of the component/concept, its operational role, and why it is needed.
+2. Formulas & Mathematical Logic: Canonical Boolean expressions, delay equations ($t_{pd}, t_{cd}, t_{setup}, t_{hold}, t_{clock\_to\_Q}$), or arithmetic representations.
+3. Truth Tables / State Transition Tables: Exhaustive Markdown tables covering all input/output/state combinations.
+4. Circuit Schematic / State Graph: Clear ASCII circuit diagram or Mermaid state graph.
+5. Step-by-Step Worked Problem: A complete numerical or design problem directly from the question bank (e.g., 4-variable K-map minimization, FSM design pipeline, 32-bit CLA delay calculation, or IEEE 754 floating-point addition).
+6. Exam Traps & Crucial Takeaways: Specific pitfalls, edge cases, and subtle misconceptions identified in the MCQs.
+
+================================================================================
+SYLLABUS COVERAGE REQUIREMENTS
+================================================================================
+Ensure deep coverage of all topics extracted from the package:
+
+UNIT 1: COMBINATIONAL AND SEQUENTIAL LOGIC DESIGN
+- Introduction to digital circuits: discrete-valued variables, functional vs. timing specifications, circuit nodes (inputs, outputs, internal).
+- Rules of combinational composition: valid connections, feedback avoidance, cyclic path prohibition.
+- Boolean equations & terminology: literals, product terms, sum terms, canonical Minterms ($\sum m$) and Maxterms ($\prod M$), SOP and POS forms.
+- Logic minimization: Boolean algebra identities and theorems (Distributive, Complement, Identity, De Morgan's, Consensus).
+- Karnaugh Maps (K-Maps): 2-, 3-, and 4-variable maps, Gray code adjacency, implicants, prime implicants, essential prime implicants, grouping rules (powers of 2, wrap-around), don't-care conditions ($X$), POS grouping using 0s.
+- Combinational building blocks:
+  * Multiplexers (2:1, 4:1, 8:1 internal design, Shannon's expansion theorem, implementing functions with full and reduced MUX sizes).
+  * Decoders (active-high, active-low, enable lines, implementing logic with decoders + OR gates).
+  * Encoders & Priority Encoders (truth tables, validity bits $V$).
+  * Demultiplexers.
+- Sequential logic fundamentals: Combinational vs. sequential logic, bistable elements, memory storage.
+- Latches vs. Flip-Flops:
+  * SR Latch (NOR and NAND implementations, forbidden states).
+  * Gated D-Latch (transparency problem and level-sensitivity).
+  * Edge-Triggered D Flip-Flop (master-slave architecture).
+  * JK Flip-Flop and Toggle (T) Flip-Flop.
+  * Characteristic tables, excitation tables, characteristic equations ($Q_{next} = D$, $Q_{next} = J\overline{Q} + \overline{K}Q$, $Q_{next} = T \oplus Q$), and state transition diagrams.
+  * Flip-flop conversions (e.g., SR to JK, JK to D, D to T).
+- Registers: Parallel-load registers, shift registers (SISO, SIPO, PISO, PIPO).
+- Synchronous sequential design: Clock signals, clock skew, setup time ($t_{setup}$), hold time ($t_{hold}$), propagation delay ($t_{pcq}, t_{pd}$), contamination delay ($t_{ccq}, t_{cd}$), maximum operating frequency calculation, metastability, and synchronous composition rules.
+
+UNIT 2: FINITE STATE MACHINES & DIGITAL BUILDING BLOCKS
+- Finite State Machines (FSM):
+  * Fundamental architecture: State Register ($k$ registers $\rightarrow 2^k$ states), Next State Logic, Output Logic.
+  * Moore vs. Mealy machines: output dependencies, timing diagrams, asynchronous glitch vulnerability in Mealy machines, state count differences.
+  * FSM design pipeline: Word Specification -> State Diagram -> State Table -> State Assignment/Encoding (Binary vs. One-Hot vs. Gray code trade-offs) -> Next State & Output K-maps -> Circuit Schematic.
+  * Design Case Studies: Traffic Light Controller, 3-state Divide-by-3 FSM, and 1011 Sequence Detector (both Moore and Mealy, overlapping vs. non-overlapping detection, state recovery).
+  * Verilog HDL for FSMs: State encoding (`localparam`), state register sequential block (`always @(posedge clk or posedge reset)`), next-state combinational block, default cases for unused states, and output logic.
+  * Factored FSMs (hierarchical state machines) vs. unfactored FSMs.
+  * Reverse engineering: Deriving an FSM state diagram and table from a given circuit schematic.
+- Digital Building Blocks (Arithmetic & Datapath):
+  * 1-Bit Adders: Half Adder ($S = A \oplus B$, $C = AB$), Full Adder ($S = A \oplus B \oplus C_{in}$, $C_{out} = AB + C_{in}(A \oplus B)$).
+  * Multi-bit Adders:
+    - Ripple-Carry Adder (RCA): Structure, critical path propagation delay ($t_{RCA} = N \times t_{FA}$).
+    - Carry-Lookahead Adder (CLA): Generate ($G_i = A_i B_i$) and Propagate ($P_i = A_i \oplus B_i$ / $A_i + B_i$), expanding carry equations ($C_1, C_2, C_3, C_4$), 32-bit/64-bit hierarchical CLA with 4-bit blocks, delay comparison ($O(\log N)$ vs. $O(N)$), area and power trade-offs.
+    - Prefix Adders (concept and delay characteristics).
+  * Subtractors & 2's Complement Adder/Subtractor unit with $Add/\overline{Sub}$ mode control and XOR inversion.
+  * Comparators: Equality comparator (XNOR tree + AND), magnitude comparators (less-than, greater-than logic).
+  * Multipliers: Unsigned array multiplier architecture, partial product generation, adder reduction array, shift-and-add sequential multiplication.
+  * Shifters & Rotators: Logical shift, arithmetic shift, rotate; Barrel Shifter design using multiplexers.
+  * Arithmetic Logic Unit (ALU): Functional block diagram, ALU control lines, multiplexer-based function selection.
+  * Number Systems: Fixed-point representation (integer bits vs. fractional bits, binary point alignment, two's complement fixed-point addition).
+  * Floating-Point Arithmetic (IEEE 754 Standard):
+    - 32-bit Single Precision format (1-bit sign, 8-bit biased exponent with bias = 127, 23-bit mantissa/fraction with implicit leading 1).
+    - Value formula: $(-1)^S \times (1.M) \times 2^{E - 127}$.
+    - Special representations: Zero ($\pm 0$), Denormalized/Subnormal numbers, Infinity ($\pm\infty$), Not-a-Number (NaN).
+    - 8-Step Floating-Point Addition Algorithm: Extract fields & prepend implicit 1 -> check for zeros -> compare exponents & shift smaller mantissa right -> add/subtract mantissas -> normalize result -> check for overflow/underflow -> round to nearest -> pack final 32-bit representation.
+    - Worked examples: 12.5 + 0.375, 6.0 + 2.5, decoding arbitrary 32-bit patterns, and overflow detection.
+
+================================================================================
+EXECUTION PROTOCOL
+================================================================================
+1. Output a brief Syllabus & Topic Checklist for Unit 1 and Unit 2 to confirm full alignment.
+2. Proceed immediately into generating the exhaustive study notes for UNIT 1, followed seamlessly by UNIT 2.
+3. If output token limits are approached, pause cleanly at the end of a major section so I can reply with "Continue".

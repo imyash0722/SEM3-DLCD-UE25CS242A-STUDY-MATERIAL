@@ -1,0 +1,45 @@
+Now, convert the complete, corrected study notes, question banks, and MCQs for Unit 1 and Unit 2 into a complete, responsive, production-grade, single-file interactive website (`index.html`).
+
+================================================================================
+CRITICAL CORRECTIONS TO INTEGRATE:
+================================================================================
+1. In Section 6.1.4 (4:1 MUX for F = Σm(1,2,5,7)): Ensure I_3 = C (since m7 = 111 is HIGH), so I_0=C, I_1=C', I_2=C, I_3=C.
+2. In Unit 2 Section 1.4 (Binary Divide-by-3 FSM): Ensure D_0 = Q1'Q0' (or NOR(Q1, Q0)) and D_1 = Q1'Q0 so state 10 transitions cleanly to 00.
+3. Clean Master-Slave D Flip-Flop: Master is Active-Low latch (transparent when CLK=0, opaque when CLK=1), Slave is Active-High latch (opaque when CLK=0, transparent when CLK=1). Rising edge (0->1) latches D at the master and outputs it at the slave.
+
+================================================================================
+TECHNICAL STACK & ARCHITECTURE (Single-File index.html):
+================================================================================
+- Zero-build, self-contained single file that opens directly in any modern browser.
+- CDN Dependencies:
+  * Tailwind CSS (<script src="https://cdn.tailwindcss.com"></script>) with Tailwind Typography plugin.
+  * KaTeX CSS & JS (<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"> and <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script> + auto-render extension) for mathematical equations ($t_{setup}, t_{hold}, \sum m, \prod M, Q_{next}$, IEEE 754 value formulas).
+  * Mermaid.js (<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>) to natively render the FSM state diagrams (`stateDiagram-v2` for Traffic Light, Divide-by-3, and 1011 Sequence Detector).
+  * Prism.js (<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"> and <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script> + Verilog component) for syntax-highlighted Verilog HDL code.
+  * Lucide Icons (<script src="https://unpkg.com/lucide@latest"></script>) for UI icons.
+
+================================================================================
+UI/UX DESIGN & INTERACTIVE FEATURES:
+================================================================================
+1. MODERN LAYOUT:
+   - Fixed top header with course title: "DLCD Master Revision & Study Portal | PES University UE25CS152B".
+   - Sticky left sidebar with live search bar, section navigation, and progress tracker.
+   - Dark mode by default (sleek slate/zinc dark theme: #0f172a, #1e293b, indigo/cyan accents) with light mode toggle.
+2. TABBED / ACCORDION MODULE NAVIGATION:
+   Provide intuitive tabs or collapsible modules to switch between:
+   - [Tab 1] Unit 1: Combinational & Sequential Logic Notes
+   - [Tab 2] Unit 2: Finite State Machines & Digital Building Blocks Notes
+   - [Tab 3] Solved Question Bank (collapsible accordion cards: Question -> "Show Solution" toggle)
+   - [Tab 4] Interactive MCQ Practice Engine (Filter by Unit 1 / Unit 2, clickable options A/B/C/D with immediate green/red feedback + reveal explanation button)
+   - [Tab 5] Formula & Timing Cheat Sheet ($t_{pd}, t_{cd}, t_{setup}, t_{hold}, f_{max}$, IEEE 754 layout, K-map cheat sheet)
+3. INTERACTIVE SEARCH:
+   - Real-time client-side search input that instantly filters topics, definitions, or questions by keyword (e.g. "barrel shifter", "hold time", "divide-by-3", "IEEE 754", "Shannon").
+4. DIAGRAMS & TABLES:
+   - Render Mermaid diagrams for all FSM state transitions.
+   - Beautifully styled HTML tables for Truth Tables, Characteristic/Excitation tables, K-map grids, and IEEE 754 bit-field breakdowns.
+   - Clean, mono-spaced ASCII circuit diagrams in styled code blocks with "Copy Schematic" buttons.
+
+================================================================================
+OUTPUT FORMAT:
+================================================================================
+Generate the complete, fully valid `<!DOCTYPE html>` document with all HTML, Tailwind styles, embedded JavaScript logic, and comprehensive notes content included. Do not leave placeholder comments like "<!-- add more notes here -->"; deliver the full, functional study portal ready to save and open.

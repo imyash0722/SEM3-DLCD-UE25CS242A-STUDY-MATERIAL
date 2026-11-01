@@ -1,0 +1,1751 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete study guide for Digital Logic & Computer Design covering Units 1-3">
+      
+      
+      
+      
+      
+      
+        <link rel="next" href="./01_digital-circuits-introduction/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="./assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>Home - DLCD Exam Prep — UE25CS242A</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="./assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="./assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="" title="DLCD Exam Prep — UE25CS242A" class="md-header__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DLCD Exam Prep — UE25CS242A
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="" class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="./01_digital-circuits-introduction/" class="md-tabs__link">
+          
+  
+  Unit 1: Combinational & Sequential Logic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="./08_fsm-moore-mealy-design/" class="md-tabs__link">
+          
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="./14_lab-verilog-patterns/" class="md-tabs__link">
+          
+  
+  Lab & Practice
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="" title="DLCD Exam Prep — UE25CS242A" class="md-nav__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    DLCD Exam Prep — UE25CS242A
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📚 Navigation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-1-combinational-sequential-logic-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 1: Combinational &amp; Sequential Logic Design
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit-2-fsms-digital-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 2: FSMs &amp; Digital Building Blocks
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Practice &amp; Reference
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#study-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ✅ Study Checklist
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ Study Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-1-combinational-sequential-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 1: Combinational &amp; Sequential Logic
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit-2-fsms-digital-building-blocks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 2: FSMs &amp; Digital Building Blocks
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-yield-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🎯 High-Yield MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numerical-problem-types-to-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📝 Numerical Problem Types to Practice
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-study-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📖 Recommended Study Order
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 Recommended Study Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#week-1-unit-1-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 1: Unit 1 Foundations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-2-unit-2-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 2: Unit 2 Core
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-3-number-systems-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 3: Number Systems &amp; Practice
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-4-final-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 4: Final Review
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memorize-these-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🔑 Memorize These Formulas
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-materials-referenced" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📚 Source Materials Referenced
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#site-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🌐 Site Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 1: Combinational & Sequential Logic
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 1: Combinational & Sequential Logic
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./01_digital-circuits-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Digital Circuits Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./02_boolean-equations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Boolean Equations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./03_logic-minimization-kmaps-3var/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Logic Minimization & K-Maps (3-Var)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./04_kmaps-4var-seven-segment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  K-Maps (4-Var) & Seven-Segment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./05_combinational-building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Combinational Building Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./06_sequential-basics-latches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sequential Basics — Latches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./07_flipflops-timing-metastability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Flip-Flops & Timing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./08_fsm-moore-mealy-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Finite State Machines
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./09_state-encoding-factoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  State Encoding & Factoring
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./10_arithmetic-adders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arithmetic Circuits — Adders
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./11_alu-comparator-shifter-multiplier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ALU, Comparators, Shifters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./12_number-systems-fixedpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Number Systems — Fixed-Point
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./13_floating-point-ieee754/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Floating-Point — IEEE 754
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab & Practice
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Lab & Practice
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./14_lab-verilog-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab Verilog Patterns
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./15_mcq-practice-comprehensive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  MCQ Practice
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./16_numerical-examples-full-traces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Numerical Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./17_exam-strategy-quick-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exam Strategy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📚 Navigation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-1-combinational-sequential-logic-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 1: Combinational &amp; Sequential Logic Design
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit-2-fsms-digital-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 2: FSMs &amp; Digital Building Blocks
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Practice &amp; Reference
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#study-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ✅ Study Checklist
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ Study Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-1-combinational-sequential-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 1: Combinational &amp; Sequential Logic
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit-2-fsms-digital-building-blocks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit 2: FSMs &amp; Digital Building Blocks
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-yield-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🎯 High-Yield MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numerical-problem-types-to-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📝 Numerical Problem Types to Practice
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-study-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📖 Recommended Study Order
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 Recommended Study Order">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#week-1-unit-1-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 1: Unit 1 Foundations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-2-unit-2-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 2: Unit 2 Core
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-3-number-systems-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 3: Number Systems &amp; Practice
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-4-final-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Week 4: Final Review
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memorize-these-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🔑 Memorize These Formulas
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-materials-referenced" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📚 Source Materials Referenced
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#site-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🌐 Site Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="dlcd-exam-prep-ue25cs242a">DLCD Exam Prep — UE25CS242A<a class="headerlink" href="#dlcd-exam-prep-ue25cs242a" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Complete Study Guide for Digital Logic &amp; Computer Design (Units 1-3)</strong><br />
+<strong>Exam Date:</strong> Check course schedule | <strong>Textbook:</strong> Harris &amp; Harris, <em>Digital Design and Computer Architecture</em></p>
+</blockquote>
+<hr />
+<h2 id="navigation">📚 Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
+<h3 id="unit-1-combinational-sequential-logic-design">Unit 1: Combinational &amp; Sequential Logic Design<a class="headerlink" href="#unit-1-combinational-sequential-logic-design" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="01_digital-circuits-introduction/">01. Digital Circuits — Introduction &amp; Combinational vs Sequential</a></li>
+<li><a href="02_boolean-equations/">02. Boolean Equations — Minterms, Maxterms, SOP &amp; POS</a></li>
+<li><a href="03_logic-minimization-kmaps-3var/">03. Logic Minimization — Boolean Algebra &amp; K-Maps (3-Var)</a></li>
+<li><a href="04_kmaps-4var-seven-segment/">04. K-Maps (4-Variable) &amp; Seven-Segment Decoder</a></li>
+<li><a href="05_combinational-building-blocks/">05. Combinational Building Blocks — Mux, Decoder, Encoder</a></li>
+<li><a href="06_sequential-basics-latches/">06. Sequential Logic Basics — Latches, SR Latch, D Latch</a></li>
+<li><a href="07_flipflops-timing-metastability/">07. Flip-Flops — D FF, Master-Slave, Timing, Metastability</a></li>
+</ol>
+<h3 id="unit-2-fsms-digital-building-blocks">Unit 2: FSMs &amp; Digital Building Blocks<a class="headerlink" href="#unit-2-fsms-digital-building-blocks" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="08_fsm-moore-mealy-design/">08. Finite State Machines — Moore vs Mealy, Design Process</a></li>
+<li><a href="09_state-encoding-factoring/">09. State Encoding &amp; Factoring State Machines</a></li>
+<li><a href="10_arithmetic-adders/">10. Arithmetic Circuits — Adders (RCA, CLA, Prefix)</a></li>
+<li><a href="11_alu-comparator-shifter-multiplier/">11. ALU, Comparators, Shifters &amp; Multipliers</a></li>
+<li><a href="12_number-systems-fixedpoint/">12. Number Systems — Fixed-Point &amp; Signed Representations</a></li>
+<li><a href="13_floating-point-ieee754/">13. Floating-Point — IEEE 754 Single/Double Precision</a></li>
+</ol>
+<h3 id="practice-reference">Practice &amp; Reference<a class="headerlink" href="#practice-reference" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="14_lab-verilog-patterns/">14. Lab Code Patterns — Verilog Examples</a></li>
+<li><a href="15_mcq-practice-comprehensive/">15. Comprehensive MCQ Practice — Unit 1 &amp; 2</a></li>
+<li><a href="16_numerical-examples-full-traces/">16. Numerical Examples — Full Traces &amp; Worked Solutions</a></li>
+<li><a href="17_exam-strategy-quick-ref/">17. Exam Strategy &amp; Quick Reference Card</a></li>
+</ol>
+<hr />
+<h2 id="study-checklist">✅ Study Checklist<a class="headerlink" href="#study-checklist" title="Permanent link">&para;</a></h2>
+<h3 id="unit-1-combinational-sequential-logic">Unit 1: Combinational &amp; Sequential Logic<a class="headerlink" href="#unit-1-combinational-sequential-logic" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Digital Circuits</strong> — Black box specs, combinational vs sequential, propagation delay</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Boolean Equations</strong> — Minterms, maxterms, SOP/POS, Σ/Π notation, conversions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Logic Minimization</strong> — Boolean laws (distributive, complement, identity), step-by-step</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>K-Maps (3-var)</strong> — Structure, Gray code, wrap-around, PI/EPI, don't-cares</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>K-Maps (4-var)</strong> — Structure, wrap-around (both axes), 7-seg decoder, don't-cares</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Building Blocks</strong> — MUX (2:1, 4:1, cascading, lookup), Decoder (N:2ᴺ, logic), Encoder (priority)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Latches</strong> — SR latch (NOR), invalid state, D latch (transparent/opaque), D = WHAT, CLK = WHEN</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Flip-Flops</strong> — Master-slave D FF, edge-triggering, setup/hold/metastability, timing constraints</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Timing Analysis</strong> — Setup constraint, hold constraint, max frequency, ring oscillator</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Enabled/Resettable FFs</strong> — MUX at D (no clock gating), sync vs async reset</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>T/JK from D FF</strong> — D = T⊕Q, D = JQ'+K'Q</li>
+</ul>
+<h3 id="unit-2-fsms-digital-building-blocks_1">Unit 2: FSMs &amp; Digital Building Blocks<a class="headerlink" href="#unit-2-fsms-digital-building-blocks_1" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>FSM Basics</strong> — 3-block structure, Moore vs Mealy, state register, next-state/output logic</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>FSM Design</strong> — Traffic light, divide-by-3, pattern recognizer (1011)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Moore 1011</strong> — 5 states, overlap transitions, output in S4</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Mealy 1011</strong> — 4 states, detect on S3+input=1 transition</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>State Encoding</strong> — Binary (⌈log₂K⌉ FFs) vs One-Hot (K FFs), trade-offs</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Factoring</strong> — Unfactored (N₁×N₂) vs Factored (N₁+N₂), parade mode example</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Adders</strong> — Half/Full adder, RCA (O(N)), CLA (G/P, block), Prefix (O(log N)), delay formulas</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Subtraction</strong> — 2's complement, Cin=1, overflow = C_in,MSB ⊕ C_out,MSB</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>ALU</strong> — F₂:₀ control, SLT uses sign bit of A-B</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Comparators</strong> — Equality: XNOR+AND, Magnitude: MSB-first or subtractor</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Shifters</strong> — Logical (0-fill), Arithmetic (sign-fill), Rotate, Barrel (log N stages)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Multipliers/Dividers</strong> — Array multiplier, shift-add, N×M → N+M bits</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Fixed-Point</strong> — Q-format, implied binary point, 2's complement, conversion, arithmetic</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Floating-Point</strong> — IEEE 754 single (1/8/23, bias=127), double (1/11/52, bias=1023)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>FP Special Values</strong> — ±0, denorm, ±∞, NaN</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>FP Addition</strong> — 8 steps: extract→prepend 1→compare→shift→add→normalize→round→assemble</li>
+</ul>
+<hr />
+<h2 id="high-yield-mcq-patterns">🎯 High-Yield MCQ Patterns<a class="headerlink" href="#high-yield-mcq-patterns" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Key Patterns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>K-Maps</strong></td>
+<td>Gray code order, wrap-around (both axes 4-var), EPI = unique coverage, don't-care enlarges groups</td>
+</tr>
+<tr>
+<td><strong>Timing</strong></td>
+<td>Tc ≥ tpcq+tpd+tsetup, tccq+tcd≥thold, fmax=1/(tpcq+tpd+tsetup), ring osc f=1/(2N·tpd)</td>
+</tr>
+<tr>
+<td><strong>FSM</strong></td>
+<td>Moore=state only (N+1 states for N-bit pattern), Mealy=state+input (N states), overlap=suffix→prefix</td>
+</tr>
+<tr>
+<td><strong>Encoding</strong></td>
+<td>Binary FFs=⌈log₂K⌉, One-Hot FFs=K, Factoring=N₁×N₂→N₁+N₂</td>
+</tr>
+<tr>
+<td><strong>Adders</strong></td>
+<td>RCA=O(N), CLA=parallel G/P, Prefix=O(log N), fastest=Prefix</td>
+</tr>
+<tr>
+<td><strong>Number Systems</strong></td>
+<td>2's comp range=[-2ⁿ⁻¹,2ⁿ⁻¹-1], negate=invert+1, FP bias=127/1023</td>
+</tr>
+<tr>
+<td><strong>FP</strong></td>
+<td>+∞=E=255/F=0, NaN=E=255/F≠0, denorm=E=0/F≠0, add step 2=prepend 1</td>
+</tr>
+<tr>
+<td><strong>Verilog</strong></td>
+<td>Seq=non-blocking (≤), Comb=blocking (=), default in case, no clock gating</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="numerical-problem-types-to-practice">📝 Numerical Problem Types to Practice<a class="headerlink" href="#numerical-problem-types-to-practice" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>K-Map Minimization</strong> — 3 &amp; 4 variable, with don't-cares</li>
+<li><strong>Propagation Delay</strong> — RCA/CLA/Prefix with given parameters</li>
+<li><strong>Max Frequency</strong> — Given tpcq, tpd, tsetup → find fmax</li>
+<li><strong>Hold Time Check</strong> — Given tccq, tcd, thold → pass/fail</li>
+<li><strong>Ring Oscillator</strong> — N inverters, tpd → period/freq</li>
+<li><strong>2's Complement</strong> — Negate, range, arithmetic</li>
+<li><strong>Fixed-Point</strong> — Decimal ↔ Qm.n conversion, addition</li>
+<li><strong>IEEE 754</strong> — Decimal ↔ hex encoding/decoding</li>
+<li><strong>FP Addition</strong> — Full 8-step trace</li>
+<li><strong>State Encoding</strong> — Binary vs One-Hot FF count</li>
+<li><strong>Divide-by-N</strong> — f_out = f_in/N</li>
+</ol>
+<hr />
+<h2 id="recommended-study-order">📖 Recommended Study Order<a class="headerlink" href="#recommended-study-order" title="Permanent link">&para;</a></h2>
+<h3 id="week-1-unit-1-foundations">Week 1: Unit 1 Foundations<a class="headerlink" href="#week-1-unit-1-foundations" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Topics 1–2: Digital circuits, Boolean equations</li>
+<li>Topics 3–4: K-Maps (3 &amp; 4 var) — <strong>CRITICAL</strong></li>
+<li>Topics 5–6: Building blocks, Latches</li>
+<li>Topic 7: Flip-flops &amp; timing — <strong>CRITICAL</strong></li>
+</ol>
+<h3 id="week-2-unit-2-core">Week 2: Unit 2 Core<a class="headerlink" href="#week-2-unit-2-core" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Topic 8: FSM basics, Moore vs Mealy</li>
+<li>Topic 9: State encoding, Factoring</li>
+<li>Topic 10: Adders (delays, G/P) — <strong>CRITICAL</strong></li>
+<li>Topic 11: ALU, Comparator, Shifter, Multiplier</li>
+</ol>
+<h3 id="week-3-number-systems-practice">Week 3: Number Systems &amp; Practice<a class="headerlink" href="#week-3-number-systems-practice" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Topics 12–13: Fixed-point, Floating-point — <strong>CRITICAL</strong></li>
+<li>Topic 14: Verilog patterns</li>
+<li>Topic 15: MCQ practice (all 155+ questions)</li>
+<li>Topic 16: Numerical examples with full traces</li>
+</ol>
+<h3 id="week-4-final-review">Week 4: Final Review<a class="headerlink" href="#week-4-final-review" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Topic 17: Exam strategy &amp; quick reference card</li>
+<li>Re-do all MCQs, focus on wrong answers</li>
+<li>Practice numerical problems under time pressure</li>
+<li>Memorize quick reference card</li>
+</ol>
+<hr />
+<h2 id="memorize-these-formulas">🔑 Memorize These Formulas<a class="headerlink" href="#memorize-these-formulas" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Setup:       Tc ≥ tpcq + tpd + tsetup
+Hold:        tccq + tcd ≥ thold
+f_max:       1 / (tpcq + tpd + tsetup)
+Ring osc:    f = 1/(2·N·tpd)
+2's comp:    [-2ⁿ⁻¹, 2ⁿ⁻¹-1]     Negate: invert + 1
+IEEE 754 S:  1|8|23  bias=127    Value=(-1)ˢ·1.F·2ᴱ⁻¹²⁷
+IEEE 754 D:  1|11|52 bias=1023
+RCA:         N × tFA
+CLA:         t_pg + t_pg_block + (N/k-1)t_AND_OR + k·tFA
+Prefix:      t_pg + log₂N·t_pg_prefix + t_XOR
+MUX sel:     log₂N
+Dec out:     2ᴺ
+Div-N:       f_out = f_in/N
+Bin FFs:     ⌈log₂K⌉
+One-Hot:     K
+Factored:    N₁+N₂
+Equality:    Π(Aᵢ ⊙ Bᵢ)
+&lt;&lt; N:        × 2ᴺ
+&gt;&gt;&gt; N:       ÷ 2ᴺ (signed)
+Mult:        N+M bits
+</code></pre></div>
+<hr />
+<h2 id="source-materials-referenced">📚 Source Materials Referenced<a class="headerlink" href="#source-materials-referenced" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Lecture Slides:</strong> Unit 1 (Slides 2–210), Unit 2 (Slides 2–138), Unit 3 (Slides 3.1–3.17)</li>
+<li><strong>Textbook:</strong> Harris &amp; Harris, <em>Digital Design and Computer Architecture</em> (Ch. 1–5)</li>
+<li><strong>Question Banks:</strong> Unit 1 (110 Qs), Unit 2 (32 Qs) — deduplicated</li>
+<li><strong>MCQs:</strong> Unit 1 (60 Qs), Unit 2 (135 Qs) — with explanations</li>
+<li><strong>Lab:</strong> Week 8 — Prefix Adder, Comparator Verilog</li>
+</ul>
+<hr />
+<h2 id="site-features">🌐 Site Features<a class="headerlink" href="#site-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Dark/Light mode</strong> — Toggle in top-right header</li>
+<li><strong>Search</strong> — Full-text search across all topics</li>
+<li><strong>Table of Contents</strong> — Auto-generated per page</li>
+<li><strong>Code Copy</strong> — One-click copy for Verilog examples</li>
+<li><strong>Task Lists</strong> — Interactive checkboxes in study checklist</li>
+<li><strong>Tabs</strong> — Organized content sections</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Good luck on your exam!</strong> 🎓<br />
+<em>Consistent practice with K-maps, timing analysis, FSM design, and number system conversions is the key to success.</em></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["navigation.tabs","navigation.sections","navigation.expand","navigation.top","search.highlight","search.share","content.code.copy","content.code.annotate","toc.follow","content.tabs.link","color.mode"],"redirect":null,"search":"./assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="./assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="./assets/javascripts/theme-toggle.js"></script>
+      
+    
+  </body>
+</html>

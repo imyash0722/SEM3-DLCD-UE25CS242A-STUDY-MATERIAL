@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>DLCD Revision Master & Interactive Portal | Digital Logic & Computer Design</title>
+  
+  <!-- KaTeX for crisp LaTeX math equations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    :root {
+      --bg-body: #0a0e17;
+      --bg-sidebar: #0f1523;
+      --bg-card: #151d2d;
+      --bg-card-alt: #1c263a;
+      --bg-hover: #222f46;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(99, 102, 241, 0.3);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #64748b;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-glow: rgba(99, 102, 241, 0.25);
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.18);
+      --danger: #f43f5e;
+      --danger-glow: rgba(244, 63, 94, 0.18);
+      --warning: #f59e0b;
+      --warning-glow: rgba(245, 158, 11, 0.18);
+      --cyan: #06b6d4;
+      --purple: #a855f7;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-body: #f8fafc;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-alt: #f1f5f9;
+      --bg-hover: #e2e8f0;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-accent: rgba(99, 102, 241, 0.4);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-sub: #64748b;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-glow: rgba(79, 70, 229, 0.15);
+      --success: #059669;
+      --success-glow: rgba(5, 150, 105, 0.12);
+      --danger: #e11d48;
+      --danger-glow: rgba(225, 29, 72, 0.12);
+      --warning: #d97706;
+      --warning-glow: rgba(217, 119, 6, 0.12);
+      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .app-container {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Sidebar Backdrop for Mobile */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 90;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .sidebar-backdrop.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 320px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    .logo-text h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+
+    .logo-text p {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .theme-toggle-btn {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .theme-toggle-btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--primary);
+    }
+
+    .sidebar-section {
+      padding: 16px 20px 8px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      transition: var(--transition);
+    }
+
+    .nav-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background: var(--bg-card-alt);
+      color: var(--primary);
+      border-color: var(--border-accent);
+      font-weight: 600;
+    }
+
+    .nav-btn-badge {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 20px;
+      background: var(--bg-hover);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .nav-btn.active .nav-btn-badge {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Main Content Area */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 100vh;
+    }
+
+    /* Top Navbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    [data-theme="light"] .topbar {
+      background: rgba(248, 250, 252, 0.88);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      background: var(--bg-card);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      gap: 2px;
+      overflow-x: auto;
+    }
+
+    .mode-tab {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .mode-tab:hover {
+      color: var(--text-main);
+    }
+
+    .mode-tab.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    /* Stats Ribbon */
+    .stats-ribbon {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .stat-pill.success { border-color: var(--success); color: var(--success); }
+    .stat-pill.primary { border-color: var(--primary); color: var(--primary); }
+    .stat-pill.warning { border-color: var(--warning); color: var(--warning); }
+
+    /* Content Body */
+    .content-area {
+      flex: 1;
+      padding: 28px;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .view-container {
+      display: none;
+    }
+    .view-container.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Search & Filter Bar */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrap {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 16px 10px 40px;
+      color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+      transition: var(--transition);
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-sub);
+      font-size: 16px;
+    }
+
+    /* MCQ Cards */
+    .mcq-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+      position: relative;
+    }
+    .mcq-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .mcq-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mcq-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-id { background: var(--bg-card-alt); color: var(--text-muted); border: 1px solid var(--border); }
+    .badge-unit { background: rgba(99, 102, 241, 0.15); color: var(--primary); border: 1px solid rgba(99, 102, 241, 0.3); }
+    .badge-module { background: rgba(6, 182, 212, 0.15); color: var(--cyan); border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge-official { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-generated { background: rgba(168, 85, 247, 0.15); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.3); }
+
+    .bookmark-btn {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-sub);
+      transition: var(--transition);
+      padding: 4px;
+    }
+    .bookmark-btn:hover { color: var(--warning); transform: scale(1.15); }
+    .bookmark-btn.active { color: var(--warning); }
+
+    .mcq-question {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .mcq-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .mcq-option {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+    .mcq-option:hover {
+      background: var(--bg-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+
+    .option-text {
+      flex: 1;
+    }
+
+    /* Option States */
+    .mcq-option.correct {
+      background: rgba(16, 185, 129, 0.12) !important;
+      border-color: var(--success) !important;
+      color: var(--success) !important;
+    }
+    .mcq-option.correct .option-letter {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    .mcq-option.incorrect {
+      background: rgba(244, 63, 94, 0.12) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger) !important;
+    }
+    .mcq-option.incorrect .option-letter {
+      background: var(--danger);
+      color: #fff;
+      border-color: var(--danger);
+    }
+
+    .mcq-option.selected-test {
+      background: rgba(99, 102, 241, 0.15) !important;
+      border-color: var(--primary) !important;
+    }
+    .mcq-option.selected-test .option-letter {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .mcq-explanation {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: rgba(99, 102, 241, 0.08);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      display: none;
+    }
+    .mcq-explanation.show {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+    .mcq-explanation strong {
+      color: var(--primary);
+    }
+
+    /* Theory Cards */
+    .theory-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+    }
+    .theory-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .theory-header {
+      padding: 18px 24px;
+      background: var(--bg-card-alt);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .theory-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theory-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .theory-toggle-icon {
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+    .theory-card.collapsed .theory-toggle-icon {
+      transform: rotate(-90deg);
+    }
+
+    .theory-body {
+      padding: 24px;
+      display: block;
+    }
+    .theory-card.collapsed .theory-body {
+      display: none;
+    }
+
+    .theory-points {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .theory-point-item {
+      position: relative;
+      padding-left: 24px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-main);
+    }
+    .theory-point-item::before {
+      content: "▹";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      color: var(--primary);
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    /* Diagrams Container */
+    .diagram-wrap {
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .diagram-svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Formulae Cards */
+    .formula-category {
+      margin-bottom: 30px;
+    }
+
+    .formula-category-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .formula-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+    .formula-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .formula-name {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .formula-math {
+      font-size: 15px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .formula-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Numericals Cards */
+    .num-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+    }
+    .num-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .num-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .num-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .num-problem {
+      background: var(--bg-card-alt);
+      border-left: 4px solid var(--cyan);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      color: var(--text-main);
+    }
+
+    .num-section-heading {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--warning);
+      margin: 16px 0 8px;
+    }
+
+    .num-steps {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .num-step-item {
+      padding: 8px 14px;
+      background: var(--bg-hover);
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      color: var(--text-main);
+      border-left: 3px solid var(--primary);
+    }
+
+    .num-solution-box {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      white-space: pre-wrap;
+    }
+
+    .num-final-answer {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--success);
+      margin-bottom: 12px;
+    }
+
+    .num-sanity-check {
+      font-size: 12.5px;
+      color: var(--text-sub);
+      font-style: italic;
+    }
+
+    /* Test Mode Interface */
+    .test-setup-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: var(--shadow-card);
+      text-align: center;
+    }
+
+    .test-form-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .test-select {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      outline: none;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .test-active-view {
+      display: none;
+      gap: 24px;
+    }
+    .test-active-view.show {
+      display: flex;
+    }
+
+    .test-main-col {
+      flex: 1;
+    }
+
+    .test-palette-col {
+      width: 280px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+
+    .test-palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 4px;
+    }
+
+    .palette-btn {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 6px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .palette-btn:hover { border-color: var(--primary); }
+    .palette-btn.current { border-color: var(--primary); color: var(--primary); font-weight: 700; box-shadow: 0 0 0 2px var(--primary-glow); }
+    .palette-btn.answered { background: var(--success); color: #fff; border-color: var(--success); }
+    .palette-btn.flagged { background: var(--warning); color: #fff; border-color: var(--warning); }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show {
+      display: flex;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .test-active-view.show {
+        flex-direction: column;
+      }
+      .test-palette-col {
+        width: 100%;
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Mobile Backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-badge">
+          <div class="logo-icon">⚡</div>
+          <div class="logo-text">
+            <h1>DLCD MASTER</h1>
+            <p>Digital Logic & Computer Design</p>
+          </div>
+        </div>
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">🌓</button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">Question Filters</div>
+        <button class="nav-btn active" id="filterAll" onclick="setFilter('type', 'all')">
+          <span>📚 All Questions</span>
+          <span class="nav-btn-badge" id="badgeAll">100</span>
+        </button>
+        <button class="nav-btn" id="filterOfficial" onclick="setFilter('type', 'Official (PES Source)')">
+          <span>🏛️ Official PES Bank</span>
+          <span class="nav-btn-badge" id="badgeOfficial">50</span>
+        </button>
+        <button class="nav-btn" id="filterGenerated" onclick="setFilter('type', 'Generated (High-Yield)')">
+          <span>🚀 High-Yield Generated</span>
+          <span class="nav-btn-badge" id="badgeGenerated">50</span>
+        </button>
+        <button class="nav-btn" id="filterBookmarks" onclick="setFilter('bookmarks', true)">
+          <span>⭐ Bookmarked</span>
+          <span class="nav-btn-badge" id="badgeBookmarks">0</span>
+        </button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">Syllabus Units</div>
+        <button class="nav-btn" id="unitAll" onclick="setFilter('unit', 'all')">
+          <span>📖 All Units</span>
+          <span class="nav-btn-badge">100</span>
+        </button>
+        <button class="nav-btn" id="unit1" onclick="setFilter('unit', 'Unit 1')">
+          <span>Unit 1: Combinational & Sequential</span>
+          <span class="nav-btn-badge" id="badgeUnit1">60</span>
+        </button>
+        <button class="nav-btn" id="unit2" onclick="setFilter('unit', 'Unit 2')">
+          <span>Unit 2: Digital Building Blocks</span>
+          <span class="nav-btn-badge" id="badgeUnit2">40</span>
+        </button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-title">Topics & Modules</div>
+        <button class="nav-btn" onclick="setFilter('module', 'Introduction to Digital Logic')">
+          <span>Logic Basics & Timing</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Boolean Equations & Canonical Forms')">
+          <span>Boolean Algebra & Forms</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Karnaugh Maps')">
+          <span>Karnaugh Maps (K-Maps)</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Combinational Building Blocks')">
+          <span>MUX, Decoders & Buffers</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Latches and Flip-Flops')">
+          <span>Latches & Flip-Flops</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Synchronous Sequential Logic')">
+          <span>Synchronous Design</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Finite State Machines')">
+          <span>Finite State Machines</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Arithmetic Circuits')">
+          <span>Arithmetic Circuits & ALU</span>
+        </button>
+        <button class="nav-btn" onclick="setFilter('module', 'Number Systems & Floating Point')">
+          <span>Number Systems & IEEE 754</span>
+        </button>
+      </div>
+
+      <div class="sidebar-section" style="margin-top: auto; border-top: 1px solid var(--border); padding-top: 16px;">
+        <button class="nav-btn" onclick="jumpToRandomMCQ()">
+          <span>🎲 Random Question</span>
+        </button>
+        <button class="nav-btn" style="color: var(--danger);" onclick="confirmResetProgress()">
+          <span>🗑️ Reset All Progress</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+          <div class="mode-tabs">
+            <button class="mode-tab active" id="tabLearn" onclick="switchView('learn')">🎯 Learn</button>
+            <button class="mode-tab" id="tabExam" onclick="switchView('exam')">⏱️ Exam</button>
+            <button class="mode-tab" id="tabTheory" onclick="switchView('theory')">📖 Theory Notes</button>
+            <button class="mode-tab" id="tabFormulae" onclick="switchView('formulae')">📐 Formula Bank</button>
+            <button class="mode-tab" id="tabNumericals" onclick="switchView('numericals')">🧮 Numericals</button>
+          </div>
+        </div>
+
+        <div class="stats-ribbon">
+          <div class="stat-pill primary">
+            <span>Answered:</span>
+            <span id="statAnswered">0/100</span>
+          </div>
+          <div class="stat-pill success">
+            <span>Score:</span>
+            <span id="statScore">0%</span>
+          </div>
+          <div class="stat-pill warning">
+            <span>⭐ Bookmarked:</span>
+            <span id="statBookmarks">0</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="content-area">
+        <!-- LEARN VIEW -->
+        <div class="view-container active" id="viewLearn">
+          <div class="filter-bar">
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" id="learnSearchInput" placeholder="Search questions, formulas, minterms, FSMs..." oninput="handleLearnSearch()">
+            </div>
+          </div>
+          <div id="learnMCQContainer"></div>
+        </div>
+
+        <!-- EXAM VIEW -->
+        <div class="view-container" id="viewExam">
+          <div id="examSetupScreen" class="test-setup-card">
+            <h2 style="font-size: 22px; margin-bottom: 8px;">DLCD Examination Mode</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Simulate a real-time exam with customizable time and question palette.</p>
+            
+            <div class="test-form-row">
+              <label style="font-weight: 600; font-size: 14px;">Question Source:</label>
+              <select class="test-select" id="examSourceSelect">
+                <option value="all">All Questions (100)</option>
+                <option value="Official (PES Source)">Official PES Bank Only (50)</option>
+                <option value="Generated (High-Yield)">High-Yield Generated Only (50)</option>
+              </select>
+            </div>
+
+            <div class="test-form-row">
+              <label style="font-weight: 600; font-size: 14px;">Unit Scope:</label>
+              <select class="test-select" id="examUnitSelect">
+                <option value="all">Comprehensive (Units 1 & 2)</option>
+                <option value="Unit 1">Unit 1 Only (Combinational & Sequential)</option>
+                <option value="Unit 2">Unit 2 Only (Building Blocks & FSM)</option>
+              </select>
+            </div>
+
+            <div class="test-form-row">
+              <label style="font-weight: 600; font-size: 14px;">Number of Questions:</label>
+              <select class="test-select" id="examCountSelect">
+                <option value="20">20 Questions (Quick Test)</option>
+                <option value="30">30 Questions (Standard Quiz)</option>
+                <option value="50">50 Questions (Mid-Term)</option>
+                <option value="all">All Selected Questions</option>
+              </select>
+            </div>
+
+            <div class="test-form-row">
+              <label style="font-weight: 600; font-size: 14px;">Time Limit:</label>
+              <select class="test-select" id="examTimerSelect">
+                <option value="1">1 Minute / Question (Strict)</option>
+                <option value="1.5" selected>1.5 Minutes / Question (Standard)</option>
+                <option value="2">2 Minutes / Question (Relaxed)</option>
+                <option value="0">Untimed Practice</option>
+              </select>
+            </div>
+
+            <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="startNewExam()">🚀 Begin Examination</button>
+          </div>
+
+          <div id="examActiveScreen" class="test-active-view">
+            <div class="test-main-col">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <span id="examQuestionTracker" style="font-size: 14px; font-weight: 600; color: var(--text-muted);">Question 1 of 30</span>
+                <div style="display: flex; gap: 8px;">
+                  <button class="stat-pill warning" id="btnExamFlag" onclick="toggleExamFlag()">🏳️ Flag</button>
+                  <button class="stat-pill primary" onclick="clearExamChoice()">Clear Choice</button>
+                </div>
+              </div>
+              <div id="activeExamQuestionCard"></div>
+              <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button class="stat-pill" onclick="navigateExam(-1)">◀ Previous</button>
+                <button class="stat-pill" onclick="navigateExam(1)">Next ▶</button>
+                <button class="btn-primary" onclick="confirmSubmitExam()">Submit Exam 🏁</button>
+              </div>
+            </div>
+
+            <div class="test-palette-col">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 13px; font-weight: 700;">Question Palette</span>
+                <span id="examTimerDisplay" style="font-size: 13px; font-weight: 700; color: var(--warning);">⏳ --:--</span>
+              </div>
+              <div class="test-palette-grid" id="examPaletteGrid"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- THEORY VIEW -->
+        <div class="view-container" id="viewTheory">
+          <div class="filter-bar">
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" id="theorySearchInput" placeholder="Filter theory topics (e.g. FSM, CLA, Latches, K-Map)..." oninput="handleTheorySearch()">
+            </div>
+            <button class="stat-pill primary" onclick="toggleAllTheoryCards()">Expand / Collapse All</button>
+          </div>
+          <div id="theoryContainer"></div>
+        </div>
+
+        <!-- FORMULAE VIEW -->
+        <div class="view-container" id="viewFormulae">
+          <div class="filter-bar">
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" id="formulaSearchInput" placeholder="Search formula name or equation..." oninput="handleFormulaSearch()">
+            </div>
+          </div>
+          <div id="formulaeContainer"></div>
+        </div>
+
+        <!-- NUMERICALS VIEW -->
+        <div class="view-container" id="viewNumericals">
+          <div class="filter-bar">
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" id="numSearchInput" placeholder="Search numericals (e.g. K-Map, IEEE 754, RCA delay)..." oninput="handleNumSearch()">
+            </div>
+          </div>
+          <div id="numericalsContainer"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Score Modal -->
+  <div class="modal-overlay" id="examResultModal">
+    <div class="modal-card">
+      <div style="font-size: 48px; margin-bottom: 12px;" id="modalTrophy">🏆</div>
+      <h2 style="font-size: 24px; margin-bottom: 6px;">Examination Result</h2>
+      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Here is your performance breakdown:</p>
+      
+      <div style="font-size: 40px; font-weight: 800; color: var(--primary); margin-bottom: 18px;" id="modalScorePct">0%</div>
+
+      <div style="display: flex; justify-content: space-around; margin-bottom: 24px;">
+        <div>
+          <div style="font-size: 12px; color: var(--text-sub);">CORRECT</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--success);" id="modalCorrect">0</div>
+        </div>
+        <div>
+          <div style="font-size: 12px; color: var(--text-sub);">INCORRECT</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--danger);" id="modalWrong">0</div>
+        </div>
+        <div>
+          <div style="font-size: 12px; color: var(--text-sub);">UNANSWERED</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--text-sub);" id="modalUnanswered">0</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button class="btn-primary" onclick="resetToExamSetup()">Take Another Exam</button>
+        <button class="stat-pill" onclick="closeExamModal()">Close & Review</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Embedded Complete Datasets
+    const MCQ_DATA = [{"id": "DLCD-OFF-01", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Official (PES Source)", "question": "Why must all registers in a synchronous sequential circuit share the same clock signal?", "options": ["So that all state updates happen at the same instant, avoiding race conditions between registers", "To reduce the total number of gates in the circuit", "Because registers cannot function without a shared clock wire physically touching", "It is only a convention with no functional purpose"], "answer": 0, "explanation": "In synchronous sequential design, a shared global clock ensures that all state updates occur simultaneously at the active clock edge. This avoids race conditions and timing hazards between cascading registers."}, {"id": "DLCD-OFF-02", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "An essential prime implicant is a prime implicant that:", "options": ["Covers the maximum possible number of squares in the map", "Contains at least one square (minterm) that is not covered by any other prime implicant", "Is always adjacent to a don't-care square", "Must always contain exactly two literals"], "answer": 1, "explanation": "An Essential Prime Implicant (EPI) covers at least one 1 (minterm) that is not covered by any other prime implicant. Because that minterm must be satisfied, the EPI must be included in every minimal SOP cover."}, {"id": "DLCD-OFF-03", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "In Product-of-Sums (POS) form, the Boolean formula is constructed as:", "options": ["Sum of all minterms corresponding to a 1 output", "Product of all maxterms corresponding to a 0 output", "Product of all minterms corresponding to a 1 output", "Sum of all maxterms corresponding to a 0 output"], "answer": 1, "explanation": "The canonical Product-of-Sums (POS) form is formed by taking the product (AND) of all maxterms for which the truth table output is 0. Formally, $F = \\prod M(i)$ where $f(i) = 0$."}, {"id": "DLCD-OFF-04", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "What is the key structural difference between a D latch and a D flip-flop?", "options": ["A flip-flop has no clock input at all", "A flip-flop is built from two back-to-back latches (master-slave) and changes state only on a clock edge, unlike the level-sensitive latch", "A latch always requires two separate clocks", "There is no real difference - the terms are interchangeable"], "answer": 1, "explanation": "A D latch is level-sensitive (transparent whenever CLK=1). A D flip-flop is edge-triggered, constructed from two cascaded latches (master-slave with inverted clocks) or an edge-detecting latch circuit, sampling D only at clock transitions."}, {"id": "DLCD-OFF-05", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "How many select lines does a 4:1 multiplexer require?", "options": ["1", "2", "3", "4"], "answer": 1, "explanation": "A multiplexer with $N$ inputs requires $k = \\lceil \\log_2 N \\rceil$ select lines. For $N = 4$, $\\log_2(4) = 2$ select lines ($S_1, S_0$)."}, {"id": "DLCD-OFF-06", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Official (PES Source)", "question": "An AND gate whose output is fed back to one of its own inputs, with no flip-flop in the loop, is classified as:", "options": ["Combinational logic", "Synchronous sequential logic", "Neither combinational nor synchronous sequential", "A D flip-flop"], "answer": 2, "explanation": "Combinational logic strictly prohibits cyclic (feedback) paths. Synchronous sequential logic requires every cyclic path to contain at least one clocked register. Therefore, an unclocked feedback loop is asynchronous and violates both rules."}, {"id": "DLCD-OFF-07", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "The same D and CLK waveform is applied to both a D latch and a D flip-flop, where D changes value more than once while CLK = 1. Which statement correctly compares their outputs Q?", "options": ["Both outputs will be identical at all times", "The D latch's Q will track every change in D while CLK = 1 (transparent), while the D flip-flop's Q updates only once, at the rising edge of CLK", "The D flip-flop updates continuously while CLK = 1, and the D latch updates only at the rising edge", "Neither device changes state until CLK falls to 0"], "answer": 1, "explanation": "The D latch is transparent throughout the high duration of CLK ($CLK = 1$), so its output follows every change in D. The D flip-flop is edge-triggered and samples D only at the instantaneous rising edge of CLK."}, {"id": "DLCD-OFF-08", "unit": "Unit 1", "module": "Introduction to Digital Logic", "type": "Official (PES Source)", "question": "When a digital circuit is viewed as a 'black box,' it is completely described by its input terminals, output terminals, and:", "options": ["Only a functional specification", "A functional specification and a timing specification", "Only a timing specification", "A list of the gates used inside"], "answer": 1, "explanation": "In abstraction-based digital design (Harris & Harris), a black box is completely specified by its input terminals, output terminals, functional specification (relationship between inputs and outputs), and timing specification (delays)."}, {"id": "DLCD-OFF-09", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "A 'minterm' for a Boolean function of 3 variables is:", "options": ["Any single literal", "A sum of two or more literals", "A product term that includes all three input variables", "A product term with only one input variable"], "answer": 2, "explanation": "A minterm (standard product) for an $n$-variable function is a product term that contains each of the $n$ variables exactly once in either complemented or uncomplemented form."}, {"id": "DLCD-OFF-10", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "The output equation of a 2:1 multiplexer with data inputs D0, D1 and select line S is:", "options": ["$Y = D_0 S + D_1 S$", "$Y = D_0 S' + D_1 S$", "$Y = D_0 + D_1 + S$", "$Y = (D_0 + S)(D_1 + S)$"], "answer": 1, "explanation": "When $S = 0$, $Y = D_0$; when $S = 1$, $Y = D_1$. This is expressed in Boolean form as $Y = S' D_0 + S D_1$."}, {"id": "DLCD-OFF-11", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "In the minimization step $y = bc(a' + a) + ac(b' + b) \\implies y = bc(1) + ac(1)$, which law has been applied?", "options": ["Distributive law", "Identity law", "Complement law", "De Morgan's law"], "answer": 2, "explanation": "The Complement Law states that $x + x' = 1$. Replacing $(a' + a)$ and $(b' + b)$ with $1$ is an application of the complement law."}, {"id": "DLCD-OFF-12", "unit": "Unit 1", "module": "Introduction to Digital Logic", "type": "Official (PES Source)", "question": "A combinational circuit has three elements: Delay(E1) = 5 ns, Delay(E2) = 8 ns, Delay(E3) = 4 ns. E3 begins computation only after both E1 and E2 outputs become valid. What is the worst-case propagation delay of the circuit?", "options": ["8 ns", "12 ns", "13 ns", "17 ns"], "answer": 1, "explanation": "E1 and E2 operate in parallel. E3 must wait for both to finish, which takes $\\max(5\\text{ ns}, 8\\text{ ns}) = 8\\text{ ns}$. Then E3 takes 4 ns. Total worst-case propagation delay = $8 + 4 = 12\\text{ ns}$."}, {"id": "DLCD-OFF-13", "unit": "Unit 1", "module": "Introduction to Digital Logic", "type": "Official (PES Source)", "question": "As per the rules of combinational composition, what happens if a circuit contains a cyclic (feedback) path with no register in it?", "options": ["It is still combinational if the loop has an even number of gates", "It cannot be classified as combinational", "It automatically becomes a flip-flop", "It becomes combinational only at high clock speeds"], "answer": 1, "explanation": "A combinational circuit must have an acyclic schematic (no feedback loops). Any unclocked cyclic path creates memory, oscillation, or race conditions, disqualifying it from being combinational."}, {"id": "DLCD-OFF-14", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "A Boolean function of n input variables has how many possible minterms?", "options": ["$n$", "$2n$", "$2^n$", "$n^2$"], "answer": 2, "explanation": "Each of the $n$ binary variables can appear either complemented or uncomplemented (2 choices). Hence, there are $2^n$ unique minterm combinations."}, {"id": "DLCD-OFF-15", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "Which set contains only combinational circuits?", "options": ["Adder, Multiplexer, Decoder", "Counter, Register, Flip-Flop", "Decoder, Counter, Encoder", "Comparator, Register, Multiplexer"], "answer": 0, "explanation": "Adders, multiplexers, and decoders contain no internal storage or feedback loops; outputs depend solely on current inputs. Counters, registers, and flip-flops are sequential circuits."}, {"id": "DLCD-OFF-16", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "Minimize $y = a'bc + ab'c + abc' + abc$ using the distributive, complement, and identity laws. What is the minimized SOP expression?", "options": ["$bc + ac$", "$ab + bc$", "$ab + ac$", "$ab' + bc$"], "answer": 0, "explanation": "Group terms: $(a'bc + abc) + (ab'c + abc) = bc(a' + a) + ac(b' + b) = bc(1) + ac(1) = bc + ac$ (or by K-map)."}, {"id": "DLCD-OFF-17", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "Ben won't enjoy his picnic if it rains (R) or if there are ants (A). His enjoyment E expressed in SOP form is:", "options": ["$E = A + R$", "$E = A' R'$", "$E = A' + R'$", "$E = A R$"], "answer": 1, "explanation": "Ben enjoys his picnic ($E = 1$) only when it is NOT raining ($R = 0$) AND there are NO ants ($A = 0$). By De Morgan's Law: $E = (A + R)' = A' R'$."}, {"id": "DLCD-OFF-18", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Official (PES Source)", "question": "In an unresolved race condition, why is the circuit's output described as 'unstable'?", "options": ["Because the circuit consumes too much power", "Because the flip-flops aren't connected to any clock at all", "Because the output depends on the order/timing of inputs rather than settling to one well-defined value", "Because combinational gates need more chip area"], "answer": 2, "explanation": "A race condition occurs when multiple signal paths compete, causing the final output state to depend unpredictably on microscopic gate delays and arrival order rather than logical design."}, {"id": "DLCD-OFF-19", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "Given the truth table for a 3-input function: $(a,b,c) = (000,0), (001,1), (010,0), (011,1), (100,1), (101,1), (110,1), (111,1)$. Using a K-map, what is the minimal Boolean expression for y?", "options": ["$y = a + c$", "$y = a' c$", "$y = a' c + a c$", "$y = a + b' c$"], "answer": 0, "explanation": "Minterms are $m(1, 3, 4, 5, 6, 7)$. A group of four 1s $\\{4, 5, 6, 7\\}$ gives $a$. A group of four 1s $\\{1, 3, 5, 7\\}$ gives $c$. Thus, the minimal expression is $y = a + c$."}, {"id": "DLCD-OFF-20", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "Decoder outputs are called 'one-hot' because:", "options": ["All outputs are HIGH simultaneously", "Exactly one output is HIGH for any valid input combination, all others LOW", "All outputs are always LOW", "Outputs toggle randomly"], "answer": 1, "explanation": "In an active-high decoder, for every unique $N$-bit binary input pattern, exactly one corresponding output out of $2^N$ becomes active (HIGH = 1) while all other outputs remain 0 (inactive)."}, {"id": "DLCD-OFF-21", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "What does the reset input on a resettable flip-flop do?", "options": ["It forces Q to 0 regardless of the current D input, overriding normal operation", "It permanently disables the flip-flop", "It doubles the clock frequency", "It has no effect on Q, only on D"], "answer": 0, "explanation": "When RESET is asserted, it forces the state output $Q$ to 0 (cleared state), overriding the data input $D$ to initialize the circuit to a known state."}, {"id": "DLCD-OFF-22", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "A 3-input circuit is designed so that inputs can never have all three variables = 1 simultaneously (so row 111 is a don't care). Given truth table: $(000,1), (001,1), (010,0), (011,0), (100,1), (101,1), (110,1), (111,X)$. Treating the don't care to minimize the formula, which expression correctly represents y?", "options": ["$y = a + b'$", "$y = a' b'$", "$y = a b'$", "$y = a' + b$"], "answer": 0, "explanation": "Minterms: $\\{0, 1, 4, 5, 6\\}$ and $d(7)$. By grouping $\\{0, 1, 4, 5\\}$, we get $b'$. By grouping $\\{4, 5, 6, 7\\}$ (using the $X$ at 7), we get $a$. Thus, $y = a + b'$."}, {"id": "DLCD-OFF-23", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "A tristate buffer has three possible output states, namely:", "options": ["0, 1 and X", "0, 1 and High Impedance (Z)", "High, Low and Don't Care", "Set, Reset and Hold"], "answer": 1, "explanation": "A tristate buffer provides logic 0 (Low), logic 1 (High), and High Impedance ($Z$), where the output is electrically disconnected from the wire, allowing multiple drivers to share a bus."}, {"id": "DLCD-OFF-24", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "The Sum-of-Products (SOP) form of a Boolean function is constructed by:", "options": ["ANDing all maxterms where the output is 0", "ORing all minterms where the output is TRUE", "ORing all maxterms", "Complementing the truth table"], "answer": 1, "explanation": "Canonical Sum-of-Products (SOP) is formed by taking the logical OR (sum) of all minterms (products) for which the function output is 1."}, {"id": "DLCD-OFF-25", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "In a master-slave D flip-flop built from two D latches with complementary clocks, when CLK = 0:", "options": ["The master is transparent and the slave is opaque", "The master is opaque and the slave is transparent", "Both latches are transparent", "Both latches are opaque"], "answer": 0, "explanation": "When $CLK = 0$, the inverted clock $CLK' = 1$ enables the master latch (transparent, sampling D), while the slave latch receives $CLK = 0$ (opaque, holding the previous output Q)."}, {"id": "DLCD-OFF-26", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "Why are K-Map rows/columns labeled in the order 00, 01, 11, 10 instead of 00, 01, 10, 11?", "options": ["It matches decimal counting order", "So that any two adjacent squares differ in exactly one literal (Gray code order)", "It is purely a drawing convention with no logical basis", "To prevent wrap-around"], "answer": 1, "explanation": "Gray code ordering ensures that adjacent squares (and wrap-around edges) differ by exactly one variable bit, which allows applying the adjacency rule $A B + A B' = A$ to eliminate variables."}, {"id": "DLCD-OFF-27", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "An 'X' (don't care) entry in a K-Map/truth table represents:", "options": ["An output that is always 0", "An output that is always 1", "An output whose value is unspecified - it can be treated as either 0 or 1, whichever gives the smaller formula", "An invalid input combination that must be deleted before minimization"], "answer": 2, "explanation": "A don't-care condition corresponds to an input pattern that can never occur or whose output does not matter. The designer can treat it as 1 to enlarge groups or 0 to avoid creating extra groups."}, {"id": "DLCD-OFF-28", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "A D latch is described as transparent when:", "options": ["CLK = 0", "CLK = 1", "D = 0", "Only at the rising edge of CLK"], "answer": 1, "explanation": "For an active-high D latch, when $CLK = 1$, the latch is in transparent mode, meaning the output $Q$ directly tracks any changes on data input $D$."}, {"id": "DLCD-OFF-29", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "For an N:2^N decoder, how many total output lines does it have?", "options": ["$N$", "$N \\times 2$", "$2^N$", "$N^2$"], "answer": 2, "explanation": "An $N$-to-$2^N$ decoder takes $N$ binary input lines and decodes them into $2^N$ distinct output lines (one for each possible minterm)."}, {"id": "DLCD-OFF-30", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "A literal in Boolean algebra is:", "options": ["A product of two or more variables", "A Boolean variable or its complement", "A sum involving all input variables", "Only an uncomplemented variable"], "answer": 1, "explanation": "A literal is defined as a variable in its true (uncomplemented, e.g., $A$) or complemented (inverted, e.g., $A'$) form."}, {"id": "DLCD-OFF-31", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "'Wrap-around' in a K-Map means:", "options": ["The map can be rotated 90 degrees", "The far-left and far-right (and top/bottom, in 4-variable maps) squares are considered adjacent", "It only applies when using POS form", "Squares in different rows are never adjacent"], "answer": 1, "explanation": "Due to Gray code reflection, the outer columns ($00$ and $10$) differ by only 1 bit, as do the outer rows ($00$ and $10$). Therefore, the edges of the K-map wrap around toroidally and are logically adjacent."}, {"id": "DLCD-OFF-32", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "A worked example produced two equally minimal answers, $f = b'c + bc' + ca$ and $f = b'c + bc' + ab$. This illustrates that:", "options": ["K-Maps always give a unique minimal solution", "The minimal SOP form is not always unique", "POS form must be used instead", "The K-Map method has failed"], "answer": 1, "explanation": "When non-essential prime implicants can cover the remaining minterms equally well with the same number of terms and literals, multiple distinct but equally minimal SOP equations exist."}, {"id": "DLCD-OFF-33", "unit": "Unit 1", "module": "Introduction to Digital Logic", "type": "Official (PES Source)", "question": "What is the key difference between a combinational and a sequential logic circuit?", "options": ["Combinational circuits have memory, sequential circuits don't", "A combinational circuit's output depends only on current inputs; a sequential circuit's output also depends on past inputs", "Sequential circuits use only NAND gates", "There is no real difference between them"], "answer": 1, "explanation": "Combinational circuits are memoryless ($Y = f(X)$). Sequential circuits possess internal memory elements (state), meaning outputs depend on both current inputs and past history ($Y = f(X, \\text{State})$)."}, {"id": "DLCD-OFF-34", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "For a three-input function with inputs a, b, c, the maxterm M6 is:", "options": ["$a' + b' + c$", "$a + b + c'$", "$a' + b + c'$", "$a + b' + c$"], "answer": 0, "explanation": "Decimal $6 = 110_2$ in binary. In maxterm notation, a variable with bit 1 appears complemented and bit 0 appears uncomplemented. Thus, $M_6 = a' + b' + c$."}, {"id": "DLCD-OFF-35", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "A Boolean function has four inputs (A, B, C, D) and is TRUE only for minterms m(3, 7, 11, 15). Which characteristic do all these minterms share?", "options": ["$A = 1$", "$C = 1$ and $D = 1$", "$C = 0$", "$B = 1$"], "answer": 1, "explanation": "In binary: $3 = 0011, 7 = 0111, 11 = 1011, 15 = 1111$. In all four terms, the lowest two bits ($C$ and $D$) are both 1, giving the minimized expression $F = C D$."}, {"id": "DLCD-OFF-36", "unit": "Unit 1", "module": "Introduction to Digital Logic", "type": "Official (PES Source)", "question": "According to Moore's Law, approximately every 18 months the number of transistors per unit chip area:", "options": ["Halves", "Remains constant", "Doubles", "Increases by 10%"], "answer": 2, "explanation": "Gordon Moore observed in 1965 that the number of transistors integrated on a microchip doubles roughly every 18 to 24 months, driving exponential performance gains."}, {"id": "DLCD-OFF-37", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Official (PES Source)", "question": "For a circuit to be classified as a synchronous sequential circuit, which condition must hold?", "options": ["It must contain only combinational gates", "Every feedback (cyclic) path must contain at least one register, and all registers share a common clock", "It must have no registers at all", "Each register may run off its own independent clock"], "answer": 1, "explanation": "The strict compositional rule of synchronous sequential circuits mandates that every cyclic feedback loop must contain at least one clocked register, and all registers must be driven by the same periodic clock."}, {"id": "DLCD-OFF-38", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "To implement any three-input Boolean function using a decoder and an OR gate, the decoder required is:", "options": ["2:4 decoder", "3:8 decoder", "8:3 encoder", "4:16 decoder"], "answer": 1, "explanation": "A 3-variable function has up to 8 minterms ($m_0$ to $m_7$). A 3:8 decoder generates all 8 minterms, which can then be ORed together to realize any arbitrary 3-input function."}, {"id": "DLCD-OFF-39", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "For a three-input function with inputs a, b, c, the minterm m5 is:", "options": ["$a b c$", "$a b' c$", "$a' b c$", "$a b c'$"], "answer": 1, "explanation": "Decimal $5 = 101_2$ in binary. In minterms, a 1 corresponds to an uncomplemented variable and a 0 corresponds to a complemented variable. Thus, $m_5 = a b' c$."}, {"id": "DLCD-OFF-40", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "In a 4-variable K-map, the total set of 1s is exactly {0, 1, 4, 5, 6, 7}. Group G1 covers squares {0, 1, 4, 5} and group G2 covers squares {4, 5, 6, 7}; both are valid maximal (prime) groupings. Which group(s) must be classified as essential prime implicants?", "options": ["Only G1", "Only G2", "Both G1 and G2, since squares 0/1 are covered only by G1 and squares 6/7 are covered only by G2", "Neither, because they overlap on squares 4 and 5"], "answer": 2, "explanation": "Squares 0 and 1 are covered solely by G1, making G1 essential. Squares 6 and 7 are covered solely by G2, making G2 essential. Therefore, both G1 and G2 are essential prime implicants."}, {"id": "DLCD-OFF-41", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "Why can a loop of two cross-coupled inverters store one bit of information?", "options": ["Because it has two outputs", "Because it consumes low power", "Because it can settle into one of two stable states, matching the two values a bit can take", "Because it uses NAND gates only"], "answer": 2, "explanation": "Cross-coupled inverters form a bistable element with positive feedback. It possesses two stable equilibrium operating points (Output $Q=1, Q'=0$ or $Q=0, Q'=1$), allowing it to store 1 bit of memory."}, {"id": "DLCD-OFF-42", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "In a four-variable K-Map, a valid group of 8 adjacent 1s reduces to a product term containing:", "options": ["1 literal", "2 literals", "3 literals", "4 literals"], "answer": 0, "explanation": "A group of size $2^k$ in an $n$-variable map eliminates $k$ variables. In a 4-variable map with an octet ($2^3 = 8$), $k = 3$ variables are eliminated, leaving $4 - 3 = 1$ literal."}, {"id": "DLCD-OFF-43", "unit": "Unit 1", "module": "Karnaugh Maps", "type": "Official (PES Source)", "question": "A prime implicant is:", "options": ["Any implicant containing exactly one square", "The largest possible grouping of adjacent 1's that cannot be enlarged further while following K-map rules", "An implicant derived only using Boolean algebra, never a K-map", "An implicant that covers every square in the map"], "answer": 1, "explanation": "A Prime Implicant is an implicant (group of $1, 2, 4, 8, \\dots$ adjacent 1s) that cannot be combined with another adjacent group to form a larger group (i.e. cannot eliminate any more literals)."}, {"id": "DLCD-OFF-44", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "A 3-input Boolean function is TRUE for minterms m(1, 3, 6). To implement this using an N:2^N decoder and an OR gate, what is the correct hardware structure?", "options": ["A 3:8 decoder whose outputs 1, 3, and 6 are connected to a 3-input OR gate", "A 3:8 decoder whose outputs 0, 2, 4, 5, 7 are connected to a 5-input OR gate", "An 8:3 encoder with all outputs ANDed together", "A single 2:1 multiplexer with select line tied to the function output"], "answer": 0, "explanation": "A 3:8 decoder generates all minterms $Y_0$ to $Y_7$. By connecting the active-high output pins 1, 3, and 6 to a 3-input OR gate, the circuit computes $F = Y_1 + Y_3 + Y_6 = m_1 + m_3 + m_6$."}, {"id": "DLCD-OFF-45", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "An SR latch is most commonly constructed from:", "options": ["Two cross-coupled NOR gates", "Two cascaded AND gates", "Three inverters in a loop", "A single XOR gate"], "answer": 0, "explanation": "The classical active-high SR latch is constructed from two cross-coupled NOR gates where the output of each gate feeds back into an input of the opposite gate."}, {"id": "DLCD-OFF-46", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "type": "Official (PES Source)", "question": "A 'maxterm' is defined as:", "options": ["A product of literals corresponding to a 1 output", "A sum term that includes all input variables of the function", "A single input variable", "The final minimized SOP expression"], "answer": 1, "explanation": "A maxterm (standard sum) is a sum term containing every input variable of the function exactly once in either true or complemented form, evaluating to 0 for exactly one input combination."}, {"id": "DLCD-OFF-47", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Official (PES Source)", "question": "Three inverters are connected in a feedback loop (ring oscillator), each with a propagation delay of 1 ns. What is the oscillation period of this circuit?", "options": ["2 ns", "3 ns", "6 ns", "9 ns"], "answer": 2, "explanation": "A signal transition takes $N \\times t_{\\text{pd}}$ to traverse the loop once, inverting the state. A full cycle requires two traversals (low-to-high and high-to-low). $T = 2 \\times N \\times t_{\\text{pd}} = 2 \\times 3 \\times 1\\text{ ns} = 6\\text{ ns}$."}, {"id": "DLCD-OFF-48", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Official (PES Source)", "question": "In a NOR-gate based SR latch, what happens when both S = 1 and R = 1?", "options": ["The latch remembers its previous state", "The output Q is set to 1", "Both Q and Q' become 0 - an invalid state since they are no longer complementary", "The output resets to Q = 0"], "answer": 2, "explanation": "In a NOR SR latch, an input of 1 forces the NOR output to 0. When both $S = 1$ and $R = 1$, both $Q$ and $Q'$ are forced to 0. This violates the definition of complementary outputs and causes an unpredictable race condition upon releasing."}, {"id": "DLCD-OFF-49", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Official (PES Source)", "question": "An N-bit register is best described as:", "options": ["A bank of N D latches with independent clocks", "A bank of N flip-flops sharing a common CLK input", "A combinational circuit with N inputs", "N cross-coupled inverter pairs without a clock"], "answer": 1, "explanation": "An $N$-bit synchronous register consists of an array of $N$ flip-flops sharing a common clock signal (and common control signals like enable/reset), storing an $N$-bit word simultaneously."}, {"id": "DLCD-OFF-50", "unit": "Unit 1", "module": "Combinational Building Blocks", "type": "Official (PES Source)", "question": "Using a 2:1 multiplexer to implement a 2-input AND function (Y = A.B), with A connected to the select line S, what should the data inputs I0 and I1 be set to?", "options": ["$I_0 = 1, I_1 = 0$", "$I_0 = 0, I_1 = B$", "$I_0 = B, I_1 = 0$", "$I_0 = A, I_1 = B$"], "answer": 1, "explanation": "The 2:1 MUX equation is $Y = S' I_0 + S I_1$. With $S = A$, $Y = A' I_0 + A I_1$. For AND logic ($Y = A B$), when $A = 0$, $Y = 0 \\implies I_0 = 0$. When $A = 1$, $Y = B \\implies I_1 = B$."}, {"id": "DLCD-GEN-51", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "What is the primary architectural difference between a Moore machine and a Mealy machine?", "options": ["Moore outputs depend strictly on the current state; Mealy outputs depend on both current state and current inputs", "Moore machines have no clock input; Mealy machines are synchronous", "Moore machines require fewer states than Mealy machines to detect identical sequences", "Mealy machine outputs update only at active clock edges, whereas Moore machine outputs change asynchronously"], "answer": 0, "explanation": "In a Moore machine, output logic is $Y = g(S)$ (depends solely on state). In a Mealy machine, output logic is $Y = g(S, X)$ (depends on state and immediate input), which allows faster response but can expose outputs to input glitches."}, {"id": "DLCD-GEN-52", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "An FSM has 8 distinct states. If One-Hot state encoding is employed, how many flip-flops are required in the state register?", "options": ["3", "4", "8", "16"], "answer": 2, "explanation": "In One-Hot encoding, each state is allocated a dedicated flip-flop (where exactly one flip-flop holds a '1' at any time). For 8 states, exactly 8 flip-flops are required. (Binary encoding would require $\\lceil \\log_2 8 \\rceil = 3$ flip-flops)."}, {"id": "DLCD-GEN-53", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "An FSM is implemented using 5 flip-flops with binary state encoding. What is the maximum number of distinct states that can be represented?", "options": ["5", "10", "25", "32"], "answer": 3, "explanation": "With $k$ flip-flops using binary encoding, each flip-flop represents one binary digit. Total possible combinations = $2^k = 2^5 = 32$ states."}, {"id": "DLCD-GEN-54", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "What is the primary operational advantage of using a Moore FSM instead of a Mealy FSM?", "options": ["Fewer states are required", "Outputs are completely glitch-free and synchronized to the clock", "Outputs respond immediately without waiting for a clock edge", "Next-state logic requires zero combinational gates"], "answer": 1, "explanation": "Because Moore outputs depend only on state flip-flop values (which change only at clock edges), they are isolated from input glitches and combinational race hazards occurring between clock edges."}, {"id": "DLCD-GEN-55", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "A Moore FSM is designed to detect the 4-bit sequence '1011' with overlapping allowed. How many states are required in its state diagram?", "options": ["3 states", "4 states", "5 states", "8 states"], "answer": 2, "explanation": "For an $N$-bit sequence detector implemented as a Moore machine, $N + 1$ states are required: S0 (Reset/No bits matched), S1 (got '1'), S2 (got '10'), S3 (got '101'), and S4 (got '1011', output = 1). Hence, $4 + 1 = 5$ states."}, {"id": "DLCD-GEN-56", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "In a basic divide-by-3 counter FSM, what is the output clock frequency when the input clock frequency is 30 MHz?", "options": ["90 MHz", "30 MHz", "15 MHz", "10 MHz"], "answer": 3, "explanation": "A divide-by-$N$ circuit cycles through $N$ states, completing one full cycle every $N$ clock periods. Therefore, $f_{\\text{out}} = f_{\\text{in}} / N = 30\\text{ MHz} / 3 = 10\\text{ MHz}$."}, {"id": "DLCD-GEN-57", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "When implementing an FSM in Verilog using standard multi-always block methodology, which block must use non-blocking assignments (<=)?", "options": ["The combinational next-state logic block", "The clocked state-register block", "The combinational output logic block", "All blocks must strictly use blocking (=) assignments"], "answer": 1, "explanation": "In standard Verilog design guidelines, sequential logic (the state register driven by `always @(posedge clk)`) must always use non-blocking assignments (`<=`) to prevent simulation race conditions between flip-flops."}, {"id": "DLCD-GEN-58", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "Why is a 'default' statement essential in the combinational next-state 'case' block of an FSM in Verilog?", "options": ["To force the synthesis tool to insert additional flip-flops", "To prevent the synthesis tool from inferring unintended transparent latches for unhandled states", "To automatically increase the clock frequency", "Because Verilog syntax causes a compilation error without it"], "answer": 1, "explanation": "In combinational `always @(*)` blocks, if an output variable is not assigned in every possible branch of a `case` statement, hardware synthesis tools infer memory latches to hold the previous value, which degrades timing and introduces hazards."}, {"id": "DLCD-GEN-59", "unit": "Unit 2", "module": "Finite State Machines", "type": "Generated (High-Yield)", "question": "In the design of complex digital controllers (e.g. traffic light with parade mode), what is the key advantage of Factored FSMs over Unfactored FSMs?", "options": ["Factored FSMs always use purely asynchronous logic", "Factoring divides a large FSM with $N_1 \\times N_2$ states into smaller interacting FSMs with $N_1 + N_2$ states, simplifying debugging and maintenance", "Factored FSMs eliminate all flip-flops", "Unfactored FSMs consume fewer total gates"], "answer": 1, "explanation": "Factoring decomposes a large, monolithic state machine into modular, interacting sub-FSMs (e.g., Mode FSM + Lights FSM). This avoids combinatorial state explosion, significantly reducing total states from multiplicative to additive and enhancing modularity."}, {"id": "DLCD-GEN-60", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "What are the minimal Boolean equations for the Sum (S) and Carry-out (Cout) of a 1-bit Half Adder with inputs A and B?", "options": ["$S = A \\cdot B,\\quad C_{\\text{out}} = A + B$", "$S = A \\oplus B,\\quad C_{\\text{out}} = A \\cdot B$", "$S = A + B,\\quad C_{\\text{out}} = A \\oplus B$", "$S = (A \\cdot B)',\\quad C_{\\text{out}} = A \\oplus B$"], "answer": 1, "explanation": "A half adder adds two 1-bit inputs $A$ and $B$. $S = 1$ when exactly one input is 1 ($S = A \\oplus B$). $C_{\\text{out}} = 1$ only when both inputs are 1 ($C_{\\text{out}} = A \\cdot B$)."}, {"id": "DLCD-GEN-61", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "How is a 1-bit Full Adder constructed from Half Adders and basic gates?", "options": ["Two Half Adders and one OR gate", "Two Half Adders and one AND gate", "Three Half Adders in parallel", "One Half Adder and two XOR gates"], "answer": 0, "explanation": "The first Half Adder adds $A$ and $B$, generating partial sum $S_1 = A \\oplus B$ and carry $C_1 = A B$. The second Half Adder adds $S_1$ and $C_{\\text{in}}$, producing total sum $S = S_1 \\oplus C_{\\text{in}}$ and carry $C_2 = S_1 C_{\\text{in}}$. The carries are ORed together: $C_{\\text{out}} = C_1 + C_2$."}, {"id": "DLCD-GEN-62", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "In an N-bit Ripple Carry Adder (RCA), what determines the critical path propagation delay?", "options": ["The delay of the first Half Adder stage only", "The carry propagation chain rippling through all N Full Adders ($t_{\\text{ripple}} = N \\times t_{\\text{FA}}$)", "The logarithmic depth of XOR gates ($\\log_2 N$)", "A constant delay independent of N"], "answer": 1, "explanation": "In an RCA, stage $i$ cannot compute its carry-out until carry-in arrives from stage $i-1$. Thus, carry bits ripple sequentially from LSB to MSB, resulting in a worst-case delay that scales linearly: $O(N)$."}, {"id": "DLCD-GEN-63", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "In a Carry Lookahead Adder (CLA), under what condition is the Generate signal Gi asserted for bit stage i?", "options": ["When $A_i + B_i = 1$", "When $A_i = 1$ and $B_i = 1$ ($G_i = A_i \\cdot B_i$)", "When $A_i \\oplus B_i = 1$", "When $C_{\\text{in}} = 1$"], "answer": 1, "explanation": "A stage generates a carry independently of incoming carry if both input bits are 1 ($A_i = 1, B_i = 1$). Hence, $G_i = A_i \\cdot B_i$. Propagate occurs when at least one input is 1 ($P_i = A_i \\oplus B_i$ or $A_i + B_i$)."}, {"id": "DLCD-GEN-64", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "In a 4-bit Carry Lookahead block (bits 3:0), what is the Boolean expression for the block propagate signal P3:0?", "options": ["$P_{3:0} = P_3 + P_2 + P_1 + P_0$", "$P_{3:0} = P_3 \\cdot P_2 \\cdot P_1 \\cdot P_0$", "$P_{3:0} = G_3 + P_3 G_2$", "$P_{3:0} = P_3 \\oplus P_2 \\oplus P_1 \\oplus P_0$"], "answer": 1, "explanation": "A 4-bit block propagates a carry across all 4 stages if and only if every stage in the block propagates the carry: $P_{3:0} = P_3 \\cdot P_2 \\cdot P_1 \\cdot P_0$."}, {"id": "DLCD-GEN-65", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "For an N-bit word, how does the critical path propagation delay of a Prefix Adder scale with N?", "options": ["Linearly with $N$ ($O(N)$)", "Logarithmically with $N$ ($O(\\log_2 N)$)", "Quadratically with $N$ ($O(N^2)$)", "Exponentially with $N$ ($O(2^N)$)"], "answer": 1, "explanation": "Prefix adders use tree structures of associative prefix operators (black and gray cells) to compute all carries in parallel across $\\log_2 N$ logic stages, giving $O(\\log_2 N)$ delay."}, {"id": "DLCD-GEN-66", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "How is binary subtraction A - B implemented using an N-bit binary adder and 2's complement arithmetic?", "options": ["Inverting all bits of A and setting $C_{\\text{in}} = 0$", "Inverting all bits of B (using XOR gates) and setting initial carry-in $C_{\\text{in}} = 1$", "Passing A and B directly with $C_{\\text{in}} = 1$", "Using two cascaded decoders"], "answer": 1, "explanation": "By definition of 2's complement, $-B = B' + 1$. Therefore, $A - B = A + B' + 1$. By placing 2-input XOR gates on each bit of $B$ with control signal $Sub$, when $Sub = 1$, $B$ is bitwise complemented and $C_{\\text{in}} = 1$."}, {"id": "DLCD-GEN-67", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "In an N-bit signed 2's complement adder/subtractor, which logic condition flags an arithmetic overflow?", "options": ["$V = C_{\\text{out}}$ of the most significant bit", "$V = C_{N-1} \\oplus C_N$ (carry into MSB XOR carry out of MSB)", "$V = A_{\\text{MSB}} \\cdot B_{\\text{MSB}}$", "$V = S_{\\text{MSB}}$"], "answer": 1, "explanation": "In 2's complement addition, overflow occurs if and only if the carry into the most significant (sign) bit differs from the carry out of the most significant bit: $V = C_{\\text{in,msb}} \\oplus C_{\\text{out,msb}}$."}, {"id": "DLCD-GEN-68", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "Which combination of logic gates is used to construct an N-bit binary equality comparator (A == B)?", "options": ["$N$ XOR gates followed by an OR gate", "$N$ XNOR gates followed by an $N$-input AND gate", "$N$ AND gates followed by an inverter", "$N$ NAND gates in series"], "answer": 1, "explanation": "An XNOR gate outputs 1 when both inputs are equal ($A_i \\odot B_i = 1$). To verify that all $N$ bit pairs match simultaneously, the $N$ XNOR outputs are fed into an $N$-input AND gate: $Eq = \\prod_{i=0}^{N-1} (A_i \\odot B_i)$."}, {"id": "DLCD-GEN-69", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "What is the key difference between a logical right shift (>>) and an arithmetic right shift (>>>)?", "options": ["Logical right shift fills vacant MSB positions with 0; Arithmetic right shift replicates the sign bit (old MSB)", "Arithmetic shift rotates bits circularly; Logical shift does not", "Logical shift can only shift by 1 bit; Arithmetic shift can shift by any number of bits", "Logical shift operates only on negative numbers"], "answer": 0, "explanation": "Logical right shift (`>>`) unconditionally fills empty MSB positions with 0s. Arithmetic right shift (`>>>`) replicates the old sign bit (MSB) into vacant positions, preserving the sign for signed 2's complement division by $2^k$."}, {"id": "DLCD-GEN-70", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "If an 8-bit signed binary number 11110000 (-16 in decimal) is arithmetically right-shifted by 2 positions (>>> 2), what is the resulting 8-bit binary value?", "options": ["00111100 (+60)", "11111100 (-4)", "11000011 (-61)", "00001111 (+15)"], "answer": 1, "explanation": "Starting with `11110000`, the MSB is 1. Shifting right arithmetically by 2 replicates the MSB: `11` + `111100` = `11111100`. In 2's complement, `11111100` represents $-4_{10}$, exactly $(-16) / 2^2 = -4$."}, {"id": "DLCD-GEN-71", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "A barrel shifter capable of shifting a 16-bit word by 0 to 15 positions is designed using 2:1 multiplexers. How many multiplexer stages are required in series?", "options": ["2 stages", "4 stages", "8 stages", "16 stages"], "answer": 1, "explanation": "A shift amount from 0 to 15 is specified by a 4-bit control signal ($k = 4$, since $2^4 = 16$). A logarithmic barrel shifter uses $\\log_2 N = \\log_2 16 = 4$ stages of multiplexers (shifting by 1, 2, 4, and 8 bits)."}, {"id": "DLCD-GEN-72", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "When multiplying an N-bit unsigned integer by an M-bit unsigned integer, how many bits must be allocated for the product to prevent overflow?", "options": ["$\\max(N, M)$ bits", "$N \\times M$ bits", "$N + M$ bits", "$N + M - 1$ bits"], "answer": 2, "explanation": "The maximum product of an $N$-bit and $M$-bit unsigned integer is $(2^N - 1)(2^M - 1) = 2^{N+M} - 2^N - 2^M + 1 < 2^{N+M}$. Hence, exactly $N + M$ bits are required to store the full product."}, {"id": "DLCD-GEN-73", "unit": "Unit 2", "module": "Arithmetic Circuits", "type": "Generated (High-Yield)", "question": "In a 32-bit ALU, how is the 'Set Less Than' (SLT) operation (A < B) implemented in hardware?", "options": ["By using a separate 32-bit hardware divider", "By configuring the adder as a subtractor (A - B) and extracting the sign bit S31 (zero-extended) as the result", "By counting the number of 1s in A and B", "By performing bitwise AND and checking if all bits are 0"], "answer": 1, "explanation": "To check if $A < B$, the ALU computes $A - B$. If $A < B$, the result is negative, making the sign bit $S_{31} = 1$. The ALU multiplexer routes $S_{31}$ to the LSB of output $Y$ (with upper 31 bits zero-extended to give $0x00000001$)."}, {"id": "DLCD-GEN-74", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "What is the numerical range of representable signed integers using N-bit 2's complement notation?", "options": ["$-(2^{N-1} - 1)$ to $+(2^{N-1} - 1)$", "$-2^{N-1}$ to $+(2^{N-1} - 1)$", "$-2^N$ to $+2^N$", "$0$ to $2^N - 1$"], "answer": 1, "explanation": "Because 2's complement has a unique representation for zero, it can represent one additional negative number. The range is $[-2^{N-1}, 2^{N-1} - 1]$. For $N = 8$, the range is $-128$ to $+127$."}, {"id": "DLCD-GEN-75", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "Why is 2's complement almost universally preferred over sign-magnitude and 1's complement in modern computer hardware?", "options": ["It has two distinct bit patterns for zero (+0 and -0)", "Addition and subtraction can use the exact same adder hardware without sign-checking logic, and zero has a unique representation", "It requires fewer total bits to represent floating point numbers", "It eliminates the need for logic gates"], "answer": 1, "explanation": "In 2's complement, addition and subtraction work uniformly on the bit patterns regardless of sign, eliminating special end-around carry and separate sign-handling circuits, and avoiding ambiguous dual zeros (+0 and -0)."}, {"id": "DLCD-GEN-76", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "Convert the fixed-point binary number 0011.1010 (4 integer bits, 4 fraction bits) to decimal.", "options": ["3.5", "3.625", "3.75", "3.125"], "answer": 1, "explanation": "Integer part: $0011_2 = 2 + 1 = 3$. Fraction part: $1010_2 = 1 \\times 2^{-1} + 0 \\times 2^{-2} + 1 \\times 2^{-3} + 0 \\times 2^{-4} = 0.5 + 0.125 = 0.625$. Total decimal value = $3.625$."}, {"id": "DLCD-GEN-77", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "Represent the decimal value -7.5 in 8-bit signed fixed-point format (4 integer bits, 4 fraction bits) using 2's complement.", "options": ["1111.1000", "1000.1000", "1000.0111", "0111.1000"], "answer": 1, "explanation": "1. $+7.5_{10} = 0111.1000_2$. 2. Invert bits (1's complement): $1000.0111_2$. 3. Add 1 to LSB ($2^{-4}$): $1000.0111 + 0000.0001 = 1000.1000_2$. Verification: $-8 + 0.5 = -7.5$."}, {"id": "DLCD-GEN-78", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "In the IEEE 754 single-precision (32-bit) standard, how are the 32 bits partitioned?", "options": ["1 sign bit, 7 exponent bits, 24 fraction bits", "1 sign bit, 8 exponent bits, 23 fraction bits", "2 sign bits, 8 exponent bits, 22 fraction bits", "1 sign bit, 11 exponent bits, 20 fraction bits"], "answer": 1, "explanation": "IEEE 754 single precision allocates: Bit 31 = Sign ($S$, 1 bit), Bits 30-23 = Biased Exponent ($E$, 8 bits), Bits 22-0 = Fraction / Mantissa ($F$, 23 bits)."}, {"id": "DLCD-GEN-79", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "What is the exponent bias used in the IEEE 754 32-bit single-precision floating-point standard?", "options": ["63", "127", "128", "1023"], "answer": 1, "explanation": "Single-precision floating-point uses a bias of $2^{8-1} - 1 = 127$. Stored exponent $E = \\text{actual exponent } e + 127$. (Double precision uses bias 1023)."}, {"id": "DLCD-GEN-80", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "In normalized IEEE 754 floating-point numbers, what is the value of the implicit (hidden) leading bit of the significand?", "options": ["Always 0", "Always 1", "Determined by the sign bit", "Determined by the least significant bit of the exponent"], "answer": 1, "explanation": "In normalized numbers, the binary point floats such that the significand is in the range $[1.0, 2.0)$, meaning the leading bit before the binary point is always 1. To save memory, this 1 is not explicitly stored."}, {"id": "DLCD-GEN-81", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "In IEEE 754 single-precision format, what bit combination represents +Infinity (+inf)?", "options": ["Sign = 0, Exponent = 11111111, Fraction = 000...0", "Sign = 1, Exponent = 11111111, Fraction = 000...0", "Sign = 0, Exponent = 11111111, Fraction != 0", "Sign = 0, Exponent = 00000000, Fraction = 000...0"], "answer": 0, "explanation": "$+\\infty$ is represented by Sign $= 0$, all-ones exponent ($E = 255 = 11111111_2$), and an all-zeros fraction field ($F = 0$)."}, {"id": "DLCD-GEN-82", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "Which field combination defines NaN (Not a Number) in IEEE 754 single-precision format?", "options": ["Exponent = 00000000, Fraction = 000...0", "Exponent = 11111111, Fraction = 000...0", "Exponent = 11111111, Fraction \u2260 0", "Exponent = 00000000, Fraction \u2260 0"], "answer": 2, "explanation": "NaN (Not a Number, e.g. $0/0$ or $\\sqrt{-1}$) is designated by an all-ones exponent field ($E = 255 = 11111111_2$) combined with a non-zero fraction field ($F \\ne 0$)."}, {"id": "DLCD-GEN-83", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "What category of numbers is represented when the exponent field is all zeros (E = 00000000) and the fraction is non-zero (F \u2260 0)?", "options": ["Normalized numbers", "Denormalized (Subnormal) numbers", "Infinity", "Quiet NaNs"], "answer": 1, "explanation": "When $E = 0$ and $F \\ne 0$, the implicit leading bit becomes 0 instead of 1 ($0.F$). These are subnormal (denormalized) numbers, enabling gradual underflow near zero with value $(-1)^S \\times (0.F) \\times 2^{-126}$."}, {"id": "DLCD-GEN-84", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "What is the 32-bit IEEE 754 single-precision floating-point representation of the decimal integer 228 in hexadecimal?", "options": ["0x43640000", "0xC3640000", "0x42E40000", "0x43E40000"], "answer": 0, "explanation": "1. $228_{10} = 11100100_2 = 1.11001_2 \\times 2^7$. 2. Sign $S = 0$. 3. Exponent $E = 7 + 127 = 134 = 10000110_2$. 4. Fraction $F = 1100100...$ (23 bits). Binary: `0 10000110 11001000000000000000000` = `0100 0011 0110 0100 ...` = `0x43640000`."}, {"id": "DLCD-GEN-85", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "Encode the decimal number -58.25 into IEEE 754 single-precision 32-bit hexadecimal format.", "options": ["0x42690000", "0xC2690000", "0xC1690000", "0x41690000"], "answer": 1, "explanation": "1. Sign is negative $\\implies S = 1$. 2. $58.25_{10} = 111010.01_2 = 1.1101001_2 \\times 2^5$. 3. Exponent $E = 5 + 127 = 132 = 10000100_2$. 4. Fraction $F = 11010010...$ Bits: `1 10000100 11010010000000000000000` = `1100 0010 0110 1001 ...` = `0xC2690000`."}, {"id": "DLCD-GEN-86", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "During the standard 8-step floating-point addition procedure, what step immediately follows extracting the exponent and fraction bits?", "options": ["Compare the exponents", "Prepend the implicit leading 1 to form the complete significand/mantissa", "Normalize the sum", "Round the result"], "answer": 1, "explanation": "Step 1 extracts sign, exponent, and fraction bits. Step 2 restores the hidden/implicit leading 1 before the binary point to reconstruct the true significand ($1.F$) prior to exponent comparison and shifting."}, {"id": "DLCD-GEN-87", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "When adding two floating-point numbers with different exponents, why must the significand of the number with the smaller exponent be shifted right?", "options": ["To prevent arithmetic underflow", "To align their binary points so that bit weights correspond during significand addition", "To convert the number to 2's complement", "To eliminate the sign bit"], "answer": 1, "explanation": "Addition of binary numbers requires matching place values (exponents). Shifting the smaller number's significand right by $|E_1 - E_2|$ positions increases its effective exponent to match the larger number without altering its numerical value."}, {"id": "DLCD-GEN-88", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "What is the definition of the register setup time (t_setup)?", "options": ["The time taken for output Q to become stable after the clock edge", "The minimum time the data input D must remain valid and stable before the active clock edge", "The minimum time the clock must remain HIGH", "The delay introduced by combinational gates in the feedback loop"], "answer": 1, "explanation": "Setup time ($t_{\\text{setup}}$) is the required window of time immediately before the active clock edge during which the data input $D$ must remain stable to ensure reliable capture by the flip-flop."}, {"id": "DLCD-GEN-89", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "What is the definition of the register hold time (t_hold)?", "options": ["The time the register can retain data without power", "The minimum time the data input D must remain valid and stable after the active clock edge", "The time between consecutive clock pulses", "The duration of the reset pulse"], "answer": 1, "explanation": "Hold time ($t_{\\text{hold}}$) is the minimum time following the active clock edge during which the data input $D$ must not change, preventing contamination of the internal master-slave transition."}, {"id": "DLCD-GEN-90", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "In a synchronous digital system with propagation delay t_pd through combinational logic, what is the fundamental setup timing constraint on the clock period Tc?", "options": ["$T_c \\ge t_{\\text{pcq}} + t_{\\text{pd}} + t_{\\text{setup}}$", "$T_c \\le t_{\\text{pcq}} - t_{\\text{setup}}$", "$T_c = t_{\\text{pcq}} + t_{\\text{hold}}$", "$T_c \\ge t_{\\text{ccq}} + t_{\\text{cd}}$"], "answer": 0, "explanation": "A signal launched from a flip-flop at a clock edge takes clock-to-Q delay ($t_{\\text{pcq}}$), propagates through combinational logic ($t_{\\text{pd}}$), and must arrive at the destination flip-flop at least $t_{\\text{setup}}$ before the next clock edge. Hence $T_c \\ge t_{\\text{pcq}} + t_{\\text{pd}} + t_{\\text{setup}}$."}, {"id": "DLCD-GEN-91", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "Given t_pcq = 1.0 ns, t_pd,comb = 3.5 ns, and t_setup = 0.5 ns, what is the maximum clock frequency (f_max) at which this circuit can operate reliably?", "options": ["100 MHz", "200 MHz", "250 MHz", "500 MHz"], "answer": 1, "explanation": "Minimum clock period $T_{c,\\text{min}} = t_{\\text{pcq}} + t_{\\text{pd}} + t_{\\text{setup}} = 1.0 + 3.5 + 0.5 = 5.0\\text{ ns}$. Maximum clock frequency $f_{\\text{max}} = 1 / T_{c,\\text{min}} = 1 / (5.0 \\times 10^{-9}\\text{ s}) = 200\\text{ MHz}$."}, {"id": "DLCD-GEN-92", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "To prevent hold time violations in a synchronous sequential circuit, which timing relationship must hold?", "options": ["$t_{\\text{ccq}} + t_{\\text{cd}} \\ge t_{\\text{hold}}$", "$t_{\\text{pcq}} + t_{\\text{pd}} \\le t_{\\text{hold}}$", "$T_c \\ge t_{\\text{hold}}$", "$t_{\\text{setup}} + t_{\\text{hold}} \\ge T_c$"], "answer": 0, "explanation": "Hold time failure occurs if newly launched data races through the logic too fast and corrupts the destination flip-flop before its hold time has elapsed. The fastest possible propagation is contamination delay: $t_{\\text{ccq}} + t_{\\text{cd}} \\ge t_{\\text{hold}}$."}, {"id": "DLCD-GEN-93", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "What happens if the input D to a flip-flop changes within the setup-and-hold aperture around the active clock edge?", "options": ["The flip-flop permanently burns out", "The output Q may enter an unstable metastable state, hovering between 0 and 1 for an indeterminate period", "The clock frequency instantly drops to zero", "The flip-flop automatically converts into a latch"], "answer": 1, "explanation": "Violating setup or hold time creates metastability: the internal cross-coupled bistable nodes balance near the threshold voltage, taking an unpredictable amount of time to resolve to a valid logic 0 or 1, leading to system failure."}, {"id": "DLCD-GEN-94", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Generated (High-Yield)", "question": "How can a Toggle (T) flip-flop be constructed using a standard D flip-flop and combinational logic?", "options": ["By connecting $D = T \\cdot Q$", "By connecting $D = T \\oplus Q$", "By connecting $D = T + Q$", "By connecting $D = T'$"], "answer": 1, "explanation": "A T flip-flop has characteristic equation $Q_{\\text{next}} = T \\oplus Q$. Since a D flip-flop satisfies $Q_{\\text{next}} = D$, driving input $D = T \\oplus Q$ (using a 2-input XOR gate) makes the D flip-flop function as a T flip-flop."}, {"id": "DLCD-GEN-95", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Generated (High-Yield)", "question": "How can a JK flip-flop be constructed using a D flip-flop and combinational logic?", "options": ["By driving $D = J \\cdot Q' + K' \\cdot Q$", "By driving $D = J \\cdot K + Q$", "By driving $D = J \\oplus K \\oplus Q$", "By driving $D = J + K' Q$"], "answer": 0, "explanation": "The characteristic equation of a JK flip-flop is $Q_{\\text{next}} = J Q' + K' Q$. Feeding this expression into the $D$ input of a D flip-flop ($D = J Q' + K' Q$) produces identical JK flip-flop behavior."}, {"id": "DLCD-GEN-96", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "In a synchronous register with a Load Enable (EN) input, how is the 'Hold' (disable load) state safely implemented without clock gating?", "options": ["By disconnecting power to the flip-flop", "By placing a 2:1 multiplexer at each D input to feed back the current output Q when EN = 0 ($D_{\\text{in}} = EN \\cdot D + EN' \\cdot Q$)", "By grounding the clock line", "By inverting the clock"], "answer": 1, "explanation": "Gating the clock line introduces clock skew and glitches. A robust synchronous register feeds a continuous clock to all flip-flops and uses a 2:1 MUX on data inputs: when $EN = 1$, $D_{\\text{in}} = D$ (load); when $EN = 0$, $D_{\\text{in}} = Q$ (re-circulate/hold)."}, {"id": "DLCD-GEN-97", "unit": "Unit 1", "module": "Latches and Flip-Flops", "type": "Generated (High-Yield)", "question": "What is the difference between a synchronous reset and an asynchronous reset on a flip-flop?", "options": ["Synchronous reset affects Q immediately; asynchronous reset waits for the clock edge", "Synchronous reset takes effect only on the active clock edge; asynchronous reset clears Q immediately regardless of the clock", "Asynchronous reset requires an external crystal oscillator", "Synchronous reset only works when D = 1"], "answer": 1, "explanation": "A synchronous reset is sampled at the active clock edge along with data. An asynchronous reset connects directly to internal gate overrides (clear inputs), resetting the flip-flop immediately upon assertion without waiting for a clock edge."}, {"id": "DLCD-GEN-98", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "What is the formula for the oscillation frequency f of an N-stage ring oscillator where each inverter has propagation delay t_pd?", "options": ["$f = 1 / (N \\cdot t_{\\text{pd}})$", "$f = 1 / (2 \\cdot N \\cdot t_{\\text{pd}})$", "$f = 2 \\cdot N \\cdot t_{\\text{pd}}$", "$f = N / (2 \\cdot t_{\\text{pd}})$"], "answer": 1, "explanation": "A signal transition takes $N \\cdot t_{\\text{pd}}$ to invert around the loop. A complete period $T$ requires two transitions (low-to-high and high-to-low), so $T = 2 N t_{\\text{pd}}$. The frequency is $f = 1 / T = 1 / (2 N t_{\\text{pd}})$."}, {"id": "DLCD-GEN-99", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "type": "Generated (High-Yield)", "question": "A 5-stage ring oscillator is constructed using CMOS inverters with t_pd = 200 ps. What is the frequency of oscillation?", "options": ["250 MHz", "500 MHz", "1 GHz", "2 GHz"], "answer": 1, "explanation": "Period $T = 2 \\times N \\times t_{\\text{pd}} = 2 \\times 5 \\times 200\\text{ ps} = 2000\\text{ ps} = 2.0\\text{ ns}$. Frequency $f = 1 / T = 1 / (2.0 \\times 10^{-9}\\text{ s}) = 500\\text{ MHz}$."}, {"id": "DLCD-GEN-100", "unit": "Unit 2", "module": "Number Systems & Floating Point", "type": "Generated (High-Yield)", "question": "Which of the following is NOT a recognized representation for signed fixed-point binary numbers?", "options": ["Two's Complement", "Sign/Magnitude", "Excess-127", "One's Complement"], "answer": 2, "explanation": "Excess-127 (biased exponent) is used in floating-point exponent encoding (IEEE 754). Signed fixed-point numbers are represented using Two's Complement, Sign/Magnitude, or One's Complement."}];
+    const THEORY_DATA = [{"id": "th-1-1", "unit": "Unit 1", "module": "Introduction to Digital Logic", "title": "Digital Logic Abstraction, Nodes & Circuit Specifications", "points": ["<strong>Digital Abstraction:</strong> Continuous physical voltages are discretized into two discrete states: logic 0 (Low) and logic 1 (High). Voltages between noise margins are forbidden during steady state.", "<strong>Black Box Model:</strong> A digital circuit is characterized by its input terminals, output terminals, functional specification, and timing specification.", "<strong>Functional Specification:</strong> Defines the logical relationship between inputs and outputs (e.g., $Y = A \\cdot B$, truth tables, Boolean equations).", "<strong>Timing Specification:</strong> Quantifies delay\u2014how long the output takes to settle to a valid state after input transitions occur. Two circuits with the same functional specification can have vastly different propagation delays.", "<strong>Classification of Nodes:</strong> A node is an equipotential wire connecting circuit terminals. <em>Input nodes</em> receive external stimuli; <em>Output nodes</em> drive external systems; <em>Internal nodes</em> connect internal components without external visibility.", "<strong>Propagation Delay ($t_{\\text{pd}}$):</strong> The maximum time from when an input passes 50% threshold until the output reaches 50% of its final value (worst-case path).", "<strong>Contamination Delay ($t_{\\text{cd}}$):</strong> The minimum time from when an input changes until the output starts to transition (best-case / fastest path).", "<strong>Parallel Path Delay:</strong> When multiple parallel elements drive a subsequent gate, the output is valid only after the slowest upstream path completes: $t_{\\text{pd,total}} = \\max(t_{\\text{pd,path1}}, t_{\\text{pd,path2}}) + t_{\\text{pd,gate}}$.", "<strong>Moore's Law:</strong> Empirical observation formulated by Gordon Moore (1965) stating that the density of transistors on an integrated circuit doubles approximately every 18 to 24 months, exponentially increasing processing capability while reducing cost."]}, {"id": "th-1-2", "unit": "Unit 1", "module": "Boolean Equations & Canonical Forms", "title": "Boolean Algebra, Canonical SOP & POS, Minterms and Maxterms", "points": ["<strong>Boolean Variable & Literal:</strong> A Boolean variable takes values in $\\{0, 1\\}$. A <em>literal</em> is a variable in uncomplemented ($A$) or complemented ($A'$) form.", "<strong>Fundamental Boolean Laws:</strong> <em>Identity:</em> $A \\cdot 1 = A, A + 0 = A$; <em>Null:</em> $A \\cdot 0 = 0, A + 1 = 1$; <em>Idempotency:</em> $A \\cdot A = A, A + A = A$; <em>Involution:</em> $(A')' = A$; <em>Complement:</em> $A \\cdot A' = 0, A + A' = 1$.", "<strong>Distributive & De Morgan's Laws:</strong> $A(B + C) = AB + AC$; $A + BC = (A + B)(A + C)$. De Morgan's: $(A + B)' = A' B'$ and $(AB)' = A' + B'$.", "<strong>Consensus Theorem:</strong> $AB + A'C + BC = AB + A'C$ (the term $BC$ is redundant because if $B=1$ and $C=1$, either $A=1 \\implies AB=1$ or $A=0 \\implies A'C=1$). Dual: $(A + B)(A' + C)(B + C) = (A + B)(A' + C)$.", "<strong>Principle of Duality:</strong> Any valid Boolean identity remains valid if AND and OR operators are interchanged, and 0 and 1 are interchanged.", "<strong>Minterm ($m_i$):</strong> A product term containing all $n$ input variables exactly once, evaluating to 1 for exactly one row of the truth table. Uncomplemented = 1, Complemented = 0 (e.g. $m_5 = 101_2 = A B' C$). Total minterms for $n$ variables = $2^n$.", "<strong>Maxterm ($M_i$):</strong> A sum term containing all $n$ input variables exactly once, evaluating to 0 for exactly one row of the truth table. Uncomplemented = 0, Complemented = 1 (e.g. $M_6 = 110_2 = A' + B' + C$).", "<strong>Canonical SOP (Sum-of-Products):</strong> Formed by ORing all minterms for which the output is 1: $F = \\sum m(i)$.", "<strong>Canonical POS (Product-of-Sums):</strong> Formed by ANDing all maxterms for which the output is 0: $F = \\prod M(i)$.", "<strong>Minterm-Maxterm Complementarity:</strong> $M_i = m_i'$. The complement of an SOP function $\\sum m(\\text{list})$ is the POS of the omitted indices: $\\prod M(\\text{remaining})$."]}, {"id": "th-1-3", "unit": "Unit 1", "module": "Karnaugh Maps", "title": "Karnaugh Maps (K-Maps), Prime Implicants & Logic Minimization", "points": ["<strong>K-Map Grid & Gray Code Ordering:</strong> K-maps represent truth tables visually in a multidimensional grid where adjacent cells differ in exactly one binary variable (Gray code order: $00, 01, 11, 10$).", "<strong>Adjacency & Wrap-Around:</strong> Because $00$ and $10$ differ by only 1 bit, the top and bottom rows, as well as the leftmost and rightmost columns, are logically adjacent (wrap-around). In a 4-variable map, the four corner squares $\\{0, 2, 8, 10\\}$ form a valid 4-cell group.", "<strong>Grouping Rules:</strong> Groups of 1s must be rectangular and contain a power-of-two number of squares ($1, 2, 4, 8, 16$). Each group must be as large as possible to eliminate maximum literals.", "<strong>Literal Elimination:</strong> A group of $2^k$ squares in an $n$-variable map eliminates $k$ variables, resulting in a product term with $n - k$ literals. (e.g. 8-cell group in a 4-variable map eliminates 3 variables, leaving 1 literal).", "<strong>Implicant Definitions:</strong> <em>Implicant:</em> Any rectangular power-of-two group of 1s. <em>Prime Implicant (PI):</em> A maximal group of 1s that cannot be merged into any larger valid group. <em>Essential Prime Implicant (EPI):</em> A PI containing at least one '1' that is not covered by any other PI. All EPIs MUST be included in the minimal SOP.", "<strong>Don't-Care Conditions ($X$ or $d$):</strong> Outputs that can never occur or whose value has no impact on system operation. In K-maps, $X$ entries can be included as 1s to make groups larger, or treated as 0s if they do not help expand groups.", "<strong>Non-Uniqueness of Minimal SOP:</strong> Multiple distinct minimal SOP expressions may exist for the same Boolean function if remaining non-essential 1s can be covered equally well by different combinations of prime implicants."]}, {"id": "th-1-4", "unit": "Unit 1", "module": "Combinational Building Blocks", "title": "Multiplexers, Decoders, Encoders & Tristate Buffers", "points": ["<strong>Principle of Abstraction:</strong> Grouping individual logic gates into larger modular building blocks hides lower-level implementation details and simplifies system design.", "<strong>Multiplexer (MUX):</strong> A digital switch that selects one of $N$ data inputs and routes it to a single output line based on $k = \\lceil \\log_2 N \\rceil$ select control signals.", "<strong>2:1 Multiplexer:</strong> Truth table: $S=0 \\implies Y=D_0$; $S=1 \\implies Y=D_1$. Boolean equation: $Y = S' D_0 + S D_1$. Built using 2 AND gates, 1 NOT gate, and 1 OR gate (or transmission gates / tristate buffers).", "<strong>4:1 Multiplexer:</strong> Has 4 data inputs ($D_0, D_1, D_2, D_3$) and 2 select lines ($S_1, S_0$). Equation: $Y = S_1' S_0' D_0 + S_1' S_0 D_1 + S_1 S_0' D_2 + S_1 S_0 D_3$. Can be constructed as a tree of three 2:1 MUXes.", "<strong>Universal Logic with MUX:</strong> Any $n$-variable Boolean function can be implemented using a $2^n:1$ MUX (connecting all $n$ variables to select lines and function truth table outputs to data pins) or a $2^{n-1}:1$ MUX (connecting $n-1$ variables to select lines and deriving data inputs from the remaining variable: $0, 1, X,$ or $X'$).", "<strong>Decoder:</strong> An $N$-to-$2^N$ combinational block that activates exactly one of its $2^N$ output lines for each unique $N$-bit input combination (called <em>one-hot</em> output).", "<strong>2:4 Decoder with Enable:</strong> Equations: $Y_0 = EN \\cdot A_1' A_0'$, $Y_1 = EN \\cdot A_1' A_0$, $Y_2 = EN \\cdot A_1 A_0'$, $Y_3 = EN \\cdot A_1 A_0$. When $EN = 0$, all outputs are 0.", "<strong>Logic Implementation with Decoders:</strong> Since each decoder output corresponds to a minterm, any Boolean function in canonical SOP form can be realized by connecting an $N:2^N$ decoder to an OR gate whose inputs are the required minterm pins.", "<strong>Tristate Buffer:</strong> Has three output states: logic 0, logic 1, and High Impedance ($Z$). When enable $EN = 0$, the output is electrically disconnected, allowing multiple outputs to share a common bus wire without short circuits."], "svg": "<svg viewBox=\"0 0 540 220\" class=\"diagram-svg\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"muxGrad\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#1e293b\"/>\n      <stop offset=\"100%\" stop-color=\"#0f172a\"/>\n    </linearGradient>\n    <filter id=\"glow\">\n      <feDropShadow dx=\"0\" dy=\"2\" stdDeviation=\"3\" flood-color=\"#6366f1\" flood-opacity=\"0.3\"/>\n    </filter>\n  </defs>\n  <!-- Block Symbol -->\n  <g transform=\"translate(40, 20)\">\n    <text x=\"50\" y=\"0\" fill=\"#94a3b8\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">2:1 MUX SYMBOL</text>\n    <polygon points=\"10,25 90,45 90,135 10,155\" fill=\"url(#muxGrad)\" stroke=\"#6366f1\" stroke-width=\"2\" filter=\"url(#glow)\"/>\n    <text x=\"25\" y=\"60\" fill=\"#e2e8f0\" font-size=\"13\" font-family=\"monospace\">D0</text>\n    <text x=\"25\" y=\"125\" fill=\"#e2e8f0\" font-size=\"13\" font-family=\"monospace\">D1</text>\n    <line x1=\"-15\" y1=\"55\" x2=\"10\" y2=\"55\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n    <line x1=\"-15\" y1=\"120\" x2=\"10\" y2=\"120\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n    <text x=\"-25\" y=\"59\" fill=\"#38bdf8\" font-size=\"12\">D0</text>\n    <text x=\"-25\" y=\"124\" fill=\"#38bdf8\" font-size=\"12\">D1</text>\n    <line x1=\"50\" y1=\"145\" x2=\"50\" y2=\"175\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n    <text x=\"50\" y=\"190\" fill=\"#f59e0b\" font-size=\"12\" text-anchor=\"middle\">S (Select)</text>\n    <line x1=\"90\" y1=\"90\" x2=\"115\" y2=\"90\" stroke=\"#10b981\" stroke-width=\"2\"/>\n    <text x=\"125\" y=\"94\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\">Y</text>\n  </g>\n  <!-- Logic Gates Schematic -->\n  <g transform=\"translate(230, 15)\">\n    <text x=\"140\" y=\"5\" fill=\"#94a3b8\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">INTERNAL GATE SCHEMATIC: Y = S'D0 + S D1</text>\n    <!-- NOT gate for S -->\n    <text x=\"-15\" y=\"45\" fill=\"#f59e0b\" font-size=\"12\">S</text>\n    <line x1=\"0\" y1=\"40\" x2=\"30\" y2=\"40\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n    <polygon points=\"30,30 50,40 30,50\" fill=\"#334155\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <circle cx=\"53\" cy=\"40\" r=\"3\" fill=\"#0f172a\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <line x1=\"56\" y1=\"40\" x2=\"80\" y2=\"40\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <!-- AND 1 -->\n    <rect x=\"100\" y=\"25\" width=\"45\" height=\"35\" rx=\"5\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <text x=\"122\" y=\"47\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">AND</text>\n    <line x1=\"0\" y1=\"28\" x2=\"100\" y2=\"28\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <text x=\"-20\" y=\"32\" fill=\"#38bdf8\" font-size=\"12\">D0</text>\n    <line x1=\"80\" y1=\"40\" x2=\"80\" y2=\"50\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <line x1=\"80\" y1=\"50\" x2=\"100\" y2=\"50\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <!-- AND 2 -->\n    <rect x=\"100\" y=\"100\" width=\"45\" height=\"35\" rx=\"5\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <text x=\"122\" y=\"122\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">AND</text>\n    <line x1=\"0\" y1=\"125\" x2=\"100\" y2=\"125\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <text x=\"-20\" y=\"129\" fill=\"#38bdf8\" font-size=\"12\">D1</text>\n    <line x1=\"15\" y1=\"40\" x2=\"15\" y2=\"110\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <circle cx=\"15\" cy=\"40\" r=\"2.5\" fill=\"#f59e0b\"/>\n    <line x1=\"15\" y1=\"110\" x2=\"100\" y2=\"110\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <!-- OR gate -->\n    <path d=\"M 180,60 Q 195,80 180,100 Q 210,100 225,80 Q 210,60 180,60 Z\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <text x=\"195\" y=\"84\" fill=\"#10b981\" font-size=\"11\" text-anchor=\"middle\">OR</text>\n    <line x1=\"145\" y1=\"42\" x2=\"185\" y2=\"70\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/>\n    <line x1=\"145\" y1=\"118\" x2=\"185\" y2=\"90\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/>\n    <line x1=\"225\" y1=\"80\" x2=\"265\" y2=\"80\" stroke=\"#10b981\" stroke-width=\"2\"/>\n    <text x=\"275\" y=\"84\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\">Y</text>\n  </g>\n</svg>"}, {"id": "th-1-5", "unit": "Unit 1", "module": "Latches and Flip-Flops", "title": "Bistable Elements, SR Latches, D Latches & Metastability", "points": ["<strong>Combinational vs Sequential Logic:</strong> Combinational outputs depend strictly on present inputs ($Y = f(X)$). Sequential circuits contain feedback paths and memory elements, meaning outputs depend on both present inputs and historical state ($Y = f(X, S)$).", "<strong>Bistable Storage Element:</strong> Two cross-coupled inverters create a positive feedback loop with two stable operating points ($Q=1, Q'=0$ and $Q=0, Q'=1$) and one metastable point ($V_{\\text{in}} = V_{\\text{out}} = V_{\\text{DD}}/2$).", "<strong>Cross-Coupled NOR SR Latch:</strong> Truth table: $S=0, R=0 \\implies \\text{Hold } Q$; $S=1, R=0 \\implies \\text{Set } (Q=1)$; $S=0, R=1 \\implies \\text{Reset } (Q=0)$; $S=1, R=1 \\implies \\text{Invalid } (Q=Q'=0)$. Releasing from $S=R=1$ to $00$ simultaneously triggers an unpredictable race condition.", "<strong>Cross-Coupled NAND S'R' Latch:</strong> Active-low control inputs. $S'=0, R'=1 \\implies \\text{Set}$; $S'=1, R'=0 \\implies \\text{Reset}$; $S'=1, R'=1 \\implies \\text{Hold}$; $S'=0, R'=0 \\implies \\text{Invalid } (Q=Q'=1)$.", "<strong>D Latch (Transparent Latch):</strong> Incorporates an enable/clock signal ($CLK$). When $CLK = 1$, the latch is <em>transparent</em> (output $Q$ follows data $D$). When $CLK = 0$, the latch is <em>opaque</em> (holds the last sampled value of $Q$).", "<strong>Limitation of Latches:</strong> Because a latch remains transparent during the entire clock high phase, multiple transitions on $D$ pass directly to the output, causing race-through hazards in feedback loops."], "svg": "<svg viewBox=\"0 0 480 200\" class=\"diagram-svg\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g transform=\"translate(40, 20)\">\n    <text x=\"200\" y=\"0\" fill=\"#94a3b8\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">CROSS-COUPLED NOR SR LATCH</text>\n    <!-- Top NOR Gate (Reset R) -->\n    <path d=\"M 120,25 Q 135,45 120,65 Q 150,65 165,45 Q 150,25 120,25 Z\" fill=\"#1e293b\" stroke=\"#6366f1\" stroke-width=\"1.8\"/>\n    <circle cx=\"168\" cy=\"45\" r=\"3\" fill=\"#0f172a\" stroke=\"#6366f1\" stroke-width=\"1.5\"/>\n    <text x=\"138\" y=\"49\" fill=\"#6366f1\" font-size=\"11\" text-anchor=\"middle\">NOR</text>\n    <!-- Bottom NOR Gate (Set S) -->\n    <path d=\"M 120,105 Q 135,125 120,145 Q 150,145 165,125 Q 150,105 120,105 Z\" fill=\"#1e293b\" stroke=\"#6366f1\" stroke-width=\"1.8\"/>\n    <circle cx=\"168\" cy=\"125\" r=\"3\" fill=\"#0f172a\" stroke=\"#6366f1\" stroke-width=\"1.5\"/>\n    <text x=\"138\" y=\"129\" fill=\"#6366f1\" font-size=\"11\" text-anchor=\"middle\">NOR</text>\n    <!-- Inputs -->\n    <line x1=\"60\" y1=\"35\" x2=\"124\" y2=\"35\" stroke=\"#f43f5e\" stroke-width=\"2\"/>\n    <text x=\"45\" y=\"39\" fill=\"#f43f5e\" font-size=\"13\" font-weight=\"bold\">R</text>\n    <line x1=\"60\" y1=\"135\" x2=\"124\" y2=\"135\" stroke=\"#10b981\" stroke-width=\"2\"/>\n    <text x=\"45\" y=\"139\" fill=\"#10b981\" font-size=\"13\" font-weight=\"bold\">S</text>\n    <!-- Outputs -->\n    <line x1=\"171\" y1=\"45\" x2=\"250\" y2=\"45\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n    <text x=\"260\" y=\"49\" fill=\"#38bdf8\" font-size=\"14\" font-weight=\"bold\">Q</text>\n    <line x1=\"171\" y1=\"125\" x2=\"250\" y2=\"125\" stroke=\"#e2e8f0\" stroke-width=\"2\"/>\n    <text x=\"260\" y=\"129\" fill=\"#e2e8f0\" font-size=\"14\" font-weight=\"bold\">Q'</text>\n    <!-- Cross-Coupled Feedback -->\n    <circle cx=\"210\" cy=\"45\" r=\"3\" fill=\"#38bdf8\"/>\n    <polyline points=\"210,45 210,80 90,95 90,115 124,115\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"1.5\" stroke-dasharray=\"3,3\"/>\n    <circle cx=\"210\" cy=\"125\" r=\"3\" fill=\"#e2e8f0\"/>\n    <polyline points=\"210,125 210,90 90,75 90,55 124,55\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"1.5\" stroke-dasharray=\"3,3\"/>\n    <!-- Note box -->\n    <rect x=\"300\" y=\"25\" width=\"130\" height=\"110\" rx=\"6\" fill=\"#0f172a\" stroke=\"rgba(255,255,255,0.1)\"/>\n    <text x=\"365\" y=\"45\" fill=\"#f59e0b\" font-size=\"11\" font-weight=\"bold\" text-anchor=\"middle\">TRUTH TABLE</text>\n    <text x=\"310\" y=\"65\" fill=\"#94a3b8\" font-size=\"10\" font-family=\"monospace\">S R | Q  Q'</text>\n    <text x=\"310\" y=\"80\" fill=\"#94a3b8\" font-size=\"10\" font-family=\"monospace\">0 0 | Q  Q' (Hold)</text>\n    <text x=\"310\" y=\"95\" fill=\"#10b981\" font-size=\"10\" font-family=\"monospace\">1 0 | 1  0  (Set)</text>\n    <text x=\"310\" y=\"110\" fill=\"#f43f5e\" font-size=\"10\" font-family=\"monospace\">0 1 | 0  1  (Reset)</text>\n    <text x=\"310\" y=\"125\" fill=\"#ef4444\" font-size=\"10\" font-family=\"monospace\">1 1 | 0  0  (Invalid)</text>\n  </g>\n</svg>"}, {"id": "th-1-6", "unit": "Unit 1", "module": "Synchronous Sequential Logic", "title": "Edge-Triggered Flip-Flops, Timing Constraints & Registers", "points": ["<strong>D Flip-Flop (Master-Slave):</strong> Constructed from two back-to-back D latches driven by complementary clocks. When $CLK = 0$, Master is transparent and Slave is opaque. When $CLK = 1$, Master is opaque and Slave is transparent. The state $Q$ updates strictly at the rising clock transition ($0 \\to 1$).", "<strong>Resettable Flip-Flop:</strong> Forces $Q = 0$. <em>Synchronous reset:</em> resets on the rising clock edge when reset is asserted. <em>Asynchronous reset:</em> clears $Q$ immediately regardless of the clock.", "<strong>Enabled Flip-Flop:</strong> Incorporates a load enable ($EN$). Rather than gating the clock wire (which causes clock skew), a 2:1 MUX is placed at the D input: $D_{\\text{in}} = EN \\cdot D + EN' \\cdot Q$. When $EN = 0$, the current state $Q$ is recirculated.", "<strong>JK Flip-Flop:</strong> Characteristic equation: $Q(t+1) = J Q'(t) + K' Q(t)$. When $J=K=1$, the output toggles. Eliminates the invalid state of the SR latch.", "<strong>T (Toggle) Flip-Flop:</strong> Characteristic equation: $Q(t+1) = T \\oplus Q(t)$. When $T=1$, the output toggles on every clock edge; when $T=0$, the state is held.", "<strong>Setup Time ($t_{\\text{setup}}$):</strong> The minimum duration $D$ must be stable before the active clock edge.", "<strong>Hold Time ($t_{\\text{hold}}$):</strong> The minimum duration $D$ must remain stable after the active clock edge.", "<strong>Clock-to-Q Delay ($t_{\\text{pcq}}, t_{\\text{ccq}}$):</strong> $t_{\\text{pcq}}$ is the propagation delay from the clock edge until $Q$ stabilizes. $t_{\\text{ccq}}$ is the contamination delay (fastest time until $Q$ starts changing).", "<strong>Setup Timing Constraint (Max Frequency):</strong> $T_c \\ge t_{\\text{pcq}} + t_{\\text{pd,comb}} + t_{\\text{setup}} \\implies f_{\\text{max}} = 1 / T_{c,\\text{min}}$.", "<strong>Hold Timing Constraint:</strong> $t_{\\text{ccq}} + t_{\\text{cd,comb}} \\ge t_{\\text{hold}}$ (ensures newly launched data does not destroy data currently being latched).", "<strong>Synchronous Composition Rules:</strong> (1) Every circuit element is either a register or combinational; (2) At least one element is a register; (3) All registers share a common clock; (4) Every cyclic path contains at least one register.", "<strong>Ring Oscillator:</strong> An odd number $N$ of inverters connected in a closed loop. Period $T = 2 N t_{\\text{pd}}$, Frequency $f = 1 / (2 N t_{\\text{pd}})$."], "svg": "<svg viewBox=\"0 0 540 220\" class=\"diagram-svg\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g transform=\"translate(50, 20)\">\n    <text x=\"210\" y=\"0\" fill=\"#94a3b8\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">TIMING COMPARISON: D LATCH (TRANSPARENT) vs D FLIP-FLOP (EDGE-TRIGGERED)</text>\n    <!-- CLK Waveform -->\n    <text x=\"-40\" y=\"32\" fill=\"#f59e0b\" font-size=\"12\" font-weight=\"bold\">CLK</text>\n    <polyline points=\"0,40 40,40 40,15 80,15 80,40 120,40 120,15 160,15 160,40 200,40 200,15 240,15 240,40 280,40 280,15 320,15 320,40 360,40 360,15 400,15 400,40 430,40\" fill=\"none\" stroke=\"#f59e0b\" stroke-width=\"2\"/>\n    <!-- Rising edge vertical markers -->\n    <line x1=\"40\" y1=\"10\" x2=\"40\" y2=\"185\" stroke=\"rgba(245,158,11,0.25)\" stroke-dasharray=\"2,2\"/>\n    <line x1=\"120\" y1=\"10\" x2=\"120\" y2=\"185\" stroke=\"rgba(245,158,11,0.25)\" stroke-dasharray=\"2,2\"/>\n    <line x1=\"200\" y1=\"10\" x2=\"200\" y2=\"185\" stroke=\"rgba(245,158,11,0.25)\" stroke-dasharray=\"2,2\"/>\n    <line x1=\"280\" y1=\"10\" x2=\"280\" y2=\"185\" stroke=\"rgba(245,158,11,0.25)\" stroke-dasharray=\"2,2\"/>\n    <line x1=\"360\" y1=\"10\" x2=\"360\" y2=\"185\" stroke=\"rgba(245,158,11,0.25)\" stroke-dasharray=\"2,2\"/>\n    <!-- D Waveform -->\n    <text x=\"-40\" y=\"77\" fill=\"#38bdf8\" font-size=\"12\" font-weight=\"bold\">D</text>\n    <polyline points=\"0,85 30,85 30,60 60,60 60,85 100,85 100,60 170,60 170,85 220,85 220,60 270,60 270,85 350,85 350,60 430,60\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n    <!-- D Latch Q (transparent when CLK=1) -->\n    <text x=\"-40\" y=\"122\" fill=\"#a855f7\" font-size=\"12\" font-weight=\"bold\">Q_latch</text>\n    <polyline points=\"0,130 40,130 40,105 60,105 60,130 120,130 120,105 160,105 200,105 220,105 220,105 270,105 270,130 360,130 360,105 430,105\" fill=\"none\" stroke=\"#a855f7\" stroke-width=\"2\"/>\n    <!-- D Flip-Flop Q (updates strictly at posedge CLK) -->\n    <text x=\"-40\" y=\"167\" fill=\"#10b981\" font-size=\"12\" font-weight=\"bold\">Q_ff</text>\n    <polyline points=\"0,175 40,175 40,150 120,150 120,175 200,175 200,175 280,175 280,150 360,150 360,175 430,175\" fill=\"none\" stroke=\"#10b981\" stroke-width=\"2.2\"/>\n  </g>\n</svg>"}, {"id": "th-2-1", "unit": "Unit 2", "module": "Finite State Machines", "title": "Finite State Machines: Moore vs Mealy, Encoding & Design", "points": ["<strong>FSM Components:</strong> (1) State Register ($k$ flip-flops holding current state); (2) Next-State Logic (combinational logic computing next state $S'$ from current state $S$ and inputs $X$); (3) Output Logic (combinational logic computing outputs $Y$).", "<strong>Moore Machine:</strong> Output depends exclusively on the current state: $Y = g(S)$. Outputs change only on clock edges. Outputs are immune to input glitches, but require one clock cycle latency.", "<strong>Mealy Machine:</strong> Output depends on current state AND current inputs: $Y = g(S, X)$. Outputs respond immediately to input changes within the same clock cycle, but are vulnerable to input glitches.", "<strong>State Comparison:</strong> For pattern recognition (e.g. sequence of length $L$), a Moore FSM requires $L + 1$ states, while a Mealy FSM requires $L$ states.", "<strong>State Encoding:</strong> <em>Binary Encoding:</em> $k = \\lceil \\log_2 N \\rceil$ flip-flops for $N$ states; minimizes register area. <em>One-Hot Encoding:</em> $N$ flip-flops for $N$ states (exactly 1 flip-flop is HIGH per state); simplifies next-state equations and increases operating speed at the cost of more flip-flops.", "<strong>Factored vs Unfactored FSMs:</strong> Factoring divides a complex monolithic state machine ($N_1 \\times N_2$ states) into independent or hierarchical interacting FSMs ($N_1 + N_2$ states, e.g. Mode FSM + Traffic Lights FSM), simplifying design, verification, and debugging.", "<strong>Verilog 3-Always Block Style:</strong> Block 1: Clocked state register (`always @(posedge clk or posedge reset)` using non-blocking `<=`). Block 2: Combinational next-state logic (`always @(*)` using blocking `=`). Block 3: Combinational output logic (`always @(*)`).", "<strong>Divide-by-3 Counter FSM:</strong> Cycles through states $S_0 \\to S_1 \\to S_2 \\to S_0$. Output frequency is $f_{\\text{out}} = f_{\\text{in}} / 3$.", "<strong>Pattern Recognizer (1011):</strong> In an overlapping detector, when '1011' is detected and followed by '011', the suffix '1' of the first pattern acts as the prefix '1' of the next pattern."], "svg": "<svg viewBox=\"0 0 540 230\" class=\"diagram-svg\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- Moore Machine -->\n  <g transform=\"translate(20, 20)\">\n    <text x=\"110\" y=\"0\" fill=\"#38bdf8\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">MOORE FSM ARCHITECTURE</text>\n    <rect x=\"0\" y=\"20\" width=\"70\" height=\"50\" rx=\"5\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <text x=\"35\" y=\"43\" fill=\"#e2e8f0\" font-size=\"10\" text-anchor=\"middle\">Next-State</text>\n    <text x=\"35\" y=\"57\" fill=\"#94a3b8\" font-size=\"9\" text-anchor=\"middle\">Logic</text>\n    <line x1=\"-15\" y1=\"45\" x2=\"0\" y2=\"45\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <text x=\"-25\" y=\"48\" fill=\"#e2e8f0\" font-size=\"10\">Inputs</text>\n    <line x1=\"70\" y1=\"45\" x2=\"90\" y2=\"45\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <!-- State Register -->\n    <rect x=\"90\" y=\"20\" width=\"60\" height=\"50\" rx=\"5\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <text x=\"120\" y=\"43\" fill=\"#e2e8f0\" font-size=\"10\" text-anchor=\"middle\">State</text>\n    <text x=\"120\" y=\"57\" fill=\"#f59e0b\" font-size=\"9\" text-anchor=\"middle\">Reg (CLK)</text>\n    <line x1=\"150\" y1=\"45\" x2=\"170\" y2=\"45\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <!-- Output Logic -->\n    <rect x=\"170\" y=\"20\" width=\"60\" height=\"50\" rx=\"5\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <text x=\"200\" y=\"43\" fill=\"#e2e8f0\" font-size=\"10\" text-anchor=\"middle\">Output</text>\n    <text x=\"200\" y=\"57\" fill=\"#10b981\" font-size=\"9\" text-anchor=\"middle\">Logic</text>\n    <line x1=\"230\" y1=\"45\" x2=\"255\" y2=\"45\" stroke=\"#10b981\" stroke-width=\"2\"/>\n    <text x=\"260\" y=\"49\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\">Outputs</text>\n    <!-- Feedback Path -->\n    <polyline points=\"160,45 160,85 25,85 25,70\" fill=\"none\" stroke=\"#f59e0b\" stroke-width=\"1.5\" stroke-dasharray=\"3,3\"/>\n    <text x=\"90\" y=\"98\" fill=\"#94a3b8\" font-size=\"9\" text-anchor=\"middle\">Current State Feedback</text>\n    <text x=\"115\" y=\"125\" fill=\"#38bdf8\" font-size=\"10\" font-style=\"italic\" text-anchor=\"middle\">Outputs = g(State) \u2014 Glitch Free</text>\n  </g>\n  <!-- Mealy Machine -->\n  <g transform=\"translate(290, 20)\">\n    <text x=\"110\" y=\"0\" fill=\"#a855f7\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">MEALY FSM ARCHITECTURE</text>\n    <rect x=\"0\" y=\"20\" width=\"70\" height=\"50\" rx=\"5\" fill=\"#1e293b\" stroke=\"#a855f7\" stroke-width=\"1.5\"/>\n    <text x=\"35\" y=\"43\" fill=\"#e2e8f0\" font-size=\"10\" text-anchor=\"middle\">Next-State</text>\n    <text x=\"35\" y=\"57\" fill=\"#94a3b8\" font-size=\"9\" text-anchor=\"middle\">Logic</text>\n    <line x1=\"-15\" y1=\"45\" x2=\"0\" y2=\"45\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <text x=\"-25\" y=\"48\" fill=\"#e2e8f0\" font-size=\"10\">Inputs</text>\n    <line x1=\"70\" y1=\"45\" x2=\"90\" y2=\"45\" stroke=\"#a855f7\" stroke-width=\"1.5\"/>\n    <!-- State Register -->\n    <rect x=\"90\" y=\"20\" width=\"60\" height=\"50\" rx=\"5\" fill=\"#1e293b\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <text x=\"120\" y=\"43\" fill=\"#e2e8f0\" font-size=\"10\" text-anchor=\"middle\">State</text>\n    <text x=\"120\" y=\"57\" fill=\"#f59e0b\" font-size=\"9\" text-anchor=\"middle\">Reg (CLK)</text>\n    <line x1=\"150\" y1=\"45\" x2=\"170\" y2=\"45\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <!-- Output Logic -->\n    <rect x=\"170\" y=\"20\" width=\"60\" height=\"50\" rx=\"5\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <text x=\"200\" y=\"43\" fill=\"#e2e8f0\" font-size=\"10\" text-anchor=\"middle\">Output</text>\n    <text x=\"200\" y=\"57\" fill=\"#10b981\" font-size=\"9\" text-anchor=\"middle\">Logic</text>\n    <line x1=\"230\" y1=\"45\" x2=\"255\" y2=\"45\" stroke=\"#10b981\" stroke-width=\"2\"/>\n    <text x=\"260\" y=\"49\" fill=\"#10b981\" font-size=\"11\" font-weight=\"bold\">Outputs</text>\n    <!-- Mealy direct input feedthrough -->\n    <circle cx=\"-5\" cy=\"45\" r=\"2.5\" fill=\"#e2e8f0\"/>\n    <polyline points=\"-5,45 -5,10 185,10 185,20\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <text x=\"80\" y=\"6\" fill=\"#e2e8f0\" font-size=\"8\">Direct Input Bypass</text>\n    <!-- Feedback -->\n    <polyline points=\"160,45 160,85 25,85 25,70\" fill=\"none\" stroke=\"#f59e0b\" stroke-width=\"1.5\" stroke-dasharray=\"3,3\"/>\n    <text x=\"115\" y=\"125\" fill=\"#a855f7\" font-size=\"10\" font-style=\"italic\" text-anchor=\"middle\">Outputs = g(State, Inputs) \u2014 Fast / Glitch-Prone</text>\n  </g>\n</svg>"}, {"id": "th-2-2", "unit": "Unit 2", "module": "Arithmetic Circuits", "title": "Adders, Comparators, Shifters, Multipliers and ALUs", "points": ["<strong>Half Adder (HA):</strong> Adds two 1-bit inputs $A, B$. Sum $S = A \\oplus B$, Carry $C_{\\text{out}} = A B$.", "<strong>Full Adder (FA):</strong> Adds three 1-bit inputs $A, B, C_{\\text{in}}$. Sum $S = A \\oplus B \\oplus C_{\\text{in}}$, Carry $C_{\\text{out}} = A B + C_{\\text{in}}(A \\oplus B)$. Built from two HAs and one OR gate.", "<strong>Ripple Carry Adder (RCA):</strong> Cascades $N$ full adders. Delay scales linearly with word size: $t_{\\text{ripple}} = N \\times t_{\\text{FA}}$. High area efficiency, poor latency for $N > 16$.", "<strong>Carry Lookahead Adder (CLA):</strong> Eliminates carry ripple by generating carry signals in parallel. <em>Generate:</em> $G_i = A_i B_i$. <em>Propagate:</em> $P_i = A_i \\oplus B_i$. Carry equations: $C_1 = G_0 + P_0 C_0$, $C_2 = G_1 + P_1 G_0 + P_1 P_0 C_0$. Block propagate: $P_{3:0} = P_3 P_2 P_1 P_0$.", "<strong>Prefix Adders:</strong> Parallel prefix trees (Kogge-Stone, Brent-Kung) compute carries using associative black prefix cells ($G_{i:j} = G_{i:k} + P_{i:k} G_{k-1:j}$, $P_{i:j} = P_{i:k} P_{k-1:j}$). Critical path delay is $O(\\log_2 N)$.", "<strong>Adder/Subtractor & Overflow:</strong> Subtraction $A - B = A + B' + 1$. An XOR gate on each bit of $B$ inverts $B$ when $Sub = 1$, and carry-in is set to 1. Overflow for signed arithmetic: $V = C_{\\text{in,msb}} \\oplus C_{\\text{out,msb}}$.", "<strong>Binary Comparators:</strong> Equality comparator checks $A_i == B_i$ using $N$ XNOR gates ANDed together: $Eq = \\prod (A_i \\odot B_i)$. Magnitude comparator calculates $A - B$ to test sign and zero flags.", "<strong>Shifters:</strong> <em>Logical Shift Left (`<<`) / Right (`>>`):</em> fills vacant positions with 0. <em>Arithmetic Shift Right (`>>>`):</em> replicates MSB (sign bit) to preserve 2's complement sign. <em>Rotator:</em> rotates bits circularly.", "<strong>Arithmetic Logic Unit (ALU):</strong> Core processor execution unit combining adder/subtractor, bitwise logic (AND, OR), and multiplexers controlled by ALUControl lines. Implements SLT (Set Less Than) by subtracting $A - B$ and passing sign bit $S_{31}$."], "svg": "<svg viewBox=\"0 0 540 210\" class=\"diagram-svg\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- Half Adder -->\n  <g transform=\"translate(20, 20)\">\n    <text x=\"90\" y=\"0\" fill=\"#38bdf8\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">HALF ADDER (HA)</text>\n    <!-- XOR for Sum -->\n    <path d=\"M 60,25 Q 75,40 60,55 Q 85,55 95,40 Q 85,25 60,25 Z\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <path d=\"M 53,25 Q 68,40 53,55\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <line x1=\"95\" y1=\"40\" x2=\"135\" y2=\"40\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n    <text x=\"145\" y=\"44\" fill=\"#38bdf8\" font-size=\"12\" font-weight=\"bold\">S = A \u2295 B</text>\n    <!-- AND for Cout -->\n    <rect x=\"60\" y=\"80\" width=\"35\" height=\"30\" rx=\"4\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <line x1=\"95\" y1=\"95\" x2=\"135\" y2=\"95\" stroke=\"#10b981\" stroke-width=\"2\"/>\n    <text x=\"145\" y=\"99\" fill=\"#10b981\" font-size=\"12\" font-weight=\"bold\">Cout = A B</text>\n    <!-- Inputs A, B -->\n    <line x1=\"10\" y1=\"32\" x2=\"60\" y2=\"32\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <text x=\"-5\" y=\"36\" fill=\"#e2e8f0\" font-size=\"12\">A</text>\n    <line x1=\"10\" y1=\"48\" x2=\"60\" y2=\"48\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <text x=\"-5\" y=\"52\" fill=\"#e2e8f0\" font-size=\"12\">B</text>\n    <circle cx=\"30\" cy=\"32\" r=\"2.5\" fill=\"#e2e8f0\"/>\n    <polyline points=\"30,32 30,88 60,88\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <circle cx=\"40\" cy=\"48\" r=\"2.5\" fill=\"#e2e8f0\"/>\n    <polyline points=\"40,48 40,102 60,102\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n  </g>\n  <!-- Full Adder using 2 HAs and OR gate -->\n  <g transform=\"translate(250, 20)\">\n    <text x=\"140\" y=\"0\" fill=\"#a855f7\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">FULL ADDER (FA) SCHEMATIC</text>\n    <!-- HA 1 -->\n    <rect x=\"20\" y=\"25\" width=\"55\" height=\"70\" rx=\"5\" fill=\"#1e293b\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <text x=\"47\" y=\"55\" fill=\"#38bdf8\" font-size=\"11\" text-anchor=\"middle\">HA 1</text>\n    <line x1=\"-10\" y1=\"40\" x2=\"20\" y2=\"40\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <text x=\"-25\" y=\"44\" fill=\"#e2e8f0\" font-size=\"11\">A</text>\n    <line x1=\"-10\" y1=\"70\" x2=\"20\" y2=\"70\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/>\n    <text x=\"-25\" y=\"74\" fill=\"#e2e8f0\" font-size=\"11\">B</text>\n    <!-- HA 2 -->\n    <rect x=\"115\" y=\"25\" width=\"55\" height=\"70\" rx=\"5\" fill=\"#1e293b\" stroke=\"#a855f7\" stroke-width=\"1.5\"/>\n    <text x=\"142\" y=\"55\" fill=\"#a855f7\" font-size=\"11\" text-anchor=\"middle\">HA 2</text>\n    <line x1=\"75\" y1=\"45\" x2=\"115\" y2=\"45\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n    <line x1=\"60\" y1=\"12\" x2=\"115\" y2=\"35\" stroke=\"#f59e0b\" stroke-width=\"1.5\"/>\n    <text x=\"35\" y=\"15\" fill=\"#f59e0b\" font-size=\"11\">Cin</text>\n    <!-- Sum out -->\n    <line x1=\"170\" y1=\"45\" x2=\"230\" y2=\"45\" stroke=\"#38bdf8\" stroke-width=\"2\"/>\n    <text x=\"238\" y=\"49\" fill=\"#38bdf8\" font-size=\"12\" font-weight=\"bold\">S = A\u2295B\u2295Cin</text>\n    <!-- OR gate for Cout -->\n    <path d=\"M 195,85 Q 205,100 195,115 Q 220,115 230,100 Q 220,85 195,85 Z\" fill=\"#1e293b\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <line x1=\"75\" y1=\"80\" x2=\"195\" y2=\"92\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <line x1=\"170\" y1=\"75\" x2=\"195\" y2=\"108\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n    <line x1=\"230\" y1=\"100\" x2=\"260\" y2=\"100\" stroke=\"#10b981\" stroke-width=\"2\"/>\n    <text x=\"268\" y=\"104\" fill=\"#10b981\" font-size=\"12\" font-weight=\"bold\">Cout</text>\n  </g>\n</svg>"}, {"id": "th-2-3", "unit": "Unit 2", "module": "Number Systems & Floating Point", "title": "Number Systems, Fixed-Point & IEEE 754 Floating-Point Standard", "points": ["<strong>Unsigned Binary:</strong> $N$ bits represent non-negative integers from $0$ to $2^N - 1$.", "<strong>Sign-Magnitude & 1's Complement:</strong> Both feature ambiguous dual zeros (+0 and -0) and ranges from $-(2^{N-1} - 1)$ to $+(2^{N-1} - 1)$.", "<strong>2's Complement:</strong> Formed by inverting all bits and adding 1 to LSB. Unique zero ($00\\dots0$). Range for $N$ bits: $[-2^{N-1}, +(2^{N-1} - 1)]$. MSB has negative weight: $-b_{N-1} 2^{N-1}$.", "<strong>Fixed-Point Numbers ($Q_{m.n}$):</strong> Represents fractions with $m$ integer bits and $n$ fraction bits. Binary weight of fraction bit $k$ is $2^{-k}$ ($2^{-1}=0.5, 2^{-2}=0.25, 2^{-3}=0.125, 2^{-4}=0.0625$). In signed 2's complement, $-7.5_{10} = 1000.1000_2$ in $Q_{4.4}$ format.", "<strong>IEEE 754 Single-Precision (32-bit):</strong> Partitioned into 1 Sign bit ($S$, bit 31), 8 Biased Exponent bits ($E$, bits 30\u201323, Bias = 127), and 23 Fraction bits ($F$, bits 22\u20130). Decoded value: $(-1)^S \\times (1.F) \\times 2^{E - 127}$.", "<strong>Special IEEE 754 Values:</strong> (1) Zero: $E = 0, F = 0$; (2) $+/-\\infty$: $E = 255, F = 0$; (3) NaN: $E = 255, F \\ne 0$; (4) Subnormal / Denormalized: $E = 0, F \\ne 0$, value $= (-1)^S \\times (0.F) \\times 2^{-126}$.", "<strong>8-Step Floating-Point Addition Algorithm:</strong> (1) Extract S, E, F; (2) Restore implicit leading 1 ($1.F$); (3) Compare exponents $\\Delta E = E_1 - E_2$; (4) Shift smaller significand right by $|\\Delta E|$; (5) Add/subtract aligned significands; (6) Normalize significand and adjust exponent; (7) Round result; (8) Assemble 32-bit format."], "svg": "<svg viewBox=\"0 0 540 140\" class=\"diagram-svg\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g transform=\"translate(30, 20)\">\n    <text x=\"240\" y=\"0\" fill=\"#94a3b8\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">IEEE 754 SINGLE-PRECISION (32-BIT) FLOATING-POINT FORMAT</text>\n    <!-- Bit labels -->\n    <text x=\"15\" y=\"22\" fill=\"#94a3b8\" font-size=\"10\" text-anchor=\"middle\">Bit 31</text>\n    <text x=\"90\" y=\"22\" fill=\"#94a3b8\" font-size=\"10\" text-anchor=\"middle\">Bits 30 \u2014 23 (8 bits)</text>\n    <text x=\"320\" y=\"22\" fill=\"#94a3b8\" font-size=\"10\" text-anchor=\"middle\">Bits 22 \u2014 0 (23 bits)</text>\n    <!-- Boxes -->\n    <!-- Sign -->\n    <rect x=\"0\" y=\"30\" width=\"30\" height=\"45\" rx=\"3\" fill=\"#ef4444\" stroke=\"#f87171\" stroke-width=\"1.5\"/>\n    <text x=\"15\" y=\"57\" fill=\"#fff\" font-size=\"14\" font-weight=\"bold\" text-anchor=\"middle\">S</text>\n    <!-- Exponent -->\n    <rect x=\"35\" y=\"30\" width=\"120\" height=\"45\" rx=\"3\" fill=\"#3b82f6\" stroke=\"#60a5fa\" stroke-width=\"1.5\"/>\n    <text x=\"95\" y=\"52\" fill=\"#fff\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Biased Exponent (E)</text>\n    <text x=\"95\" y=\"67\" fill=\"#dbeafe\" font-size=\"10\" text-anchor=\"middle\">Bias = 127</text>\n    <!-- Fraction -->\n    <rect x=\"160\" y=\"30\" width=\"320\" height=\"45\" rx=\"3\" fill=\"#10b981\" stroke=\"#34d399\" stroke-width=\"1.5\"/>\n    <text x=\"320\" y=\"52\" fill=\"#fff\" font-size=\"12\" font-weight=\"bold\" text-anchor=\"middle\">Fraction / Mantissa (F)</text>\n    <text x=\"320\" y=\"67\" fill=\"#d1fae5\" font-size=\"10\" text-anchor=\"middle\">Implicit Leading 1 (1.F)</text>\n    <!-- Decoded Formula -->\n    <text x=\"240\" y=\"105\" fill=\"#f59e0b\" font-size=\"13\" font-weight=\"bold\" text-anchor=\"middle\">Decoded Value = (-1)^S \u00d7 (1.F) \u00d7 2^(E - 127)</text>\n  </g>\n</svg>"}];
+    const FORMULAE_DATA = [{"category": "Boolean Algebra & Canonical Forms", "icon": "\ud83d\udcd0", "items": [{"name": "De Morgan's Laws", "formula": "$$(A + B)' = A' \\cdot B', \\qquad (A \\cdot B)' = A' + B'$$", "desc": "Complemented sum equals product of complements; complemented product equals sum of complements."}, {"name": "Consensus Theorem", "formula": "$$A B + A' C + B C = A B + A' C, \\qquad (A + B)(A' + C)(B + C) = (A + B)(A' + C)$$", "desc": "The consensus term $BC$ is completely redundant and can be eliminated."}, {"name": "Shannon's Expansion Theorem", "formula": "$$F(X_1, X_2, \\dots, X_n) = X_1 \\cdot F(1, X_2, \\dots) + X_1' \\cdot F(0, X_2, \\dots)$$", "desc": "Basis for implementing arbitrary logic functions using multiplexers."}, {"name": "Minterm-Maxterm Duality", "formula": "$$M_i = (m_i)', \\qquad F = \\sum m(k) \\iff F = \\prod M(\\text{others})$$", "desc": "A maxterm is the exact Boolean complement of the corresponding minterm."}]}, {"category": "Circuit Timing & Clock Constraints", "icon": "\u23f1\ufe0f", "items": [{"name": "Ring Oscillator Period & Frequency", "formula": "$$T = 2 \\cdot N \\cdot t_{\\text{pd}}, \\qquad f = \\frac{1}{2 \\cdot N \\cdot t_{\\text{pd}}}$$", "desc": "For an odd number $N$ of inverters in a feedback loop, each having propagation delay $t_{\\text{pd}}$."}, {"name": "Synchronous Clock Period Constraint (Setup Time)", "formula": "$$T_c \\ge t_{\\text{pcq}} + t_{\\text{pd,comb}} + t_{\\text{setup}}, \\qquad f_{\\text{max}} = \\frac{1}{T_{c,\\text{min}}}$$", "desc": "Ensures data launched at one clock edge arrives at least $t_{\\text{setup}}$ before the next edge."}, {"name": "Hold Time Constraint", "formula": "$$t_{\\text{ccq}} + t_{\\text{cd,comb}} \\ge t_{\\text{hold}}$$", "desc": "Ensures fastest possible data does not race forward and corrupt current latch state before $t_{\\text{hold}}$."}, {"name": "Parallel Element Delay", "formula": "$$t_{\\text{pd,total}} = \\max(t_{\\text{pd,path1}}, t_{\\text{pd,path2}}, \\dots) + t_{\\text{pd,subsequent}}$$", "desc": "Critical path delay is determined by the slowest converging branch."}]}, {"category": "Combinational Building Blocks", "icon": "\ud83d\udd00", "items": [{"name": "2:1 Multiplexer Equation", "formula": "$$Y = S' \\cdot D_0 + S \\cdot D_1$$", "desc": "Selects $D_0$ when $S=0$ and $D_1$ when $S=1$."}, {"name": "4:1 Multiplexer Equation", "formula": "$$Y = S_1' S_0' D_0 + S_1' S_0 D_1 + S_1 S_0' D_2 + S_1 S_0 D_3$$", "desc": "Requires 2 select lines to choose among 4 input data lines."}, {"name": "MUX Select Lines Formula", "formula": "$$k = \\lceil \\log_2 N \\rceil$$", "desc": "An $N$-input multiplexer requires $k$ binary select lines."}, {"name": "2:4 Decoder with Enable", "formula": "$$Y_0 = EN \\cdot A_1' A_0', \\quad Y_1 = EN \\cdot A_1' A_0, \\quad Y_2 = EN \\cdot A_1 A_0', \\quad Y_3 = EN \\cdot A_1 A_0$$", "desc": "Generates all 4 active-high minterms when $EN=1$."}]}, {"category": "Sequential Logic & Flip-Flops", "icon": "\ud83d\udd04", "items": [{"name": "D Flip-Flop Characteristic", "formula": "$$Q(t+1) = D$$", "desc": "Next state strictly captures data input $D$ at the rising clock edge."}, {"name": "T Flip-Flop Characteristic & Excitation", "formula": "$$Q(t+1) = T \\oplus Q(t), \\qquad D = T \\oplus Q$$", "desc": "Toggles when $T=1$, holds when $T=0$. Implemented on D-FF using an XOR gate."}, {"name": "JK Flip-Flop Characteristic & Excitation", "formula": "$$Q(t+1) = J \\cdot Q'(t) + K' \\cdot Q(t), \\qquad D = J \\cdot Q' + K' \\cdot Q$$", "desc": "Sets on $J=1$, resets on $K=1$, toggles on $J=K=1$. Implemented on D-FF via AND-OR."}, {"name": "FSM State Register Sizing", "formula": "$$\\text{Binary: } k = \\lceil \\log_2 N_{\\text{states}} \\rceil, \\qquad \\text{One-Hot: } k = N_{\\text{states}}$$", "desc": "Number of flip-flops required to encode $N$ distinct FSM states."}]}, {"category": "Arithmetic Circuits & Adders", "icon": "\u2795", "items": [{"name": "Half Adder (HA)", "formula": "$$S = A \\oplus B, \\qquad C_{\\text{out}} = A \\cdot B$$", "desc": "Adds two 1-bit operands."}, {"name": "Full Adder (FA)", "formula": "$$S = A \\oplus B \\oplus C_{\\text{in}}, \\qquad C_{\\text{out}} = A B + C_{\\text{in}}(A \\oplus B)$$", "desc": "Adds two 1-bit operands plus carry-in."}, {"name": "Ripple Carry Adder (RCA) Delay", "formula": "$$t_{\\text{ripple}} = N \\cdot t_{\\text{FA}} = O(N)$$", "desc": "Carry propagates linearly through all $N$ stages."}, {"name": "Carry Lookahead (CLA) Generate & Propagate", "formula": "$$G_i = A_i \\cdot B_i, \\quad P_i = A_i \\oplus B_i, \\quad C_{i+1} = G_i + P_i \\cdot C_i$$", "desc": "Stage $i$ generates carry if $G_i=1$; propagates carry if $P_i=1$."}, {"name": "CLA Block Generate & Propagate (4-bit)", "formula": "$$G_{3:0} = G_3 + P_3(G_2 + P_2(G_1 + P_1 G_0)), \\qquad P_{3:0} = P_3 P_2 P_1 P_0$$", "desc": "Enables multi-level hierarchical carry lookahead across 4-bit blocks."}, {"name": "Prefix Adder Delay", "formula": "$$t_{\\text{PA}} = t_{\\text{pg}} + \\log_2 N(t_{\\text{prefix}}) + t_{\\text{XOR}} = O(\\log_2 N)$$", "desc": "Logarithmic tree delay using associative black/gray prefix cells."}, {"name": "2's Complement Subtraction & Overflow Flag", "formula": "$$A - B = A + B' + 1, \\qquad V = C_{\\text{in,msb}} \\oplus C_{\\text{out,msb}}$$", "desc": "Overflow occurs in signed addition if carries into and out of the MSB differ."}]}, {"category": "Number Systems & IEEE 754 Floating-Point", "icon": "\ud83d\udd22", "items": [{"name": "2's Complement Range (N bits)", "formula": "$$[-2^{N-1}, \\; +(2^{N-1} - 1)]$$", "desc": "Has one unique zero and asymmetric negative range (e.g. 8 bits: $-128$ to $+127$)."}, {"name": "Fixed-Point Q_m.n Value", "formula": "$$V = -b_{m-1} 2^{m-1} + \\sum_{i=-n}^{m-2} b_i 2^i$$", "desc": "Weight of fraction bit at index $-k$ is $2^{-k}$ ($0.5, 0.25, 0.125, 0.0625, \\dots$)."}, {"name": "IEEE 754 Single-Precision Decoded Value", "formula": "$$V = (-1)^S \\times (1.F) \\times 2^{E - 127}$$", "desc": "1 Sign bit ($S$), 8 Biased Exponent bits ($E$), 23 Fraction bits ($F$) with hidden leading 1."}, {"name": "IEEE 754 Biased Exponent", "formula": "$$E = \\text{actual exponent } e + 127$$", "desc": "Biased format ensures exponents can be compared as unsigned integers."}]}];
+    const NUMERICALS_DATA = [{"id": "num-1", "title": "4-Variable Karnaugh Map Minimization with Don't-Cares", "topic": "Karnaugh Maps", "problem": "Minimize the Boolean function $F(A,B,C,D) = \\sum m(0, 2, 8, 10, 11, 14, 15) + d(1, 3)$ using a four-variable K-map. State all prime implicants, identify the essential prime implicants, and provide the minimal SOP equation.", "formulas": "K-map Gray code grid ($00, 01, 11, 10$); Adjacent wrap-around; Term elimination rule: group of $2^k$ cells eliminates $k$ variables.", "steps": ["Step 1: Construct a $4 \\times 4$ K-map with rows labeled $AB$ and columns labeled $CD$ in Gray code order ($00, 01, 11, 10$).", "Step 2: Plot '1' in cells corresponding to minterms 0, 2, 8, 10, 11, 14, 15 and 'X' in cells corresponding to don't-care conditions 1, 3.", "Step 3: Identify maximal power-of-two groupings of 1s (using Xs if they help enlarge groups):", "  - Group 1 (Top row): Cells {0, 1, 3, 2} form a 4-cell group covering $m_0, d_1, d_3, m_2$. Expression = $A' B'$.", "  - Group 2 (Four corners): Cells {0, 2, 8, 10} form a 4-cell group covering $m_0, m_2, m_8, m_{10}$. Expression = $B' D'$.", "  - Group 3 (Quad on rows 11/10): Cells {10, 11, 14, 15} form a 4-cell group covering $m_{10}, m_{11}, m_{14}, m_{15}$. Expression = $A C$.", "Step 4: Check for Essential Prime Implicants (EPIs):", "  - $m_8$ is covered ONLY by Group 2 ($B' D'$) $\\implies B' D'$ is an EPI.", "  - $m_{11}, m_{14}, m_{15}$ are covered ONLY by Group 3 ($A C$) $\\implies A C$ is an EPI.", "  - Cell $m_0$ and $m_2$ are already covered by the EPI $B' D'$. Cells 1 and 3 are don't-cares and do not require coverage.", "Step 5: Write the final minimal SOP expression combining all EPIs."], "solution": "1. Plotting the cells:\n   Row 00 (A'B'): 1 (m0), X (d1), X (d3), 1 (m2)\n   Row 01 (A'B):  0, 0, 0, 0\n   Row 11 (AB):   0, 0, 1 (m15), 1 (m14)\n   Row 10 (AB'):  1 (m8), 0, 1 (m11), 1 (m10)\n\n2. Groupings:\n   - Quad 1: {10, 11, 14, 15} -> A C (covers 10, 11, 14, 15)\n   - Quad 2 (Four corners): {0, 2, 8, 10} -> B' D' (covers 0, 2, 8, 10)\n   All minterms {0, 2, 8, 10, 11, 14, 15} are now completely covered!\n   Don't-cares {1, 3} do not need their own group.", "final_answer": "$$F(A,B,C,D) = A C + B' D'$$", "sanity_check": "Checking cell coverage: m8 is uniquely in B'D'. m14/m15 are uniquely in AC. Both terms are essential prime implicants. No additional terms needed!"}, {"id": "num-2", "title": "Combinational Propagation Delay Analysis Across Converging Paths", "topic": "Circuit Timing & Specifications", "problem": "A combinational logic network consists of three functional elements: Element $E_1$ with propagation delay $t_{\\text{pd}}(E_1) = 5\\text{ ns}$, Element $E_2$ with $t_{\\text{pd}}(E_2) = 8\\text{ ns}$, and Element $E_3$ with $t_{\\text{pd}}(E_3) = 4\\text{ ns}$. Both $E_1$ and $E_2$ receive primary system inputs at time $t = 0$. Element $E_3$ receives the outputs of both $E_1$ and $E_2$ and produces the final primary output $Y$. Determine the worst-case propagation delay of this circuit.", "formulas": "$$t_{\\text{pd,total}} = \\max(t_{\\text{pd,branch1}}, t_{\\text{pd,branch2}}) + t_{\\text{pd,subsequent}}$$", "steps": ["Step 1: Identify the circuit topology and signal flow. Primary inputs split in parallel to $E_1$ and $E_2$.", "Step 2: Trace Path 1 from input through $E_1$ to $E_3$: Delay $= t_{\\text{pd}}(E_1) + t_{\\text{pd}}(E_3) = 5\\text{ ns} + 4\\text{ ns} = 9\\text{ ns}$.", "Step 3: Trace Path 2 from input through $E_2$ to $E_3$: Delay $= t_{\\text{pd}}(E_2) + t_{\\text{pd}}(E_3) = 8\\text{ ns} + 4\\text{ ns} = 12\\text{ ns}$.", "Step 4: The worst-case propagation delay is governed by the critical (slowest) path, since $E_3$ cannot evaluate its stable valid output until both inputs have stabilized.", "Step 5: Compute $t_{\\text{pd,worst}} = \\max(5, 8) + 4 = 8 + 4 = 12\\text{ ns}$."], "solution": "Output of $E_1$ becomes stable at $t = 5\\text{ ns}$.\nOutput of $E_2$ becomes stable at $t = 8\\text{ ns}$.\nInputs to $E_3$ are fully valid at $t = \\max(5, 8) = 8\\text{ ns}$.\n$E_3$ requires an additional $4\\text{ ns}$ to compute output $Y$.\n$t_{\\text{pd,worst}} = 8\\text{ ns} + 4\\text{ ns} = 12\\text{ ns}$.", "final_answer": "$$t_{\\text{pd,worst}} = 12\\text{ ns}$$", "sanity_check": "Notice that simply adding all delays (5 + 8 + 4 = 17 ns) is incorrect because E1 and E2 execute concurrently in parallel."}, {"id": "num-3", "title": "Ring Oscillator Oscillation Period and Frequency", "topic": "Synchronous Sequential Logic", "problem": "A ring oscillator is implemented using three identical inverters ($N = 3$) connected in a closed feedback loop. Each inverter has an average propagation delay of $t_{\\text{pd}} = 1.0\\text{ ns}$. Compute the oscillation period ($T_{\\text{osc}}$) and the operating frequency ($f_{\\text{osc}}$) of the resulting square wave.", "formulas": "$$T_{\\text{osc}} = 2 \\cdot N \\cdot t_{\\text{pd}}, \\qquad f_{\\text{osc}} = \\frac{1}{T_{\\text{osc}}}$$", "steps": ["Step 1: Understand the physical operation of an inverter ring oscillator. A logic transition must travel through all $N$ inverters to invert the node state (half period, $T/2 = N \\cdot t_{\\text{pd}}$).", "Step 2: A full clock cycle comprises one low-to-high transition followed by one high-to-low transition, requiring two complete round trips through the loop.", "Step 3: Calculate period $T_{\\text{osc}} = 2 \\times N \\times t_{\\text{pd}} = 2 \\times 3 \\times 1.0\\text{ ns} = 6.0\\text{ ns}$.", "Step 4: Calculate frequency $f_{\\text{osc}} = 1 / T_{\\text{osc}} = 1 / (6.0 \\times 10^{-9}\\text{ s}) = 166.67\\text{ MHz}$."], "solution": "Half-period: $t_{\\text{half}} = 3 \\times 1.0\\text{ ns} = 3.0\\text{ ns}$.\nFull period: $T_{\\text{osc}} = 2 \\times 3.0\\text{ ns} = 6.0\\text{ ns}$.\nFrequency: $f_{\\text{osc}} = \\frac{1}{6.0 \\times 10^{-9}\\text{ s}} = 1.6667 \\times 10^8\\text{ Hz} = 166.67\\text{ MHz}$.", "final_answer": "$$T_{\\text{osc}} = 6\\text{ ns}, \\qquad f_{\\text{osc}} = 166.67\\text{ MHz}$$", "sanity_check": "If each inverter delay was 200 ps with 5 inverters: $T = 2 \\times 5 \\times 0.2\\text{ ns} = 2.0\\text{ ns} \\implies f = 500\\text{ MHz}$."}, {"id": "num-4", "title": "Synchronous Circuit Setup/Hold Timing and Maximum Clock Frequency", "topic": "Synchronous Sequential Logic", "problem": "A synchronous sequential system operates with flip-flops having the following specifications: Clock-to-Q propagation delay $t_{\\text{pcq}} = 0.9\\text{ ns}$, Clock-to-Q contamination delay $t_{\\text{ccq}} = 0.5\\text{ ns}$, Setup time $t_{\\text{setup}} = 0.6\\text{ ns}$, and Hold time $t_{\\text{hold}} = 0.4\\text{ ns}$. The combinational logic between registers has maximum propagation delay $t_{\\text{pd,comb}} = 3.5\\text{ ns}$ and minimum contamination delay $t_{\\text{cd,comb}} = 0.2\\text{ ns}$. (a) Determine the minimum clock period $T_{c,\\text{min}}$ and maximum operating clock frequency $f_{\\text{max}}$. (b) Verify whether a hold time violation occurs.", "formulas": "$$T_c \\ge t_{\\text{pcq}} + t_{\\text{pd,comb}} + t_{\\text{setup}}, \\qquad t_{\\text{ccq}} + t_{\\text{cd,comb}} \\ge t_{\\text{hold}}$$", "steps": ["Step 1: State the setup timing constraint for zero clock skew: $T_c \\ge t_{\\text{pcq}} + t_{\\text{pd,comb}} + t_{\\text{setup}}$.", "Step 2: Substitute parameters into setup constraint: $T_{c,\\text{min}} = 0.9\\text{ ns} + 3.5\\text{ ns} + 0.6\\text{ ns} = 5.0\\text{ ns}$.", "Step 3: Calculate maximum clock frequency: $f_{\\text{max}} = 1 / T_{c,\\text{min}} = 1 / (5.0 \\times 10^{-9}\\text{ s}) = 200\\text{ MHz}$.", "Step 4: State the hold timing constraint: $t_{\\text{ccq}} + t_{\\text{cd,comb}} \\ge t_{\\text{hold}}$.", "Step 5: Substitute contamination parameters: $0.5\\text{ ns} + 0.2\\text{ ns} = 0.7\\text{ ns}$.", "Step 6: Compare against $t_{\\text{hold}} = 0.4\\text{ ns}$. Since $0.7\\text{ ns} \\ge 0.4\\text{ ns}$, hold time is satisfied with a positive margin of $0.3\\text{ ns}$."], "solution": "Setup Calculation:\n$T_{c,\\text{min}} = 0.9 + 3.5 + 0.6 = 5.0\\text{ ns}$\n$f_{\\text{max}} = \\frac{1}{5.0 \\times 10^{-9}\\text{ s}} = 200\\text{ MHz}$\n\nHold Check:\n$t_{\\text{fastest}} = t_{\\text{ccq}} + t_{\\text{cd,comb}} = 0.5 + 0.2 = 0.7\\text{ ns}$\nRequired hold time: $t_{\\text{hold}} = 0.4\\text{ ns}$\nHold margin = $0.7 - 0.4 = +0.3\\text{ ns} > 0$ (No violation!).", "final_answer": "$$T_{c,\\text{min}} = 5.0\\text{ ns}, \\quad f_{\\text{max}} = 200\\text{ MHz}, \\quad \\text{Hold satisfied (margin } +0.3\\text{ ns)}$$", "sanity_check": "Notice that clock period $T_c$ does NOT appear in the hold time equation. Decreasing clock frequency cannot fix a hold violation; only adding buffer delay can fix hold violations."}, {"id": "num-5", "title": "Universal Logic Implementation Using a 4:1 Multiplexer", "topic": "Combinational Building Blocks", "problem": "Implement the 3-variable Boolean function $F(A,B,C) = \\sum m(1, 2, 5, 7)$ using a single 4:1 multiplexer and no additional logic gates (using inputs $0, 1, C, C'$). Variables $A$ and $B$ are connected to the multiplexer select lines $S_1$ and $S_0$ respectively.", "formulas": "Shannon's Expansion: $F(A,B,C) = S_1' S_0' D_0 + S_1' S_0 D_1 + S_1 S_0' D_2 + S_1 S_0 D_3$, where $S_1 = A, S_0 = B$.", "steps": ["Step 1: Write out the full truth table of $F(A,B,C)$ for all 8 rows, listing $A, B, C$ and output $F$.", "Step 2: Partition the truth table into four 2-row blocks corresponding to the four select combinations of $(A, B)$:", "  - Block 0: $(A, B) = (0, 0) \\implies$ Rows $m_0 (C=0, F=0)$ and $m_1 (C=1, F=1)$.", "  - Block 1: $(A, B) = (0, 1) \\implies$ Rows $m_2 (C=0, F=1)$ and $m_3 (C=1, F=0)$.", "  - Block 2: $(A, B) = (1, 0) \\implies$ Rows $m_4 (C=0, F=0)$ and $m_5 (C=1, F=1)$.", "  - Block 3: $(A, B) = (1, 1) \\implies$ Rows $m_6 (C=0, F=0)$ and $m_7 (C=1, F=1)$.", "Step 3: Express $F$ in each block in terms of $C$:", "  - For Block 0 ($AB = 00$): When $C=0, F=0$; when $C=1, F=1 \\implies D_0 = C$.", "  - For Block 1 ($AB = 01$): When $C=0, F=1$; when $C=1, F=0 \\implies D_1 = C'$.", "  - For Block 2 ($AB = 10$): When $C=0, F=0$; when $C=1, F=1 \\implies D_2 = C$.", "  - For Block 3 ($AB = 11$): When $C=0, F=0$; when $C=1, F=1 \\implies D_3 = C$.", "Step 4: Connect $A \\to S_1$, $B \\to S_0$, and data pins $D_0 = C, D_1 = C', D_2 = C, D_3 = C$."], "solution": "Truth table mapping:\n| A | B | C | Minterm | F | Block | D input |\n|---|---|---|---------|---|-------|---------|\n| 0 | 0 | 0 | m0      | 0 | AB=00 | D0 = C  |\n| 0 | 0 | 1 | m1      | 1 |       |         |\n| 0 | 1 | 0 | m2      | 1 | AB=01 | D1 = C' |\n| 0 | 1 | 1 | m3      | 0 |       |         |\n| 1 | 0 | 0 | m4      | 0 | AB=10 | D2 = C  |\n| 1 | 0 | 1 | m5      | 1 |       |         |\n| 1 | 1 | 0 | m6      | 0 | AB=11 | D3 = C  |\n| 1 | 1 | 1 | m7      | 1 |       |         |", "final_answer": "$$S_1 = A, \\quad S_0 = B, \\quad D_0 = C, \\quad D_1 = C', \\quad D_2 = C, \\quad D_3 = C$$", "sanity_check": "Verification: $F = A' B' C + A' B C' + A B' C + A B C = m_1 + m_2 + m_5 + m_7$. Perfectly matches problem specification!"}, {"id": "num-6", "title": "Quantitative Adder Propagation Delay Comparison (32-bit RCA vs CLA vs Prefix Adder)", "topic": "Arithmetic Circuits", "problem": "Compare the propagation delay of a 32-bit Ripple Carry Adder (RCA), a 32-bit Carry Lookahead Adder (CLA) with 4-bit blocks ($k = 4$), and a 32-bit Prefix Adder. Standard cell library parameters: 2-input gate delay $t_{\\text{gate}} = 100\\text{ ps}$, Full Adder delay $t_{\\text{FA}} = 300\\text{ ps}$, CLA generate/propagate delay $t_{\\text{pg}} = 100\\text{ ps}$, CLA 4-bit block delay $t_{\\text{pg\\_block}} = 600\\text{ ps}$, CLA AND/OR carry merge delay $t_{\\text{AND\\_OR}} = 200\\text{ ps}$, and prefix cell delay $t_{\\text{prefix}} = 200\\text{ ps}$.", "formulas": "$$t_{\\text{ripple}} = N \\cdot t_{\\text{FA}}$$\n$$t_{\\text{CLA}} = t_{\\text{pg}} + t_{\\text{pg\\_block}} + (N/k - 1)t_{\\text{AND\\_OR}} + k \\cdot t_{\\text{FA}}$$\n$$t_{\\text{PA}} = t_{\\text{pg}} + \\log_2 N(t_{\\text{prefix}}) + t_{\\text{XOR}}$$", "steps": ["Step 1: Compute 32-bit Ripple Carry Adder delay: $t_{\\text{ripple}} = 32 \\times 300\\text{ ps} = 9600\\text{ ps} = 9.6\\text{ ns}$.", "Step 2: Compute 32-bit Carry Lookahead Adder delay with 4-bit blocks ($N = 32, k = 4 \\implies N/k = 8$ blocks):", "  $t_{\\text{CLA}} = t_{\\text{pg}} + t_{\\text{pg\\_block}} + (8 - 1) \\times 200\\text{ ps} + 4 \\times 300\\text{ ps}$", "  $t_{\\text{CLA}} = 100\\text{ ps} + 600\\text{ ps} + 7 \\times 200\\text{ ps} + 1200\\text{ ps} = 100 + 600 + 1400 + 1200 = 3300\\text{ ps} = 3.3\\text{ ns}$.", "Step 3: Compute 32-bit Prefix Adder delay with $\\log_2(32) = 5$ tree levels:", "  $t_{\\text{PA}} = t_{\\text{pg}} + \\log_2(32) \\times t_{\\text{prefix}} + t_{\\text{XOR}}$", "  $t_{\\text{PA}} = 100\\text{ ps} + 5 \\times 200\\text{ ps} + 100\\text{ ps} = 100 + 1000 + 100 = 1200\\text{ ps} = 1.2\\text{ ns}$."], "solution": "RCA: $32 \\times 300\\text{ ps} = 9.6\\text{ ns}$\nCLA: $100 + 600 + 1400 + 1200 = 3.3\\text{ ns}$\nPrefix Adder: $100 + 5(200) + 100 = 1.2\\text{ ns}$\n\nSpeedup Comparison:\n- CLA is $9.6 / 3.3 = 2.91\\times$ faster than RCA.\n- Prefix Adder is $9.6 / 1.2 = 8.0\\times$ faster than RCA.", "final_answer": "$$t_{\\text{ripple}} = 9.6\\text{ ns}, \\qquad t_{\\text{CLA}} = 3.3\\text{ ns}, \\qquad t_{\\text{PA}} = 1.2\\text{ ns}$$", "sanity_check": "As word size grows, Prefix Adders dramatically outperform Ripple Carry Adders ($O(\\log_2 N)$ vs $O(N)$)."}, {"id": "num-7", "title": "Signed Fixed-Point Representation in 2's Complement", "topic": "Number Systems & Floating Point", "problem": "Represent the decimal value $-7.5_{10}$ in an 8-bit fixed-point format with 4 integer bits and 4 fraction bits ($Q_{4.4}$) using: (a) Sign/Magnitude format, and (b) 2's Complement format.", "formulas": "Binary fraction weights: $2^{-1} = 0.5, 2^{-2} = 0.25, 2^{-3} = 0.125, 2^{-4} = 0.0625$.\n2's Complement $= \\text{Invert bits} + 1\\text{ at LSB}$.", "steps": ["Step 1: Convert positive magnitude $+7.5_{10}$ to fixed-point binary with 4 integer and 4 fraction bits.", "  - Integer part: $7_{10} = 0111_2$.", "  - Fraction part: $0.5_{10} = 0.1000_2$.", "  - $+7.5_{10} = 0111.1000_2$.", "Step 2: Determine Sign/Magnitude representation:", "  - Replace positive sign bit (MSB = 0) with negative sign bit (MSB = 1).", "  - Sign/Magnitude $= 1111.1000_2$.", "Step 3: Determine 2's Complement representation:", "  - Take $+7.5_{10} = 01111000_2$.", "  - Invert all bits (1's complement): $10000111_2$.", "  - Add 1 to the LSB ($2^{-4}$): $10000111 + 00000001 = 10001000_2$ ($1000.1000_2$).", "Step 4: Verify in decimal: $-b_3 2^3 + b_2 2^2 + b_1 2^1 + b_0 2^0 + b_{-1} 2^{-1} = -1(8) + 0 + 0 + 0 + 1(0.5) = -8 + 0.5 = -7.5_{10}$."], "solution": "+7.5 in Q4.4: 0111.1000\n\nSign/Magnitude:\nSign bit = 1, Magnitude = 111.1000 -> 1111.1000\n\n2's Complement:\n1. 0111 1000\n2. Invert: 1000 0111\n3. Add 1: 1000 1000\nValue check: -8 + 0.5 = -7.5", "final_answer": "$$\\text{Sign/Magnitude: } 1111.1000_2, \\qquad \\text{2's Complement: } 1000.1000_2$$", "sanity_check": "Notice that the LSB is in the 2^-4 position, so adding 1 in 2's complement means adding 0.0001_2."}, {"id": "num-8", "title": "Decimal Integer to IEEE 754 32-Bit Hexadecimal Conversion", "topic": "Number Systems & Floating Point", "problem": "Encode the decimal integer $228_{10}$ into a 32-bit IEEE 754 single-precision floating-point number. Express the final answer in binary and hexadecimal.", "formulas": "$$V = (-1)^S \\times (1.F) \\times 2^{E - 127}, \\qquad E = e + 127$$", "steps": ["Step 1: Determine sign bit $S$. Since $+228$ is positive, $S = 0$.", "Step 2: Convert decimal 228 to standard binary:", "  $228 = 128 + 64 + 32 + 4 = 11100100_2$.", "Step 3: Normalize the binary number into binary scientific notation ($1.F \\times 2^e$):", "  $11100100_2 = 1.1100100_2 \\times 2^7 \\implies e = 7$.", "Step 4: Compute biased exponent $E$:", "  $E = e + \\text{bias} = 7 + 127 = 134_{10}$.", "  Convert $134_{10}$ to 8-bit binary: $134 = 128 + 4 + 2 = 10000110_2$.", "Step 5: Extract 23-bit fraction field $F$ (drop the leading implicit 1):", "  $F = 11001000000000000000000_2$ (23 bits).", "Step 6: Concatenate fields [S (1 bit)] [E (8 bits)] [F (23 bits)]:", "  `0 10000110 11001000000000000000000`", "Step 7: Regroup into 4-bit nibbles and convert to hexadecimal:", "  `0100 0011 0110 0100 0000 0000 0000 0000` = `0x43640000`."], "solution": "Sign: 0\nExponent: 7 + 127 = 134 = 10000110\nFraction: 11001000000000000000000\nBinary: 0100 0011 0110 0100 0000 0000 0000 0000\nHex: 0x43640000", "final_answer": "$$\\text{Binary: } 0100\\;0011\\;0110\\;0100\\;0000\\;0000\\;0000\\;0000_2, \\qquad \\text{Hex: } 0x43640000$$", "sanity_check": "Matches exactly slide 14 of 2.3.1_Number_Systems.pptx."}, {"id": "num-9", "title": "Negative Decimal Fraction to IEEE 754 32-Bit Hexadecimal Conversion", "topic": "Number Systems & Floating Point", "problem": "Encode the decimal number $-58.25_{10}$ into IEEE 754 single-precision (32-bit) floating-point format. Express the final result in hexadecimal.", "formulas": "$$V = (-1)^S \\times (1.F) \\times 2^{E - 127}, \\qquad E = e + 127$$", "steps": ["Step 1: Determine sign bit $S$. Since the number is negative, $S = 1$.", "Step 2: Convert positive magnitude $58.25_{10}$ to binary:", "  - Integer part: $58_{10} = 32 + 16 + 8 + 2 = 111010_2$.", "  - Fraction part: $0.25_{10} = 0.01_2$.", "  - Combined: $58.25_{10} = 111010.01_2$.", "Step 3: Normalize to binary scientific notation:", "  $111010.01_2 = 1.1101001_2 \\times 2^5 \\implies e = 5$.", "Step 4: Compute biased exponent $E$:", "  $E = 5 + 127 = 132_{10} = 10000100_2$.", "Step 5: Extract 23-bit fraction $F$ (drop implicit 1):", "  $F = 11010010000000000000000_2$.", "Step 6: Concatenate [S] [E] [F]:", "  `1 10000100 11010010000000000000000`", "Step 7: Group into nibbles and convert to hexadecimal:", "  `1100 0010 0110 1001 0000 0000 0000 0000` = `0xC2690000`."], "solution": "Sign: 1\nExponent: 5 + 127 = 132 = 10000100\nFraction: 11010010000000000000000\nBinary: 1100 0010 0110 1001 0000 0000 0000 0000\nHex: 0xC2690000", "final_answer": "$$\\text{Hexadecimal: } 0xC2690000$$", "sanity_check": "Matches slide 16 of 2.3.1_Number_Systems.pptx."}, {"id": "num-10", "title": "IEEE 754 32-Bit Hexadecimal to Decimal Conversion", "topic": "Number Systems & Floating Point", "problem": "Convert the 32-bit IEEE 754 floating-point hexadecimal number `0x40980000` to its decimal equivalent.", "formulas": "$$V = (-1)^S \\times (1.F) \\times 2^{E - 127}$$", "steps": ["Step 1: Expand hexadecimal `0x40980000` into 32 binary bits:", "  `0100 0000 1001 1000 0000 0000 0000 0000`", "Step 2: Parse fields:", "  - Bit 31: Sign $S = 0$ (positive).", "  - Bits 30-23: Biased exponent $E = 10000001_2 = 129_{10}$.", "  - Bits 22-0: Fraction $F = 00110000000000000000000_2$.", "Step 3: Calculate actual exponent $e$:", "  $e = E - 127 = 129 - 127 = 2$.", "Step 4: Restore the implicit leading 1 to obtain the significand:", "  Significand $= 1.F = 1.0011000\\dots_2$.", "  Evaluate significand in decimal: $1 + 0 \\times 2^{-1} + 0 \\times 2^{-2} + 1 \\times 2^{-3} + 1 \\times 2^{-4} = 1 + 0.125 + 0.0625 = 1.1875_{10}$.", "Step 5: Compute final value:", "  $V = (+1) \\times 1.1875 \\times 2^2 = 1.1875 \\times 4 = 4.75_{10}$."], "solution": "S = 0\nE = 129 -> e = 129 - 127 = 2\nSignificand = 1.0011_2 = 1 + 1/8 + 1/16 = 19/16 = 1.1875\nValue = 1.1875 * 2^2 = 4.75", "final_answer": "$$\\text{Decimal Value: } +4.75_{10}$$", "sanity_check": "4.75 in binary is 100.11_2 = 1.0011_2 * 2^2. Matches perfectly!"}, {"id": "num-11", "title": "IEEE 754 Floating-Point Addition (Full 8-Step Procedure)", "topic": "Number Systems & Floating Point", "problem": "Using the formal 8-step IEEE 754 floating-point addition procedure, add the two floating-point numbers $N_1 = \\text{0x3FC00000}$ ($1.5_{10}$) and $N_2 = \\text{0x40500000}$ ($3.25_{10}$). Show all intermediate binary calculations and produce the final 32-bit hexadecimal result.", "formulas": "8-Step IEEE Addition: (1) Extract S, E, F; (2) Restore leading 1; (3) Compare exponents; (4) Align significand; (5) Add significands; (6) Normalize; (7) Round; (8) Assemble.", "steps": ["Step 1: Extract Sign, Exponent, and Fraction fields for both numbers:", "  - $N_1 = \\text{0x3FC00000} = 0\\;01111111\\;1000000\\dots_2 \\implies S_1 = 0, E_1 = 127, F_1 = .1000\\dots$", "  - $N_2 = \\text{0x40500000} = 0\\;10000000\\;1010000\\dots_2 \\implies S_2 = 0, E_2 = 128, F_2 = .1010\\dots$", "Step 2: Prepend implicit leading 1 to form full significands:", "  - $M_1 = 1.1000\\dots_2$", "  - $M_2 = 1.1010\\dots_2$", "Step 3: Compare exponents:", "  $\\Delta E = E_1 - E_2 = 127 - 128 = -1$. $N_1$ is smaller by 1 exponent power.", "Step 4: Shift smaller significand ($M_1$) right by $|\\Delta E| = 1$ bit:", "  $M_1' = 1.100 >> 1 = 0.110_2$ (now effectively multiplied by $2^1$ so exponent matches $E_2 = 128$).", "Step 5: Add aligned significands:", "  $$M_1' + M_2 = 0.110_2 + 1.101_2 = 10.011_2$$", "Step 6: Normalize sum and adjust exponent:", "  $10.011_2 \\times 2^{128-127}$ is not normalized (integer part $> 1$). Shift significand right by 1 bit and increment exponent by 1:", "  $10.011_2 >> 1 = 1.0011_2$, Exponent $= 128 + 1 = 129$.", "Step 7: Round result: Fits cleanly within 23 fraction bits (no precision loss).", "Step 8: Assemble IEEE 754 fields:", "  - Sign $S = 0$", "  - Exponent $E = 129 = 10000001_2$", "  - Fraction $F = 00110000\\dots_2$", "  Binary: `0 10000001 00110000000000000000000` = `0x40980000` ($4.75_{10}$)."], "solution": "N1 = 1.5, N2 = 3.25\n1. S1=0, E1=127, F1=.1; S2=0, E2=128, F2=.101\n2. M1 = 1.1, M2 = 1.101\n3. E1 - E2 = -1\n4. M1 shifted = 0.11\n5. 0.11 + 1.101 = 10.011\n6. Normalize: 10.011 >> 1 = 1.0011, E = 128 + 1 = 129\n7. Round: Exact\n8. S=0, E=129=10000001, F=001100.. -> 0x40980000 (= 4.75)", "final_answer": "$$\\text{Intermediate Sum: } 10.011_2 \\times 2^1 \\implies \\text{Normalized: } 1.0011_2 \\times 2^2 \\implies \\mathbf{0x40980000} \\; (4.75_{10})$$", "sanity_check": "1.5 + 3.25 = 4.75. Matches slide 22-25 of 2.3.1_Number_Systems.pptx with 100% precision."}];
+
+    // Application State with LocalStorage Persistence
+    const STORAGE_KEY = 'dlcd_revision_portal_state_v1';
+    let state = {
+      theme: 'dark',
+      currentView: 'learn',
+      filters: {
+        type: 'all',
+        unit: 'all',
+        module: 'all',
+        bookmarks: false,
+        searchQuery: ''
+      },
+      userAnswers: {},
+      bookmarks: new Set(),
+      activeExam: null,
+      examTimerInterval: null
+    };
+
+    // Initialize Application
+    document.addEventListener('DOMContentLoaded', () => {
+      loadStateFromStorage();
+      setupMathRendering();
+      applyTheme(state.theme);
+      updateStats();
+      renderLearnMCQs();
+      renderTheory();
+      renderFormulae();
+      renderNumericals();
+      switchView(state.currentView);
+    });
+
+    function loadStateFromStorage() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = jsonParseSafe(saved);
+          if (parsed) {
+            state.theme = parsed.theme || 'dark';
+            state.currentView = parsed.currentView || 'learn';
+            state.userAnswers = parsed.userAnswers || {};
+            if (Array.isArray(parsed.bookmarks)) {
+              state.bookmarks = new Set(parsed.bookmarks);
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Could not load localStorage state:', e);
+      }
+    }
+
+    function saveStateToStorage() {
+      try {
+        const toSave = {
+          theme: state.theme,
+          currentView: state.currentView,
+          userAnswers: state.userAnswers,
+          bookmarks: Array.from(state.bookmarks)
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+      } catch (e) {
+        console.warn('Could not save localStorage state:', e);
+      }
+    }
+
+    function jsonParseSafe(str) {
+      try { return JSON.parse(str); } catch (e) { return null; }
+    }
+
+    // KaTeX Math Rendering
+    function setupMathRendering() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      } else {
+        setTimeout(setupMathRendering, 150);
+      }
+    }
+
+    // Theme Toggle
+    function toggleTheme() {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(state.theme);
+      saveStateToStorage();
+    }
+    function applyTheme(th) {
+      document.documentElement.setAttribute('data-theme', th);
+      document.getElementById('themeToggleBtn').textContent = th === 'dark' ? '🌓' : '☀️';
+    }
+
+    // Mobile Sidebar
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('show');
+    }
+
+    // Navigation Switcher
+    function switchView(viewName) {
+      state.currentView = viewName;
+      document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.mode-tab').forEach(el => el.classList.remove('active'));
+
+      const targetView = document.getElementById('view' + capitalize(viewName));
+      const targetTab = document.getElementById('tab' + capitalize(viewName));
+      if (targetView) targetView.classList.add('active');
+      if (targetTab) targetTab.classList.add('active');
+
+      saveStateToStorage();
+      setTimeout(setupMathRendering, 40);
+    }
+    function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    // Stats Tracker
+    function updateStats() {
+      const total = MCQ_DATA.length;
+      const answeredKeys = Object.keys(state.userAnswers);
+      const answeredCount = answeredKeys.length;
+      let correctCount = 0;
+
+      answeredKeys.forEach(id => {
+        const q = MCQ_DATA.find(item => item.id === id);
+        if (q && state.userAnswers[id] === q.answer) {
+          correctCount++;
+        }
+      });
+
+      const pct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+
+      document.getElementById('statAnswered').textContent = `${answeredCount}/${total}`;
+      document.getElementById('statScore').textContent = `${pct}%`;
+      document.getElementById('statBookmarks').textContent = state.bookmarks.size;
+      document.getElementById('badgeBookmarks').textContent = state.bookmarks.size;
+    }
+
+    // Filters
+    function setFilter(type, val) {
+      if (type === 'type') {
+        state.filters.type = val;
+        state.filters.bookmarks = false;
+      } else if (type === 'unit') {
+        state.filters.unit = val;
+      } else if (type === 'module') {
+        state.filters.module = val;
+      } else if (type === 'bookmarks') {
+        state.filters.bookmarks = true;
+      }
+
+      // Update active classes on nav buttons
+      document.querySelectorAll('.sidebar .nav-btn').forEach(btn => btn.classList.remove('active'));
+      if (type === 'type' && val === 'all') document.getElementById('filterAll').classList.add('active');
+      if (type === 'type' && val.includes('Official')) document.getElementById('filterOfficial').classList.add('active');
+      if (type === 'type' && val.includes('Generated')) document.getElementById('filterGenerated').classList.add('active');
+      if (type === 'bookmarks') document.getElementById('filterBookmarks').classList.add('active');
+
+      renderLearnMCQs();
+      switchView('learn');
+    }
+
+    // LEARN MODE RENDERING
+    function renderLearnMCQs() {
+      const container = document.getElementById('learnMCQContainer');
+      const query = (document.getElementById('learnSearchInput').value || '').toLowerCase();
+
+      let filtered = MCQ_DATA.filter(q => {
+        if (state.filters.bookmarks && !state.bookmarks.has(q.id)) return false;
+        if (state.filters.type !== 'all' && q.type !== state.filters.type) return false;
+        if (state.filters.unit !== 'all' && q.unit !== state.filters.unit) return false;
+        if (state.filters.module !== 'all' && q.module !== state.filters.module) return false;
+        if (query) {
+          const matchQ = q.question.toLowerCase().includes(query);
+          const matchOpts = q.options.some(opt => opt.toLowerCase().includes(query));
+          const matchExpl = q.explanation.toLowerCase().includes(query);
+          const matchId = q.id.toLowerCase().includes(query);
+          if (!matchQ && !matchOpts && !matchExpl && !matchId) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="text-align: center; padding: 60px 20px; color: var(--text-sub);">
+          <div style="font-size: 36px; margin-bottom: 8px;">🔍</div>
+          <h3>No questions match the selected filter criteria</h3>
+        </div>`;
+        return;
+      }
+
+      const letters = ['A', 'B', 'C', 'D'];
+      let html = '';
+
+      filtered.forEach((q, idx) => {
+        const isBookmarked = state.bookmarks.has(q.id);
+        const userAnswer = state.userAnswers[q.id];
+        const isAnswered = userAnswer !== undefined;
+
+        let optionsHtml = '';
+        q.options.forEach((opt, oIdx) => {
+          let optClass = 'mcq-option';
+          if (isAnswered) {
+            if (oIdx === q.answer) optClass += ' correct';
+            else if (oIdx === userAnswer) optClass += ' incorrect';
+          }
+          optionsHtml += `
+            <div class="${optClass}" onclick="selectLearnAnswer('${q.id}', ${oIdx})">
+              <span class="option-letter">${letters[oIdx]}</span>
+              <span class="option-text">${opt}</span>
+            </div>
+          `;
+        });
+
+        html += `
+          <div class="mcq-card" id="card-${q.id}">
+            <div class="mcq-header">
+              <div class="mcq-badges">
+                <span class="badge badge-id">${q.id}</span>
+                <span class="badge badge-unit">${q.unit}</span>
+                <span class="badge badge-module">${q.module}</span>
+                <span class="badge ${q.type.includes('Official') ? 'badge-official' : 'badge-generated'}">${q.type}</span>
+              </div>
+              <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('${q.id}')" title="Bookmark Question">
+                ${isBookmarked ? '⭐' : '✰'}
+              </button>
+            </div>
+            <div class="mcq-question">${idx + 1}. ${q.question}</div>
+            <div class="mcq-options">${optionsHtml}</div>
+            <div class="mcq-explanation ${isAnswered ? 'show' : ''}">
+              <strong>💡 Explanation:</strong> ${q.explanation}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      setTimeout(setupMathRendering, 20);
+    }
+
+    function selectLearnAnswer(qId, choiceIdx) {
+      state.userAnswers[qId] = choiceIdx;
+      saveStateToStorage();
+      updateStats();
+      renderLearnMCQs();
+    }
+
+    function toggleBookmark(qId) {
+      if (state.bookmarks.has(qId)) {
+        state.bookmarks.delete(qId);
+      } else {
+        state.bookmarks.add(qId);
+      }
+      saveStateToStorage();
+      updateStats();
+      renderLearnMCQs();
+    }
+
+    function handleLearnSearch() {
+      renderLearnMCQs();
+    }
+
+    function jumpToRandomMCQ() {
+      switchView('learn');
+      const randomIdx = Math.floor(Math.random() * MCQ_DATA.length);
+      const target = MCQ_DATA[randomIdx];
+      state.filters.type = 'all';
+      state.filters.unit = 'all';
+      state.filters.module = 'all';
+      state.filters.bookmarks = false;
+      renderLearnMCQs();
+      setTimeout(() => {
+        const el = document.getElementById('card-' + target.id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+
+    function confirmResetProgress() {
+      if (confirm('Are you sure you want to reset all your answers and progress? Bookmarks will be preserved.')) {
+        state.userAnswers = {};
+        saveStateToStorage();
+        updateStats();
+        renderLearnMCQs();
+        alert('Progress reset successfully!');
+      }
+    }
+
+    // THEORY RENDERING
+    function renderTheory() {
+      const container = document.getElementById('theoryContainer');
+      const query = (document.getElementById('theorySearchInput')?.value || '').toLowerCase();
+
+      let html = '';
+      THEORY_DATA.forEach(t => {
+        if (query) {
+          const matchTitle = t.title.toLowerCase().includes(query);
+          const matchPoints = t.points.some(p => p.toLowerCase().includes(query));
+          if (!matchTitle && !matchPoints) return;
+        }
+
+        const pointsHtml = t.points.map(p => `<li class="theory-point-item">${p}</li>`).join('');
+        const diagramHtml = t.svg ? `<div class="diagram-wrap">${t.svg}</div>` : '';
+
+        html += `
+          <div class="theory-card" id="${t.id}">
+            <div class="theory-header" onclick="toggleTheoryCard('${t.id}')">
+              <div class="theory-header-left">
+                <span class="badge badge-unit">${t.unit}</span>
+                <span class="theory-title">${t.title}</span>
+              </div>
+              <span class="theory-toggle-icon">▼</span>
+            </div>
+            <div class="theory-body">
+              <ul class="theory-points">${pointsHtml}</ul>
+              ${diagramHtml}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html || '<div style="text-align:center; padding: 40px; color:var(--text-sub);">No theory notes match search.</div>';
+      setTimeout(setupMathRendering, 20);
+    }
+
+    function toggleTheoryCard(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('collapsed');
+    }
+
+    function toggleAllTheoryCards() {
+      const cards = document.querySelectorAll('.theory-card');
+      const anyCollapsed = Array.from(cards).some(c => c.classList.contains('collapsed'));
+      cards.forEach(c => {
+        if (anyCollapsed) c.classList.remove('collapsed');
+        else c.classList.add('collapsed');
+      });
+    }
+
+    function handleTheorySearch() {
+      renderTheory();
+    }
+
+    // FORMULAE RENDERING
+    function renderFormulae() {
+      const container = document.getElementById('formulaeContainer');
+      const query = (document.getElementById('formulaSearchInput')?.value || '').toLowerCase();
+
+      let html = '';
+      FORMULAE_DATA.forEach(cat => {
+        const filteredItems = cat.items.filter(item => {
+          if (!query) return true;
+          return item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query) || item.formula.toLowerCase().includes(query);
+        });
+
+        if (filteredItems.length === 0) return;
+
+        const cardsHtml = filteredItems.map(item => `
+          <div class="formula-card">
+            <div>
+              <div class="formula-name">${item.name}</div>
+              <div class="formula-math">${item.formula}</div>
+            </div>
+            <div class="formula-desc">${item.desc}</div>
+          </div>
+        `).join('');
+
+        html += `
+          <div class="formula-category">
+            <div class="formula-category-title">
+              <span>${cat.icon}</span>
+              <span>${cat.category}</span>
+            </div>
+            <div class="formula-grid">${cardsHtml}</div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html || '<div style="text-align:center; padding: 40px; color:var(--text-sub);">No formulas match search.</div>';
+      setTimeout(setupMathRendering, 20);
+    }
+
+    function handleFormulaSearch() {
+      renderFormulae();
+    }
+
+    // NUMERICALS RENDERING
+    function renderNumericals() {
+      const container = document.getElementById('numericalsContainer');
+      const query = (document.getElementById('numSearchInput')?.value || '').toLowerCase();
+
+      let html = '';
+      NUMERICALS_DATA.forEach((n, idx) => {
+        if (query) {
+          const matchTitle = n.title.toLowerCase().includes(query);
+          const matchProb = n.problem.toLowerCase().includes(query);
+          const matchSol = n.solution.toLowerCase().includes(query);
+          if (!matchTitle && !matchProb && !matchSol) return;
+        }
+
+        const stepsHtml = n.steps.map(s => `<li class="num-step-item">${s}</li>`).join('');
+
+        html += `
+          <div class="num-card" id="${n.id}">
+            <div class="num-header">
+              <span class="badge badge-module">${n.topic}</span>
+              <span class="num-title">Problem ${idx + 1}: ${n.title}</span>
+            </div>
+            <div class="num-problem"><strong>Problem Statement:</strong><br>${n.problem}</div>
+            <div class="num-section-heading">Key Concept & Governing Formulas</div>
+            <div style="font-size: 13.5px; margin-bottom: 12px; color: var(--text-muted);">${n.formulas}</div>
+            <div class="num-section-heading">Step-by-Step Procedure to Solve</div>
+            <ul class="num-steps">${stepsHtml}</ul>
+            <div class="num-section-heading">Full Worked Solution & Intermediate Derivations</div>
+            <div class="num-solution-box">${n.solution}</div>
+            <div class="num-final-answer">${n.final_answer}</div>
+            <div class="num-sanity-check">📌 <strong>Verification / Note:</strong> ${n.sanity_check}</div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html || '<div style="text-align:center; padding: 40px; color:var(--text-sub);">No numericals match search.</div>';
+      setTimeout(setupMathRendering, 20);
+    }
+
+    function handleNumSearch() {
+      renderNumericals();
+    }
+
+    // EXAM / TEST MODE LOGIC
+    function startNewExam() {
+      const source = document.getElementById('examSourceSelect').value;
+      const unit = document.getElementById('examUnitSelect').value;
+      const countVal = document.getElementById('examCountSelect').value;
+      const timerVal = parseFloat(document.getElementById('examTimerSelect').value);
+
+      let pool = MCQ_DATA.filter(q => {
+        if (source !== 'all' && q.type !== source) return false;
+        if (unit !== 'all' && q.unit !== unit) return false;
+        return true;
+      });
+
+      if (pool.length === 0) {
+        alert('No questions match the chosen criteria.');
+        return;
+      }
+
+      // Shuffle
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      const totalCount = countVal === 'all' ? pool.length : Math.min(parseInt(countVal), pool.length);
+      const selected = pool.slice(0, totalCount);
+
+      state.activeExam = {
+        questions: selected,
+        currentIndex: 0,
+        userAnswers: {},
+        flagged: new Set(),
+        timeRemainingSeconds: timerVal > 0 ? Math.round(totalCount * timerVal * 60) : 0,
+        isTimed: timerVal > 0
+      };
+
+      document.getElementById('examSetupScreen').style.display = 'none';
+      document.getElementById('examActiveScreen').classList.add('show');
+
+      startExamTimer();
+      renderExamPalette();
+      renderActiveExamQuestion();
+    }
+
+    function startExamTimer() {
+      clearInterval(state.examTimerInterval);
+      if (!state.activeExam.isTimed) {
+        document.getElementById('examTimerDisplay').textContent = 'Untimed Practice';
+        return;
+      }
+
+      updateExamTimerDisplay();
+      state.examTimerInterval = setInterval(() => {
+        state.activeExam.timeRemainingSeconds--;
+        updateExamTimerDisplay();
+        if (state.activeExam.timeRemainingSeconds <= 0) {
+          clearInterval(state.examTimerInterval);
+          alert('Time is up! Submitting examination automatically.');
+          finishExam();
+        }
+      }, 1000);
+    }
+
+    function updateExamTimerDisplay() {
+      const sec = state.activeExam.timeRemainingSeconds;
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      document.getElementById('examTimerDisplay').textContent = `⏳ ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function renderExamPalette() {
+      const grid = document.getElementById('examPaletteGrid');
+      let html = '';
+      state.activeExam.questions.forEach((q, idx) => {
+        let cls = 'palette-btn';
+        if (idx === state.activeExam.currentIndex) cls += ' current';
+        else if (state.activeExam.userAnswers[idx] !== undefined) cls += ' answered';
+        else if (state.activeExam.flagged.has(idx)) cls += ' flagged';
+
+        html += `<button class="${cls}" onclick="jumpToExamQuestion(${idx})">${idx + 1}</button>`;
+      });
+      grid.innerHTML = html;
+    }
+
+    function renderActiveExamQuestion() {
+      const q = state.activeExam.questions[state.activeExam.currentIndex];
+      const idx = state.activeExam.currentIndex;
+      const total = state.activeExam.questions.length;
+
+      document.getElementById('examQuestionTracker').textContent = `Question ${idx + 1} of ${total}`;
+      document.getElementById('btnExamFlag').textContent = state.activeExam.flagged.has(idx) ? '🚩 Flagged' : '🏳️ Flag';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      let optionsHtml = '';
+      const selected = state.activeExam.userAnswers[idx];
+
+      q.options.forEach((opt, oIdx) => {
+        const isSelected = selected === oIdx;
+        optionsHtml += `
+          <div class="mcq-option ${isSelected ? 'selected-test' : ''}" onclick="selectExamChoice(${oIdx})">
+            <span class="option-letter">${letters[oIdx]}</span>
+            <span class="option-text">${opt}</span>
+          </div>
+        `;
+      });
+
+      document.getElementById('activeExamQuestionCard').innerHTML = `
+        <div class="mcq-card">
+          <div class="mcq-badges" style="margin-bottom: 12px;">
+            <span class="badge badge-id">${q.id}</span>
+            <span class="badge badge-unit">${q.unit}</span>
+            <span class="badge badge-module">${q.module}</span>
+          </div>
+          <div class="mcq-question">${q.question}</div>
+          <div class="mcq-options">${optionsHtml}</div>
+        </div>
+      `;
+
+      renderExamPalette();
+      setTimeout(setupMathRendering, 20);
+    }
+
+    function selectExamChoice(choiceIdx) {
+      state.activeExam.userAnswers[state.activeExam.currentIndex] = choiceIdx;
+      renderActiveExamQuestion();
+    }
+
+    function clearExamChoice() {
+      delete state.activeExam.userAnswers[state.activeExam.currentIndex];
+      renderActiveExamQuestion();
+    }
+
+    function toggleExamFlag() {
+      const idx = state.activeExam.currentIndex;
+      if (state.activeExam.flagged.has(idx)) state.activeExam.flagged.delete(idx);
+      else state.activeExam.flagged.add(idx);
+      renderActiveExamQuestion();
+    }
+
+    function navigateExam(step) {
+      const newIdx = state.activeExam.currentIndex + step;
+      if (newIdx >= 0 && newIdx < state.activeExam.questions.length) {
+        state.activeExam.currentIndex = newIdx;
+        renderActiveExamQuestion();
+      }
+    }
+
+    function jumpToExamQuestion(idx) {
+      state.activeExam.currentIndex = idx;
+      renderActiveExamQuestion();
+    }
+
+    function confirmSubmitExam() {
+      const answered = Object.keys(state.activeExam.userAnswers).length;
+      const total = state.activeExam.questions.length;
+      if (confirm(`You answered ${answered} of ${total} questions. Are you ready to submit?`)) {
+        finishExam();
+      }
+    }
+
+    function finishExam() {
+      clearInterval(state.examTimerInterval);
+      let correct = 0;
+      let wrong = 0;
+      const total = state.activeExam.questions.length;
+
+      state.activeExam.questions.forEach((q, idx) => {
+        const ans = state.activeExam.userAnswers[idx];
+        if (ans !== undefined) {
+          if (ans === q.answer) correct++;
+          else wrong++;
+        }
+      });
+
+      const unanswered = total - (correct + wrong);
+      const pct = Math.round((correct / total) * 100);
+
+      document.getElementById('modalScorePct').textContent = `${pct}%`;
+      document.getElementById('modalCorrect').textContent = correct;
+      document.getElementById('modalWrong').textContent = wrong;
+      document.getElementById('modalUnanswered').textContent = unanswered;
+
+      const trophy = document.getElementById('modalTrophy');
+      if (pct >= 85) trophy.textContent = '🌟';
+      else if (pct >= 60) trophy.textContent = '👍';
+      else trophy.textContent = '📚';
+
+      document.getElementById('examResultModal').classList.add('show');
+    }
+
+    function closeExamModal() {
+      document.getElementById('examResultModal').classList.remove('show');
+    }
+
+    function resetToExamSetup() {
+      closeExamModal();
+      document.getElementById('examActiveScreen').classList.remove('show');
+      document.getElementById('examSetupScreen').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

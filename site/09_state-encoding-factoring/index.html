@@ -1,0 +1,1763 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete study guide for Digital Logic & Computer Design covering Units 1-3">
+      
+      
+      
+      
+      
+        <link rel="prev" href="../08_fsm-moore-mealy-design/">
+      
+      
+        <link rel="next" href="../10_arithmetic-adders/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>State Encoding & Factoring - DLCD Exam Prep — UE25CS242A</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-header__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DLCD Exam Prep — UE25CS242A
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              State Encoding & Factoring
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_digital-circuits-introduction/" class="md-tabs__link">
+          
+  
+  Unit 1: Combinational & Sequential Logic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../08_fsm-moore-mealy-design/" class="md-tabs__link">
+          
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+          
+  
+  Lab & Practice
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-nav__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    DLCD Exam Prep — UE25CS242A
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 1: Combinational & Sequential Logic
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 1: Combinational & Sequential Logic
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_digital-circuits-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Digital Circuits Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_boolean-equations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Boolean Equations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_logic-minimization-kmaps-3var/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Logic Minimization & K-Maps (3-Var)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_kmaps-4var-seven-segment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  K-Maps (4-Var) & Seven-Segment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_combinational-building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Combinational Building Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sequential-basics-latches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sequential Basics — Latches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_flipflops-timing-metastability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Flip-Flops & Timing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_fsm-moore-mealy-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Finite State Machines
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  State Encoding & Factoring
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  State Encoding & Factoring
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state-encoding-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        State Encoding Techniques
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#divide-by-3-counter-binary-vs-one-hot" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Divide-by-3 Counter: Binary vs One-Hot
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Divide-by-3 Counter: Binary vs One-Hot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-encoding-2-ffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Binary Encoding (2 FFs)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding-3-ffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        One-Hot Encoding (3 FFs)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Choosing Encoding
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#factoring-state-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Factoring State Machines
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Factoring State Machines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-state-explosion" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Problem: State Explosion
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-decompose-into-smaller-interacting-fsms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Solution: Decompose into Smaller Interacting FSMs
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-light-with-parade-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Traffic Light with Parade Mode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#factored-vs-unfactored-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Factored vs Unfactored Comparison
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deriving-fsm-from-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Deriving FSM from Schematic
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deriving FSM from Schematic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Steps
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-keypad-lock-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example: Keypad Lock Circuit
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_arithmetic-adders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arithmetic Circuits — Adders
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_alu-comparator-shifter-multiplier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ALU, Comparators, Shifters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_number-systems-fixedpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Number Systems — Fixed-Point
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_floating-point-ieee754/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Floating-Point — IEEE 754
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab & Practice
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Lab & Practice
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab Verilog Patterns
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  MCQ Practice
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Numerical Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exam Strategy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state-encoding-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        State Encoding Techniques
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#divide-by-3-counter-binary-vs-one-hot" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Divide-by-3 Counter: Binary vs One-Hot
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Divide-by-3 Counter: Binary vs One-Hot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-encoding-2-ffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Binary Encoding (2 FFs)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding-3-ffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        One-Hot Encoding (3 FFs)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Choosing Encoding
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#factoring-state-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Factoring State Machines
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Factoring State Machines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-state-explosion" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Problem: State Explosion
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-decompose-into-smaller-interacting-fsms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Solution: Decompose into Smaller Interacting FSMs
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-light-with-parade-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Traffic Light with Parade Mode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#factored-vs-unfactored-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Factored vs Unfactored Comparison
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deriving-fsm-from-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Deriving FSM from Schematic
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deriving FSM from Schematic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Steps
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-keypad-lock-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example: Keypad Lock Circuit
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="09-state-encoding-factoring-state-machines">09. State Encoding &amp; Factoring State Machines<a class="headerlink" href="#09-state-encoding-factoring-state-machines" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Source:</strong> Unit 2 Slides 24–54 | Textbook: Harris &amp; Harris Ch. 3</p>
+</blockquote>
+<hr />
+<h2 id="state-encoding-techniques">State Encoding Techniques<a class="headerlink" href="#state-encoding-techniques" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Encoding</th>
+<th>FFs for K States</th>
+<th>Advantages</th>
+<th>Disadvantages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Binary</strong></td>
+<td>⌈log₂K⌉</td>
+<td>Fewest FFs, compact</td>
+<td>Complex next-state logic</td>
+</tr>
+<tr>
+<td><strong>One-Hot</strong></td>
+<td>K</td>
+<td>Simple logic, fast</td>
+<td>More FFs, higher cost</td>
+</tr>
+<tr>
+<td><strong>Gray</strong></td>
+<td>⌈log₂K⌉</td>
+<td>Single-bit transitions</td>
+<td>Complex logic</td>
+</tr>
+<tr>
+<td><strong>Custom</strong></td>
+<td>—</td>
+<td>Application-specific</td>
+<td>Manual effort</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="divide-by-3-counter-binary-vs-one-hot">Divide-by-3 Counter: Binary vs One-Hot<a class="headerlink" href="#divide-by-3-counter-binary-vs-one-hot" title="Permanent link">&para;</a></h2>
+<h3 id="binary-encoding-2-ffs">Binary Encoding (2 FFs)<a class="headerlink" href="#binary-encoding-2-ffs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>00</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>01</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>10</td>
+</tr>
+<tr>
+<td>(11)</td>
+<td>Unused</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next-state logic:</strong> More complex, multi-bit changes</p>
+<h3 id="one-hot-encoding-3-ffs">One-Hot Encoding (3 FFs)<a class="headerlink" href="#one-hot-encoding-3-ffs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>001</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>010</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next-state logic:</strong> Simple shifts (S0→S1→S2→S0 = rotate left)</p>
+<hr />
+<h2 id="choosing-encoding">Choosing Encoding<a class="headerlink" href="#choosing-encoding" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Small FSMs / speed critical:</strong> One-Hot</li>
+<li><strong>Large FSMs / area critical:</strong> Binary</li>
+<li><strong>CAD tools</strong> can optimize automatically</li>
+<li><strong>Trade-off:</strong> FFs vs logic complexity vs speed</li>
+</ul>
+<hr />
+<h2 id="factoring-state-machines">Factoring State Machines<a class="headerlink" href="#factoring-state-machines" title="Permanent link">&para;</a></h2>
+<h3 id="problem-state-explosion">Problem: State Explosion<a class="headerlink" href="#problem-state-explosion" title="Permanent link">&para;</a></h3>
+<p>Complex FSM → many states → hard to design/debug</p>
+<h3 id="solution-decompose-into-smaller-interacting-fsms">Solution: Decompose into Smaller Interacting FSMs<a class="headerlink" href="#solution-decompose-into-smaller-interacting-fsms" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Unfactored:        Factored:
+  1 Large FSM    →   FSM_A + FSM_B
+  N₁×N₂ states       N₁ + N₂ states
+</code></pre></div>
+<h3 id="traffic-light-with-parade-mode">Traffic Light with Parade Mode<a class="headerlink" href="#traffic-light-with-parade-mode" title="Permanent link">&para;</a></h3>
+<p><strong>Unfactored:</strong> 8 states (S0-S3 normal, S4-S7 parade)
+- Two nearly identical halves
+- Complex, hard to modify</p>
+<p><strong>Factored:</strong>
+| Sub-FSM | Function | States |
+|---------|----------|--------|
+| <strong>Mode FSM</strong> | Tracks Normal/Parade | 2 |
+| <strong>Lights FSM</strong> | Controls lights (uses Mode) | 4 |</p>
+<p><strong>Interaction:</strong> Mode FSM output <code>M</code> → Lights FSM input
+<strong>Result:</strong> 2+4=6 states vs 8, modular, easier to extend</p>
+<hr />
+<h2 id="factored-vs-unfactored-comparison">Factored vs Unfactored Comparison<a class="headerlink" href="#factored-vs-unfactored-comparison" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Unfactored</th>
+<th>Factored</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structure</td>
+<td>Single large FSM</td>
+<td>Multiple small FSMs</td>
+</tr>
+<tr>
+<td>States</td>
+<td>N₁ × N₂</td>
+<td>N₁ + N₂</td>
+</tr>
+<tr>
+<td>Transitions</td>
+<td>Complex</td>
+<td>Simple per FSM</td>
+</tr>
+<tr>
+<td>Debugging</td>
+<td>Difficult</td>
+<td>Easier</td>
+</tr>
+<tr>
+<td>Modularity</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Extensibility</td>
+<td>Hard</td>
+<td>Easy</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="deriving-fsm-from-schematic">Deriving FSM from Schematic<a class="headerlink" href="#deriving-fsm-from-schematic" title="Permanent link">&para;</a></h2>
+<h3 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Identify Inputs, Outputs, State bits</li>
+<li>Write next-state &amp; output equations</li>
+<li>Create next-state &amp; output tables</li>
+<li>Remove unreachable states</li>
+<li>Assign symbolic names</li>
+<li>Draw state diagram</li>
+<li>Describe function</li>
+</ol>
+<h3 id="example-keypad-lock-circuit">Example: Keypad Lock Circuit<a class="headerlink" href="#example-keypad-lock-circuit" title="Permanent link">&para;</a></h3>
+<p><strong>Given:</strong> 2 state bits (S₁,S₀), inputs (A₁,A₀), output (Unlock)
+<strong>Equations:</strong>
+- S₁' = S₀·A₁·A₀
+- S₀' = S₁'·S₀·A₁·A₀
+- Unlock = S₁</p>
+<p><strong>Result:</strong> 3 reachable states → pattern detector</p>
+<hr />
+<h2 id="quick-self-test">Quick Self-Test<a class="headerlink" href="#quick-self-test" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binary FFs for 8 states?</td>
+<td>3 (2³=8)</td>
+</tr>
+<tr>
+<td>One-Hot FFs for 8 states?</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Binary FFs for 5 states?</td>
+<td>3 (2²=4&lt;5, 2³=8≥5)</td>
+</tr>
+<tr>
+<td>Factoring benefit?</td>
+<td>N₁×N₂ → N₁+N₂ states</td>
+</tr>
+<tr>
+<td>Parade mode factoring?</td>
+<td>Mode FSM + Lights FSM</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exam-relevant-mcq-patterns">Exam-Relevant MCQ Patterns<a class="headerlink" href="#exam-relevant-mcq-patterns" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Binary encoding states</strong> — 2ᵏ for k FFs (Q2, Q3, Q42)</li>
+<li><strong>One-Hot FFs</strong> — equals number of states (Q2)</li>
+<li><strong>Factoring advantage</strong> — multiplicative → additive states (Q9)</li>
+<li><strong>Binary vs One-Hot trade-off</strong> — FFs vs logic complexity (Q26, Q27)</li>
+<li><strong>Deriving FSM</strong> — steps from circuit to diagram (Q55)</li>
+</ol>
+<hr />
+<h2 id="key-formulas-memorize">Key Formulas (Memorize)<a class="headerlink" href="#key-formulas-memorize" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Binary:    K states → ⌈log₂K⌉ FFs
+One-Hot:   K states → K FFs
+Factored:  N₁×N₂ states → N₁+N₂ states
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.sections","navigation.expand","navigation.top","search.highlight","search.share","content.code.copy","content.code.annotate","toc.follow","content.tabs.link","color.mode"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="../assets/javascripts/theme-toggle.js"></script>
+      
+    
+  </body>
+</html>

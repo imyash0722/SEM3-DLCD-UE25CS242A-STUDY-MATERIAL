@@ -1,0 +1,56 @@
+site_name: DLCD Exam Prep — UE25CS242A
+site_description: Complete study guide for Digital Logic & Computer Design covering Units 1-3
+theme:
+  name: zensical
+  custom_dir: overrides
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+    - content.tabs.link
+    - color.mode
+extra_javascript:
+  - assets/javascripts/theme-toggle.js
+nav:
+  - Home: index.md
+  - "Unit 1: Combinational & Sequential Logic":
+    - Digital Circuits Introduction: 01_digital-circuits-introduction.md
+    - Boolean Equations: 02_boolean-equations.md
+    - "Logic Minimization & K-Maps (3-Var)": 03_logic-minimization-kmaps-3var.md
+    - "K-Maps (4-Var) & Seven-Segment": 04_kmaps-4var-seven-segment.md
+    - Combinational Building Blocks: 05_combinational-building-blocks.md
+    - "Sequential Basics — Latches": 06_sequential-basics-latches.md
+    - "Flip-Flops & Timing": 07_flipflops-timing-metastability.md
+  - "Unit 2: FSMs & Digital Building Blocks":
+    - Finite State Machines: 08_fsm-moore-mealy-design.md
+    - State Encoding & Factoring: 09_state-encoding-factoring.md
+    - "Arithmetic Circuits — Adders": 10_arithmetic-adders.md
+    - "ALU, Comparators, Shifters": 11_alu-comparator-shifter-multiplier.md
+    - "Number Systems — Fixed-Point": 12_number-systems-fixedpoint.md
+    - "Floating-Point — IEEE 754": 13_floating-point-ieee754.md
+  - Lab & Practice:
+    - Lab Verilog Patterns: 14_lab-verilog-patterns.md
+    - MCQ Practice: 15_mcq-practice-comprehensive.md
+    - Numerical Examples: 16_numerical-examples-full-traces.md
+    - Exam Strategy: 17_exam-strategy-quick-ref.md
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true

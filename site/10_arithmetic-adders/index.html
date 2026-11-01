@@ -1,0 +1,1750 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete study guide for Digital Logic & Computer Design covering Units 1-3">
+      
+      
+      
+      
+      
+        <link rel="prev" href="../09_state-encoding-factoring/">
+      
+      
+        <link rel="next" href="../11_alu-comparator-shifter-multiplier/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>Arithmetic Circuits — Adders - DLCD Exam Prep — UE25CS242A</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-header__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DLCD Exam Prep — UE25CS242A
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arithmetic Circuits — Adders
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_digital-circuits-introduction/" class="md-tabs__link">
+          
+  
+  Unit 1: Combinational & Sequential Logic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../08_fsm-moore-mealy-design/" class="md-tabs__link">
+          
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+          
+  
+  Lab & Practice
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-nav__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    DLCD Exam Prep — UE25CS242A
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 1: Combinational & Sequential Logic
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 1: Combinational & Sequential Logic
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_digital-circuits-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Digital Circuits Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_boolean-equations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Boolean Equations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_logic-minimization-kmaps-3var/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Logic Minimization & K-Maps (3-Var)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_kmaps-4var-seven-segment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  K-Maps (4-Var) & Seven-Segment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_combinational-building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Combinational Building Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sequential-basics-latches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sequential Basics — Latches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_flipflops-timing-metastability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Flip-Flops & Timing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_fsm-moore-mealy-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Finite State Machines
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_state-encoding-factoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  State Encoding & Factoring
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arithmetic Circuits — Adders
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arithmetic Circuits — Adders
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#half-adder" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Half Adder
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-adder" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Full Adder
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ripple-carry-adder-rca" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ripple-Carry Adder (RCA)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carry-lookahead-adder-cla" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Carry-Lookahead Adder (CLA)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Carry-Lookahead Adder (CLA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-propagate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Generate &amp; Propagate
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carry-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Carry Equations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block-cla-k-bit-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Block CLA (k-bit blocks)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefix-adder-fastest" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prefix Adder (Fastest)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prefix Adder (Fastest)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Principle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-cell-black-cell" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prefix Cell (Black Cell)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gray-cell" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Gray Cell
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delay-comparison-32-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Delay Comparison (32-bit)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_alu-comparator-shifter-multiplier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ALU, Comparators, Shifters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_number-systems-fixedpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Number Systems — Fixed-Point
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_floating-point-ieee754/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Floating-Point — IEEE 754
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab & Practice
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Lab & Practice
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab Verilog Patterns
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  MCQ Practice
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Numerical Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exam Strategy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#half-adder" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Half Adder
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-adder" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Full Adder
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ripple-carry-adder-rca" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ripple-Carry Adder (RCA)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carry-lookahead-adder-cla" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Carry-Lookahead Adder (CLA)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Carry-Lookahead Adder (CLA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-propagate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Generate &amp; Propagate
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carry-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Carry Equations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block-cla-k-bit-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Block CLA (k-bit blocks)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefix-adder-fastest" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prefix Adder (Fastest)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prefix Adder (Fastest)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Principle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-cell-black-cell" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prefix Cell (Black Cell)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gray-cell" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Gray Cell
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delay-comparison-32-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Delay Comparison (32-bit)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="10-arithmetic-circuits-adders-rca-cla-prefix">10. Arithmetic Circuits — Adders (RCA, CLA, Prefix)<a class="headerlink" href="#10-arithmetic-circuits-adders-rca-cla-prefix" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Source:</strong> Unit 2 Slides 68–100 | Textbook: Harris &amp; Harris Ch. 5</p>
+</blockquote>
+<hr />
+<h2 id="half-adder">Half Adder<a class="headerlink" href="#half-adder" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Sum</th>
+<th>Cout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Equations:</strong>
+- <code>Sum = A ⊕ B</code>
+- <code>Cout = A·B</code></p>
+<hr />
+<h2 id="full-adder">Full Adder<a class="headerlink" href="#full-adder" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Cin</th>
+<th>Sum</th>
+<th>Cout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Equations:</strong>
+- <code>Sum = A ⊕ B ⊕ Cin</code>
+- <code>Cout = A·B + A·Cin + B·Cin</code></p>
+<p><strong>Implementation:</strong> 2 Half Adders + 1 OR gate</p>
+<hr />
+<h2 id="ripple-carry-adder-rca">Ripple-Carry Adder (RCA)<a class="headerlink" href="#ripple-carry-adder-rca" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Chain N full adders</li>
+<li>Carry ripples LSB → MSB</li>
+<li><strong>Delay:</strong> <code>t_ripple = N × t_FA</code></li>
+<li><strong>32-bit, t_FA=300ps:</strong> 9.6 ns</li>
+</ul>
+<p><strong>Disadvantage:</strong> Slow for large N (O(N) delay)</p>
+<hr />
+<h2 id="carry-lookahead-adder-cla">Carry-Lookahead Adder (CLA)<a class="headerlink" href="#carry-lookahead-adder-cla" title="Permanent link">&para;</a></h2>
+<h3 id="generate-propagate">Generate &amp; Propagate<a class="headerlink" href="#generate-propagate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Generate (Gᵢ):</strong> Stage creates carry → <code>Gᵢ = Aᵢ·Bᵢ</code></li>
+<li><strong>Propagate (Pᵢ):</strong> Stage passes carry → <code>Pᵢ = Aᵢ ⊕ Bᵢ</code> (or <code>Aᵢ + Bᵢ</code>)</li>
+</ul>
+<h3 id="carry-equations">Carry Equations<a class="headerlink" href="#carry-equations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>C₁ = G₀ + P₀·C₀
+C₂ = G₁ + P₁·G₀ + P₁·P₀·C₀
+C₃ = G₂ + P₂·G₁ + P₂·P₁·G₀ + P₂·P₁·P₀·C₀
+C₄ = G₃ + P₃·G₂ + P₃·P₂·G₁ + P₃·P₂·P₁·G₀ + P₃·P₂·P₁·P₀·C₀
+</code></pre></div>
+<h3 id="block-cla-k-bit-blocks">Block CLA (k-bit blocks)<a class="headerlink" href="#block-cla-k-bit-blocks" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compute block G and P</li>
+<li>Carry jumps block-to-block</li>
+<li><strong>Delay:</strong> <code>t_CLA = t_pg + t_pg_block + (N/k - 1)t_AND_OR + k·t_FA</code></li>
+</ul>
+<p><strong>32-bit, 4-bit blocks, t_AND_OR=200ps:</strong> ~3.3 ns</p>
+<hr />
+<h2 id="prefix-adder-fastest">Prefix Adder (Fastest)<a class="headerlink" href="#prefix-adder-fastest" title="Permanent link">&para;</a></h2>
+<h3 id="principle">Principle<a class="headerlink" href="#principle" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compute all carries in parallel using prefix tree</li>
+<li><strong>log₂N stages</strong> of prefix cells (black/gray)</li>
+<li><strong>Delay:</strong> <code>t_PA = t_pg + log₂N(t_pg_prefix) + t_XOR</code></li>
+</ul>
+<p><strong>32-bit:</strong> ~1.2 ns</p>
+<h3 id="prefix-cell-black-cell">Prefix Cell (Black Cell)<a class="headerlink" href="#prefix-cell-black-cell" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>G_out = G_upper + P_upper·G_lower
+P_out = P_upper·P_lower
+</code></pre></div>
+<h3 id="gray-cell">Gray Cell<a class="headerlink" href="#gray-cell" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>G_out = G_upper + P_upper·G_lower
+P_out = P_lower (pass through)
+</code></pre></div>
+<hr />
+<h2 id="delay-comparison-32-bit">Delay Comparison (32-bit)<a class="headerlink" href="#delay-comparison-32-bit" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Adder Type</th>
+<th>Delay</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ripple-Carry</td>
+<td>9.6 ns</td>
+<td>N·t_FA</td>
+</tr>
+<tr>
+<td>CLA (4-bit blocks)</td>
+<td>3.3 ns</td>
+<td>t_pg + t_pg_block + 7·t_AND_OR + 4·t_FA</td>
+</tr>
+<tr>
+<td>Prefix</td>
+<td>1.2 ns</td>
+<td>t_pg + log₂N·t_pg_prefix + t_XOR</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Parameters:</strong> t_FA=300ps, t_AND_OR=200ps, t_pg=100ps, t_pg_prefix=200ps, t_XOR=100ps</p>
+<hr />
+<h2 id="quick-self-test">Quick Self-Test<a class="headerlink" href="#quick-self-test" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Half Adder Sum?</td>
+<td>A ⊕ B</td>
+</tr>
+<tr>
+<td>Full Adder Cout?</td>
+<td>AB + ACin + BCin</td>
+</tr>
+<tr>
+<td>RCA delay scaling?</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>CLA block size benefit?</td>
+<td>Parallel carry within block</td>
+</tr>
+<tr>
+<td>Prefix delay scaling?</td>
+<td>O(log N)</td>
+</tr>
+<tr>
+<td>Fastest for 32-bit?</td>
+<td>Prefix Adder</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exam-relevant-mcq-patterns">Exam-Relevant MCQ Patterns<a class="headerlink" href="#exam-relevant-mcq-patterns" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Half/Full Adder equations</strong> — Sum XOR, Cout majority (Q10, Q66, Q67)</li>
+<li><strong>RCA delay</strong> — N × t_FA (Q12, Q74)</li>
+<li><strong>CLA Generate</strong> — Gᵢ = Aᵢ·Bᵢ (Q13)</li>
+<li><strong>CLA Propagate</strong> — Pᵢ = Aᵢ ⊕ Bᵢ (or Aᵢ + Bᵢ) (Q13)</li>
+<li><strong>Block P</strong> — P₃:₀ = P₃·P₂·P₁·P₀ (Q14)</li>
+<li><strong>Prefix delay</strong> — O(log N) (Q15, Q74)</li>
+<li><strong>Subtraction via 2's complement</strong> — invert B, Cin=1 (Q16)</li>
+<li><strong>Overflow detection</strong> — C_in,MSB ⊕ C_out,MSB (Q17)</li>
+<li><strong>Adder selection for CPU</strong> — Prefix for speed despite area (Q75, Q84)</li>
+</ol>
+<hr />
+<h2 id="key-formulas-memorize">Key Formulas (Memorize)<a class="headerlink" href="#key-formulas-memorize" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Half Adder:  S = A⊕B,    Cout = AB
+Full Adder:  S = A⊕B⊕Cin, Cout = AB + ACin + BCin
+RCA:         t = N × t_FA
+CLA (k-block): t = t_pg + t_pg_block + (N/k-1)t_AND_OR + k·t_FA
+Prefix:      t = t_pg + log₂N·t_pg_prefix + t_XOR
+Subtract:    A - B = A + B' + 1 (Cin=1)
+Overflow:    V = C_in,MSB ⊕ C_out,MSB
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.sections","navigation.expand","navigation.top","search.highlight","search.share","content.code.copy","content.code.annotate","toc.follow","content.tabs.link","color.mode"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="../assets/javascripts/theme-toggle.js"></script>
+      
+    
+  </body>
+</html>
