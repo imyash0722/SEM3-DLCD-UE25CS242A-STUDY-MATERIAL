@@ -1,0 +1,1705 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete study guide for Digital Logic & Computer Design covering Units 1-3">
+      
+      
+      
+      
+      
+        <link rel="prev" href="../07_flipflops-timing-metastability/">
+      
+      
+        <link rel="next" href="../09_state-encoding-factoring/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>Finite State Machines - DLCD Exam Prep — UE25CS242A</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-header__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DLCD Exam Prep — UE25CS242A
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Finite State Machines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_digital-circuits-introduction/" class="md-tabs__link">
+          
+  
+  Unit 1: Combinational & Sequential Logic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="././" class="md-tabs__link">
+          
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+          
+  
+  Lab & Practice
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-nav__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    DLCD Exam Prep — UE25CS242A
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 1: Combinational & Sequential Logic
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 1: Combinational & Sequential Logic
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_digital-circuits-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Digital Circuits Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_boolean-equations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Boolean Equations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_logic-minimization-kmaps-3var/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Logic Minimization & K-Maps (3-Var)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_kmaps-4var-seven-segment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  K-Maps (4-Var) & Seven-Segment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_combinational-building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Combinational Building Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sequential-basics-latches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sequential Basics — Latches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_flipflops-timing-metastability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Flip-Flops & Timing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Finite State Machines
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Finite State Machines
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fsm-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        FSM Components
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#three-block-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Three-Block Structure
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moore-vs-mealy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Moore vs Mealy
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fsm-design-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        FSM Design Procedure
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traffic-light-controller-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Traffic Light Controller Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#divide-by-3-counter-moore" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Divide-by-3 Counter (Moore)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-recognizer-1011-overlapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pattern Recognizer (1011, Overlapping)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pattern Recognizer (1011, Overlapping)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#moore-5-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Moore (5 states)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mealy-4-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Mealy (4 states)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_state-encoding-factoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  State Encoding & Factoring
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_arithmetic-adders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arithmetic Circuits — Adders
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_alu-comparator-shifter-multiplier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ALU, Comparators, Shifters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_number-systems-fixedpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Number Systems — Fixed-Point
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_floating-point-ieee754/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Floating-Point — IEEE 754
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab & Practice
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Lab & Practice
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab Verilog Patterns
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  MCQ Practice
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Numerical Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exam Strategy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fsm-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        FSM Components
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#three-block-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Three-Block Structure
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moore-vs-mealy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Moore vs Mealy
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fsm-design-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        FSM Design Procedure
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traffic-light-controller-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Traffic Light Controller Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#divide-by-3-counter-moore" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Divide-by-3 Counter (Moore)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pattern-recognizer-1011-overlapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pattern Recognizer (1011, Overlapping)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pattern Recognizer (1011, Overlapping)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#moore-5-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Moore (5 states)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mealy-4-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Mealy (4 states)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="08-finite-state-machines-moore-vs-mealy-design-process">08. Finite State Machines — Moore vs Mealy, Design Process<a class="headerlink" href="#08-finite-state-machines-moore-vs-mealy-design-process" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Source:</strong> Unit 2 Slides 2–64 | Textbook: Harris &amp; Harris Ch. 3</p>
+</blockquote>
+<hr />
+<h2 id="fsm-components">FSM Components<a class="headerlink" href="#fsm-components" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M Inputs</strong></td>
+<td>External signals</td>
+</tr>
+<tr>
+<td><strong>N Outputs</strong></td>
+<td>External signals</td>
+</tr>
+<tr>
+<td><strong>k-bit State Register</strong></td>
+<td>Stores current state (2ᵏ states)</td>
+</tr>
+<tr>
+<td><strong>Clock</strong></td>
+<td>Controls state updates</td>
+</tr>
+<tr>
+<td><strong>Reset (optional)</strong></td>
+<td>Initializes to known state</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="three-block-structure">Three-Block Structure<a class="headerlink" href="#three-block-structure" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>         ┌──────────────┐
+Inputs ──►│ Next-State   │──► Next State
+          │   Logic      │
+State ───►│ (Combinational)│
+          └──────┬───────┘
+                 │
+                 ▼
+          ┌──────────────┐
+          │  State Reg   │──► Current State (k FFs)
+          │  (k FFs)     │
+          └──────┬───────┘
+                 │
+                 ▼
+          ┌──────────────┐
+          │  Output      │──► Outputs
+          │  Logic       │
+          └──────────────┘
+</code></pre></div>
+<hr />
+<h2 id="moore-vs-mealy">Moore vs Mealy<a class="headerlink" href="#moore-vs-mealy" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Moore</th>
+<th>Mealy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Output depends on</strong></td>
+<td>Current state only</td>
+<td>Current state + inputs</td>
+</tr>
+<tr>
+<td><strong>Output formula</strong></td>
+<td>Y = g(S)</td>
+<td>Y = g(S, X)</td>
+</tr>
+<tr>
+<td><strong>States needed</strong></td>
+<td>More (usually)</td>
+<td>Fewer</td>
+</tr>
+<tr>
+<td><strong>Output timing</strong></td>
+<td>State-synchronous</td>
+<td>Can be asynchronous</td>
+</tr>
+<tr>
+<td><strong>Glitch immunity</strong></td>
+<td>High</td>
+<td>Lower</td>
+</tr>
+<tr>
+<td><strong>Diagram</strong></td>
+<td>Outputs <strong>in</strong> circles</td>
+<td>Outputs <strong>on</strong> arcs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="fsm-design-procedure">FSM Design Procedure<a class="headerlink" href="#fsm-design-procedure" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Identify inputs/outputs</strong></li>
+<li><strong>Draw State Transition Diagram</strong></li>
+<li><strong>Create State Transition Table</strong></li>
+<li><strong>Create Output Table</strong></li>
+<li><strong>Select State Encoding</strong> (Binary, One-Hot, etc.)</li>
+<li><strong>Derive Next-State Equations</strong> (K-maps/inspection)</li>
+<li><strong>Derive Output Equations</strong></li>
+<li><strong>Draw Circuit Schematic</strong></li>
+</ol>
+<hr />
+<h2 id="traffic-light-controller-example">Traffic Light Controller Example<a class="headerlink" href="#traffic-light-controller-example" title="Permanent link">&para;</a></h2>
+<p><strong>Inputs:</strong> Tₐ (Academic Ave sensor), Tᵦ (Bravado Blvd sensor)
+<strong>Outputs:</strong> Lₐ, Lᵦ (traffic lights)
+<strong>Clock:</strong> 5-second period</p>
+<p><strong>States (Moore):</strong>
+| State | Meaning | Lₐ | Lᵦ |
+|-------|---------|----|----|
+| S0 | Academic Green | G | R |
+| S1 | Academic Yellow | Y | R |
+| S2 | Bravado Green | R | G |
+| S3 | Bravado Yellow | R | Y |</p>
+<p><strong>State Encoding (Binary):</strong> S0=00, S1=01, S2=10, S3=11</p>
+<hr />
+<h2 id="divide-by-3-counter-moore">Divide-by-3 Counter (Moore)<a class="headerlink" href="#divide-by-3-counter-moore" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Binary</th>
+<th>One-Hot</th>
+<th>Output Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>00</td>
+<td>001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>01</td>
+<td>010</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>10</td>
+<td>100</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sequence:</strong> S0 → S1 → S2 → S0 → ...
+<strong>Output:</strong> Y=1 only in S0 (1 cycle out of 3)</p>
+<hr />
+<h2 id="pattern-recognizer-1011-overlapping">Pattern Recognizer (1011, Overlapping)<a class="headerlink" href="#pattern-recognizer-1011-overlapping" title="Permanent link">&para;</a></h2>
+<h3 id="moore-5-states">Moore (5 states)<a class="headerlink" href="#moore-5-states" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Matched</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>—</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>10</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>101</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>1011</td>
+<td><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overlap transitions from S4:</strong>
+- Input 1 → S1 (new '1' starts next pattern)
+- Input 0 → S2 ('10' suffix matches prefix)</p>
+<h3 id="mealy-4-states">Mealy (4 states)<a class="headerlink" href="#mealy-4-states" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Matched</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>10</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>101</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output:</strong> Detect=1 when in S3 <strong>and</strong> input=1 (on transition)</p>
+<hr />
+<h2 id="quick-self-test">Quick Self-Test<a class="headerlink" href="#quick-self-test" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Moore output depends on?</td>
+<td>Current state only</td>
+</tr>
+<tr>
+<td>Mealy output depends on?</td>
+<td>Current state + inputs</td>
+</tr>
+<tr>
+<td>Which has fewer states?</td>
+<td>Mealy</td>
+</tr>
+<tr>
+<td>Which has glitch-free output?</td>
+<td>Moore</td>
+</tr>
+<tr>
+<td>Divide-by-3 states?</td>
+<td>3 (S0, S1, S2)</td>
+</tr>
+<tr>
+<td>Moore 1011 states?</td>
+<td>5 (S0-S4)</td>
+</tr>
+<tr>
+<td>Mealy 1011 states?</td>
+<td>4 (S0-S3)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exam-relevant-mcq-patterns">Exam-Relevant MCQ Patterns<a class="headerlink" href="#exam-relevant-mcq-patterns" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Moore vs Mealy definition</strong> — output dependency (Q1, Q49, Q50)</li>
+<li><strong>State count comparison</strong> — Moore = N+1, Mealy = N for N-bit pattern (Q5, Q52, Q59)</li>
+<li><strong>Binary encoding</strong> — k FFs → 2ᵏ states (Q2, Q3, Q42)</li>
+<li><strong>One-Hot encoding</strong> — K states → K FFs (Q2)</li>
+<li><strong>Divide-by-3 frequency</strong> — f_out = f_in / 3 (Q6, Q39)</li>
+<li><strong>Overlap detection</strong> — suffix becomes prefix (Q57, Q62)</li>
+<li><strong>Verilog default case</strong> — prevents latches, safe recovery (Q8, Q47)</li>
+<li><strong>Non-blocking (≤)</strong> — state register block (Q7)</li>
+</ol>
+<hr />
+<h2 id="key-formulas-memorize">Key Formulas (Memorize)<a class="headerlink" href="#key-formulas-memorize" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Binary encoding: k FFs → 2ᵏ states
+One-Hot: K states → K FFs
+Divide-by-N: f_out = f_in / N
+Moore 1011: 5 states, Mealy 1011: 4 states
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.sections","navigation.expand","navigation.top","search.highlight","search.share","content.code.copy","content.code.annotate","toc.follow","content.tabs.link","color.mode"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="../assets/javascripts/theme-toggle.js"></script>
+      
+    
+  </body>
+</html>

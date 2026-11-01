@@ -1,0 +1,1931 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete study guide for Digital Logic & Computer Design covering Units 1-3">
+      
+      
+      
+      
+      
+        <link rel="prev" href="../10_arithmetic-adders/">
+      
+      
+        <link rel="next" href="../12_number-systems-fixedpoint/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>ALU, Comparators, Shifters - DLCD Exam Prep — UE25CS242A</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-header__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DLCD Exam Prep — UE25CS242A
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ALU, Comparators, Shifters
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_digital-circuits-introduction/" class="md-tabs__link">
+          
+  
+  Unit 1: Combinational & Sequential Logic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../08_fsm-moore-mealy-design/" class="md-tabs__link">
+          
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+          
+  
+  Lab & Practice
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-nav__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    DLCD Exam Prep — UE25CS242A
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 1: Combinational & Sequential Logic
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 1: Combinational & Sequential Logic
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_digital-circuits-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Digital Circuits Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_boolean-equations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Boolean Equations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_logic-minimization-kmaps-3var/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Logic Minimization & K-Maps (3-Var)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_kmaps-4var-seven-segment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  K-Maps (4-Var) & Seven-Segment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_combinational-building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Combinational Building Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sequential-basics-latches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sequential Basics — Latches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_flipflops-timing-metastability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Flip-Flops & Timing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_fsm-moore-mealy-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Finite State Machines
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_state-encoding-factoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  State Encoding & Factoring
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_arithmetic-adders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arithmetic Circuits — Adders
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ALU, Comparators, Shifters
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ALU, Comparators, Shifters
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alu-arithmetic-logic-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ALU (Arithmetic Logic Unit)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ALU (Arithmetic Logic Unit)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32-bit-alu-operations-f20" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        32-bit ALU Operations (F₂:₀)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alu-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ALU Structure
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slt-set-less-than" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        SLT (Set Less Than)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparators" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Comparators
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equality-a-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Equality (A == B)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than-a-b-unsigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Less Than (A &lt; B) — Unsigned
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than-a-b-signed-2s-comp" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Less Than (A &lt; B) — Signed (2's comp)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shifters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Shifters
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shifters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Types
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-11001" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples (11001)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barrel-shifter" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Barrel Shifter
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shifts-as-multiplydivide" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Shifts as Multiply/Divide
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipliers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Multipliers
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multipliers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#44-array-multiplier" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4×4 Array Multiplier
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3232-multiplier" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        32×32 Multiplier
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dividers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dividers
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dividers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#44-divider-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4×4 Divider Algorithm
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_number-systems-fixedpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Number Systems — Fixed-Point
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_floating-point-ieee754/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Floating-Point — IEEE 754
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab & Practice
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Lab & Practice
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab Verilog Patterns
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  MCQ Practice
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Numerical Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exam Strategy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alu-arithmetic-logic-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ALU (Arithmetic Logic Unit)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ALU (Arithmetic Logic Unit)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32-bit-alu-operations-f20" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        32-bit ALU Operations (F₂:₀)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alu-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ALU Structure
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slt-set-less-than" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        SLT (Set Less Than)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparators" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Comparators
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equality-a-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Equality (A == B)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than-a-b-unsigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Less Than (A &lt; B) — Unsigned
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than-a-b-signed-2s-comp" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Less Than (A &lt; B) — Signed (2's comp)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shifters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Shifters
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shifters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Types
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-11001" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples (11001)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barrel-shifter" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Barrel Shifter
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shifts-as-multiplydivide" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Shifts as Multiply/Divide
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multipliers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Multipliers
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multipliers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#44-array-multiplier" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4×4 Array Multiplier
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3232-multiplier" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        32×32 Multiplier
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dividers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Dividers
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dividers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#44-divider-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4×4 Divider Algorithm
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-self-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Quick Self-Test
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exam-relevant-mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exam-Relevant MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="11-alu-comparators-shifters-multipliers">11. ALU, Comparators, Shifters &amp; Multipliers<a class="headerlink" href="#11-alu-comparators-shifters-multipliers" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Source:</strong> Unit 2 Slides 88–103 | Textbook: Harris &amp; Harris Ch. 5</p>
+</blockquote>
+<hr />
+<h2 id="alu-arithmetic-logic-unit">ALU (Arithmetic Logic Unit)<a class="headerlink" href="#alu-arithmetic-logic-unit" title="Permanent link">&para;</a></h2>
+<h3 id="32-bit-alu-operations-f20">32-bit ALU Operations (F₂:₀)<a class="headerlink" href="#32-bit-alu-operations-f20" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>F₂</th>
+<th>F₁</th>
+<th>F₀</th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>A AND B</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>A OR B</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>A + B</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>(unused)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>A AND ~B</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>A OR ~B</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>A - B</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>SLT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="alu-structure">ALU Structure<a class="headerlink" href="#alu-structure" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multiple operation units in parallel</li>
+<li><strong>MUX selects output</strong> based on F₂:₀</li>
+<li><strong>F₂=1</strong> → inverters on B + Cin=1 (for SUB/SLT)</li>
+</ul>
+<h3 id="slt-set-less-than">SLT (Set Less Than)<a class="headerlink" href="#slt-set-less-than" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Computes <code>A - B</code> using subtractor</li>
+<li>If result negative (sign bit = 1) → A &lt; B</li>
+<li>Output = sign bit zero-extended (0x00000001 or 0x00000000)</li>
+<li><strong>Example:</strong> A=25, B=32 → 25-32=-7 → S₃₁=1 → Y=1</li>
+</ul>
+<hr />
+<h2 id="comparators">Comparators<a class="headerlink" href="#comparators" title="Permanent link">&para;</a></h2>
+<h3 id="equality-a-b">Equality (A == B)<a class="headerlink" href="#equality-a-b" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Per bit:</strong> XNOR (Aᵢ ⊙ Bᵢ = 1 if equal)</li>
+<li><strong>Overall:</strong> N-input AND of all XNORs</li>
+<li><code>Eq = Π(Aᵢ ⊙ Bᵢ)</code></li>
+</ul>
+<h3 id="less-than-a-b-unsigned">Less Than (A &lt; B) — Unsigned<a class="headerlink" href="#less-than-a-b-unsigned" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compare MSB to LSB</li>
+<li>First differing bit decides</li>
+<li>Can use subtractor: A &lt; B iff (A-B) sign = 1</li>
+</ul>
+<h3 id="less-than-a-b-signed-2s-comp">Less Than (A &lt; B) — Signed (2's comp)<a class="headerlink" href="#less-than-a-b-signed-2s-comp" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Same as unsigned if no overflow</li>
+<li>With overflow: sign bit inverted</li>
+<li><code>V = C_in,MSB ⊕ C_out,MSB</code></li>
+</ul>
+<hr />
+<h2 id="shifters">Shifters<a class="headerlink" href="#shifters" title="Permanent link">&para;</a></h2>
+<h3 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Shift</th>
+<th>Left (&lt;&lt;)</th>
+<th>Right (&gt;&gt;)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Logical</strong></td>
+<td>Fill 0</td>
+<td>Fill 0</td>
+<td>Unsigned</td>
+</tr>
+<tr>
+<td><strong>Arithmetic</strong></td>
+<td>Fill 0</td>
+<td>Replicate MSB</td>
+<td>Signed (preserves sign)</td>
+</tr>
+<tr>
+<td><strong>Rotate</strong></td>
+<td>Circular</td>
+<td>Circular</td>
+<td>Bits wrap around</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples-11001">Examples (11001)<a class="headerlink" href="#examples-11001" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logical &gt;&gt; 2</td>
+<td>00110</td>
+</tr>
+<tr>
+<td>Arithmetic &gt;&gt; 2</td>
+<td>11110 (sign=1)</td>
+</tr>
+<tr>
+<td>Rotate ROR 2</td>
+<td>01110</td>
+</tr>
+<tr>
+<td>Logical &lt;&lt; 2</td>
+<td>00100</td>
+</tr>
+<tr>
+<td>Arithmetic &lt;&lt; 2</td>
+<td>00100</td>
+</tr>
+<tr>
+<td>Rotate ROL 2</td>
+<td>00111</td>
+</tr>
+</tbody>
+</table>
+<h3 id="barrel-shifter">Barrel Shifter<a class="headerlink" href="#barrel-shifter" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Log₂N stages</strong> of 2:1 MUXes</li>
+<li>Stage i shifts by 2ⁱ positions</li>
+<li><strong>16-bit:</strong> 4 stages (1, 2, 4, 8)</li>
+<li><strong>Delay:</strong> O(log N)</li>
+</ul>
+<h3 id="shifts-as-multiplydivide">Shifts as Multiply/Divide<a class="headerlink" href="#shifts-as-multiplydivide" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>A &lt;&lt; N = A × 2ᴺ</code></li>
+<li><code>A &gt;&gt;&gt; N = A ÷ 2ᴺ</code> (arithmetic, signed)</li>
+</ul>
+<hr />
+<h2 id="multipliers">Multipliers<a class="headerlink" href="#multipliers" title="Permanent link">&para;</a></h2>
+<h3 id="44-array-multiplier">4×4 Array Multiplier<a class="headerlink" href="#44-array-multiplier" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Partial products: each multiplier bit × multiplicand</li>
+<li>Shifted and summed</li>
+<li><strong>Result:</strong> N+M bits for N×M multiply</li>
+</ul>
+<h3 id="3232-multiplier">32×32 Multiplier<a class="headerlink" href="#3232-multiplier" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Product size:</strong> 64 bits</li>
+</ul>
+<hr />
+<h2 id="dividers">Dividers<a class="headerlink" href="#dividers" title="Permanent link">&para;</a></h2>
+<h3 id="44-divider-algorithm">4×4 Divider Algorithm<a class="headerlink" href="#44-divider-algorithm" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>R' = 0
+for i = N-1 downto 0:
+    R = {R' &lt;&lt; 1, Aᵢ}
+    D = R - B
+    if D &lt; 0:  Qᵢ = 0, R' = R
+    else:      Qᵢ = 1, R' = D
+</code></pre></div>
+<hr />
+<h2 id="quick-self-test">Quick Self-Test<a class="headerlink" href="#quick-self-test" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALU F₂=1 means?</td>
+<td>Invert B, Cin=1 (subtract)</td>
+</tr>
+<tr>
+<td>SLT implementation?</td>
+<td>A-B, take sign bit</td>
+</tr>
+<tr>
+<td>Equality comparator?</td>
+<td>N XNORs + N-input AND</td>
+</tr>
+<tr>
+<td>Logical vs Arithmetic right shift?</td>
+<td>Logical=0-fill, Arithmetic=sign-fill</td>
+</tr>
+<tr>
+<td>11001 &gt;&gt;&gt; 2?</td>
+<td>11110</td>
+</tr>
+<tr>
+<td>16-bit barrel shifter stages?</td>
+<td>4 (log₂16)</td>
+</tr>
+<tr>
+<td>32×32 multiplier product bits?</td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exam-relevant-mcq-patterns">Exam-Relevant MCQ Patterns<a class="headerlink" href="#exam-relevant-mcq-patterns" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>ALU control decode</strong> — F₂:₀ mapping (Q70, Q79)</li>
+<li><strong>SLT uses sign bit</strong> — of A-B result (Q23, Q86)</li>
+<li><strong>Equality = XNOR + AND</strong> (Q18, Q87)</li>
+<li><strong>Logical vs Arithmetic shift</strong> — MSB fill (Q19, Q20, Q80)</li>
+<li><strong>Barrel shifter stages</strong> — log₂N (Q21)</li>
+<li><strong>Multiply bits</strong> — N+M for N×M (Q22, Q82)</li>
+<li><strong>Shift = multiply/divide by 2ᴺ</strong> (Q77)</li>
+<li><strong>Subtraction Cin=1</strong> (Q26, Q88)</li>
+<li><strong>CLA vs Prefix for wide adders</strong> — log delay (Q84, Q94)</li>
+<li><strong>Overflow in signed add</strong> — two positives → negative (Q81)</li>
+</ol>
+<hr />
+<h2 id="key-formulas-memorize">Key Formulas (Memorize)<a class="headerlink" href="#key-formulas-memorize" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Equality:  Eq = Π(Aᵢ ⊙ Bᵢ)
+SLT:       Y = sign(A - B) zero-extended
+Logical &gt;&gt;:  fill 0
+Arithmetic &gt;&gt;: replicate MSB
+&lt;&lt; N:       × 2ᴺ
+&gt;&gt;&gt; N:      ÷ 2ᴺ (signed)
+Barrel stages: log₂N
+Multiply N×M: N+M bits
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.sections","navigation.expand","navigation.top","search.highlight","search.share","content.code.copy","content.code.annotate","toc.follow","content.tabs.link","color.mode"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="../assets/javascripts/theme-toggle.js"></script>
+      
+    
+  </body>
+</html>
