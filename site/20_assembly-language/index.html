@@ -1,0 +1,2772 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete study guide for Digital Logic & Computer Design covering Units 1-3">
+      
+      
+      
+      
+      
+        <link rel="prev" href="../19_computer-architecture-intro/">
+      
+      
+        <link rel="next" href="../21_machine-language/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>Assembly Language - DLCD Exam Prep — UE25CS242A</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-header__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DLCD Exam Prep — UE25CS242A
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Assembly Language
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_digital-circuits-introduction/" class="md-tabs__link">
+          
+  
+  Unit 1: Combinational & Sequential Logic
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../08_fsm-moore-mealy-design/" class="md-tabs__link">
+          
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../18_sequential-building-blocks/" class="md-tabs__link">
+          
+  
+  Unit 3: Computer Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+          
+  
+  Lab & Practice
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="DLCD Exam Prep — UE25CS242A" class="md-nav__button md-logo" aria-label="DLCD Exam Prep — UE25CS242A" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    DLCD Exam Prep — UE25CS242A
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 1: Combinational & Sequential Logic
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 1: Combinational & Sequential Logic
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_digital-circuits-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Digital Circuits Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_boolean-equations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Boolean Equations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_logic-minimization-kmaps-3var/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Logic Minimization & K-Maps (3-Var)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_kmaps-4var-seven-segment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  K-Maps (4-Var) & Seven-Segment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_combinational-building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Combinational Building Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sequential-basics-latches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sequential Basics — Latches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_flipflops-timing-metastability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Flip-Flops & Timing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 2: FSMs & Digital Building Blocks
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_fsm-moore-mealy-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Finite State Machines
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_state-encoding-factoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  State Encoding & Factoring
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_arithmetic-adders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arithmetic Circuits — Adders
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_alu-comparator-shifter-multiplier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ALU, Comparators, Shifters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_number-systems-fixedpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Number Systems — Fixed-Point
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_floating-point-ieee754/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Floating-Point — IEEE 754
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 3: Computer Architecture
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Unit 3: Computer Architecture
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18_sequential-building-blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sequential Building Blocks
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19_computer-architecture-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture Introduction
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Assembly Language
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Assembly Language
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mips-registers-32-general-purpose-x0x31-031" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        MIPS Registers (32 General Purpose: x0–x31 / $0–$31)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instruction-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Instruction Formats
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instruction Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-type-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        R-Type (Register)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-type-immediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        I-Type (Immediate)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-type-jump" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        J-Type (Jump)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arithmetic-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Arithmetic Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Logical Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shift-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Shift Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Generating Constants
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16-bit-constant" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        16-bit Constant
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-bit-constant-lui-ori" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        32-bit Constant (lui + ori)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiplication-division" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Multiplication &amp; Division
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loadstore-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Load/Store Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branch-instructions-pc-relative" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Branch Instructions (PC-Relative)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jump-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Jump Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-constructs-in-mips" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        High-Level Constructs in MIPS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High-Level Constructs in MIPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        If Statement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-else-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        If-Else Statement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        While Loop
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        For Loop
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Array Access
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#character-array-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Character Array (bytes)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Function Calls
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Function Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callercaller-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Caller/Caller Convention
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Call Sequence
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-frame-callee-saved-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stack Frame (Callee-saved registers)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-factorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recursive Factorial
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21_machine-language/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Machine Language
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22_addressing-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Addressing Modes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23_compiling-assembling-loading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Compiling, Assembling & Loading
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24_parallelism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Parallelism
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25_classwork-problems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Classwork Problems
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../26_unit3-mcq-practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Unit 3 MCQ Practice
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab & Practice
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Lab & Practice
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lab Verilog Patterns
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  MCQ Practice
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Numerical Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exam Strategy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mips-registers-32-general-purpose-x0x31-031" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        MIPS Registers (32 General Purpose: x0–x31 / $0–$31)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instruction-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Instruction Formats
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instruction Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r-type-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        R-Type (Register)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-type-immediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        I-Type (Immediate)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-type-jump" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        J-Type (Jump)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arithmetic-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Arithmetic Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Logical Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shift-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Shift Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Generating Constants
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16-bit-constant" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        16-bit Constant
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-bit-constant-lui-ori" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        32-bit Constant (lui + ori)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiplication-division" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Multiplication &amp; Division
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loadstore-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Load/Store Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branch-instructions-pc-relative" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Branch Instructions (PC-Relative)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jump-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Jump Instructions
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-constructs-in-mips" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        High-Level Constructs in MIPS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High-Level Constructs in MIPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        If Statement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-else-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        If-Else Statement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        While Loop
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        For Loop
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Array Access
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#character-array-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Character Array (bytes)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Function Calls
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Function Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callercaller-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Caller/Caller Convention
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Call Sequence
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-frame-callee-saved-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stack Frame (Callee-saved registers)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-factorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recursive Factorial
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-formulas-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Key Formulas (Memorize)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcq-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        MCQ Patterns
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="20-assembly-language-mips-instructions-registers-pseudoinstructions">20. Assembly Language — MIPS Instructions, Registers, Pseudoinstructions<a class="headerlink" href="#20-assembly-language-mips-instructions-registers-pseudoinstructions" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Source:</strong> Unit 3 Slides 3.7.1, 3.11.1 | Textbook: Harris &amp; Harris Ch. 6</p>
+</blockquote>
+<hr />
+<h2 id="mips-registers-32-general-purpose-x0x31-031">MIPS Registers (32 General Purpose: x0–x31 / $0–$31)<a class="headerlink" href="#mips-registers-32-general-purpose-x0x31-031" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Name</th>
+<th>Use</th>
+<th>Preserved?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0 ($zero)</td>
+<td>zero</td>
+<td>Hardwired 0</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>$1 ($at)</td>
+<td>assembler temp</td>
+<td>Reserved for assembler</td>
+<td>No</td>
+</tr>
+<tr>
+<td>$2–$3 ($v0–$v1)</td>
+<td>return values</td>
+<td>Function results</td>
+<td>No</td>
+</tr>
+<tr>
+<td>$4–$7 ($a0–$a3)</td>
+<td>arguments</td>
+<td>First 4 function args</td>
+<td>No</td>
+</tr>
+<tr>
+<td>$8–$15 ($t0–$t7)</td>
+<td>temporaries</td>
+<td>Caller-saved (non-preserved)</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>$16–$23 ($s0–$s7)</td>
+<td>saved</td>
+<td>Callee-saved (preserved)</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>$24–$25 ($t8–$t9)</td>
+<td>temporaries</td>
+<td>Caller-saved</td>
+<td>No</td>
+</tr>
+<tr>
+<td>$26–$27 ($k0–$k1)</td>
+<td>kernel</td>
+<td>Reserved for OS</td>
+<td>No</td>
+</tr>
+<tr>
+<td>$28 ($gp)</td>
+<td>global pointer</td>
+<td>Middle of global data</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>$29 ($sp)</td>
+<td>stack pointer</td>
+<td>Top of stack</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>$30 ($fp/$s8)</td>
+<td>frame pointer</td>
+<td>Stack frame base</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>$31 ($ra)</td>
+<td>return address</td>
+<td>Function return address</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key:</strong> Callee must save/restore <code>$s0–$s7</code>, <code>$ra</code>, <code>$sp</code>, <code>$fp</code> if used. Caller saves <code>$t0–$t9</code>, <code>$a0–$a3</code>, <code>$v0–$v1</code>.</p>
+<hr />
+<h2 id="instruction-formats">Instruction Formats<a class="headerlink" href="#instruction-formats" title="Permanent link">&para;</a></h2>
+<h3 id="r-type-register">R-Type (Register)<a class="headerlink" href="#r-type-register" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>op(6) | rs(5) | rt(5) | rd(5) | shamt(5) | funct(6)
+</code></pre></div>
+- 3 register operands (rs, rt, rd)
+- ALU ops: add, sub, and, or, xor, nor, slt
+- Shifts: sll, srl, sra (shamt = shift amount)
+- Variable shifts: sllv, srlv, srav (rs = shift amount)
+- jr (jump register)</p>
+<h3 id="i-type-immediate">I-Type (Immediate)<a class="headerlink" href="#i-type-immediate" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>op(6) | rs(5) | rt(5) | imm(16)
+</code></pre></div>
+- 2 registers + 16-bit immediate
+- Arithmetic: addi, addiu
+- Logical: andi, ori, xori (zero-extend); addi/lw/sw (sign-extend)
+- Load/Store: lw, sw, lb, lbu, sb
+- Branch: beq, bne (PC-relative)</p>
+<h3 id="j-type-jump">J-Type (Jump)<a class="headerlink" href="#j-type-jump" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>op(6) | addr(26)
+</code></pre></div>
+- 26-bit address (shifted left 2)
+- Jump: j, jal</p>
+<hr />
+<h2 id="arithmetic-instructions">Arithmetic Instructions<a class="headerlink" href="#arithmetic-instructions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Format</th>
+<th>Operation</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = rs + rt</td>
+<td>Overflow trap</td>
+</tr>
+<tr>
+<td><code>addu rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = rs + rt</td>
+<td>No overflow trap</td>
+</tr>
+<tr>
+<td><code>sub rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = rs - rt</td>
+<td>Overflow trap</td>
+</tr>
+<tr>
+<td><code>subu rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = rs - rt</td>
+<td>No overflow trap</td>
+</tr>
+<tr>
+<td><code>addi rt, rs, imm</code></td>
+<td>I</td>
+<td>rt = rs + imm</td>
+<td>Sign-extended, overflow trap</td>
+</tr>
+<tr>
+<td><code>addiu rt, rs, imm</code></td>
+<td>I</td>
+<td>rt = rs + imm</td>
+<td>Sign-extended, no overflow</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="logical-instructions">Logical Instructions<a class="headerlink" href="#logical-instructions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Format</th>
+<th>Operation</th>
+<th>Extension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>and rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = rs &amp; rt</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>or rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = rs | rt</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>xor rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = rs ^ rt</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>nor rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = ~(rs | rt)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>andi rt, rs, imm</code></td>
+<td>I</td>
+<td>rt = rs &amp; imm</td>
+<td><strong>Zero-extend</strong></td>
+</tr>
+<tr>
+<td><code>ori rt, rs, imm</code></td>
+<td>I</td>
+<td>rt = rs | imm</td>
+<td><strong>Zero-extend</strong></td>
+</tr>
+<tr>
+<td><code>xori rt, rs, imm</code></td>
+<td>I</td>
+<td>rt = rs ^ imm</td>
+<td><strong>Zero-extend</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>No <code>nori</code></strong> — use <code>ori</code> + <code>nor</code> with <code>$zero</code>:
+<div class="highlight"><pre><span></span><code>ori $t0, $s1, 0x00FF
+nor $t0, $t0, $zero  # $t0 = ~($s1 | 0x00FF)
+</code></pre></div></p>
+<hr />
+<h2 id="shift-instructions">Shift Instructions<a class="headerlink" href="#shift-instructions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Type</th>
+<th>Operation</th>
+<th>Fill Bits</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sll rd, rt, shamt</code></td>
+<td>R</td>
+<td>rd = rt &lt;&lt; shamt</td>
+<td>0s on right</td>
+<td>Multiply by 2ⁿ</td>
+</tr>
+<tr>
+<td><code>srl rd, rt, shamt</code></td>
+<td>R</td>
+<td>rd = rt &gt;&gt; shamt</td>
+<td>0s on left</td>
+<td>Unsigned / bit extract</td>
+</tr>
+<tr>
+<td><code>sra rd, rt, shamt</code></td>
+<td>R</td>
+<td>rd = rt &gt;&gt;&gt; shamt</td>
+<td><strong>Sign bit</strong></td>
+<td>Signed divide by 2ⁿ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable Shifts</strong> (amount in lower 5 bits of rs):
+| Instruction | Type | Syntax | Notes |
+|-------------|------|--------|-------|
+| <code>sllv rd, rt, rs</code> | R | rd = rt &lt;&lt; rs[4:0] | shamt=0 |
+| <code>srlv rd, rt, rs</code> | R | rd = rt &gt;&gt; rs[4:0] | shamt=0 |
+| <code>srav rd, rt, rs</code> | R | rd = rt &gt;&gt;&gt; rs[4:0] | shamt=0 |</p>
+<hr />
+<h2 id="generating-constants">Generating Constants<a class="headerlink" href="#generating-constants" title="Permanent link">&para;</a></h2>
+<h3 id="16-bit-constant">16-bit Constant<a class="headerlink" href="#16-bit-constant" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>addi $s0, $0, 0x4F3C   # $s0 = 0x00004F3C
+</code></pre></div>
+<h3 id="32-bit-constant-lui-ori">32-bit Constant (lui + ori)<a class="headerlink" href="#32-bit-constant-lui-ori" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>lui  $s0, 0x6D5E       # $s0 = 0x6D5E0000
+ori  $s0, $s0, 0x4F3C  # $s0 = 0x6D5E4F3C
+</code></pre></div>
+<hr />
+<h2 id="multiplication-division">Multiplication &amp; Division<a class="headerlink" href="#multiplication-division" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Result Location</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mult rs, rt</code></td>
+<td>HI:LO = 64-bit product</td>
+<td>HI=upper 32, LO=lower 32</td>
+</tr>
+<tr>
+<td><code>multu rs, rt</code></td>
+<td>HI:LO = 64-bit product</td>
+<td>Unsigned</td>
+</tr>
+<tr>
+<td><code>div rs, rt</code></td>
+<td>LO=quotient, HI=remainder</td>
+<td>Signed</td>
+</tr>
+<tr>
+<td><code>divu rs, rt</code></td>
+<td>LO=quotient, HI=remainder</td>
+<td>Unsigned</td>
+</tr>
+<tr>
+<td><code>mul rd, rs, rt</code></td>
+<td>rd = rs × rt (32-bit)</td>
+<td>Low 32 bits only</td>
+</tr>
+<tr>
+<td><code>mfhi rd</code></td>
+<td>rd = HI</td>
+<td>Move from HI</td>
+</tr>
+<tr>
+<td><code>mflo rd</code></td>
+<td>rd = LO</td>
+<td>Move from LO</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong> <code>$s0=20, $s1=6</code>
+<div class="highlight"><pre><span></span><code>div  $s0, $s1
+mflo $t0     # $t0 = 3 (quotient)
+mfhi $t1     # $t1 = 2 (remainder)
+</code></pre></div></p>
+<hr />
+<h2 id="loadstore-instructions">Load/Store Instructions<a class="headerlink" href="#loadstore-instructions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Format</th>
+<th>Operation</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lw rt, offset(rs)</code></td>
+<td>I</td>
+<td>rt = Mem[rs + offset]</td>
+<td>Sign-extend offset</td>
+</tr>
+<tr>
+<td><code>sw rt, offset(rs)</code></td>
+<td>I</td>
+<td>Mem[rs + offset] = rt</td>
+<td>Sign-extend offset</td>
+</tr>
+<tr>
+<td><code>lb rt, offset(rs)</code></td>
+<td>I</td>
+<td>rt = sign-extend(Mem[rs+offset])</td>
+<td>Byte load</td>
+</tr>
+<tr>
+<td><code>lbu rt, offset(rs)</code></td>
+<td>I</td>
+<td>rt = zero-extend(Mem[rs+offset])</td>
+<td>Unsigned byte</td>
+</tr>
+<tr>
+<td><code>sb rt, offset(rs)</code></td>
+<td>I</td>
+<td>Mem[rs+offset] = rt[7:0]</td>
+<td>Byte store</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="branch-instructions-pc-relative">Branch Instructions (PC-Relative)<a class="headerlink" href="#branch-instructions-pc-relative" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Format</th>
+<th>Condition</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beq rs, rt, label</code></td>
+<td>I</td>
+<td>rs == rt</td>
+<td>PC+4 + (imm×4)</td>
+</tr>
+<tr>
+<td><code>bne rs, rt, label</code></td>
+<td>I</td>
+<td>rs != rt</td>
+<td>PC+4 + (imm×4)</td>
+</tr>
+<tr>
+<td><code>slt rd, rs, rt</code></td>
+<td>R</td>
+<td>rd = (rs &lt; rt) ? 1 : 0</td>
+<td>Magnitude compare</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Branch Target Address:</strong>
+<div class="highlight"><pre><span></span><code>BTA = (PC + 4) + (SignExtendedOffset × 4)
+</code></pre></div></p>
+<hr />
+<h2 id="jump-instructions">Jump Instructions<a class="headerlink" href="#jump-instructions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Format</th>
+<th>Target Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>j label</code></td>
+<td>J</td>
+<td>JTA = {PC+4[31:28], addr[25:0], 00}</td>
+</tr>
+<tr>
+<td><code>jal label</code></td>
+<td>J</td>
+<td>$ra = PC+4; JTA = {PC+4[31:28], addr[25:0], 00}</td>
+</tr>
+<tr>
+<td><code>jr rs</code></td>
+<td>R</td>
+<td>PC = rs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pseudo-Direct Addressing:</strong>
+- 26-bit address field → shifted left 2 → combined with upper 4 bits of PC+4
+- Allows jumps within 256 MB region</p>
+<hr />
+<h2 id="high-level-constructs-in-mips">High-Level Constructs in MIPS<a class="headerlink" href="#high-level-constructs-in-mips" title="Permanent link">&para;</a></h2>
+<h3 id="if-statement">If Statement<a class="headerlink" href="#if-statement" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">bne</span><span class="w">  </span><span class="kt">$s3</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s4</span><span class="nb">,</span><span class="w"> </span>L1<span class="w">      </span><span class="c"># if i != j, skip</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s2</span><span class="w">     </span><span class="c"># f = g + h</span>
+<span class="nf">L1:</span><span class="w">  </span><span class="k">sub</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s3</span><span class="w"> </span><span class="c"># f = f - i</span>
+</code></pre></div></p>
+<h3 id="if-else-statement">If-Else Statement<a class="headerlink" href="#if-else-statement" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="k">else</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">bne</span><span class="w">  </span><span class="kt">$s3</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s4</span><span class="nb">,</span><span class="w"> </span>L1<span class="w">      </span><span class="c"># if i != j, go to else</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s2</span><span class="w">     </span><span class="c"># f = g + h</span>
+<span class="k">j</span><span class="w">    </span>done<span class="w">              </span><span class="c"># skip else</span>
+<span class="nf">L1:</span><span class="w">  </span><span class="k">sub</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s3</span><span class="w"> </span><span class="c"># f = f - i</span>
+<span class="nf">done:</span>
+</code></pre></div></p>
+<h3 id="while-loop">While Loop<a class="headerlink" href="#while-loop" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">pow</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">128</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">pow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pow</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">while:</span><span class="w"> </span><span class="k">beq</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span>done<span class="w">   </span><span class="c"># if pow == 128, exit</span>
+<span class="w">       </span><span class="k">sll</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kc">1</span><span class="w">      </span><span class="c"># pow *= 2</span>
+<span class="w">       </span><span class="k">addi</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kc">1</span><span class="w">      </span><span class="c"># x++</span>
+<span class="w">       </span><span class="k">j</span><span class="w">    </span>while
+<span class="nf">done:</span>
+</code></pre></div></p>
+<h3 id="for-loop">For Loop<a class="headerlink" href="#for-loop" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">addi</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span><span class="w">       </span><span class="c"># sum = 0</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="w">      </span><span class="c"># i = 0</span>
+<span class="k">addi</span><span class="w"> </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">10</span><span class="w">      </span><span class="c"># limit = 10</span>
+<span class="nf">for:</span><span class="w">  </span><span class="k">beq</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span>done
+<span class="w">      </span><span class="k">add</span><span class="w">  </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span>
+<span class="w">      </span><span class="k">addi</span><span class="w"> </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kc">1</span>
+<span class="w">      </span><span class="k">j</span><span class="w">    </span>for
+<span class="nf">done:</span>
+</code></pre></div></p>
+<h3 id="array-access">Array Access<a class="headerlink" href="#array-access" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">sll</span><span class="w">  </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kc">2</span><span class="w">      </span><span class="c"># $t0 = i × 4</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span><span class="w">    </span><span class="c"># address of array[i]</span>
+<span class="k">lw</span><span class="w">   </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$t0</span>)<span class="w">      </span><span class="c"># load array[i]</span>
+<span class="k">sll</span><span class="w">  </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kc">3</span><span class="w">      </span><span class="c"># × 8</span>
+<span class="k">sw</span><span class="w">   </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$t0</span>)<span class="w">      </span><span class="c"># store</span>
+</code></pre></div></p>
+<h3 id="character-array-bytes">Character Array (bytes)<a class="headerlink" href="#character-array-bytes" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="n">chararray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chararray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span><span class="w">  </span><span class="c1">// lowercase to uppercase</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">addi</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span><span class="w">       </span><span class="c"># i = 0</span>
+<span class="k">addi</span><span class="w"> </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">10</span>
+<span class="nf">loop:</span>
+<span class="w">  </span><span class="k">beq</span><span class="w">  </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span>done
+<span class="w">  </span><span class="k">add</span><span class="w">  </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span><span class="w">  </span><span class="c"># address = base + i (1 byte each)</span>
+<span class="w">  </span><span class="k">lb</span><span class="w">   </span><span class="kt">$t2</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$t1</span>)<span class="w">    </span><span class="c"># load byte</span>
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$t2</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t2</span><span class="nb">,</span><span class="w"> </span><span class="kc">-32</span><span class="w">  </span><span class="c"># 'a'(0x61) - 0x20 = 'A'(0x41)</span>
+<span class="w">  </span><span class="k">sb</span><span class="w">   </span><span class="kt">$t2</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$t1</span>)<span class="w">    </span><span class="c"># store byte</span>
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s1</span><span class="nb">,</span><span class="w"> </span><span class="kc">1</span>
+<span class="w">  </span><span class="k">j</span><span class="w">    </span>loop
+<span class="nf">done:</span>
+</code></pre></div></p>
+<hr />
+<h2 id="function-calls">Function Calls<a class="headerlink" href="#function-calls" title="Permanent link">&para;</a></h2>
+<h3 id="callercaller-convention">Caller/Caller Convention<a class="headerlink" href="#callercaller-convention" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Registers</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Arguments</strong></td>
+<td>$a0–$a3</td>
+<td>Caller places args</td>
+</tr>
+<tr>
+<td><strong>Return</strong></td>
+<td>$v0–$v1</td>
+<td>Callee places result</td>
+</tr>
+<tr>
+<td><strong>Preserved</strong></td>
+<td>$s0–$s7, $sp, $fp, $ra</td>
+<td>Callee saves if used</td>
+</tr>
+<tr>
+<td><strong>Non-preserved</strong></td>
+<td>$t0–$t9, $a0–$a3, $v0–$v1</td>
+<td>Caller saves if needed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="call-sequence">Call Sequence<a class="headerlink" href="#call-sequence" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c"># Caller</span>
+<span class="k">addi</span><span class="w"> </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">2</span><span class="w">     </span><span class="c"># arg1</span>
+<span class="k">addi</span><span class="w"> </span><span class="kt">$a1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">3</span><span class="w">     </span><span class="c"># arg2</span>
+<span class="k">jal</span><span class="w">  </span>diffofsums<span class="w">     </span><span class="c"># $ra = PC+4; jump</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$v0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="w">   </span><span class="c"># save return value</span>
+
+<span class="c"># Callee (diffofsums)</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$a1</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kt">$a2</span><span class="nb">,</span><span class="w"> </span><span class="kt">$a3</span>
+<span class="k">sub</span><span class="w">  </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t1</span>
+<span class="k">add</span><span class="w">  </span><span class="kt">$v0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="w">   </span><span class="c"># return value</span>
+<span class="k">jr</span><span class="w">   </span><span class="kt">$ra</span><span class="w">            </span><span class="c"># return</span>
+</code></pre></div>
+<h3 id="stack-frame-callee-saved-registers">Stack Frame (Callee-saved registers)<a class="headerlink" href="#stack-frame-callee-saved-registers" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c"># Prologue</span>
+<span class="k">addi</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kc">-12</span><span class="w">   </span><span class="c"># allocate 3 words</span>
+<span class="k">sw</span><span class="w">   </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kc">8</span>(<span class="kt">$sp</span>)
+<span class="k">sw</span><span class="w">   </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kc">4</span>(<span class="kt">$sp</span>)
+<span class="k">sw</span><span class="w">   </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$sp</span>)
+
+<span class="c"># ... function body ...</span>
+
+<span class="c"># Epilogue</span>
+<span class="k">lw</span><span class="w">   </span><span class="kt">$t1</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$sp</span>)
+<span class="k">lw</span><span class="w">   </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kc">4</span>(<span class="kt">$sp</span>)
+<span class="k">lw</span><span class="w">   </span><span class="kt">$s0</span><span class="nb">,</span><span class="w"> </span><span class="kc">8</span>(<span class="kt">$sp</span>)
+<span class="k">addi</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kc">12</span><span class="w">    </span><span class="c"># deallocate</span>
+<span class="k">jr</span><span class="w">   </span><span class="kt">$ra</span>
+</code></pre></div>
+<h3 id="recursive-factorial">Recursive Factorial<a class="headerlink" href="#recursive-factorial" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nf">factorial:</span>
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kc">-8</span>
+<span class="w">  </span><span class="k">sw</span><span class="w">   </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kc">4</span>(<span class="kt">$sp</span>)<span class="w">   </span><span class="c"># save n</span>
+<span class="w">  </span><span class="k">sw</span><span class="w">   </span><span class="kt">$ra</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$sp</span>)<span class="w">   </span><span class="c"># save return addr</span>
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">2</span>
+<span class="w">  </span><span class="k">slt</span><span class="w">  </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$t0</span><span class="w"> </span><span class="c"># n &lt; 2?</span>
+<span class="w">  </span><span class="k">beq</span><span class="w">  </span><span class="kt">$t0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span>else
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$v0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$0</span><span class="nb">,</span><span class="w"> </span><span class="kc">1</span><span class="w">    </span><span class="c"># base case: return 1</span>
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kc">8</span>
+<span class="w">  </span><span class="k">jr</span><span class="w">   </span><span class="kt">$ra</span>
+<span class="nf">else:</span>
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kc">-1</span><span class="w">  </span><span class="c"># n-1</span>
+<span class="w">  </span><span class="k">jal</span><span class="w">  </span>factorial<span class="w">     </span><span class="c"># recursive call</span>
+<span class="w">  </span><span class="k">lw</span><span class="w">   </span><span class="kt">$ra</span><span class="nb">,</span><span class="w"> </span><span class="kc">0</span>(<span class="kt">$sp</span>)
+<span class="w">  </span><span class="k">lw</span><span class="w">   </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kc">4</span>(<span class="kt">$sp</span>)<span class="w">   </span><span class="c"># restore n</span>
+<span class="w">  </span><span class="k">addi</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kt">$sp</span><span class="nb">,</span><span class="w"> </span><span class="kc">8</span>
+<span class="w">  </span><span class="k">mul</span><span class="w">  </span><span class="kt">$v0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$a0</span><span class="nb">,</span><span class="w"> </span><span class="kt">$v0</span><span class="w"> </span><span class="c"># n * factorial(n-1)</span>
+<span class="w">  </span><span class="k">jr</span><span class="w">   </span><span class="kt">$ra</span>
+</code></pre></div>
+<hr />
+<h2 id="key-formulas-memorize">Key Formulas (Memorize)<a class="headerlink" href="#key-formulas-memorize" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>R-type:     op(6)|rs(5)|rt(5)|rd(5)|shamt(5)|funct(6)
+I-type:     op(6)|rs(5)|rt(5)|imm(16)
+J-type:     op(6)|addr(26)
+Branch:     BTA = (PC+4) + (offset×4)
+Jump:       JTA = {PC+4[31:28], addr[25:0], 00}
+Array addr: base + 4×i (int), base + i (char)
+32-bit const: lui upper16 + ori lower16
+Function:   Args→$a0-$a3, Return→$v0, Call→jal, Return→jr $ra
+Stack:      $sp grows DOWN (subtract to allocate)
+</code></pre></div>
+<hr />
+<h2 id="mcq-patterns">MCQ Patterns<a class="headerlink" href="#mcq-patterns" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Register conventions</strong> — $s0–$s7 preserved, $t0–$t9 non-preserved</li>
+<li><strong>Branch vs Jump</strong> — beq/bne=PC-relative, j/jal=pseudo-direct</li>
+<li><strong>Immediate extension</strong> — addi/lw/sw=sign-extend, andi/ori/xori=zero-extend</li>
+<li><strong>Shift right</strong> — srl=0-fill, sra=sign-fill</li>
+<li><strong>Function call</strong> — jal saves $ra=PC+4; jr $ra returns</li>
+<li><strong>Stack</strong> — grows downward (subtract), $sp points to top</li>
+<li><strong>Array indexing</strong> — int: base+4i, char: base+i</li>
+<li><strong>Multiplication</strong> — mult→HI:LO (64-bit), mul→32-bit result</li>
+<li><strong>Division</strong> — div→LO=quotient, HI=remainder</li>
+<li><strong>Pseudoinstructions</strong> — lui+ori for 32-bit constants</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.sections","navigation.expand","navigation.top","search.highlight","search.share","content.code.copy","content.code.annotate","toc.follow","content.tabs.link","color.mode"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="../assets/javascripts/theme-toggle.js"></script>
+      
+    
+  </body>
+</html>

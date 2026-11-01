@@ -41,6 +41,16 @@ nav:
     - "ALU, Comparators, Shifters": 11_alu-comparator-shifter-multiplier.md
     - "Number Systems — Fixed-Point": 12_number-systems-fixedpoint.md
     - "Floating-Point — IEEE 754": 13_floating-point-ieee754.md
+  - "Unit 3: Computer Architecture":
+    - Sequential Building Blocks: 18_sequential-building-blocks.md
+    - Architecture Introduction: 19_computer-architecture-intro.md
+    - Assembly Language: 20_assembly-language.md
+    - Machine Language: 21_machine-language.md
+    - Addressing Modes: 22_addressing-modes.md
+    - Compiling, Assembling & Loading: 23_compiling-assembling-loading.md
+    - Parallelism: 24_parallelism.md
+    - Classwork Problems: 25_classwork-problems.md
+    - Unit 3 MCQ Practice: 26_unit3-mcq-practice.md
   - Lab & Practice:
     - Lab Verilog Patterns: 14_lab-verilog-patterns.md
     - MCQ Practice: 15_mcq-practice-comprehensive.md
