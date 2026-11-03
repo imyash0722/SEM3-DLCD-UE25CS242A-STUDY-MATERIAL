@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../18_sequential-building-blocks/" class="md-tabs__link">
+        <a href="../18_sequential-building-blocks.md" class="md-tabs__link">
           
   
   Unit 3: Computer Architecture
@@ -270,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+        <a href="../14_lab-verilog-patterns.md" class="md-tabs__link">
           
   
   Lab & Practice
@@ -1100,7 +1100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../18_sequential-building-blocks/" class="md-nav__link">
+      <a href="../18_sequential-building-blocks.md" class="md-nav__link">
         
   
   
@@ -1127,7 +1127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../19_computer-architecture-intro/" class="md-nav__link">
+      <a href="../19_computer-architecture-intro.md" class="md-nav__link">
         
   
   
@@ -1154,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../20_assembly-language/" class="md-nav__link">
+      <a href="../20_assembly-language.md" class="md-nav__link">
         
   
   
@@ -1181,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../21_machine-language/" class="md-nav__link">
+      <a href="../21_machine-language.md" class="md-nav__link">
         
   
   
@@ -1208,7 +1208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../22_addressing-modes/" class="md-nav__link">
+      <a href="../22_addressing-modes.md" class="md-nav__link">
         
   
   
@@ -1235,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../23_compiling-assembling-loading/" class="md-nav__link">
+      <a href="../23_compiling-assembling-loading.md" class="md-nav__link">
         
   
   
@@ -1262,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../24_parallelism/" class="md-nav__link">
+      <a href="../24_parallelism.md" class="md-nav__link">
         
   
   
@@ -1289,7 +1289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../25_classwork-problems/" class="md-nav__link">
+      <a href="../25_classwork-problems.md" class="md-nav__link">
         
   
   
@@ -1316,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../26_unit3-mcq-practice/" class="md-nav__link">
+      <a href="../26_unit3-mcq-practice.md" class="md-nav__link">
         
   
   
@@ -1404,7 +1404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+      <a href="../14_lab-verilog-patterns.md" class="md-nav__link">
         
   
   
@@ -1431,7 +1431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+      <a href="../15_mcq-practice-comprehensive.md" class="md-nav__link">
         
   
   
@@ -1458,7 +1458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+      <a href="../16_numerical-examples-full-traces.md" class="md-nav__link">
         
   
   
@@ -1485,7 +1485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+      <a href="../17_exam-strategy-quick-ref.md" class="md-nav__link">
         
   
   
@@ -1749,7 +1749,7 @@
 
 <h1 id="10-arithmetic-circuits-adders-rca-cla-prefix">10. Arithmetic Circuits — Adders (RCA, CLA, Prefix)<a class="headerlink" href="#10-arithmetic-circuits-adders-rca-cla-prefix" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Source:</strong> Unit 2 Slides 68–100 | Textbook: Harris &amp; Harris Ch. 5</p>
+<p><strong>Source:</strong> Harris &amp; Harris Ch. 5, Unit 2 Slides 68–100</p>
 </blockquote>
 <hr />
 <h2 id="half-adder">Half Adder<a class="headerlink" href="#half-adder" title="Permanent link">&para;</a></h2>
@@ -1792,6 +1792,7 @@
 <p><strong>Equations:</strong>
 - <code>Sum = A ⊕ B</code>
 - <code>Cout = A·B</code></p>
+<p><strong>Gates:</strong> 1 XOR, 1 AND</p>
 <hr />
 <h2 id="full-adder">Full Adder<a class="headerlink" href="#full-adder" title="Permanent link">&para;</a></h2>
 <table>
@@ -1865,7 +1866,7 @@
 </table>
 <p><strong>Equations:</strong>
 - <code>Sum = A ⊕ B ⊕ Cin</code>
-- <code>Cout = A·B + A·Cin + B·Cin</code></p>
+- <code>Cout = A·B + A·Cin + B·Cin = AB + Cin(A⊕B)</code></p>
 <p><strong>Implementation:</strong> 2 Half Adders + 1 OR gate</p>
 <hr />
 <h2 id="ripple-carry-adder-rca">Ripple-Carry Adder (RCA)<a class="headerlink" href="#ripple-carry-adder-rca" title="Permanent link">&para;</a></h2>

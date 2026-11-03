@@ -12,10 +12,6 @@
       
       
       
-        <link rel="prev" href="../20_assembly-language/">
-      
-      
-        <link rel="next" href="../22_addressing-modes/">
       
       
         
@@ -26,7 +22,7 @@
     
     
       
-        <title>Machine Language - DLCD Exam Prep — UE25CS242A</title>
+        <title>23. Compiling, Assembling, Linking & Loading — Program Translation Pipeline - DLCD Exam Prep — UE25CS242A</title>
       
     
     
@@ -114,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Machine Language
+              23. Compiling, Assembling, Linking &amp; Loading — Program Translation Pipeline
             
           </span>
         </div>
@@ -239,16 +235,14 @@
   
   
   
-    
-  
   
     
       
     
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../18_sequential-building-blocks/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../18_sequential-building-blocks.md" class="md-tabs__link">
           
   
   Unit 3: Computer Architecture
@@ -270,7 +264,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+        <a href="../14_lab-verilog-patterns.md" class="md-tabs__link">
           
   
   Lab & Practice
@@ -817,31 +811,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -859,7 +850,7 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
             <label class="md-nav__title" for="__nav_4">
               <span class="md-nav__icon md-icon"></span>
               
@@ -876,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../18_sequential-building-blocks/" class="md-nav__link">
+      <a href="../18_sequential-building-blocks.md" class="md-nav__link">
         
   
   
@@ -903,7 +894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../19_computer-architecture-intro/" class="md-nav__link">
+      <a href="../19_computer-architecture-intro.md" class="md-nav__link">
         
   
   
@@ -930,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../20_assembly-language/" class="md-nav__link">
+      <a href="../20_assembly-language.md" class="md-nav__link">
         
   
   
@@ -954,36 +945,10 @@
                   
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Machine Language
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../21_machine-language.md" class="md-nav__link">
         
   
   
@@ -998,293 +963,6 @@
   
 
       </a>
-      
-        
-
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mips-machine-language-formats" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        MIPS Machine Language Formats
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MIPS Machine Language Formats">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#r-type-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        R-Type Format
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#i-type-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        I-Type Format
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#j-type-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        J-Type Format
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opcode-and-funct-values-key-subset" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Opcode and Funct Values (Key Subset)
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#encoding-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Encoding Examples
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Encoding Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-1-add-t0-s4-s5" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Example 1: <code>add $t0, $s4, $s5</code>
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-2-lw-s3-24s4" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Example 2: <code>lw $s3, -24($s4)</code>
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-3-addi-s7-s1-15" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Example 3: <code>addi $s7, $s1, -15</code>
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-4-j-sum-pc0x0040005c-sum0x004000a0" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Example 4: <code>j sum</code> (PC=0x0040005C, sum=0x004000A0)
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decoding-machine-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Decoding Machine Code
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Decoding Machine Code">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Strategy
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worked-example-0x223ffff1" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Worked Example: <code>0x223FFFF1</code>
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worked-example-0x02954020" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Worked Example: <code>0x02954020</code>
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#stored-program-concept" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Stored Program Concept
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Stored Program Concept">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#machine-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Machine Code
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#assembly-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Assembly Code
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#program-counter-pc" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Program Counter (PC)
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memory-organization" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Memory Organization
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#register-reference-for-encoding" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Register Reference (for Encoding)
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-formulas-memorize" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Key Formulas (Memorize)
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mcq-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        MCQ Patterns
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1297,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../22_addressing-modes/" class="md-nav__link">
+      <a href="../22_addressing-modes.md" class="md-nav__link">
         
   
   
@@ -1324,7 +1002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../23_compiling-assembling-loading/" class="md-nav__link">
+      <a href="../23_compiling-assembling-loading.md" class="md-nav__link">
         
   
   
@@ -1351,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../24_parallelism/" class="md-nav__link">
+      <a href="../24_parallelism.md" class="md-nav__link">
         
   
   
@@ -1378,7 +1056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../25_classwork-problems/" class="md-nav__link">
+      <a href="../25_classwork-problems.md" class="md-nav__link">
         
   
   
@@ -1405,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../26_unit3-mcq-practice/" class="md-nav__link">
+      <a href="../26_unit3-mcq-practice.md" class="md-nav__link">
         
   
   
@@ -1493,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+      <a href="../14_lab-verilog-patterns.md" class="md-nav__link">
         
   
   
@@ -1520,7 +1198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+      <a href="../15_mcq-practice-comprehensive.md" class="md-nav__link">
         
   
   
@@ -1547,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+      <a href="../16_numerical-examples-full-traces.md" class="md-nav__link">
         
   
   
@@ -1574,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+      <a href="../17_exam-strategy-quick-ref.md" class="md-nav__link">
         
   
   
@@ -1643,44 +1321,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mips-machine-language-formats" class="md-nav__link">
+  <a href="#translation-pipeline-overview" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        MIPS Machine Language Formats
+        Translation Pipeline Overview
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="MIPS Machine Language Formats">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-compilation-c-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step 1: Compilation (C → Assembly)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Compilation (C → Assembly)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#r-type-format" class="md-nav__link">
+  <a href="#example-sum-function" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        R-Type Format
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#i-type-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        I-Type Format
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#j-type-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        J-Type Format
+        Example: Sum Function
       </span>
     </span>
   </a>
@@ -1693,33 +1360,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#opcode-and-funct-values-key-subset" class="md-nav__link">
+  <a href="#step-2-assembling-assembly-object-file" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Opcode and Funct Values (Key Subset)
+        Step 2: Assembling (Assembly → Object File)
       </span>
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#encoding-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Encoding Examples
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Encoding Examples">
+    <nav class="md-nav" aria-label="Step 2: Assembling (Assembly → Object File)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-1-add-t0-s4-s5" class="md-nav__link">
+  <a href="#pass-1-assign-addresses-build-symbol-table" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Example 1: <code>add $t0, $s4, $s5</code>
+        Pass 1: Assign Addresses &amp; Build Symbol Table
       </span>
     </span>
   </a>
@@ -1727,10 +1383,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-2-lw-s3-24s4" class="md-nav__link">
+  <a href="#pass-2-generate-machine-code-using-symbol-table" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Example 2: <code>lw $s3, -24($s4)</code>
+        Pass 2: Generate Machine Code Using Symbol Table
       </span>
     </span>
   </a>
@@ -1738,21 +1394,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-3-addi-s7-s1-15" class="md-nav__link">
+  <a href="#object-file-contents" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Example 3: <code>addi $s7, $s1, -15</code>
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-4-j-sum-pc0x0040005c-sum0x004000a0" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Example 4: <code>j sum</code> (PC=0x0040005C, sum=0x004000A0)
+        Object File Contents
       </span>
     </span>
   </a>
@@ -1765,22 +1410,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decoding-machine-code" class="md-nav__link">
+  <a href="#step-3-linking-object-files-executable" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Decoding Machine Code
+        Step 3: Linking (Object Files → Executable)
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Decoding Machine Code">
+    <nav class="md-nav" aria-label="Step 3: Linking (Object Files → Executable)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#strategy" class="md-nav__link">
+  <a href="#why-link" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Strategy
+        Why Link?
       </span>
     </span>
   </a>
@@ -1788,21 +1433,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#worked-example-0x223ffff1" class="md-nav__link">
+  <a href="#linker-functions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Worked Example: <code>0x223FFFF1</code>
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worked-example-0x02954020" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Worked Example: <code>0x02954020</code>
+        Linker Functions
       </span>
     </span>
   </a>
@@ -1815,55 +1449,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stored-program-concept" class="md-nav__link">
+  <a href="#step-4-the-executable-structure" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Stored Program Concept
+        Step 4: The Executable Structure
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Stored Program Concept">
+    <nav class="md-nav" aria-label="Step 4: The Executable Structure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#machine-code" class="md-nav__link">
+  <a href="#example-first-store-instruction" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Machine Code
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#assembly-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Assembly Code
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#program-counter-pc" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Program Counter (PC)
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memory-organization" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Memory Organization
+        Example: First Store Instruction
       </span>
     </span>
   </a>
@@ -1876,13 +1477,58 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#register-reference-for-encoding" class="md-nav__link">
+  <a href="#step-5-loading-executable-memory" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Register Reference (for Encoding)
+        Step 5: Loading (Executable → Memory)
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Loading (Executable → Memory)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-at-start-of-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Memory at Start of Execution
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mips-memory-map-32-bit-4-gb" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        MIPS Memory Map (32-bit = 4 GB)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MIPS Memory Map (32-bit = 4 GB)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#segment-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Segment Details
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1925,400 +1571,289 @@
                   
 
 
-<h1 id="21-machine-language-instruction-encoding-decoding-stored-program">21. Machine Language — Instruction Encoding, Decoding, Stored Program<a class="headerlink" href="#21-machine-language-instruction-encoding-decoding-stored-program" title="Permanent link">&para;</a></h1>
+<h1 id="23-compiling-assembling-linking-loading-program-translation-pipeline">23. Compiling, Assembling, Linking &amp; Loading — Program Translation Pipeline<a class="headerlink" href="#23-compiling-assembling-linking-loading-program-translation-pipeline" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Source:</strong> Unit 3 Slides 3.9.1 | Textbook: Harris &amp; Harris Ch. 6</p>
+<p><strong>Source:</strong> Unit 3 Slides 3.14.2 | Textbook: Harris &amp; Harris Ch. 6, 7</p>
 </blockquote>
 <hr />
-<h2 id="mips-machine-language-formats">MIPS Machine Language Formats<a class="headerlink" href="#mips-machine-language-formats" title="Permanent link">&para;</a></h2>
-<p>All MIPS instructions are <strong>32 bits (4 bytes)</strong>. Word addresses divisible by 4.</p>
-<h3 id="r-type-format">R-Type Format<a class="headerlink" href="#r-type-format" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>31          25 24    20 19    15 14    10 9     5 4        0
-┌─────────────┬───────┬───────┬───────┬───────┬───────────┐
-│   op (6)    │ rs(5) │ rt(5) │ rd(5) │shamt(5)│ funct(6) │
-└─────────────┴───────┴───────┴───────┴───────┴───────────┘
+<h2 id="translation-pipeline-overview">Translation Pipeline Overview<a class="headerlink" href="#translation-pipeline-overview" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>High-level Code (C)
+        ↓ Compiler
+Assembly Code (.s)
+        ↓ Assembler (2 passes)
+Object File (.o) — Machine code + Symbol Table
+        ↓ Linker
+Executable — Header + Text Segment + Data Segment
+        ↓ Loader (OS)
+Memory (Text + Data + Stack + Heap)
+        ↓ jal 0x00400000
+Execution Begins
 </code></pre></div>
-- <strong>op = 0</strong> for all R-type
-- <strong>funct</strong> determines exact operation</p>
-<h3 id="i-type-format">I-Type Format<a class="headerlink" href="#i-type-format" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>31          25 24    20 19    15 14                0
-┌─────────────┬───────┬───────┬─────────────────────┐
-│   op (6)    │ rs(5) │ rt(5) │       imm(16)       │
-└─────────────┴───────┴───────┴─────────────────────┘
-</code></pre></div>
-- rs = source register (base for load/store)
-- rt = destination (load) or source (store)
-- imm = 16-bit immediate (sign-extended for arithmetic/load/store, zero-extended for logical)</p>
-<h3 id="j-type-format">J-Type Format<a class="headerlink" href="#j-type-format" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>31          25 24                              0
-┌─────────────┬─────────────────────────────────┐
-│   op (6)    │          addr(26)               │
-└─────────────┴─────────────────────────────────┘
-</code></pre></div>
-- 26-bit address field
-- Shifted left 2 (×4) for word alignment
-- Combined with PC+4[31:28] for full 32-bit target</p>
+<p><strong>In practice:</strong> Most compilers (gcc, clang) combine compile+assemble+link in one command.</p>
 <hr />
-<h2 id="opcode-and-funct-values-key-subset">Opcode and Funct Values (Key Subset)<a class="headerlink" href="#opcode-and-funct-values-key-subset" title="Permanent link">&para;</a></h2>
+<h2 id="step-1-compilation-c-assembly">Step 1: Compilation (C → Assembly)<a class="headerlink" href="#step-1-compilation-c-assembly" title="Permanent link">&para;</a></h2>
+<p>Compiler translates high-level code into assembly.</p>
+<h3 id="example-sum-function">Example: Sum Function<a class="headerlink" href="#example-sum-function" title="Permanent link">&para;</a></h3>
+<p><strong>C Code:</strong>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">              </span><span class="c1">// global variables</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>MIPS Assembly:</strong>
+<div class="highlight"><pre><span></span><code>.data
+f:                      # global f
+g:                      # global g
+y:                      # global y
+
+.text
+main:
+    addi $sp, $sp, -4       # make stack frame
+    sw   $ra, 0($sp)        # store $ra on stack
+    addi $a0, $0, 2         # $a0 = 2
+    sw   $a0, f             # f = 2
+    addi $a1, $0, 3         # $a1 = 3
+    sw   $a1, g             # g = 3
+    jal  sum                # call sum(f, g)
+    sw   $v0, y             # y = sum(f, g)
+    lw   $ra, 0($sp)        # restore $ra
+    addi $sp, $sp, 4        # restore stack pointer
+    jr   $ra                # return to OS
+
+sum:
+    add  $v0, $a0, $a1      # $v0 = a + b
+    jr   $ra                # return to caller
+</code></pre></div></p>
+<p><strong>Directives:</strong>
+- <code>.data</code> — start of data segment (globals)
+- <code>.text</code> — start of text segment (code)
+- Labels <code>f:</code>, <code>g:</code>, <code>y:</code> name globals; addresses assigned by assembler</p>
+<hr />
+<h2 id="step-2-assembling-assembly-object-file">Step 2: Assembling (Assembly → Object File)<a class="headerlink" href="#step-2-assembling-assembly-object-file" title="Permanent link">&para;</a></h2>
+<p>Assembler converts assembly to machine code in an <strong>object file</strong>. Two passes:</p>
+<h3 id="pass-1-assign-addresses-build-symbol-table">Pass 1: Assign Addresses &amp; Build Symbol Table<a class="headerlink" href="#pass-1-assign-addresses-build-symbol-table" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
+<th>Address</th>
 <th>Instruction</th>
-<th>op</th>
-<th>funct</th>
-<th>Format</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>add</strong></td>
-<td>0</td>
-<td>32 (0x20)</td>
-<td>R</td>
+<td>0x00400000</td>
+<td>main: addi $sp, $sp, -4</td>
 </tr>
 <tr>
-<td><strong>sub</strong></td>
-<td>0</td>
-<td>34 (0x22)</td>
-<td>R</td>
+<td>0x00400004</td>
+<td>sw $ra, 0($sp)</td>
 </tr>
 <tr>
-<td><strong>and</strong></td>
-<td>0</td>
-<td>36 (0x24)</td>
-<td>R</td>
+<td>0x00400008</td>
+<td>addi $a0, $0, 2</td>
 </tr>
 <tr>
-<td><strong>or</strong></td>
-<td>0</td>
-<td>37 (0x25)</td>
-<td>R</td>
+<td>0x0040000C</td>
+<td>sw $a0, f</td>
 </tr>
 <tr>
-<td><strong>xor</strong></td>
-<td>0</td>
-<td>38 (0x26)</td>
-<td>R</td>
+<td>0x00400010</td>
+<td>addi $a1, $0, 3</td>
 </tr>
 <tr>
-<td><strong>nor</strong></td>
-<td>0</td>
-<td>39 (0x27)</td>
-<td>R</td>
+<td>0x00400014</td>
+<td>sw $a1, g</td>
 </tr>
 <tr>
-<td><strong>slt</strong></td>
-<td>0</td>
-<td>42 (0x2A)</td>
-<td>R</td>
-</tr>
-<tr>
-<td><strong>sll</strong></td>
-<td>0</td>
-<td>0</td>
-<td>R</td>
-</tr>
-<tr>
-<td><strong>srl</strong></td>
-<td>0</td>
-<td>2</td>
-<td>R</td>
-</tr>
-<tr>
-<td><strong>sra</strong></td>
-<td>0</td>
-<td>3</td>
-<td>R</td>
-</tr>
-<tr>
-<td><strong>jr</strong></td>
-<td>0</td>
-<td>8</td>
-<td>R</td>
-</tr>
-<tr>
-<td><strong>addi</strong></td>
-<td>8 (0x08)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>addiu</strong></td>
-<td>9 (0x09)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>andi</strong></td>
-<td>12 (0x0C)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>ori</strong></td>
-<td>13 (0x0D)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>xori</strong></td>
-<td>14 (0x0E)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>lw</strong></td>
-<td>35 (0x23)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>sw</strong></td>
-<td>43 (0x2B)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>beq</strong></td>
-<td>4</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>bne</strong></td>
-<td>5</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>slti</strong></td>
-<td>10 (0x0A)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>lui</strong></td>
-<td>15 (0x0F)</td>
-<td>—</td>
-<td>I</td>
-</tr>
-<tr>
-<td><strong>j</strong></td>
-<td>2</td>
-<td>—</td>
-<td>J</td>
-</tr>
-<tr>
-<td><strong>jal</strong></td>
-<td>3</td>
-<td>—</td>
-<td>J</td>
+<td>0x00400018</td>
+<td>jal sum</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="encoding-examples">Encoding Examples<a class="headerlink" href="#encoding-examples" title="Permanent link">&para;</a></h2>
-<h3 id="example-1-add-t0-s4-s5">Example 1: <code>add $t0, $s4, $s5</code><a class="headerlink" href="#example-1-add-t0-s4-s5" title="Permanent link">&para;</a></h3>
+<p>...continues for all instructions...</p>
+<h3 id="pass-2-generate-machine-code-using-symbol-table">Pass 2: Generate Machine Code Using Symbol Table<a class="headerlink" href="#pass-2-generate-machine-code-using-symbol-table" title="Permanent link">&para;</a></h3>
+<p><strong>Symbol Table (after Pass 1):</strong>
+| Symbol | Address | Type |
+|--------|---------|------|
+| main | 0x00400000 | Label |
+| sum | 0x0040002C | Label |
+| f | 0x10000000 | Global |
+| g | 0x10000004 | Global |
+| y | 0x10000008 | Global |</p>
+<p>Globals assigned in global data segment starting at 0x10000000.</p>
+<h3 id="object-file-contents">Object File Contents<a class="headerlink" href="#object-file-contents" title="Permanent link">&para;</a></h3>
 <ul>
-<li>$t0 = 8, $s4 = 20, $s5 = 21</li>
-<li>op=0, rs=20, rt=21, rd=8, shamt=0, funct=32</li>
-<li>Binary: <code>000000 10100 10101 01000 00000 100000</code></li>
-<li>Hex: <strong>0x02954020</strong></li>
-</ul>
-<h3 id="example-2-lw-s3-24s4">Example 2: <code>lw $s3, -24($s4)</code><a class="headerlink" href="#example-2-lw-s3-24s4" title="Permanent link">&para;</a></h3>
-<ul>
-<li>$s3 = 19, $s4 = 20</li>
-<li>op=35 (0x23), rs=20, rt=19, imm=-24 = 0xFFE8</li>
-<li>Binary: <code>100011 10100 10011 1111111111101000</code></li>
-<li>Hex: <strong>0x8D93FFE8</strong></li>
-</ul>
-<h3 id="example-3-addi-s7-s1-15">Example 3: <code>addi $s7, $s1, -15</code><a class="headerlink" href="#example-3-addi-s7-s1-15" title="Permanent link">&para;</a></h3>
-<ul>
-<li>$s7 = 23, $s1 = 17</li>
-<li>op=8 (0x08), rs=17, rt=23, imm=-15 = 0xFFF1</li>
-<li>Binary: <code>001000 10001 10111 1111111111110001</code></li>
-<li>Hex: <strong>0x223FFFF1</strong></li>
-</ul>
-<h3 id="example-4-j-sum-pc0x0040005c-sum0x004000a0">Example 4: <code>j sum</code> (PC=0x0040005C, sum=0x004000A0)<a class="headerlink" href="#example-4-j-sum-pc0x0040005c-sum0x004000a0" title="Permanent link">&para;</a></h3>
-<ul>
-<li>op=2, addr = 0x004000A0 &gt;&gt; 2 = 0x00100028</li>
-<li>Binary: <code>000010 00000100000000000000101000</code></li>
-<li>Hex: <strong>0x08100028</strong></li>
+<li>Machine code (text section)</li>
+<li>Data section (global variable addresses)</li>
+<li>Symbol table (for linking)</li>
 </ul>
 <hr />
-<h2 id="decoding-machine-code">Decoding Machine Code<a class="headerlink" href="#decoding-machine-code" title="Permanent link">&para;</a></h2>
-<h3 id="strategy">Strategy<a class="headerlink" href="#strategy" title="Permanent link">&para;</a></h3>
+<h2 id="step-3-linking-object-files-executable">Step 3: Linking (Object Files → Executable)<a class="headerlink" href="#step-3-linking-object-files-executable" title="Permanent link">&para;</a></h2>
+<h3 id="why-link">Why Link?<a class="headerlink" href="#why-link" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Large programs = many source files</li>
+<li>Change one file → only recompile that file</li>
+<li>Library files rarely change</li>
+<li>Unchanged files → reuse object files</li>
+</ul>
+<h3 id="linker-functions">Linker Functions<a class="headerlink" href="#linker-functions" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Read opcode</strong> (bits 31-26)</li>
-<li><strong>If op = 0</strong> → R-type → inspect <strong>funct</strong> (bits 5-0)</li>
-<li><strong>If op ≠ 0</strong> → Use opcode to identify I-type or J-type</li>
-<li><strong>Extract register fields</strong> → map to register names ($0-$31)</li>
-<li><strong>Interpret immediate</strong> → signed (addi, lw, sw, beq, bne) or unsigned (andi, ori, xori, lui)</li>
+<li><strong>Combine</strong> all object files into one machine-language file (executable)</li>
+<li><strong>Relocate</strong> data/instructions so they don't overlap</li>
+<li><strong>Resolve</strong> addresses using symbol tables (adjust relocated globals/labels)</li>
 </ol>
-<h3 id="worked-example-0x223ffff1">Worked Example: <code>0x223FFFF1</code><a class="headerlink" href="#worked-example-0x223ffff1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Binary: 001000 10001 10111 1111111111110001
-op = 001000₂ = 8 → addi (I-type)
-rs = 10001₂ = 17 → $s1
-rt = 10111₂ = 23 → $s7
-imm = 1111111111110001₂ = -15 (sign-extended)
-Result: addi $s7, $s1, -15
-</code></pre></div>
-<h3 id="worked-example-0x02954020">Worked Example: <code>0x02954020</code><a class="headerlink" href="#worked-example-0x02954020" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Binary: 000000 10100 10101 01000 00000 100000
-op = 0 → R-type
-funct = 100000₂ = 32 → add
-rs = 10100₂ = 20 → $s4
-rt = 10101₂ = 21 → $s5
-rd = 01000₂ = 8 → $t0
-Result: add $t0, $s4, $s5
-</code></pre></div>
+<p><strong>In our example:</strong> Single object file → no relocation needed.</p>
 <hr />
-<h2 id="stored-program-concept">Stored Program Concept<a class="headerlink" href="#stored-program-concept" title="Permanent link">&para;</a></h2>
-<h3 id="machine-code">Machine Code<a class="headerlink" href="#machine-code" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Executed directly by CPU</li>
-<li>Binary/hex format (e.g., <code>0x8C0A0020</code>)</li>
-<li>Difficult for humans</li>
-</ul>
-<h3 id="assembly-code">Assembly Code<a class="headerlink" href="#assembly-code" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Human-readable mnemonics (e.g., <code>lw $t2, 32($0)</code>)</li>
-<li>Must be <strong>assembled</strong> into machine code</li>
-</ul>
-<h3 id="program-counter-pc">Program Counter (PC)<a class="headerlink" href="#program-counter-pc" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Special register holding <strong>address of next instruction</strong></li>
-<li>Incremented by 4 after each fetch (MIPS 32-bit = 4 bytes)</li>
-<li>Modified by branch/jump instructions</li>
-</ul>
-<h3 id="memory-organization">Memory Organization<a class="headerlink" href="#memory-organization" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Both instructions and data in same memory</strong> (Von Neumann)</li>
-<li>Instructions fetched from text segment</li>
-<li>Data accessed from data/stack/heap segments</li>
-</ul>
+<h2 id="step-4-the-executable-structure">Step 4: The Executable Structure<a class="headerlink" href="#step-4-the-executable-structure" title="Permanent link">&para;</a></h2>
+<p><strong>Three Sections:</strong>
+| Section | Content |
+|---------|---------|
+| <strong>Header</strong> | Text size, Data size |
+| <strong>Text Segment</strong> | Instructions in memory order |
+| <strong>Data Segment</strong> | Global variable addresses |</p>
+<h3 id="example-first-store-instruction">Example: First Store Instruction<a class="headerlink" href="#example-first-store-instruction" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>Assembly: sw $a0, f
+Machine:  sw $a0, 0x8000($gp)
+</code></pre></div>
+- <code>$gp = 0x10008000</code> (middle of global data)
+- Offset <code>0x8000</code> = 16-bit signed → sign-extended to <code>0xFFFF8000</code>
+- Effective Address = <code>$gp + 0xFFFF8000 = 0x10008000 + 0xFFFF8000 = 0x10000000</code>
+- This is address of global <code>f</code> ✓</p>
 <hr />
-<h2 id="register-reference-for-encoding">Register Reference (for Encoding)<a class="headerlink" href="#register-reference-for-encoding" title="Permanent link">&para;</a></h2>
+<h2 id="step-5-loading-executable-memory">Step 5: Loading (Executable → Memory)<a class="headerlink" href="#step-5-loading-executable-memory" title="Permanent link">&para;</a></h2>
+<p>OS loads program by:
+1. <strong>Read text segment</strong> from disk → memory text segment (0x00400000)
+2. <strong>Set <code>$gp = 0x10008000</code></strong> (middle of global data segment)
+3. <strong>Set <code>$sp = 0x7FFFFFFC</code></strong> (top of dynamic data segment)
+4. <strong><code>jal 0x00400000</code></strong> to jump to program start</p>
+<h3 id="memory-at-start-of-execution">Memory at Start of Execution<a class="headerlink" href="#memory-at-start-of-execution" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Number</th>
-<th>Name</th>
-<th>Number</th>
-<th>Name</th>
-<th>Number</th>
-<th>Name</th>
-<th>Number</th>
-<th>Name</th>
+<th>Segment</th>
+<th>Address Range</th>
+<th>Content</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
-<td>$zero</td>
-<td>8</td>
-<td>$t0</td>
-<td>16</td>
-<td>$s0</td>
-<td>24</td>
-<td>$t8</td>
+<td>Text</td>
+<td>0x00400000–0x00400030</td>
+<td>13 instructions</td>
 </tr>
 <tr>
-<td>1</td>
-<td>$at</td>
-<td>9</td>
-<td>$t1</td>
-<td>17</td>
-<td>$s1</td>
-<td>25</td>
-<td>$t9</td>
+<td>Globals (f,g,y)</td>
+<td>0x10000000–0x10000008</td>
+<td>3 words</td>
 </tr>
 <tr>
-<td>2</td>
-<td>$v0</td>
-<td>10</td>
-<td>$t2</td>
-<td>18</td>
-<td>$s2</td>
-<td>26</td>
-<td>$k0</td>
+<td>Stack</td>
+<td>Top at 0x7FFFFFFC</td>
+<td>Empty initially</td>
 </tr>
 <tr>
-<td>3</td>
-<td>$v1</td>
-<td>11</td>
-<td>$t3</td>
-<td>19</td>
-<td>$s3</td>
-<td>27</td>
-<td>$k1</td>
+<td>Heap</td>
+<td>Bottom at 0x10010000</td>
+<td>Empty initially</td>
 </tr>
 <tr>
-<td>4</td>
-<td>$a0</td>
-<td>12</td>
-<td>$t4</td>
-<td>20</td>
-<td>$s4</td>
-<td>28</td>
-<td>$gp</td>
-</tr>
-<tr>
-<td>5</td>
-<td>$a1</td>
-<td>13</td>
-<td>$t5</td>
-<td>21</td>
-<td>$s5</td>
-<td>29</td>
-<td>$sp</td>
-</tr>
-<tr>
-<td>6</td>
-<td>$a2</td>
-<td>14</td>
-<td>$t6</td>
-<td>22</td>
-<td>$s6</td>
-<td>30</td>
-<td>$fp/$s8</td>
-</tr>
-<tr>
-<td>7</td>
-<td>$a3</td>
-<td>15</td>
-<td>$t7</td>
-<td>23</td>
-<td>$s7</td>
-<td>31</td>
-<td>$ra</td>
+<td><strong>PC</strong></td>
+<td><strong>0x00400000</strong></td>
+<td>Points to <code>main</code></td>
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="mips-memory-map-32-bit-4-gb">MIPS Memory Map (32-bit = 4 GB)<a class="headerlink" href="#mips-memory-map-32-bit-4-gb" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Segment</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00000000 – 0x003FFFFC</td>
+<td>Reserved</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>0x00400000 – 0x0FFFFFFC</strong></td>
+<td><strong>Text</strong></td>
+<td>PC starts at 0x00400000 (~256 MB)</td>
+</tr>
+<tr>
+<td><strong>0x10000000 – 0x1000FFFC</strong></td>
+<td><strong>Global Data</strong></td>
+<td>$gp = 0x10008000 (middle)</td>
+</tr>
+<tr>
+<td><strong>0x10010000 – 0x7FFFFFFC</strong></td>
+<td><strong>Dynamic Data</strong></td>
+<td>Heap (bottom↑), Stack (top↓, $sp=0x7FFFFFFC)</td>
+</tr>
+<tr>
+<td>0x80000000 – 0xFFFFFFFC</td>
+<td>Reserved</td>
+<td>OS, interrupts, MMIO</td>
+</tr>
+</tbody>
+</table>
+<h3 id="segment-details">Segment Details<a class="headerlink" href="#segment-details" title="Permanent link">&para;</a></h3>
+<p><strong>Text Segment:</strong>
+- Stores program code
+- Top 4 bits of all text addresses = 0
+- <strong>Why?</strong> So <code>j</code> instruction (26-bit addr) can reach any text address</p>
+<p><strong>Global Data:</strong>
+- Variables declared outside functions in C
+- Accessed via <code>$gp</code> with 16-bit offset
+- <code>$gp</code> fixed at 0x10008000 (doesn't change)
+- Offset known at assembly time → efficient base addressing</p>
+<p><strong>Dynamic Data (Stack + Heap):</strong>
+| Property | Stack | Heap |
+|----------|-------|------|
+| Use | Save/restore regs; local vars/arrays | malloc/new |
+| Allocation | LIFO frames | Any order |
+| Direction | Grows <strong>down</strong> from 0x7FFFFFFC | Grows <strong>up</strong> from 0x10010000 |
+| Collision | Stack/heap meet → corruption → OOM error | — |</p>
+<p><strong>Reserved:</strong> OS, interrupts, memory-mapped I/O</p>
 <hr />
 <h2 id="key-formulas-memorize">Key Formulas (Memorize)<a class="headerlink" href="#key-formulas-memorize" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>R-type:  op(6)|rs(5)|rt(5)|rd(5)|shamt(5)|funct(6)    op=0
-I-type:  op(6)|rs(5)|rt(5)|imm(16)
-J-type:  op(6)|addr(26)                               addr = target&gt;&gt;2
+<div class="highlight"><pre><span></span><code>Pipeline:     C → Assembly → Object → Executable → Memory → Run
+Assembler:    Pass 1: addresses + symbol table; Pass 2: machine code
+Linker:       Combine + Relocate + Resolve symbols
+Loader:       Load text, set $gp=0x10008000, $sp=0x7FFFFFFC, jal 0x00400000
 
-Branch target:  BTA = (PC+4) + (signExt(imm) × 4)
-Jump target:    JTA = {PC+4[31:28], addr[25:0], 00}
+MIPS Memory:  2³² = 4 GB
+Text:         0x00400000– (PC starts here)
+Global:       0x10000000– ($gp=0x10008000)
+Stack:        Grows down from 0x7FFFFFFC
+Heap:         Grows up from 0x10010000
 
-Hex conversion:  4 bits → 1 hex digit
-0x8C0A0020 = 10001100 00001010 00000000 00100000
+Global access:  EA = $gp + SignExt(16-bit offset)
+               Offset known at assembly time
 </code></pre></div>
 <hr />
 <h2 id="mcq-patterns">MCQ Patterns<a class="headerlink" href="#mcq-patterns" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Opcode identification</strong> — op=0 → R-type (check funct); op=35 → lw; op=43 → sw; op=4 → beq; op=5 → bne</li>
-<li><strong>R-type funct codes</strong> — add=32, sub=34, and=36, or=37, slt=42, sll=0, jr=8</li>
-<li><strong>I-type opcodes</strong> — addi=8, andi=12, ori=13, lw=35, sw=43, beq=4, bne=5, lui=15</li>
-<li><strong>J-type opcodes</strong> — j=2, jal=3</li>
-<li><strong>Immediate sign</strong> — arithmetic/load/store/branch = sign-extend; logical = zero-extend</li>
-<li><strong>Register mapping</strong> — know $t0=8, $s0=16, $a0=4, $v0=2, $ra=31, $sp=29</li>
-<li><strong>Machine code → assembly</strong> — extract fields, interpret by format</li>
-<li><strong>Jump address calc</strong> — shift 26-bit addr left 2, combine with PC+4[31:28]</li>
-<li><strong>Branch offset</strong> — offset = (target - (PC+4)) / 4</li>
+<li><strong>Translation order</strong> — Compile → Assemble → Link → Load</li>
+<li><strong>Assembler passes</strong> — Pass 1: addresses + symbols; Pass 2: machine code</li>
+<li><strong>Linker purpose</strong> — Combine object files, relocate, resolve symbols</li>
+<li><strong>Loader steps</strong> — Load text, set $gp/$sp, jal to start</li>
+<li><strong>MIPS memory map</strong> — Text at 0x00400000, Global at 0x10000000, Stack at 0x7FFFFFFC</li>
+<li><strong>$gp vs $sp</strong> — $gp fixed (0x10008000); $sp changes</li>
+<li><strong>Global access</strong> — $gp + 16-bit offset (base addressing)</li>
+<li><strong>Stack/Heap direction</strong> — Stack DOWN, Heap UP</li>
+<li><strong>Text segment top bits</strong> — All 0 → enables <code>j</code> to reach anywhere</li>
+<li><strong>sw $a0, 0x8000($gp)</strong> — offset sign-extended: 0x8000 → 0xFFFF8000 → EA = 0x10000000</li>
 </ol>
 
 
