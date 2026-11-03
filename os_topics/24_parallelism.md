@@ -87,13 +87,13 @@ IF → ID → EX → MEM → WB
 ### Sequential (No Parallelism)
 - Roll: 5 min, Bake: 15 min
 - Next tray starts only after previous finishes
-- **Latency** = 20 min
-- **Throughput** = 3 trays/hour
+- **Latency** = 5 + 15 = 20 minutes
+- **Throughput** = 60 / 20 = 3 trays per hour
 
 ### Spatial Parallelism (Two Chefs)
 - Ben + Alyssa bake simultaneously
 - Latency = 20 min (unchanged)
-- Throughput = 6 trays/hour (2×)
+- Throughput = 3 + 3 = 6 trays/hour (2×)
 
 ### Temporal Parallelism (Two Trays)
 - While Tray 1 bakes, Ben prepares Tray 2
@@ -132,9 +132,7 @@ Clock period = L / N
 - Stage delays: L₁, L₂, ..., Lₙ
 - **Clock period = max(L₁, L₂, ..., Lₙ)**
 - **Throughput = 1 / max(stage delays)**
-- **Latency = N × clock_period**
-
-**Key:** Balanced stages maximize throughput.
+- **Key:** Balanced stages maximize throughput.
 
 ---
 
@@ -145,26 +143,25 @@ Given: `t_cq = 0.3 ns`, Logic blocks: 3 ns, 2 ns, 4 ns, `t_setup = 0.2 ns`
 
 **Cycle Time:** `T_c = 0.3 + 3 + 2 + 4 + 0.2 = 9.5 ns`
 **Latency:** 9.5 ns
-**Throughput:** `1 / 9.5 ns = 105 MHz`
+**Throughput:** `1/9.5 ns ≈ 105 MHz`
 
-### Two-Stage Pipeline (Register after Block 3)
+### Two-Stage Pipeline (Register after block 2)
 | Stage | Components | Delay |
 |-------|------------|-------|
 | 1 | t_cq + 3 + 2 + t_setup | 0.3 + 3 + 2 + 0.2 = 5.5 ns |
 | 2 | t_cq + 4 + t_setup | 0.3 + 4 + 0.2 = 4.5 ns |
 
 **Clock Period:** `T_c = max(5.5, 4.5) = 5.5 ns`
-**Throughput:** `1 / 5.5 ns = 182 MHz`
-**Latency:** `2 × 5.5 = 11 ns`
-
-**Speedup:** 105 MHz → 182 MHz (73% improvement)
+**Throughput:** `1/5.5 ns ≈ 182 MHz`
+**Latency:** `2 × 5.5 = 11 ns` — about the same, so pipelining raises throughput, not latency.
 
 ### Three-Stage Pipeline (Exercise)
 Stage delays: 3.5 ns, 2.5 ns, 4.5 ns
 
-**Clock Period:** `T_c = max(3.5, 2.5, 4.5) = 4.5 ns`
+**Clock Period:** `T_c = max = 4.5 ns`
 **Latency:** `3 × 4.5 = 13.5 ns`
-**Throughput:** `1 / 4.5 ns = 222 MHz`
+`Tc = max(3.5, 2.5, 4.5) = 4.5 ns`
+**Latency:** `3 x Tc = 13.5 ns`
 
 ---
 
@@ -173,7 +170,7 @@ Stage delays: 3.5 ns, 2.5 ns, 4.5 ns
 Hazards prevent smooth pipeline flow → introduce **stalls (bubbles)** → reduce throughput.
 
 ### 1. Data Hazard (RAW — Read After Write)
-**Cause:** Instruction needs data still being produced by previous instruction.
+**Cause:** Instruction needs data still being produced by earlier instruction.
 ```
 add $s0, $t1, $t2
 sub $t3, $s0, $t4    # $s0 not ready until add writes back
@@ -268,4 +265,4 @@ Hazards:
 8. **Load-use hazard** — Requires 1-cycle stall even with forwarding
 9. **Control hazard** — Branch misprediction; solved by prediction
 10. **Structural hazard** — Resource conflict; solved by duplication
-11. **Amdahl's Law** — Speedup = 1/[(1-f) + f/s]; diminishing returns
+11. **Amdahl's Law** — Speedup = 1/[(1-f)+f/s]; diminishing returns

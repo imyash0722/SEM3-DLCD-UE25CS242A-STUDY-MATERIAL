@@ -1,6 +1,6 @@
 # 06. Sequential Logic Basics — Latches, SR Latch, D Latch
 
-> **Source:** Unit 1 Slides 162–186 | Textbook: Harris & Harris Ch. 3
+> **Source:** Harris & Harris Ch. 3, Unit 1 Slides 162–186
 
 ---
 
@@ -17,29 +17,35 @@
 ## Memory Elements
 
 ### Bistable Element (Cross-Coupled Inverters)
-- Two stable states: `Q=0, Q'=1` or `Q=1, Q'=0`
+- Two stable states: `Q=0, Q̄=1` or `Q=1, Q̄=0`
 - **Problem:** No inputs to control state
 
+---
+
 ### SR Latch (NOR-based)
+
 ```
      S ──┐      ┌── Q
          NOR──┘
-     R ──┘      ┌── Q'
+     R ──┘      ┌── Q̄
          NOR──┘
 ```
-| S | R | Action | Q | Q' |
+
+| S | R | Action | Q | Q̄ |
 |---|---|--------|---|---|
-| 0 | 0 | Hold   | Q | Q' |
+| 0 | 0 | Hold   | Q | Q̄ |
 | 0 | 1 | Reset  | 0 | 1  |
 | 1 | 0 | Set    | 1 | 0  |
 | 1 | 1 | **Invalid** | 0 | 0 |
 
-- **S=R=1 invalid:** Q=Q'=0 (not complementary), race on release
+- **S=R=1 invalid:** Q=Q̄=0 (not complementary), race on release
 - **Awkward:** "What to store" and "When to change" mixed
+
+**NAND Implementation (`S̄ R̄` Latch):** Active Low. Forbidden: `S̄=R̄=0`.
 
 ---
 
-## D Latch (Solves SR Problems)
+### Gated D Latch (Solves SR Problems)
 
 | D | CLK | Action | Q |
 |---|-----|--------|---|
@@ -70,6 +76,7 @@
 ---
 
 ## Clock Edges
+
 | Edge | Transition | Name |
 |------|------------|------|
 | Rising | 0→1 | Positive edge |
@@ -92,7 +99,7 @@
 
 | Question | Answer |
 |----------|--------|
-| SR latch invalid state? | S=1, R=1 → Q=Q'=0 |
+| SR latch invalid state? | S=1, R=1 → Q=Q̄=0 |
 | D latch transparent when? | CLK=1 |
 | D latch holds when? | CLK=0 |
 | Latch vs FF difference? | Level vs edge triggered |
@@ -102,7 +109,7 @@
 
 ## Exam-Relevant MCQ Patterns
 
-1. **SR latch invalid** — S=R=1 gives Q=Q'=0 (Q47)
+1. **SR latch invalid** — S=R=1 gives Q=Q̄=0 (Q47)
 2. **D latch transparency** — CLK=1 means transparent (Q28)
 3. **Latch vs FF** — level vs edge sensitive (Q4, Q7, Q183-186)
 4. **Cross-coupled inverters** — two stable states = 1 bit storage (Q40)

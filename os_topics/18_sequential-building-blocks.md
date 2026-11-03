@@ -57,7 +57,7 @@ Outputs: RD1[W-1:0], RD2[W-1:0]
 ```
 Cross-coupled inverters (2) + Access transistors (2) = 6 Transistors
 ```
-- **Read:** Precharge bit lines → Assert word line → Sense amp detects differential voltage
+- **Read:** Precharge bit lines → Assert word line → Sense amp detects differential
 - **Write:** Drive bit lines to desired value → Assert word line → Overwrite cell
 
 **Characteristics:**
@@ -106,10 +106,17 @@ All FFs share common CLK. Next state computed combinationally from current state
 
 **Equation:**
 ```
-Q⁺ = { 0      if Reset=1
+Q⁺ = { 0       if Reset=1
      { Q+1    if Reset=0, Up=1
      { Q-1    if Reset=0, Up=0
 ```
+
+**Convenient Form:**
+```
+Q⁺ = Q + (2·Up - 1)
+```
+- Up=1 → 2×1-1 = +1 (count up)
+- Up=0 → 2×0-1 = -1 (count down)
 
 ### Counter Adding 4 (Exercise 5.44)
 **Inputs:** Reset, CLK
@@ -140,9 +147,44 @@ Address | X | Y | Z | Data
 0  0000 | 1 | 0 | 0 | 100
 1  0001 | 1 | 0 | 1 | 101
 2  0010 | 1 | 0 | 1 | 101
-...
+3  0011 | 1 | 0 | 1 | 101
+4  0100 | 0 | 0 | 1 | 001
+5  0101 | 0 | 1 | 1 | 011
+6  0110 | 0 | 0 | 1 | 001
+7  0111 | 0 | 1 | 1 | 011
+8  1000 | 0 | 0 | 1 | 001
+9  1001 | 0 | 0 | 1 | 001
+10 1010 | 1 | 0 | 1 | 101
+11 1011 | 0 | 0 | 1 | 001
+12 1100 | 1 | 1 | 1 | 111
+13 1101 | 1 | 1 | 1 | 111
+14 1110 | 1 | 1 | 1 | 111
 15 1111 | 1 | 1 | 1 | 111
 ```
+
+**ROM Stores:** 100, 101, 101, 101, 001, 011, 001, 011, 001, 001, 101, 001, 111, 111, 111, 111
+
+### Dot Notation
+Place dot (●) at intersection of address row and output column where ROM stores 1.
+
+| Addr | X | Y | Z |
+|------|---|---|---|
+| 0000 | ● |   |   |
+| 0001 | ● |   | ● |
+| 0010 | ● |   | ● |
+| 0011 | ● |   | ● |
+| 0100 |   |   | ● |
+| 0101 |   | ● | ● |
+| 0110 |   |   | ● |
+| 0111 |   | ● | ● |
+| 1000 |   |   | ● |
+| 1001 |   |   | ● |
+| 1010 | ● |   | ● |
+| 1011 |   |   | ● |
+| 1100 | ● | ● | ● |
+| 1101 | ● | ● | ● |
+| 1110 | ● | ● | ● |
+| 1111 | ● | ● | ● |
 
 ---
 
@@ -152,8 +194,9 @@ Address | X | Y | Z | Data
 Register File:  N registers × W bits, R read ports, W write ports
 SRAM:           6T cell, no refresh, fast
 DRAM:           1T1C cell, refresh required, dense
-Up/Down Counter: Q⁺ = Q + (2·Up - 1)  [Up=1→+1, Up=0→-1]
-ROM:            2ᴺ addresses × M bits
+Up/Down Counter: Q⁺ = Q + (2·Up - 1)
+Counter +4:      Q⁺ = Q + 4
+ROM:             2ᴺ addresses × M bits
 ```
 
 ---

@@ -1,52 +1,103 @@
 # 01. Digital Circuits — Introduction & Combinational vs Sequential Logic
 
-> **Source:** Unit 1 Slides 2–12 | Textbook: Harris & Harris Ch. 1–2
+> **Source:** Harris & Harris Ch. 1–2, Unit 1 Slides 2–12
 
 ---
 
-## Key Concepts
+## What is a Digital Circuit?
 
-### What is a Digital Circuit?
-A **digital circuit** is a network that processes discrete-valued variables (binary 0/1).
+A **digital circuit** is a network that processes **discrete-valued variables** (binary 0/1). Unlike analog circuits that handle continuous signals, digital circuits operate on two well-defined voltage levels.
 
-**Black-box view:**
-- **Input terminals** — signals from external system
-- **Output terminals** — signals to external system
-- **Functional specification** — relationship between inputs and outputs (e.g., `Y = A·B`)
-- **Timing specification** — delay between input change and output response
+### Black-Box View
 
-### Nodes
-| Type | Description |
-|------|-------------|
-| **Input** | A, B, C — receives from outside |
-| **Output** | Y, Z — sends to outside |
-| **Internal** | n1 — connects elements inside |
+Every digital circuit can be viewed as a black box with:
 
-### Combinational Logic
-- **Memoryless** — output depends **only** on current inputs
-- **Examples:** Adders, Multiplexers, Decoders, Encoders, Comparators
+| Component | Description |
+|-----------|-------------|
+| **Input Terminals** | Receive external signals (A, B, C, ...) |
+| **Output Terminals** | Drive external loads (Y, Z, ...) |
+| **Functional Specification** | Logical I/O relationship — Truth Table / Boolean Equation (e.g., `Y = A·B`) |
+| **Timing Specification** | Propagation delay (`t_pd`) — time between input change and output response |
 
-### Sequential Logic
-- **Has memory** — output depends on **current + previous** inputs
-- **Examples:** Registers, Counters, Flip-flops, Memory devices
+> **Key Insight:** Two circuits can have **identical functional specs** but **different timing specs**. Both compute `Y = A·B`, but one may be faster (lower `t_pd`) due to better layout, transistor sizing, or logic family.
 
 ---
 
-## Rules of Combinational Composition
-A circuit is combinational **iff**:
-1. Every circuit element is itself combinational
-2. Every node is either an input or connects to **exactly one** output terminal
-3. **No cyclic paths** — every path visits each node at most once
+## Nodes in a Circuit
 
-> **MCQ Pattern:** A circuit with a cyclic path and no register is **not combinational** (Q13, Unit 1 MCQs)
+| Type | Description | Example |
+|------|-------------|---------|
+| **Input** | Receives from outside | A, B, C |
+| **Output** | Sends to outside | Y, Z |
+| **Internal** | Connects elements inside | n₁ (output of first gate, input to second) |
+
+---
+
+## Combinational vs Sequential Logic
+
+| Property | Combinational Logic | Sequential Logic |
+|----------|---------------------|------------------|
+| **Memory** | None (Memoryless) | Yes — stores state |
+| **Output depends on** | Current inputs **only** | Current + **previous** inputs (state) |
+| **Feedback** | Forbidden | Required (via registers) |
+| **Examples** | Adder, MUX, Decoder, Encoder, Comparator | Register, Counter, Flip-flop, FSM, Memory |
+
+### Combinational Circuit Definition
+
+A circuit is **combinational** **iff** all three rules hold:
+
+1. **Element Rule:** Every circuit element is itself combinational
+2. **Node Rule:** Every node is either an input or connects to **exactly one** output terminal (no shorted outputs)
+3. **Acyclic Rule:** **No cyclic paths** (feedback loops) — every path visits each node at most once
+
+> **MCQ Trap:** A circuit with a cyclic path and **no register** is **NOT combinational** (it's either sequential or unstable/astable).
 
 ---
 
 ## Propagation Delay
-- Elements in **parallel**: delay = `max(delay1, delay2)`
-- Elements in **series**: delay = `delay1 + delay2`
 
-**Example:** E1=5ns, E2=8ns (parallel), E3=4ns (after both) → `max(5,8) + 4 = 12ns`
+### Key Formulas
+
+```
+Elements in PARALLEL:  delay = max(delay₁, delay₂, ...)
+Elements in SERIES:    delay = delay₁ + delay₂ + ...
+```
+
+### Worked Example
+
+```
+E1 = 5 ns (parallel)     E2 = 8 ns (parallel)
+              ↓
+         E3 = 4 ns (series after both)
+         
+Total delay = max(5, 8) + 4 = 8 + 4 = 12 ns
+```
+
+### Timing Diagram
+```
+A ────────┐
+          ├── E1 (5ns) ──┐
+B ────────┤              ├── max(5,8)=8ns ──┐
+          ├── E2 (8ns) ──┘                  ├── E3 (4ns) ── Y
+C ────────┘                                     (12ns total)
+```
+
+---
+
+## Voltage Thresholds & Noise Margins (Ch. 1)
+
+For a 1.8V system:
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| **V_OH** | ≥ 1.35V | Output HIGH min voltage |
+| **V_OL** | ≤ 0.45V | Output LOW max voltage |
+| **V_IH** | ≥ 1.26V | Input recognized as HIGH |
+| **V_IL** | ≤ 0.54V | Input recognized as LOW |
+| **NM_H** | V_OH − V_IH = 0.09V | HIGH noise margin |
+| **NM_L** | V_IL − V_OL = 0.09V | LOW noise margin |
+
+**Forbidden Zone:** 0.54V < V < 1.26V → undefined behavior
 
 ---
 
@@ -55,9 +106,10 @@ A circuit is combinational **iff**:
 | Question | Answer |
 |----------|--------|
 | What are the two specifications of a digital circuit? | Functional + Timing |
-| Combinational vs Sequential difference? | Memoryless vs Has memory |
+| Combinational vs Sequential difference? | Memoryless vs Has memory/state |
 | When is a circuit NOT combinational? | Cyclic path exists without register |
 | Worst-case delay for parallel then series? | `max(parallel) + series` |
+| What are the three combinational rules? | 1) All elements combinational 2) Each node driven by one output 3) No cyclic paths |
 
 ---
 

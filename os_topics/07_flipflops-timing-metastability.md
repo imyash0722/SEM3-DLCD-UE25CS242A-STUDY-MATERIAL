@@ -1,12 +1,13 @@
 # 07. Flip-Flops — D FF, Master-Slave, Timing, Metastability
 
-> **Source:** Unit 1 Slides 187–210, 360–420 | Textbook: Harris & Harris Ch. 3
+> **Source:** Harris & Harris Ch. 3, Unit 1 Slides 187–210, 360–420
 
 ---
 
 ## D Flip-Flop (Positive-Edge Triggered)
 
 ### Master-Slave Construction
+
 ```
 D ──┐                    ┌── Q
     │  Master Latch      │
@@ -15,11 +16,13 @@ CLK─┤ (CLK)              │
 CLK'┤ (CLK')             │
     └────────────────────┘
 ```
+
 - **Master:** Transparent when CLK=0 (samples D)
 - **Slave:** Transparent when CLK=1 (outputs master's value)
 - **Result:** Q changes only at **rising edge** (0→1)
 
 ### Symbol
+
 ```
      D ──┐
          │▷
@@ -45,6 +48,7 @@ CLK'┤ (CLK')             │
 ## Setup & Hold Constraints
 
 ### Setup Constraint (Max Frequency)
+
 ```
 T_c ≥ tₚcq + tₚd,comb + t_setup
 f_max = 1 / T_c,min
@@ -54,15 +58,18 @@ f_max = 1 / T_c,min
 → T_c,min = 5.0ns → **f_max = 200 MHz** (Q53)
 
 ### Hold Constraint (Min Delay)
+
 ```
 t_ccq + t_cd ≥ t_hold
 ```
+
 - **Violation:** New data races through too fast, corrupts capture
 - **Fix:** Add buffers (increase contamination delay)
 
 ---
 
 ## Metastability
+
 - **Cause:** D changes within setup-hold aperture
 - **Effect:** Q hovers between 0/1, resolves unpredictably
 - **MTBF:** Mean Time Between Failures (exponential with clock period)
@@ -71,12 +78,14 @@ t_ccq + t_cd ≥ t_hold
 ---
 
 ## Enabled Flip-Flop (No Clock Gating!)
+
 ```
      D ──┐
          │ MUX ──── D_FF
     EN ──┤     (EN'·Q)
          └───────────┘
 ```
+
 - **Clock always runs** — avoids skew/glitches
 - **EN=1:** Load D | **EN=0:** Recirculate Q (hold)
 
@@ -101,6 +110,7 @@ t_ccq + t_cd ≥ t_hold
 ---
 
 ## Ring Oscillator (Review)
+
 - N inverters in loop (N odd)
 - **Period:** T = 2·N·tₚd
 - **Frequency:** f = 1/(2·N·tₚd)

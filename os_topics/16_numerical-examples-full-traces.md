@@ -27,6 +27,8 @@ Step 4: Result
 F = bc + ac'
 ```
 
+---
+
 ### Example 2: 3-Var `F = Σ(0, 2, 3, 4, 6, 7)`
 ```
 BC
@@ -45,6 +47,8 @@ All 1s covered!
 
 Result: F = a + c  (or a + b'c + bc')
 ```
+
+---
 
 ### Example 3: 4-Var with Don't-Cares `F = Σ(0,1,4,5,6) + d(7)`
 ```

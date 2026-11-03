@@ -1,6 +1,6 @@
 # 11. ALU, Comparators, Shifters & Multipliers
 
-> **Source:** Unit 2 Slides 88–103 | Textbook: Harris & Harris Ch. 5
+> **Source:** Harris & Harris Ch. 5, Unit 2 Slides 88–103
 
 ---
 

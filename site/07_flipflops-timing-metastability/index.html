@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../18_sequential-building-blocks/" class="md-tabs__link">
+        <a href="../18_sequential-building-blocks.md" class="md-tabs__link">
           
   
   Unit 3: Computer Architecture
@@ -270,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+        <a href="../14_lab-verilog-patterns.md" class="md-tabs__link">
           
   
   Lab & Practice
@@ -1100,7 +1100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../18_sequential-building-blocks/" class="md-nav__link">
+      <a href="../18_sequential-building-blocks.md" class="md-nav__link">
         
   
   
@@ -1127,7 +1127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../19_computer-architecture-intro/" class="md-nav__link">
+      <a href="../19_computer-architecture-intro.md" class="md-nav__link">
         
   
   
@@ -1154,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../20_assembly-language/" class="md-nav__link">
+      <a href="../20_assembly-language.md" class="md-nav__link">
         
   
   
@@ -1181,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../21_machine-language/" class="md-nav__link">
+      <a href="../21_machine-language.md" class="md-nav__link">
         
   
   
@@ -1208,7 +1208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../22_addressing-modes/" class="md-nav__link">
+      <a href="../22_addressing-modes.md" class="md-nav__link">
         
   
   
@@ -1235,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../23_compiling-assembling-loading/" class="md-nav__link">
+      <a href="../23_compiling-assembling-loading.md" class="md-nav__link">
         
   
   
@@ -1262,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../24_parallelism/" class="md-nav__link">
+      <a href="../24_parallelism.md" class="md-nav__link">
         
   
   
@@ -1289,7 +1289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../25_classwork-problems/" class="md-nav__link">
+      <a href="../25_classwork-problems.md" class="md-nav__link">
         
   
   
@@ -1316,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../26_unit3-mcq-practice/" class="md-nav__link">
+      <a href="../26_unit3-mcq-practice.md" class="md-nav__link">
         
   
   
@@ -1404,7 +1404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+      <a href="../14_lab-verilog-patterns.md" class="md-nav__link">
         
   
   
@@ -1431,7 +1431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+      <a href="../15_mcq-practice-comprehensive.md" class="md-nav__link">
         
   
   
@@ -1458,7 +1458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+      <a href="../16_numerical-examples-full-traces.md" class="md-nav__link">
         
   
   
@@ -1485,7 +1485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+      <a href="../17_exam-strategy-quick-ref.md" class="md-nav__link">
         
   
   
@@ -1749,21 +1749,23 @@
 
 <h1 id="07-flip-flops-d-ff-master-slave-timing-metastability">07. Flip-Flops — D FF, Master-Slave, Timing, Metastability<a class="headerlink" href="#07-flip-flops-d-ff-master-slave-timing-metastability" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Source:</strong> Unit 1 Slides 187–210, 360–420 | Textbook: Harris &amp; Harris Ch. 3</p>
+<p><strong>Source:</strong> Harris &amp; Harris Ch. 3, Unit 1 Slides 187–210, 360–420</p>
 </blockquote>
 <hr />
 <h2 id="d-flip-flop-positive-edge-triggered">D Flip-Flop (Positive-Edge Triggered)<a class="headerlink" href="#d-flip-flop-positive-edge-triggered" title="Permanent link">&para;</a></h2>
 <h3 id="master-slave-construction">Master-Slave Construction<a class="headerlink" href="#master-slave-construction" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>D ──┐                    ┌── Q
+<div class="highlight"><pre><span></span><code>D ──┐                    ┌── Q
     │  Master Latch      │
 CLK─┤ (CLK)              │
     │  Slave Latch       │
 CLK'┤ (CLK')             │
     └────────────────────┘
 </code></pre></div>
-- <strong>Master:</strong> Transparent when CLK=0 (samples D)
-- <strong>Slave:</strong> Transparent when CLK=1 (outputs master's value)
-- <strong>Result:</strong> Q changes only at <strong>rising edge</strong> (0→1)</p>
+<ul>
+<li><strong>Master:</strong> Transparent when CLK=0 (samples D)</li>
+<li><strong>Slave:</strong> Transparent when CLK=1 (outputs master's value)</li>
+<li><strong>Result:</strong> Q changes only at <strong>rising edge</strong> (0→1)</li>
+</ul>
 <h3 id="symbol">Symbol<a class="headerlink" href="#symbol" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>     D ──┐
          │▷
@@ -1818,10 +1820,12 @@ f_max = 1 / T_c,min
 <p><strong>Example:</strong> tₚcq=1.0ns, tₚd=3.5ns, t_setup=0.5ns
 → T_c,min = 5.0ns → <strong>f_max = 200 MHz</strong> (Q53)</p>
 <h3 id="hold-constraint-min-delay">Hold Constraint (Min Delay)<a class="headerlink" href="#hold-constraint-min-delay" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>t_ccq + t_cd ≥ t_hold
+<div class="highlight"><pre><span></span><code>t_ccq + t_cd ≥ t_hold
 </code></pre></div>
-- <strong>Violation:</strong> New data races through too fast, corrupts capture
-- <strong>Fix:</strong> Add buffers (increase contamination delay)</p>
+<ul>
+<li><strong>Violation:</strong> New data races through too fast, corrupts capture</li>
+<li><strong>Fix:</strong> Add buffers (increase contamination delay)</li>
+</ul>
 <hr />
 <h2 id="metastability">Metastability<a class="headerlink" href="#metastability" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1832,13 +1836,15 @@ f_max = 1 / T_c,min
 </ul>
 <hr />
 <h2 id="enabled-flip-flop-no-clock-gating">Enabled Flip-Flop (No Clock Gating!)<a class="headerlink" href="#enabled-flip-flop-no-clock-gating" title="Permanent link">&para;</a></h2>
-<p><div class="highlight"><pre><span></span><code>     D ──┐
+<div class="highlight"><pre><span></span><code>     D ──┐
          │ MUX ──── D_FF
     EN ──┤     (EN'·Q)
          └───────────┘
 </code></pre></div>
-- <strong>Clock always runs</strong> — avoids skew/glitches
-- <strong>EN=1:</strong> Load D | <strong>EN=0:</strong> Recirculate Q (hold)</p>
+<ul>
+<li><strong>Clock always runs</strong> — avoids skew/glitches</li>
+<li><strong>EN=1:</strong> Load D | <strong>EN=0:</strong> Recirculate Q (hold)</li>
+</ul>
 <hr />
 <h2 id="resettable-flip-flop">Resettable Flip-Flop<a class="headerlink" href="#resettable-flip-flop" title="Permanent link">&para;</a></h2>
 <table>

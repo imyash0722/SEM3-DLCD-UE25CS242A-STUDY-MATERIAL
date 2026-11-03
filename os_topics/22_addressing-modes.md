@@ -55,7 +55,7 @@ add $s0, $t2, $t3
 
 **Definition:** One operand is a 16-bit constant encoded directly in the instruction.
 
-**Used By:** I-type instructions (addi, andi, ori, xori, lui, addiu, slti)
+**Used By:** I-type instructions (addi, ori, andi, lui, addiu, slti)
 
 **Format:** `op rt, rs, imm`
 
@@ -89,15 +89,15 @@ lui  $s0, 0x6D5E         # $s0 = 0x6D5E0000
 
 **Effective Address Calculation:**
 ```
-Effective Address = Base Register + Sign-Extended Offset
+Effective Address = Base Register + Sign-Extended 16-bit Offset
 ```
 
 **Format:** `op rt, offset(rs)` — reads as "load/store rt from/to memory at rs+offset"
 
 **Examples:**
 ```
-lw  $s4, 72($0)     # EA = $0 + 72 = 72. Load word from addr 72 to $s4
-sw  $t2, -25($t1)   # EA = $t1 - 25. Store $t2 to memory 25 bytes before $t1
+lw  $s4, 72($0)     # EA = $0 + 72 = 72; word at addr 72 loaded into $s4
+sw  $t2, -25($t1)   # EA = $t1 - 25; contents of $t2 stored there
 lw  $t1, 4($s0)     # Load array[1] (int array: $s0=base, offset=4)
 ```
 
@@ -106,7 +106,7 @@ lw  $t1, 4($s0)     # Load array[1] (int array: $s0=base, offset=4)
 - Can be positive or negative
 - Allows access before/after base address
 
-**Applications:** Arrays, stack variables, structures, dynamic memory
+**Applications:** Arrays, stack frames, structures, dynamic memory
 
 **Key Point:** Base addressing enables efficient memory access with constant offsets known at assembly time.
 
@@ -154,7 +154,7 @@ Machine: beq $t0, $0, 3
 
 **Jump Target Address Formula:**
 ```
-JTA = { PC+4[31:28], Address[25:0], 00 }
+JTA = { (PC+4)[31:28], Address[25:0], 00 }
 ```
 
 **Construction Steps:**
@@ -182,7 +182,7 @@ Machine: 0x08100028
 - Instruction addresses are **word-aligned** (last 2 bits always `00`)
 - These bits omitted from instruction, restored by processor
 
-**Limitation:** Can only jump within same **256 MB region** (upper 4 bits of PC+4 fixed).
+**Limitation:** Can only jump within same **256 MB region** (same upper 4 bits of PC+4).
 
 ---
 

@@ -8,9 +8,9 @@
 
 | Feature | Von Neumann | Harvard |
 |---------|-------------|---------|
-| **Memory** | Unified (Code + Data) | Separate Instruction/Data |
+| **Memory** | Unified (Code+Data) | Separate Instruction/Data |
 | **Bus** | Single shared bus | Separate I/D buses |
-| **Bottleneck** | Yes (Von Neumann bottleneck) | No |
+| **Bottleneck** | Yes (von Neumann bottleneck) | No |
 | **Example** | Most general CPUs | DSPs, Microcontrollers |
 
 ---
@@ -82,7 +82,7 @@ Execution begins
 - `$gp + 0xFFFF8000 = 0x10008000 + 0xFFFF8000 = 0x10000000` (address of `f`)
 
 ### Loader Steps
-1. Read text segment from disk → memory text segment
+1. Read text segment from disk → memory text segment (0x00400000)
 2. Set `$gp = 0x10008000` (middle of global data)
 3. Set `$sp = 0x7FFFFFFC` (top of stack)
 4. `jal 0x00400000` to start program

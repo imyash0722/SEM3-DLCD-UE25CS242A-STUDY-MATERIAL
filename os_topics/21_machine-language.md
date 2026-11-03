@@ -27,7 +27,7 @@ All MIPS instructions are **32 bits (4 bytes)**. Word addresses divisible by 4.
 ```
 - rs = source register (base for load/store)
 - rt = destination (load) or source (store)
-- imm = 16-bit immediate (sign-extended for arithmetic/load/store, zero-extended for logical)
+- imm = 16-bit immediate (sign-extended for arithmetic/load/store/branch, zero-extended for logical)
 
 ### J-Type Format
 ```
@@ -119,15 +119,15 @@ imm = 1111111111110001₂ = -15 (sign-extended)
 Result: addi $s7, $s1, -15
 ```
 
-### Worked Example: `0x02954020`
+### Worked Example: `0x02F34022`
 ```
-Binary: 000000 10100 10101 01000 00000 100000
+Binary: 000000 10111 10011 01000 00000 100010
 op = 0 → R-type
-funct = 100000₂ = 32 → add
-rs = 10100₂ = 20 → $s4
-rt = 10101₂ = 21 → $s5
+funct = 100010₂ = 34 → sub
+rs = 10111₂ = 23 → $s7
+rt = 10011₂ = 19 → $s3
 rd = 01000₂ = 8 → $t0
-Result: add $t0, $s4, $s5
+Result: sub $t0, $s7, $s3
 ```
 
 ---
@@ -188,12 +188,12 @@ Hex conversion:  4 bits → 1 hex digit
 
 ## MCQ Patterns
 
-1. **Opcode identification** — op=0 → R-type (check funct); op=35 → lw; op=43 → sw; op=4 → beq; op=5 → bne
+1. **Opcode identification** — op=0 → R-type (check funct); op=35 → lw; op=43 → sw; op=4 → beq; op=5 → bne; op=2 → j; op=3 → jal
 2. **R-type funct codes** — add=32, sub=34, and=36, or=37, slt=42, sll=0, jr=8
 3. **I-type opcodes** — addi=8, andi=12, ori=13, lw=35, sw=43, beq=4, bne=5, lui=15
 4. **J-type opcodes** — j=2, jal=3
 5. **Immediate sign** — arithmetic/load/store/branch = sign-extend; logical = zero-extend
 6. **Register mapping** — know $t0=8, $s0=16, $a0=4, $v0=2, $ra=31, $sp=29
-6. **Machine code → assembly** — extract fields, interpret by format
-7. **Jump address calc** — shift 26-bit addr left 2, combine with PC+4[31:28]
+7. **Machine code → assembly** — extract fields, interpret by format
+8. **Jump address calc** — shift 26-bit addr left 2, combine with PC+4[31:28]
 8. **Branch offset** — offset = (target - (PC+4)) / 4

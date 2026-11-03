@@ -24,11 +24,22 @@
 12. [12. Number Systems — Fixed-Point & Signed Representations](12_number-systems-fixedpoint.md)
 13. [13. Floating-Point — IEEE 754 Single/Double Precision](13_floating-point-ieee754.md)
 
-### Practice & Reference
-14. [14. Lab Code Patterns — Verilog Examples](14_lab-verilog-patterns.md)
-15. [15. Comprehensive MCQ Practice — Unit 1 & 2](15_mcq-practice-comprehensive.md)
-16. [16. Numerical Examples — Full Traces & Worked Solutions](16_numerical-examples-full-traces.md)
-17. [17. Exam Strategy & Quick Reference Card](17_exam-strategy-quick-ref.md)
+### Unit 3: Computer Architecture
+14. [14. Sequential Building Blocks — Registers, Memory, Counters](14_sequential-building-blocks.md)
+15. [15. Computer Architecture Intro — Von Neumann, Memory Map, Performance](15_computer-architecture-intro.md)
+16. [16. Assembly Language — MIPS Instructions, Registers, Functions](16_assembly-language.md)
+17. [17. Machine Language — Instruction Encoding, Decoding, Stored Program](17_machine-language.md)
+18. [18. Addressing Modes — Register, Immediate, Base, PC-Relative, Pseudo-Direct](18_addressing-modes.md)
+19. [19. Compiling, Assembling, Linking & Loading — Program Translation Pipeline](19_compiling-assembling-loading.md)
+20. [20. Parallelism — Spatial vs Temporal, Pipelining, Hazards, Performance](20_parallelism.md)
+21. [21. Classwork Problems — Worked Exercises (Counters, ROM, Memory, FSM)](21_classwork-problems.md)
+22. [22. Unit 3 MCQ Practice — Architecture, Assembly, Memory, Parallelism](22_unit3-mcq-practice.md)
+
+### Lab & Practice
+23. [23. Lab Code Patterns — Verilog Examples](23_lab-verilog-patterns.md)
+24. [24. Comprehensive MCQ Practice — Unit 1 & 2](24_mcq-practice-comprehensive.md)
+25. [25. Numerical Examples — Full Traces & Worked Solutions](25_numerical-examples-full-traces.md)
+26. [26. Exam Strategy & Quick Reference Card](26_exam-strategy-quick-ref.md)
 
 ---
 
@@ -65,6 +76,17 @@
 - [ ] **FP Special Values** — ±0, denorm, ±∞, NaN
 - [ ] **FP Addition** — 8 steps: extract→prepend 1→compare→shift→add→normalize→round→assemble
 
+### Unit 3: Computer Architecture
+- [ ] **Sequential Building Blocks** — Registers, register file, SRAM/DRAM, counters
+- [ ] **Architecture Intro** — Von Neumann vs Harvard, MIPS memory map, performance metrics
+- [ ] **Assembly Language** — MIPS registers, instruction formats, arithmetic/logical/shift/load/store/branch/jump
+- [ ] **Machine Language** — R/I/J-type encoding, decoding, stored program concept
+- [ ] **Addressing Modes** — Register, Immediate, Base, PC-Relative, Pseudo-Direct (formulas, examples)
+- [ ] **Compiling/Assembling/Loading** — 2-pass assembler, linker, loader, MIPS memory map
+- [ ] **Parallelism** — Spatial vs temporal, pipelining, hazards, Amdahl's Law, cookie analogy
+- [ ] **Classwork Problems** — Counters, ROM, memory endianness, FSM derivation
+- [ ] **MCQ Practice** — 60+ Unit 3 MCQs with explanations
+
 ---
 
 ## 🎯 High-Yield MCQ Patterns
@@ -79,6 +101,11 @@
 | **Number Systems** | 2's comp range=[-2ⁿ⁻¹,2ⁿ⁻¹-1], negate=invert+1, FP bias=127/1023 |
 | **FP** | +∞=E=255/F=0, NaN=E=255/F≠0, denorm=E=0/F≠0, add step 2=prepend 1 |
 | **Verilog** | Seq=non-blocking (≤), Comb=blocking (=), default in case, no clock gating |
+| **Architecture** | Von Neumann bottleneck, MIPS memory map segments, $gp vs $sp, Amdahl's Law |
+| **Assembly** | Register conventions, branch vs jump, immediate extension, function calls, stack |
+| **Addressing** | Register=R-type, Immediate=constant, Base=lw/sw, PC-Rel=beq/bne, Pseudo-Direct=j/jal |
+| **Pipeline** | Clock=slowest stage, TP=1/Tc, Latency=N×Tc, Hazards: Data=forwarding, Control=prediction |
+| **MCU** | op=0→R-type, op=35→lw, op=43→sw, op=4→beq, op=2→j; funct: add=32, sub=34, jr=8 |
 
 ---
 
@@ -95,6 +122,10 @@
 9. **FP Addition** — Full 8-step trace
 10. **State Encoding** — Binary vs One-Hot FF count
 11. **Divide-by-N** — f_out = f_in/N
+12. **Pipeline Timing** — Non-pipelined vs 2/3-stage with given stage delays
+13. **Cookie/Parallelism** — Spatial vs Temporal throughput calculations
+14. **Endianness** — Byte ordering, detection
+15. **Branch Offset** — (target - (PC+4)) / 4
 
 ---
 
@@ -112,14 +143,26 @@
 3. Topic 10: Adders (delays, G/P) — **CRITICAL**
 4. Topic 11: ALU, Comparator, Shifter, Multiplier
 
-### Week 3: Number Systems & Practice
+### Week 3: Unit 2 Number Systems & Unit 3 Intro
 1. Topics 12–13: Fixed-point, Floating-point — **CRITICAL**
-2. Topic 14: Verilog patterns
-3. Topic 15: MCQ practice (all 155+ questions)
-4. Topic 16: Numerical examples with full traces
+2. Topic 14: Sequential Building Blocks
+3. Topic 15: Architecture Intro & Memory Map
 
-### Week 4: Final Review
-1. Topic 17: Exam strategy & quick reference card
+### Week 4: Unit 3 Core
+1. Topic 16: Assembly Language (MIPS)
+2. Topic 17: Machine Language & Addressing Modes
+3. Topic 18: Compiling/Assembling/Loading
+4. Topic 19: Parallelism & Pipelining
+
+### Week 5: Unit 3 Practice & Review
+1. Topic 20: Classwork Problems
+2. Topic 21: Unit 3 MCQ Practice
+3. Topic 22: Lab Verilog Patterns
+4. Topic 23: Comprehensive MCQ Practice (Units 1 & 2)
+5. Topic 24: Numerical Examples with full traces
+
+### Week 6: Final Review
+1. Topic 25: Exam Strategy & Quick Reference Card
 2. Re-do all MCQs, focus on wrong answers
 3. Practice numerical problems under time pressure
 4. Memorize quick reference card
@@ -156,9 +199,9 @@ Mult:        N+M bits
 ## 📚 Source Materials Referenced
 
 - **Lecture Slides:** Unit 1 (Slides 2–210), Unit 2 (Slides 2–138), Unit 3 (Slides 3.1–3.17)
-- **Textbook:** Harris & Harris, *Digital Design and Computer Architecture* (Ch. 1–5)
+- **Textbook:** Harris & Harris, *Digital Design and Computer Architecture* (Ch. 1–7)
 - **Question Banks:** Unit 1 (110 Qs), Unit 2 (32 Qs) — deduplicated
-- **MCQs:** Unit 1 (60 Qs), Unit 2 (135 Qs) — with explanations
+- **MCQs:** Unit 1 (60 Qs), Unit 2 (135 Qs), Unit 3 (60 Qs) — with explanations
 - **Lab:** Week 8 — Prefix Adder, Comparator Verilog
 
 ---
@@ -175,4 +218,4 @@ Mult:        N+M bits
 ---
 
 > **Good luck on your exam!** 🎓  
-> *Consistent practice with K-maps, timing analysis, FSM design, and number system conversions is the key to success.*
+> *Consistent practice with K-maps, timing analysis, FSM design, number system conversions, MIPS assembly, and pipelining is the key to success.*

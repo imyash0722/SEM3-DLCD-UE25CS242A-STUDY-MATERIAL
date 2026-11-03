@@ -93,9 +93,9 @@ nor $t0, $t0, $zero  # $t0 = ~($s1 | 0x00FF)
 
 | Instruction | Type | Operation | Fill Bits | Use |
 |-------------|------|-----------|-----------|-----|
-| `sll rd, rt, shamt` | R | rd = rt << shamt | 0s on right | Multiply by 2ⁿ |
+| `sll rd, rt, shamt` | R | rd = rt << shamt | 0s on right | Multiply by 2ᴺ |
 | `srl rd, rt, shamt` | R | rd = rt >> shamt | 0s on left | Unsigned / bit extract |
-| `sra rd, rt, shamt` | R | rd = rt >>> shamt | **Sign bit** | Signed divide by 2ⁿ |
+| `sra rd, rt, shamt` | R | rd = rt >>> shamt | **Sign bit** | Signed divide by 2ᴺ |
 
 **Variable Shifts** (amount in lower 5 bits of rs):
 | Instruction | Type | Syntax | Notes |
@@ -133,12 +133,7 @@ ori  $s0, $s0, 0x4F3C  # $s0 = 0x6D5E4F3C
 | `mfhi rd` | rd = HI | Move from HI |
 | `mflo rd` | rd = LO | Move from LO |
 
-**Example:** `$s0=20, $s1=6`
-```
-div  $s0, $s1
-mflo $t0     # $t0 = 3 (quotient)
-mfhi $t1     # $t1 = 2 (remainder)
-```
+**Example:** `$s0=20, $s1=6` → div gives mflo $t0 = 3 (quotient) and mfhi $t1 = 2 (remainder).
 
 ---
 
@@ -275,12 +270,12 @@ done:
 
 ## Function Calls
 
-### Caller/Caller Convention
+### Caller/Callee Convention
 | Category | Registers | Responsibility |
 |----------|-----------|----------------|
 | **Arguments** | $a0–$a3 | Caller places args |
 | **Return** | $v0–$v1 | Callee places result |
-| **Preserved** | $s0–$s7, $sp, $fp, $ra | Callee saves if used |
+| **Preserved** | $s0–$s7, $ra, $sp | Callee saves if used |
 | **Non-preserved** | $t0–$t9, $a0–$a3, $v0–$v1 | Caller saves if needed |
 
 ### Call Sequence
@@ -329,8 +324,7 @@ factorial:
   addi $v0, $0, 1    # base case: return 1
   addi $sp, $sp, 8
   jr   $ra
-else:
-  addi $a0, $a0, -1  # n-1
+else: addi $a0, $a0, -1  # n-1
   jal  factorial     # recursive call
   lw   $ra, 0($sp)
   lw   $a0, 4($sp)   # restore n
@@ -367,5 +361,5 @@ Stack:      $sp grows DOWN (subtract to allocate)
 6. **Stack** — grows downward (subtract), $sp points to top
 7. **Array indexing** — int: base+4i, char: base+i
 8. **Multiplication** — mult→HI:LO (64-bit), mul→32-bit result
-9. **Division** — div→LO=quotient, HI=remainder
-10. **Pseudoinstructions** — lui+ori for 32-bit constants
+8. **Division** — div→LO=quotient, HI=remainder
+9. **Pseudoinstructions** — lui+ori for 32-bit constants

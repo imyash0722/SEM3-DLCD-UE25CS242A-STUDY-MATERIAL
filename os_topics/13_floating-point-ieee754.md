@@ -1,6 +1,6 @@
 # 13. Floating-Point — IEEE 754 Single/Double Precision
 
-> **Source:** Unit 2 Slides 120–138 | Textbook: Harris & Harris Ch. 1
+> **Source:** Harris & Harris Ch. 1, Unit 2 Slides 120–138
 
 ---
 

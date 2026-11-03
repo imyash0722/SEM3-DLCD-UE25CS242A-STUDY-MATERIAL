@@ -1,6 +1,6 @@
 # 08. Finite State Machines — Moore vs Mealy, Design Process
 
-> **Source:** Unit 2 Slides 2–64 | Textbook: Harris & Harris Ch. 3
+> **Source:** Harris & Harris Ch. 3, Unit 2 Slides 2–64
 
 ---
 

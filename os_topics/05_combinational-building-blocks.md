@@ -1,6 +1,6 @@
 # 05. Combinational Building Blocks — Mux, Decoder, Encoder
 
-> **Source:** Unit 1 Slides 124–160 | Textbook: Harris & Harris Ch. 2
+> **Source:** Harris & Harris Ch. 2, Unit 1 Slides 124–160
 
 ---
 
@@ -8,38 +8,52 @@
 
 ### 2:1 MUX
 - **Select (S):** 1 bit → chooses D₀ (S=0) or D₁ (S=1)
-- **Equation:** `Y = S'·D₀ + S·D₁`
-- **Implementations:**
-  1. **Logic gates** (AND-OR)
-  2. **Tristate buffers** — only one enabled at a time (outputs Z = high-Z)
+- **Equation:** `Y = S̄·D₀ + S·D₁`
+
+**Two Implementations:**
+1. **Logic Gates** (AND-OR): 2 AND, 1 OR, 1 NOT
+2. **Tristate Buffers** — only one enabled at a time (outputs Z = high-Z)
 
 ### 4:1 MUX
 - **Select:** S₁, S₀ (2 bits)
-- **Truth table:**
-  | S₁ | S₀ | Y |
-  |----|----|---|
-  | 0  | 0  | D₀ |
-  | 0  | 1  | D₁ |
-  | 1  | 0  | D₂ |
-  | 1  | 1  | D₃ |
+- **Truth Table:**
+
+| S₁ | S₀ | Y |
+|----|----|---|
+| 0  | 0  | D₀ |
+| 0  | 1  | D₁ |
+| 1  | 0  | D₂ |
+| 1  | 1  | D₃ |
 
 ### MUX as Lookup Table (Implementing Logic)
-- Connect select lines to inputs
-- Connect data inputs to 0/1 per truth table row
+
+**Full Size (2ᴺ:1):**
+- Connect select lines to N inputs
+- Connect data inputs to truth table outputs (0/1)
 
 **Example: AND gate with 4:1 MUX (A,B as selects)**
+
 | A | B | Y | D₀ | D₁ | D₂ | D₃ |
 |---|---|---|----|----|----|----|
 | 0 | 0 | 0 | 0  |    |    |    |
 | 0 | 1 | 0 |    | 0  |    |    |
 | 1 | 0 | 0 |    |    | 0  |    |
 | 1 | 1 | 1 |    |    |    | 1  |
+
 → `D₀=0, D₁=0, D₂=0, D₃=1`
 
-**Reducing MUX size (Shannon expansion):**
-- Use one variable as data input instead of select
-- `N-input function` → `2^{N-1}:1 MUX`
-- Example: 3-var AND with 2:1 MUX (A=select, B=data)
+---
+
+## Reduced MUX Size (Shannon Expansion)
+
+Use one variable as **data input** instead of select:
+- **N-input function** → **2ᴺ⁻¹:1 MUX**
+
+**Example: 3-var AND with 2:1 MUX**
+- A = select, B = data input
+- `F(0,B) = 0` → I₀ = 0
+- `F(1,B) = B` → I₁ = B
+- Circuit: S=A, I₀=0, I₁=B
 
 ---
 
@@ -50,24 +64,25 @@
 | 4:1    | 3                | 2+1     |
 | 8:1    | 7                | 4+2+1   |
 | 16:1   | 15               | 8+4+2+1 |
-| 2ⁿ:1   | 2ⁿ - 1           | Σ 2ⁱ    |
+| 2ᴺ:1   | 2ᴺ - 1           | Σ 2ⁱ    |
 
 | Target | Using 4:1 MUXes | Formula |
 |--------|------------------|---------|
-| 8:1    | 2 + 1 = 3        | 2¹ + 2⁰ |
-| 16:1   | 4 + 1 = 5        | 4¹ + 4⁰ |
-| 64:1   | 16 + 4 + 1 = 21  | 4²+4¹+4⁰ |
+| 8:1    | 3                | 2¹ + 2⁰ |
+| 16:1   | 5                | 4¹ + 4⁰ |
+| 64:1   | 21               | 4²+4¹+4⁰ |
 
 ---
 
-## Decoder
+## Decoder (N:2ᴺ)
 
-### N:2ᴺ Decoder
+### Operation
 - **N inputs** → **2ᴺ outputs** (one-hot)
 - Exactly **one output HIGH** per input combination
-- **Outputs = minterms** of inputs
+- Outputs = **minterms** of inputs
 
 ### 2:4 Decoder
+
 | A₁ | A₀ | Y₀ | Y₁ | Y₂ | Y₃ |
 |----|----|----|----|----|----|
 | 0  | 0  | 1  | 0  | 0  | 0  |
@@ -85,6 +100,7 @@
 ## Encoder
 
 ### Types
+
 | Encoder | Inputs | Outputs | Notes |
 |---------|--------|---------|-------|
 | 4:2     | 4      | 2       | One-hot input |
@@ -93,6 +109,7 @@
 | **Priority** | 2ᴺ | N       | Highest priority wins |
 
 ### Priority Encoder (4:2)
+
 | Y₃ | Y₂ | Y₁ | Y₀ | A₁ | A₀ | V |
 |----|----|----|----|----|----|---|
 | 0  | 0  | 0  | 1  | 0  | 0  | 1 |
@@ -111,7 +128,7 @@
 | Question | Answer |
 |----------|--------|
 | 4:1 MUX select lines? | 2 (log₂4) |
-| 2:1 MUX equation? | `Y = S'D₀ + SD₁` |
+| 2:1 MUX equation? | `Y = S̄D₀ + SD₁` |
 | Decoder outputs? | One-hot (exactly one HIGH) |
 | 3:8 decoder for 3-var function? | Connect minterm outputs to OR |
 | Priority encoder purpose? | Resolve multiple active inputs |
@@ -121,12 +138,12 @@
 ## Exam-Relevant MCQ Patterns
 
 1. **MUX select lines** — log₂N (Q5, Q29)
-2. **2:1 MUX equation** — `S'D₀ + SD₁` (Q10)
+2. **2:1 MUX equation** — `S̄D₀ + SD₁` (Q10)
 3. **Decoder one-hot** — exactly one output HIGH (Q20, Q160)
 4. **Decoder + OR for logic** — N:2ᴺ decoder generates all minterms (Q38)
 5. **Tristate MUX** — 0, 1, Z states (Q23)
 6. **MUX as lookup** — data inputs = truth table outputs
-7. **Cascading formula** — 2ⁿ:1 needs 2ⁿ-1 two-to-one MUXes
+7. **Cascading formula** — 2ᴺ:1 needs 2ᴺ-1 two-to-one MUXes
 
 ---
 
@@ -134,7 +151,7 @@
 
 ```
 MUX: N inputs → log₂N select lines
-2:1 MUX: Y = S'D₀ + SD₁
+2:1 MUX: Y = S̄D₀ + SD₁
 Decoder: N inputs → 2ᴺ outputs (one-hot)
 N:2ᴺ Decoder + OR gate = any N-input function
 Priority Encoder: V=0 only when all inputs=0

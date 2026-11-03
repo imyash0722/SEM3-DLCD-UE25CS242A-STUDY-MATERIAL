@@ -1,6 +1,6 @@
 # 12. Number Systems — Fixed-Point & Signed Representations
 
-> **Source:** Unit 2 Slides 111–130 | Textbook: Harris & Harris Ch. 1
+> **Source:** Harris & Harris Ch. 1, Unit 2 Slides 111–130
 
 ---
 

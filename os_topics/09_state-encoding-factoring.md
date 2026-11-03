@@ -1,6 +1,6 @@
 # 09. State Encoding & Factoring State Machines
 
-> **Source:** Unit 2 Slides 24–54 | Textbook: Harris & Harris Ch. 3
+> **Source:** Harris & Harris Ch. 3, Unit 2 Slides 24–54
 
 ---
 
@@ -18,6 +18,7 @@
 ## Divide-by-3 Counter: Binary vs One-Hot
 
 ### Binary Encoding (2 FFs)
+
 | State | Code |
 |-------|------|
 | S0 | 00 |
@@ -28,6 +29,7 @@
 **Next-state logic:** More complex, multi-bit changes
 
 ### One-Hot Encoding (3 FFs)
+
 | State | Code |
 |-------|------|
 | S0 | 001 |
@@ -39,6 +41,7 @@
 ---
 
 ## Choosing Encoding
+
 - **Small FSMs / speed critical:** One-Hot
 - **Large FSMs / area critical:** Binary
 - **CAD tools** can optimize automatically
@@ -52,13 +55,17 @@
 Complex FSM → many states → hard to design/debug
 
 ### Solution: Decompose into Smaller Interacting FSMs
+
 ```
 Unfactored:        Factored:
   1 Large FSM    →   FSM_A + FSM_B
   N₁×N₂ states       N₁ + N₂ states
 ```
 
-### Traffic Light with Parade Mode
+---
+
+## Traffic Light with Parade Mode
+
 **Unfactored:** 8 states (S0-S3 normal, S4-S7 parade)
 - Two nearly identical halves
 - Complex, hard to modify

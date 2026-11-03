@@ -248,7 +248,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../18_sequential-building-blocks/" class="md-tabs__link">
+        <a href="../18_sequential-building-blocks.md" class="md-tabs__link">
           
   
   Unit 3: Computer Architecture
@@ -270,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../14_lab-verilog-patterns/" class="md-tabs__link">
+        <a href="../14_lab-verilog-patterns.md" class="md-tabs__link">
           
   
   Lab & Practice
@@ -500,6 +500,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#truth-table-mintermsmaxterms-3-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Truth Table → Minterms/Maxterms (3 Variables)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sum-of-products-sop-form" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -507,6 +518,45 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Sum-of-Products (SOP) Form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canonical-sop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Canonical SOP
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-sop-minimized" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Standard SOP (Minimized)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructing-sop-from-truth-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Constructing SOP from Truth Table
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -519,13 +569,80 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Product-of-Sums (POS) Form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canonical-pos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Canonical POS
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-pos-minimized" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Standard POS (Minimized)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructing-pos-from-truth-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Constructing POS from Truth Table
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#truth-table-boolean-formula" class="md-nav__link">
+  <a href="#sop-pos-conversion" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Truth Table → Boolean Formula
+        SOP ↔ POS Conversion
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SOP ↔ POS Conversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duality-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Duality Principle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ben-bitdiddle-picnic-example-from-textbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ben Bitdiddle Picnic Example (From Textbook)
       </span>
     </span>
   </a>
@@ -533,10 +650,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ben-bitdiddle-picnic-example" class="md-nav__link">
+  <a href="#mintermmaxterm-count" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Ben Bitdiddle Picnic Example
+        Minterm/Maxterm Count
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-shared-characteristics-mcq-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Finding Shared Characteristics (MCQ Pattern)
       </span>
     </span>
   </a>
@@ -1011,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../18_sequential-building-blocks/" class="md-nav__link">
+      <a href="../18_sequential-building-blocks.md" class="md-nav__link">
         
   
   
@@ -1038,7 +1166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../19_computer-architecture-intro/" class="md-nav__link">
+      <a href="../19_computer-architecture-intro.md" class="md-nav__link">
         
   
   
@@ -1065,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../20_assembly-language/" class="md-nav__link">
+      <a href="../20_assembly-language.md" class="md-nav__link">
         
   
   
@@ -1092,7 +1220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../21_machine-language/" class="md-nav__link">
+      <a href="../21_machine-language.md" class="md-nav__link">
         
   
   
@@ -1119,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../22_addressing-modes/" class="md-nav__link">
+      <a href="../22_addressing-modes.md" class="md-nav__link">
         
   
   
@@ -1146,7 +1274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../23_compiling-assembling-loading/" class="md-nav__link">
+      <a href="../23_compiling-assembling-loading.md" class="md-nav__link">
         
   
   
@@ -1173,7 +1301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../24_parallelism/" class="md-nav__link">
+      <a href="../24_parallelism.md" class="md-nav__link">
         
   
   
@@ -1200,7 +1328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../25_classwork-problems/" class="md-nav__link">
+      <a href="../25_classwork-problems.md" class="md-nav__link">
         
   
   
@@ -1227,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../26_unit3-mcq-practice/" class="md-nav__link">
+      <a href="../26_unit3-mcq-practice.md" class="md-nav__link">
         
   
   
@@ -1315,7 +1443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../14_lab-verilog-patterns/" class="md-nav__link">
+      <a href="../14_lab-verilog-patterns.md" class="md-nav__link">
         
   
   
@@ -1342,7 +1470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../15_mcq-practice-comprehensive/" class="md-nav__link">
+      <a href="../15_mcq-practice-comprehensive.md" class="md-nav__link">
         
   
   
@@ -1369,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../16_numerical-examples-full-traces/" class="md-nav__link">
+      <a href="../16_numerical-examples-full-traces.md" class="md-nav__link">
         
   
   
@@ -1396,7 +1524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../17_exam-strategy-quick-ref/" class="md-nav__link">
+      <a href="../17_exam-strategy-quick-ref.md" class="md-nav__link">
         
   
   
@@ -1476,6 +1604,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#truth-table-mintermsmaxterms-3-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Truth Table → Minterms/Maxterms (3 Variables)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sum-of-products-sop-form" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1483,6 +1622,45 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Sum-of-Products (SOP) Form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canonical-sop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Canonical SOP
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-sop-minimized" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Standard SOP (Minimized)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructing-sop-from-truth-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Constructing SOP from Truth Table
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1495,13 +1673,80 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Product-of-Sums (POS) Form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canonical-pos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Canonical POS
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standard-pos-minimized" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Standard POS (Minimized)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constructing-pos-from-truth-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Constructing POS from Truth Table
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#truth-table-boolean-formula" class="md-nav__link">
+  <a href="#sop-pos-conversion" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Truth Table → Boolean Formula
+        SOP ↔ POS Conversion
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SOP ↔ POS Conversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duality-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Duality Principle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ben-bitdiddle-picnic-example-from-textbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ben Bitdiddle Picnic Example (From Textbook)
       </span>
     </span>
   </a>
@@ -1509,10 +1754,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ben-bitdiddle-picnic-example" class="md-nav__link">
+  <a href="#mintermmaxterm-count" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Ben Bitdiddle Picnic Example
+        Minterm/Maxterm Count
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-shared-characteristics-mcq-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Finding Shared Characteristics (MCQ Pattern)
       </span>
     </span>
   </a>
@@ -1571,7 +1827,7 @@
 
 <h1 id="02-boolean-equations-minterms-maxterms-sop-pos-forms">02. Boolean Equations — Minterms, Maxterms, SOP &amp; POS Forms<a class="headerlink" href="#02-boolean-equations-minterms-maxterms-sop-pos-forms" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Source:</strong> Unit 1 Slides 13–42 | Textbook: Harris &amp; Harris Ch. 2</p>
+<p><strong>Source:</strong> Harris &amp; Harris Ch. 2, Unit 1 Slides 13–42</p>
 </blockquote>
 <hr />
 <h2 id="key-terminology">Key Terminology<a class="headerlink" href="#key-terminology" title="Permanent link">&para;</a></h2>
@@ -1586,48 +1842,33 @@
 <tbody>
 <tr>
 <td><strong>Literal</strong></td>
-<td>Variable or its complement</td>
-<td><code>A</code>, <code>A'</code>, <code>B</code>, <code>B'</code></td>
+<td>A variable or its complement</td>
+<td><code>A</code>, <code>Ā</code>, <code>B</code>, <code>B̄</code></td>
 </tr>
 <tr>
 <td><strong>Implicant</strong></td>
-<td>Product of literals</td>
-<td><code>AB</code>, <code>A'C</code>, <code>BC'</code></td>
+<td>Product of one or more literals</td>
+<td><code>AB</code>, <code>ĀC</code>, <code>BC̄</code></td>
 </tr>
 <tr>
-<td><strong>Minterm</strong></td>
-<td>Product with <strong>all</strong> input variables</td>
-<td><code>A'B'C'</code>, <code>ABC</code> (8 total for 3 vars)</td>
+<td><strong>Minterm (mᵢ)</strong></td>
+<td>Product containing <strong>ALL</strong> input variables (exactly once each)</td>
+<td><code>ĀB̄C̄</code>, <code>ABC</code> (8 total for 3 vars)</td>
 </tr>
 <tr>
-<td><strong>Maxterm</strong></td>
-<td>Sum with <strong>all</strong> input variables</td>
-<td><code>A+B+C</code>, <code>A'+B'+C'</code></td>
+<td><strong>Maxterm (Mᵢ)</strong></td>
+<td>Sum containing <strong>ALL</strong> input variables (exactly once each)</td>
+<td><code>A+B+C</code>, <code>Ā+B̄+C̄</code></td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>Minterm notation:</strong> <code>mᵢ</code> where <code>i</code> = decimal of binary input
-<strong>Maxterm notation:</strong> <code>Mᵢ</code> where <code>i</code> = decimal of binary input</p>
+<p><strong>Notation:</strong>
+- <strong>Minterm:</strong> <code>mᵢ</code> where <code>i</code> = decimal value of binary input combination
+- <strong>Maxterm:</strong> <code>Mᵢ</code> where <code>i</code> = decimal value of binary input combination</p>
 </blockquote>
 <hr />
-<h2 id="sum-of-products-sop-form">Sum-of-Products (SOP) Form<a class="headerlink" href="#sum-of-products-sop-form" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Canonical SOP:</strong> OR of all minterms where output = 1</li>
-<li><strong>Sigma notation:</strong> <code>F = Σ(m₁, m₃, m₅)</code> = <code>F = Σ(1, 3, 5)</code></li>
-<li><strong>Construction:</strong> Each 1-row → minterm → OR them</li>
-</ul>
-<p><strong>Example:</strong> <code>Y = A'B + AB = Σ(1, 3)</code></p>
-<hr />
-<h2 id="product-of-sums-pos-form">Product-of-Sums (POS) Form<a class="headerlink" href="#product-of-sums-pos-form" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Canonical POS:</strong> AND of all maxterms where output = 0</li>
-<li><strong>Pi notation:</strong> <code>F = Π(M₀, M₂)</code> = <code>F = Π(0, 2)</code></li>
-<li><strong>Construction:</strong> Each 0-row → maxterm → AND them</li>
-</ul>
-<p><strong>Example:</strong> <code>Y = (A+B)(A'+B) = Π(0, 2)</code></p>
-<hr />
-<h2 id="truth-table-boolean-formula">Truth Table → Boolean Formula<a class="headerlink" href="#truth-table-boolean-formula" title="Permanent link">&para;</a></h2>
+<h2 id="truth-table-mintermsmaxterms-3-variables">Truth Table → Minterms/Maxterms (3 Variables)<a class="headerlink" href="#truth-table-mintermsmaxterms-3-variables" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1635,8 +1876,8 @@
 <th>B</th>
 <th>C</th>
 <th>Y</th>
-<th>Minterm</th>
-<th>Maxterm</th>
+<th>Minterm (mᵢ)</th>
+<th>Maxterm (Mᵢ)</th>
 </tr>
 </thead>
 <tbody>
@@ -1645,7 +1886,7 @@
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td>m₀</td>
+<td>m₀ = ĀB̄C̄</td>
 <td>M₀ = A+B+C</td>
 </tr>
 <tr>
@@ -1653,68 +1894,215 @@
 <td>0</td>
 <td>1</td>
 <td>1</td>
-<td>m₁</td>
-<td>M₁ = A+B+C'</td>
+<td>m₁ = ĀB̄C</td>
+<td>M₁ = A+B+C̄</td>
 </tr>
 <tr>
 <td>0</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>m₂</td>
-<td>M₂ = A+B'+C</td>
+<td>m₂ = ĀBC̄</td>
+<td>M₂ = A+B̄+C</td>
 </tr>
 <tr>
 <td>0</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
-<td>m₃</td>
-<td>M₃ = A+B'+C'</td>
+<td>m₃ = ĀBC</td>
+<td>M₃ = A+B̄+C̄</td>
 </tr>
 <tr>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
-<td>m₄</td>
-<td>M₄ = A'+B+C</td>
+<td>m₄ = AB̄C̄</td>
+<td>M₄ = Ā+B+C</td>
 </tr>
 <tr>
 <td>1</td>
 <td>0</td>
 <td>1</td>
 <td>1</td>
-<td>m₅</td>
-<td>M₅ = A'+B+C'</td>
+<td>m₅ = AB̄C</td>
+<td>M₅ = Ā+B+C̄</td>
 </tr>
 <tr>
 <td>1</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>m₆</td>
-<td>M₆ = A'+B'+C</td>
+<td>m₆ = ABC̄</td>
+<td>M₆ = Ā+B̄+C</td>
 </tr>
 <tr>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
-<td>m₇</td>
-<td>M₇ = A'+B'+C'</td>
+<td>m₇ = ABC</td>
+<td>M₇ = Ā+B̄+C̄</td>
 </tr>
 </tbody>
 </table>
-<p><strong>SOP:</strong> <code>Y = m₁ + m₃ + m₄ + m₅ = Σ(1,3,4,5)</code>
-<strong>POS:</strong> <code>Y = M₀·M₂·M₆ = Π(0,2,6)</code></p>
+<p><strong>Key Observations:</strong>
+- <strong>Minterm = 1</strong> for exactly one input combination
+- <strong>Maxterm = 0</strong> for exactly one input combination
+- Minterm index = binary value of inputs (e.g., 011₂ = 3 → m₃)
+- Maxterm index = binary value of inputs (e.g., 011₂ = 3 → M₃)</p>
 <hr />
-<h2 id="ben-bitdiddle-picnic-example">Ben Bitdiddle Picnic Example<a class="headerlink" href="#ben-bitdiddle-picnic-example" title="Permanent link">&para;</a></h2>
+<h2 id="sum-of-products-sop-form">Sum-of-Products (SOP) Form<a class="headerlink" href="#sum-of-products-sop-form" title="Permanent link">&para;</a></h2>
+<h3 id="canonical-sop">Canonical SOP<a class="headerlink" href="#canonical-sop" title="Permanent link">&para;</a></h3>
+<p>OR of all minterms where output = 1
+<div class="highlight"><pre><span></span><code>F = Σ m(list of indices where Y=1)
+</code></pre></div></p>
+<p><strong>Example:</strong> <code>Y = A'B + AB = Σ(1, 3)</code></p>
+<h3 id="standard-sop-minimized">Standard SOP (Minimized)<a class="headerlink" href="#standard-sop-minimized" title="Permanent link">&para;</a></h3>
+<p>Not necessarily canonical — terms may not include all variables
+<div class="highlight"><pre><span></span><code>F = A'B + AB = B(A' + A) = B
+</code></pre></div></p>
+<h3 id="constructing-sop-from-truth-table">Constructing SOP from Truth Table<a class="headerlink" href="#constructing-sop-from-truth-table" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Identify rows where output = 1</li>
+<li>Write minterm for each (include all variables)</li>
+<li>OR them together</li>
+</ol>
+<hr />
+<h2 id="product-of-sums-pos-form">Product-of-Sums (POS) Form<a class="headerlink" href="#product-of-sums-pos-form" title="Permanent link">&para;</a></h2>
+<h3 id="canonical-pos">Canonical POS<a class="headerlink" href="#canonical-pos" title="Permanent link">&para;</a></h3>
+<p>AND of all maxterms where output = 0
+<div class="highlight"><pre><span></span><code>F = Π M(list of indices where Y=0)
+</code></pre></div></p>
+<p><strong>Example:</strong> <code>Y = (A+B)(A'+B) = Π(0, 2)</code></p>
+<h3 id="standard-pos-minimized">Standard POS (Minimized)<a class="headerlink" href="#standard-pos-minimized" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>F = (A+B)(A'+B) = B
+</code></pre></div>
+<h3 id="constructing-pos-from-truth-table">Constructing POS from Truth Table<a class="headerlink" href="#constructing-pos-from-truth-table" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Identify rows where output = 0</li>
+<li>Write maxterm for each (include all variables)</li>
+<li>AND them together</li>
+</ol>
+<hr />
+<h2 id="sop-pos-conversion">SOP ↔ POS Conversion<a class="headerlink" href="#sop-pos-conversion" title="Permanent link">&para;</a></h2>
+<h3 id="duality-principle">Duality Principle<a class="headerlink" href="#duality-principle" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>F = Σ m(indices)  ⇔  F = Π M(complement of indices)
+</code></pre></div>
+<p><strong>Example (3 variables):</strong>
+<div class="highlight"><pre><span></span><code>If F = Σ m(1, 3, 5)  →  F = Π M(0, 2, 4, 6, 7)
+</code></pre></div></p>
+<p><strong>Proof:</strong> By De Morgan's Theorem
+<div class="highlight"><pre><span></span><code>F = m₁ + m₃ + m₅
+F' = m₀·m₂·m₄·m₆·m₇ = M₀·M₂·M₄·M₆·M₇
+F = (F')' = M₀ + M₂ + M₄ + M₆ + M₇  ← Not quite right...
+</code></pre></div></p>
+<p>Actually: Complement of minterm is maxterm with same index
+- <code>mᵢ' = Mᵢ</code> (by De Morgan)
+- <code>F = Σ m(i) = (Π M(i)')' = Π M(i)</code> for i NOT in list</p>
+<hr />
+<h2 id="ben-bitdiddle-picnic-example-from-textbook">Ben Bitdiddle Picnic Example (From Textbook)<a class="headerlink" href="#ben-bitdiddle-picnic-example-from-textbook" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Ben enjoys picnic if <strong>NOT</strong> raining AND <strong>NO</strong> ants
+<p><strong>Problem:</strong> Ben enjoys picnic if <strong>NOT</strong> raining AND <strong>NO</strong> ants
 - A = ants (1 = yes), R = rain (1 = yes), E = enjoy
-- <code>E = A'R'</code> or <code>E = Σ(0)</code> — only row 00 gives 1</p>
+- Only enjoys when A=0, R=0 → row 00 gives 1</p>
 </blockquote>
+<p><strong>Truth Table:</strong>
+| A | R | E |
+|---|---|---|
+| 0 | 0 | 1 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 0 |</p>
+<p><strong>SOP:</strong> <code>E = ĀR̄ = Σ m(0)</code> — only row 00 gives 1
+<strong>POS:</strong> Rows 1,2,3 are 0 → <code>E = (A+R)(A'+R)(A'+R') = Π M(1,2,3)</code></p>
+<hr />
+<h2 id="mintermmaxterm-count">Minterm/Maxterm Count<a class="headerlink" href="#mintermmaxterm-count" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Variables (n)</th>
+<th>Minterms (2ⁿ)</th>
+<th>Maxterms (2ⁿ)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>4</td>
+<td>16</td>
+<td>16</td>
+</tr>
+<tr>
+<td>n</td>
+<td>2ⁿ</td>
+<td>2ⁿ</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>MCQ Pattern:</strong> "How many minterms for 3 variables?" → <strong>8</strong> (Q14)</p>
+</blockquote>
+<hr />
+<h2 id="finding-shared-characteristics-mcq-pattern">Finding Shared Characteristics (MCQ Pattern)<a class="headerlink" href="#finding-shared-characteristics-mcq-pattern" title="Permanent link">&para;</a></h2>
+<p><strong>Question:</strong> Minterms <code>m(3, 7, 11, 15)</code> for 4 variables (A,B,C,D) — what do they share?</p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Binary</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>0011</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0111</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1011</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>15</td>
+<td>1111</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Answer:</strong> C=1, D=1 for all → <code>F = C·D</code> (Q35)</p>
 <hr />
 <h2 id="quick-self-test">Quick Self-Test<a class="headerlink" href="#quick-self-test" title="Permanent link">&para;</a></h2>
 <table>
@@ -1727,11 +2115,11 @@
 <tbody>
 <tr>
 <td>Minterm for 3 variables?</td>
-<td>Product with all 3 variables (e.g., <code>A'B'C</code>)</td>
+<td>Product with all 3 variables (e.g., <code>ĀB̄C</code>)</td>
 </tr>
 <tr>
 <td>Maxterm for 3 variables?</td>
-<td>Sum with all 3 variables (e.g., <code>A+B+C'</code>)</td>
+<td>Sum with all 3 variables (e.g., <code>A+B+C̄</code>)</td>
 </tr>
 <tr>
 <td>SOP uses which rows?</td>
@@ -1743,7 +2131,11 @@
 </tr>
 <tr>
 <td><code>M₆</code> for 3 vars (A,B,C)?</td>
-<td><code>A' + B' + C</code> (binary 110)</td>
+<td><code>Ā + B̄ + C</code> (binary 110)</td>
+</tr>
+<tr>
+<td><code>Σ m(1,3,5)</code> = Π M(?)</td>
+<td><code>Π M(0,2,4,6,7)</code></td>
 </tr>
 </tbody>
 </table>
@@ -1753,7 +2145,7 @@
 <li><strong>Minterm definition</strong> — product with ALL inputs (Q1, Q9, Q34)</li>
 <li><strong>POS construction</strong> — product of maxterms for 0 outputs (Q2, Q24)</li>
 <li><strong>Minterm count</strong> — <code>2ⁿ</code> for n variables (Q14)</li>
-<li><strong>Shared characteristic</strong> — find common bits in minterm list (Q35: <code>m(3,7,11,15)</code> all have <code>D=1</code>)</li>
+<li><strong>Shared characteristic</strong> — find common bits in minterm list (Q35: <code>m(3,7,11,15)</code> all have <code>C=1, D=1</code>)</li>
 </ol>
 <hr />
 <h2 id="key-formulas-memorize">Key Formulas (Memorize)<a class="headerlink" href="#key-formulas-memorize" title="Permanent link">&para;</a></h2>

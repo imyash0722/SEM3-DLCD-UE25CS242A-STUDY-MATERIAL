@@ -1,10 +1,11 @@
 # 10. Arithmetic Circuits — Adders (RCA, CLA, Prefix)
 
-> **Source:** Unit 2 Slides 68–100 | Textbook: Harris & Harris Ch. 5
+> **Source:** Harris & Harris Ch. 5, Unit 2 Slides 68–100
 
 ---
 
 ## Half Adder
+
 | A | B | Sum | Cout |
 |---|---|-----|------|
 | 0 | 0 | 0   | 0    |
@@ -16,9 +17,12 @@
 - `Sum = A ⊕ B`
 - `Cout = A·B`
 
+**Gates:** 1 XOR, 1 AND
+
 ---
 
 ## Full Adder
+
 | A | B | Cin | Sum | Cout |
 |---|---|-----|-----|------|
 | 0 | 0 | 0   | 0   | 0    |
@@ -32,13 +36,14 @@
 
 **Equations:**
 - `Sum = A ⊕ B ⊕ Cin`
-- `Cout = A·B + A·Cin + B·Cin`
+- `Cout = A·B + A·Cin + B·Cin = AB + Cin(A⊕B)`
 
 **Implementation:** 2 Half Adders + 1 OR gate
 
 ---
 
 ## Ripple-Carry Adder (RCA)
+
 - Chain N full adders
 - Carry ripples LSB → MSB
 - **Delay:** `t_ripple = N × t_FA`
