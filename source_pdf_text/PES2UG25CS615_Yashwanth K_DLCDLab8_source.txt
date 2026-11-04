@@ -1,0 +1,183 @@
+================================================================================
+SOURCE PDF DOCUMENT : PES2UG25CS615_Yashwanth K_DLCDLab8.pdf
+SOURCE PATH         : lab/week8/PES2UG25CS615_Yashwanth K_DLCDLab8.pdf
+PAGES               : 6
+WORDS EXTRACTED     : 266
+CHARACTERS          : 1470
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
+--- [Page 1 of 6] ---
+Digital Logic and Computer Design Laboratory
+3rd Semester, Academic Year 2026
+                                                                   Date:28-09-2026
+Week#8                                                            Program 
+Number:8
+WRITE A VERILOG PROGRAM TO CONSTRUCT COMPARTOR AND 
+PREFIX ADDER. GENERATE THE VVP OUTPUT AND SIMULATION 
+WAVEFORM USING GTKWAVE. VERIFY THE OUTPUT AND WAVEFORM 
+WITH THE TRUTH TABLE 
+I.
+Verilog Code Screenshot
+II.
+Verilog VVP Output Screen Shot 
+III.
+GTKWAVE Screenshot
+IV.
+Output Table (Truth Table) to be completed and 
+included
+Name: Yatin R
+SRN:PES2UG25CS617
+Section: J
+
+--- [Page 5 of 6] ---
+Table 1: 4-Bit Magnitude Comparator Verification Table
+Test Case
+A [3:0] 
+(Binary)
+A 
+(Decimal)
+B [3:0] 
+(Binary)
+B 
+(Decimal)
+Greater (A 
+> B)
+Equal (A 
+= B)
+Less (A < 
+B)
+1
+0000
+0
+0000
+0
+0
+1
+0
+2
+0101
+5
+0011
+3
+1
+0
+0
+3
+0010
+2
+0110
+6
+0
+0
+1
+4
+1000
+8
+1000
+8
+0
+1
+0
+5
+1111
+15
+0001
+1
+1
+0
+0
+6
+0100
+4
+1100
+12
+0
+0
+1
+7
+1010
+10
+1010
+10
+0
+1
+0
+Table 2: 4-Bit Prefix / Carry-Lookahead Adder Verification Table
+Test 
+Case
+A [3:0] 
+(Binary)
+A (Dec)
+B [3:0] 
+(Binary)
+B (Dec)
+Cin
+Sum [3:0] 
+(Binary)
+Sum 
+(Dec)
+Cout
+1
+0000
+0
+0000
+0
+0
+0000
+0
+0
+2
+0101
+5
+0011
+3
+0
+1000
+8
+0
+3
+1111
+15
+0001
+1
+0
+0000
+0
+1
+4
+1010
+10
+0101
+5
+1
+0000
+0
+1
+5
+1111
+15
+1111
+15
+0
+1110
+14
+1
+6
+1111
+15
+1111
+15
+1
+1111
+15
+1
+
+--- [Page 6 of 6] ---
+If found plagiarized, I will abide with the disciplinary action of 
+the University.
+Signature: Yashwanth Karthik
+Name: Yashwanth Karthik
+SRN: PES2UG25CS615
+Section: J
+Date: 01/10/2026

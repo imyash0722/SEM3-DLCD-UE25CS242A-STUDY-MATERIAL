@@ -1,0 +1,9 @@
+================================================================================
+SOURCE PDF DOCUMENT : U2N2.pdf
+SOURCE PATH         : notes/U2N2.pdf
+PAGES               : 13
+WORDS EXTRACTED     : 0
+CHARACTERS          : 0
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+

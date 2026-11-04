@@ -1,0 +1,2815 @@
+================================================================================
+ORIGINAL DOCUMENT : FSM.pdf
+OCR PDF FILE      : Notes_FSM_ocr.pdf
+TOTAL PAGES       : 24
+WORD COUNT        : 6798
+CHARACTER COUNT   : 40151
+DATE EXTRACTED    : 2026-11-04 14:06:28
+================================================================================
+
+--- [Page 1 of 24] ---
+£ 
+Fik e Modung 
+(FSM) 
+¥ 
+Mo&e& I Ae,;ifim 
+%M\wmm 
+%U\peflm Civeuite 
+¥ Sl no. 
+of d19, ddomiteh Lok m aun e b= 
+e, Sy 
+¥ b d, Teqidor = T gt 
+% TN can or&%ibe'\«om&ficafiia’nm 
+PES 
+UNIVERSITY 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FINITE STATE MACHINE 
+@ 
+An FSM consists of: 
+*M Inputs — Signals received from the external 
+system. 
+* N Outputs — Signals produced by the circuit. 
+* k-bit State Register — Stores the current state 
+of the FSM. 
+*Clock Signal (CLK) — Controls when the state 
+changes. 
+* Optional Reset Signal — Returns the FSM to its 
+inpat=0 
+initial state. 
+H 
+OL&WB 
+boused 
+OV\JTW@ 
+0fi 
+FSM 
+L 
+Moore = F (cpwe. shate) 
+CLK 
+Working Principle: 
+On every clock edge, the FSM: 
+1.Reads the current state. 
+2.Accepts the current inputs. 
+3.Computes the next state. 
+4.Updates the state register. 
+5.Produces the required outputs. 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FSM DESIGN EXAMPLE 
+PES 
+UNIVERSITY 
+Meet Ben, a smart engineering student 
+who loves solving real-world problems. 
+the busy intersection between Academic Avenue and & _* 
+Bravado Boulevard. 
+: 
+Students are moving between the Dormitories and 
+& 
+the Labs on Academic Ave. 
+# 
+Football players are traveling between the Athletic | 
+Fields and the Dining Hall on Bravado Blvd. 
+Since 
+many 
+people 
+are 
+busy 
+and 
+not 
+paying 
+attention, several accidents have already occurred at 
+the intersection. 
+The 
+Dean 
+of Students 
+asks 
+Ben 
+to design 
+an 
+attamatic traffic lisht cantroller 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FSM DESIGN EXAMPLE 
+PES 
+UNIVERSITY 
+Design an FSM-based traffic light controller 
+that uses traffic sensors to control the traffic 
+: 
+: 
+2| 
+Dining 
+lights and ensure safe, smooth traffic flow at 
+2 
+Hall 
+the campus intersection. 
+§ LE 
+810 
+g4 
+Solution: 
+Academic @ @ Ave. 
+Labs 
+LB 
+Dorms 
+Ben decides to solve the problem using a Finite 
+State Machine (FSM) that can monitor traffic 
+g Athletic 
+and control the signals automatically. 
+= 
+| Fields 
+Vo, T 
+Campus map 
+oY T F 0 Ly 
+itk 
+e 
+AN 
+S 
+= 
+rfiegej’ 
+Mooxe s 
+) stde [fL\ 20 Shre francior Digam va Quodor Loste )
+
+--- [Page 2 of 24] ---
+\ tegie 
+l/lf 
+Lyg 
+S, QAV%“ Red 
+\(e)fiow /QeJe 
+\Q\E& 9/{?91’) 
+53 
+P@& 
+%U{/W 
+) S 
+Tl %fifi@ N fl&él@ 
+E} @m@w\ 
+S)%J@ {?cm Tfl(on 
+Zf) 
+Tnwding : 
+State Transitions 
+Reset—S0 
+g 
+J 
+The FSM always enters State SO whenever the 
+Reset signal is activated. 
+S0 — $1: If T, = 0, the controller changes from SO 
+to S1. 
+$1-82: 
+After 
+5 
+seconds, 
+the 
+automatically changes from S1 to S2. 
+82 — 83: If Tz =0, the controller changes from 
+S2to S3. 
+controller 
+83 — S0: After 5 seconds, the controller returns to 
+S0, completing one traffic signal cycle. 
+Conditions for Remaining in the Same State: 
+S0 —»S0whenT, =1 
+S§2 - S2whenTp =1 
+Why Encoding? 
++ 
+Converts 
+symbolic states into binary 
+values. 
+Makes the FSM compat 
+atible with digital ci 
+Smpu 
+s the deri 
+of Boolean equations. 
+* 
+Encoding transforms the FSM from a conceptual model into a form that can 
+be implemented using digital hardware. 
+Lble 
+9 
+O 
+e e 
+ale eflw&m& 
+op eww)mgg 
+S0 XS | (fon 
+S 
+S, 
+Lo 
+b 
+Sl x 
+Slam 
+S 
+0 
+o] 
+o o 
+SooX 
+X 
+S | brngon 
+S, 
+0 
+| 
+oo o 
+S 
+X 
+o 
+Diaguor) 
+<. 
+[ 
+O 
+mly 
+0 
+SSox 
+LS, 
+S 
+5 
+X 
+X 
+S 
+et 
+s s by s 
+Cubpl ToHe: (fom 
+s tokle 
+S 
+L 
+T Te 
+& s (o 
+S 
+% 
+nhe 
+W 
+0 
+0 
+X 
+91| 
+th 
+0o 
+o 
+0O 
+| 
+0 
+O 
+I 
+T 
+2 
+R 
+9 
+1 
+X 
+X 
+L 
+o 
+Eable 
+I 
+0 
+1 
+o 
+OO0 
+o 
+x 
+0 
+| 
+V| 
+g 
+1l 
+0 
+o] 
+| 
+O 
+X 
+|V 
+©o 
+Gl 
+VLo 
+x 
+X 
+0 
+O 
+ano&lng) 
+?) K~MmE5 
+1 
+/ 
+lov 
+S 
+(from) 
+fo S 0D 
+7% e ke Wl 
+s.|o 
+©o 
+0 
+© 
+I 
+1 
+o 
+o 
+% 
+I 
+o 
+o 
+o 
+O 
+Ssel 
+v 
+O 
+D 
+O 
+o 
+o 
+O 
+sl U0 
+[ 
+o 
+O 
+| 
+=T rsS 
+o |C= S5 T t S5 T 
+Ly =5 
+Ly = 95 
+Ly, = 5, 
+Lay =S5, 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+COMPLETE FSM LOGIC CIRCUIT 
+state register 
+@) 
+Ta 
+inputs 
+(b) 
+ofr e 
+PES 
+UNIVERSITY 
+@ 
+- 
+S'o 
+So 
+T 
+So 
+next state logic 
+Loy 
++ off fin(pdlmfl)
+
+--- [Page 3 of 24] ---
+output 
+outputs 
+(c) 
+logic 
+Figure 3.26 State machine circuit for traffic light controller 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STATE ENCODING 
+@@ PES 
+UNIVERSITY 
+* 
+State Encoding is the process of assigning binary codes to the states of a Finite State 
+Machine (FSM). 
+* 
+The choice of encoding directly affects the hardware implementation, including the 
+number of logic gates, propagation delay, and overall circuit complexity. 
+Different state encodings can produce different: 
+* circuit implementations 
+* numbers of logic gates 
+* propagation delays 
+* hardware complexity 
+Therefore, selecting an appropriate encoding helps in designing an efficient FSM. 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STATE ENCODING 
+@@ PES 
+* 
+Finding the optimal encoding is difficult because it requires checking all possible 
+encoding combinations, which becomes impractical as the number of states increases. 
+* 
+Instead, designers usually choose a suitable encoding based on the application or use 
+Computer-Aided Design (CAD) tools to help select an efficient encoding. 
+* 
+The choice of state encoding influences the speed, size, and complexity of the final 
+digital circuit. 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+BINARY ENCODING 
+@@ PES 
+UNIVERSITY 
+In Binary Encoding, each state of the FSM is represented using a binary number. 
+For an FSM with K states, the number of bits required is: 
+Only the minimum number of bits needed to represent all states is used. 
+Ex:For 4 states 
+State 
+Binary Code 
+SO 
+00 
+S1 
+01 
+S2 
+10 
+S3 
+11 
+Advantages 
+* 
+Uses fewer state bits and requires fewer flip-flops 
+» 
+Efficient hardware utilization 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+ONE HOT ENCODING 
+% UNIVERSITY 
+In One-Hot Encoding, each state is assigned a separate bit. 
+Only one bit is HIGH (1) at any given time, while all other bits remain LOW (0). 
+For K states, K bits are required. 
+Example:For 3 states 
+State 
+Encoding 
+SO 
+001 
+S1 
+010 
+S2 
+100 
+Advantages 
+Simpler combinational logic and faster implementation 
+Disadvantages 
+Requires more flip-flops and higher hardware cost 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+DESIGNING A DIVIDE-BY-3-COUNTER 
+UNIVERSITY 
+To understand how different state encoding techniques are applied, consider the 
+design of a Divide-by-3 Counter. 
+A Divide-by-3 Counter is a sequential circuit that reduces the frequency of the 
+input clock by a factor of 3. 
+LK 
+System Description: 
+Y 
+« 
+The FSM has one output (Y) and three states 
+@ 
+S0,S1,and S2. 
+. 
+Rocat
+
+--- [Page 4 of 24] ---
+* 
+The output Y becomes HIGH (1) for one clock 
+cycle out of every three clock cycles. 
+Figure 3.28 Divide-by-3 counter 
+(a) waveform and (b) state 
+transition diagram 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+DESIGNING A DIVIDE-BY-3-COUNTER 
+@ PES 
+UNIVERSITY 
+Operation: 
+The counter continuously cycles through the following sequence: 
+SO - S1 - S2 - SO0 - ... 
+This repeating sequence divides the clock frequency by 3. 
+CLK 
+Y 
+Reset 
+Figure 3.28 Divide-by-3 counter 
+(a) waveform and (b) state 
+transition diagram 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STATE TRANSITION TABLE 
+@@ PES 
+UNIVERSITY 
+1. State Transition Table: 
+The State Transition Table defines the next state for every current state. 
+Table 3.6 Divide-by-3 counter 
+state transition table 
+SO 
+S1 
+S1 
+I 
+S2 
+S2 
+I 
+SO 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+OUTPUT TABLE 
+@@ PES 
+UNIVERSITY 
+2. Output Table: 
+The Output Table specifies the output value associated with each state. 
+Table 3.7 Divide-by-3 counter 
+output table 
+Current State 
+Output 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+BINARY VS ONE HOT ENCODING 
+PES 
+UNIVERSITY 
+To implement the Divide-by-3 Counter in hardware, each state must be assigned 
+a binary code. Two commonly used encoding techniques are Binary Encoding and 
+One-Hot Encoding. 
+Table 3.8 One-hot and binary encodings for divide-by-3 counter 
+One-Hot Encoding 
+Binary Encoding 
+S, 
+0 
+50 
+0 
+0 
+| 
+0 
+0 
+51 
+0 
+| 
+0 
+0 
+1 
+§2 
+1 
+0 
+0 
+| 
+0 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STATE TRANSITION TABLE USING BINARY ENCODING 
+PES 
+UNIVERSITY 
+Binary State Transition Table 
+* 
+The Binary State Transition Table uses the 2-bit binary codes assigned to each state. 
+* 
+States are represented using 2 bits.
+
+--- [Page 5 of 24] ---
+Table 3.9 State transition table with binary encoding 
+Next State 
+Current State 
+S, 
+0 
+0 
+0 
+1 
+0 
+1 
+I 
+1 
+0 
+1 
+0 
+I 
+0 
+0 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STATE TRANSITION TABLE USING ONE-HOT ENCODING 
+UNIVERSITY 
+One-Hot State Transition Table 
+* 
+The One-Hot State Transition Table uses one flip-flop for each state 
+* 
+Each state is represented by a unique active bit. Only one bit is HIGH at any time. 
+Table 3.10 State transition table with one-hot encoding 
+Current State 
+Next State 
+Y 
+\J 
+S« 
+0 
+0 
+1 
+0 
+1 
+0 
+0 
+1 
+0 
+1 
+0 
+0 
+1 
+0 
+0 
+0 
+0 
+1 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FSM IMPLEMENTATION 
+UNIVERSITY 
+Binary Encoding Implementation: 
+next state logic state register ~ output logic 
+output 
+One-Hot Encoding Implementation: 
+oK 
+— 
+o 
+[ 
+Py 
+M 
+s 
+Reset 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+TYPES OF FSM 
+&)PES 
+UNIVERSITY 
+Moore Machine: 
+Output depends only on the current state. Changes in input do not immediately 
+affect the output. Output changes only after the state changes. Outputs are written 
+inside the state circles. 
+Formula 
+Output = f(Current State) 
+2 Finite state 
+(a) Moore machine, 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+TYPES OF FSM 
+UNIVERSITY 
+Mealy Machine 
+Output depends on both the current state and the current inputs. Output can change 
+immediately when the input changes. Generally requires fewer states than a Moore 
+machine. Outputs are written on the transition arrows. 
+Formula 
+Output = f(Current State, Current Input) 
+(b) Mealy machine 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+MOORE VS MEALY MACHINES 
+@ UNIVERSITY
+
+--- [Page 6 of 24] ---
+Scenario: 
+Alyssa P. Hacker owns a pet robotic snail controlled by a Finite State 
+Machine (FSM).The snail moves over a paper tape containing 
+sequence of 1s and Os. 
+At every clock cycle: 
+The snail moves one position forward. 
+It remembers the last two bits it has read. 
+The snail smiles when a specific bit pattern is detected. 
+1w 
+- 
+Irfput:][A]]gurrent bit read by the snail. 
+%mfl 
+Output:[Y] 
+\\\‘\\ 
+*Y =1 - Snail smiles. 
+*Y = 0 -> Snail does not smile. 
+w\\\\\\ 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+MOORE VS MEALY MACHINES 
+@@ PES 
+UNIVERSITY 
+Objective 
+Design both Moore Machine and Mealy Machine .Compare both implementations. 
+Moore FSM Design : 
+The Moore Machine requires three states. Each state represents the 
+previous input history.The output depends only on the current state. 
+Reset 
+FSM state transition diagrams: (a) Moore machine, 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+MOORE VS MEALY MACHINES 
+@ PES 
+UNIVERSITY 
+Mealy Machine Design: 
+The Mealy Machine requires only two states. Outputs are generated during state 
+transitions. 
+Each transition is labelled as| Input 
+/ Output 
+Reset 
+1/0 
+‘ 
+(b) 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+UNIVERSITY 
+MOORE TRANSITION AND OUTPUT TABLE 
+PES 
+Table 3.11 Moore state transition table 
+Current State 
+Input 
+Next State 
+S 
+/ 
+) 
+Table 3.12 Moore output table 
+Current State 
+~ Output 
+NU 
+1 
+SO 
+S 
+Y 
+S1 
+0 
+S1 
+S1 
+1 
+52 
+S1 
+0 
+S2 
+0 
+S1 
+S2 
+1 
+S2 
+1 
+SO 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+MOORE TRANSITION AND OUTPUT TABLE WITH BINARY ENCODING 
+é@ PES 
+UNIVERSITY 
+To implement the Moore Machine in digital hardware,each state is assigned a binary 
+code.Using these binary encodings,the transition table and output table are rewritten. 
+Table 3.13 Moore state transition table with state 
+encodings 
+Table 3.14 Moore output table 
+Current State 
+Input 
+cht Smtc‘ 
+with state encodings 
+S 
+S 
+= 
+3 
+- 
+- 
+Current State 
+Output 
+0 
+0 
+0 
+0 
+1 
+S 
+S 
+Y 
+0 
+0 
+1 
+0 
+0 
+0 
+1 
+0 
+0 
+1 
+0 
+1 
+0 
+0 
+1 
+1 
+1 
+0 
+1 
+0 
+1 
+1 
+0 
+0 
+0 
+1 
+1 
+0 
+1 
+0 
+0
+
+--- [Page 7 of 24] ---
+DIGITAL LOGIC AND COMPUTER DESIGN 
+MOORE FSM 
+@@ PES 
+UNIVERSITY 
+Table 3.13 Moore state transition table with state 
+encodings 
+Table 3.14 Moore output table 
+Current State 
+Input 
+Next State 
+S 
+A 
+S 
+S 
+with state encodings 
+0 
+0 
+0 
+o 
+! 
+Current State 
+Output 
+(] 
+o 
+1 
+o 
+(8] 
+S 
+So 
+Y 
+(8] 
+1 
+6] 
+o 
+1 
+(o] 
+1 
+1 
+1 
+(] 
+1 
+0 
+0 
+0 
+1 
+0 
+1 
+0 
+1 
+o 
+1 
+0 
+(] 
+1 
+0 
+1 
+Equations: 
+S, =A 
+Equation 3.3.1 
+Y =5 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+MEALY TRANSITION AND OUTPUT TABLE 
+PES 
+UNIVERSITY 
+The Mealy Machine requires only one state bit. 
+Table 3.15 Mealy state transition and output table 
+Table 3.16 Mealy state transition and output table with state encodings 
+Current State 
+Input 
+NextState 
+Output 
+Current State ~ Input ~ NextState 
+Output 
+§ 
+A 
+§ 
+Y 
+5, 
+A 
+5 
+Y 
+0 
+0 
+1 
+0 
+NI 
+1 
+50 
+0 
+0 
+1 
+0 
+0 
+St 
+0 
+51 
+0 
+| 
+0 
+1 
+0 
+St 
+1 
+N 
+1 
+1 
+1 
+0 
+1 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+MOORE VS MEALY MACHINES 
+PES 
+UNIVERSITY 
+Comparison: 
+Moore Machine 
+Mealy Machine 
+More states 
+Fewer states 
+Stable output 
+Faster response 
+Output depends only on state 
+Output depends on state and input 
+One clock delay 
+Immediate output 
+* 
+Choose a Moore Machine when stable outputs are important. 
+* 
+Choose a Mealy Machine when faster output response is required. 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+PES 
+UNIVERSITY 
+FINITE STATE MACHINES 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FACTORING STATE MACHINES 
+PES 
+UNIVERSITY 
+As the complexity of a Finite State Machine (FSM) increases, designing and maintaining it 
+becomes difficult. 
+Instead of designing one large FSM, the system can be divided into multiple smaller FSMs 
+that work together. 
+This design approach is called Factoring of State Machines. 
+How Does It Work? 
+* A complex FSM is split into smaller interacting FSMs. 
+*The output of one FSM can be used as the input to another FSM.
+
+--- [Page 8 of 24] ---
+* I his creates a hierarchical and modular design. 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FACTORED AND UNFACTORED STATE MACHINES 
+PES 
+UNIVERSITY 
+To understand the concept of factoring, consider the traffic light controller introduced 
+earlier. 
+The controller is now modified to include a Parade Mode, which keeps the Bravado 
+Boulevard traffic light green while a parade is in progress. 
+Additional Inputs: 
+Two new control inputs are introduced: 
+*P (Parade) — Enables Parade Mode. 
+P 
+* R (Resume) — Exits Parade Mode. 
+R 
+Controer: 
+> Ly 
+Ta— 
+FSM 
+¥ 
+L 
+(a) single traffic light controller FSM 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FACTORED AND UNFACTORED STATE MACHINES 
+é@ PES 
+UNIVERSITY 
+Controller Behaviour: 
+*When P =1, the controller enters Parade Mode. 
+* During Parade Mode, the controller follows its normal sequence 
+il === 1! 
+until LB becomes green. 
+P1 
+TM 
+Mode 
+|| 
+*Once LB is green, it remains green throughout the parade. 
+Al 
+FSM 
+I 
+*When R =1, the controller exits Parade Mode and resumes normal 
+| 
+: 
+traffic operation. 
+| 
+W 
+| 
+| 
+T 
+Lights 
+[1*>la 
+Objective: 
+A 
+FSM 
+Ly, 
+Design the controller using: 
+L 
+il 
+: 
+* A single FSM (Unfactored). 
+I 
+Controller 
+| 
+: 
+FSM 
+: 
+* Multiple interacting FSMs (Factored). 
+M e 
+e 
+(b) factored designs for modified 
+traffic light controller FSM 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+UNIVERSITY 
+UNFACTORED FSM 
+@@ PES 
+Single FSM Approach: 
+In the unfactored design, a single FSM controls both: 
+*Normal traffic operation. 
+» Parade mode. 
+State Organization 
++S0 — S3 — Normal Mode. 
++S4 — S7 — Parade Mode. 
+The two halves of the state diagram are almost identical, except that during 
+Parade Mode the controller remains in State S6 while LB remains green. 
+Characteristics 
+*One large FSM. 
+*More states. 
+« Complex transitions. 
+« Difficult to modify and debug. 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+UNFACTORED FSM 
+PES 
+UNIVERSITY 
+(a) unfactored, 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FACTORED FSM 
+@@ PES 
+UNIVERSITY 
+Breaking the FSM into Modules: 
+Instead of using one large FSM, the controller is divided into two smaller FSMs. 
+Mode FSM: 
+Tracks whether the controller is operating in: 
+*Normal Mode 
+- 
+« Parade Mode 
+Ressty—~()':
+
+--- [Page 9 of 24] ---
+S0 
+e 
+s1 
+Produces output: M 
+L, green 
+w 
+Ly red 
+Ly red 
+| 
+Lights FSM 
+, 
+‘\ 
+| 
+Controls the traffic lights using: 
+o 
+* Traffic Sensors (TA, TB) 
+g @ 
+* Mode Signal (M) 
+N 
+Mls W, 
+Mode FSM 
+Lights FSM 
+_ 
+. 
+(b) factored 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+FACTORED VS UNFACTORED FSM 
+é@ PES 
+Unfactored FSM 
+Factored FSM 
+Single large FSM 
+Multiple smaller FSMs 
+More states 
+Fewer states per FSM 
+Complex transitions 
+Simpler transitions 
+Difficult to debug 
+Easier to debug 
+Less modular 
+Highly modular 
+Harder to modify 
+Easy to extend 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+DERIVING AN FSM FROM SCHEMATIC 
+PES 
+UNIVERSITY 
+STEPS FOR DERIVING FSM: 
+1.Examine the circuit and identify Inputs,Outputs ,State bits. 
+2.Write the next-state and output equations. 
+3.Create the next-state and output tables. 
+4.Remove unreachable states. 
+5.Assign symbolic names to valid states. 
+6.Draw the state transition diagram. 
+7.Describe the overall function of the FSM. 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+EXAMPLE 
+@@ PES 
+UNIVERSITY 
+Scenario: 
+Alyssa P. Hacker discovers that the keypad lock in her house has been rewired, and the 
+original unlock code no longer works.She finds a circuit diagram attached to the keypad 
+and suspects it is controlled by a Finite State Machine (FSM).To determine the correct 
+unlock sequence, she decides to derive the FSM from the circuit. 
+A1 Ao 
+CLK 
+Figure 3.35 Circuit of found FSM for Example 3.9 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STEP1: IDENTIFICATION 
+@@ PES 
+UNIVERSITY 
+Objective 
+Determine the FSM states ,State transitions ,Output behaviour 
+and Overall 
+function of the circuit 
+Step 1 - Identify Inputs, Outputs & State Equations: 
+From the circuit: 
+Inputs: A; A 
+Output: Unlock 
+State Bits: S¢,So 
+Next-State Equations: 
+81‘ = SOAlAO 
+So' = 51S0A1A0 
+Equation (3.12) 
+Unlock = S; 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STEP2-CREATE TABLES 
+PES 
+Table 3.17 Next state table derived from circuit 
+UNIVERSITY 
+Current State 
+Input 
+Next State 
+Step 2 — Create State Tables: 
+s 
+So 
+A 
+A, 
+s
+
+--- [Page 10 of 24] ---
+v 
+v 
+v 
+. 
+v 
+v 
+0 
+0 
+1 
+0 
+0 
+0 
+Table 3.18 Output table derived from circuil 
+0 
+0 
+1 
+1 
+0 
+1 
+in Figure 3.35 
+0 
+1 
+0 
+) 
+0 
+0 
+Current State 
+Output 
+0 
+! 
+0 
+! 
+! 
+0 
+Sy 
+So 
+Unlock 
+0 
+1 
+! 
+0 
+0 
+0 
+0 
+1 
+1 
+1 
+0 
+0 
+1 
+0 
+0 
+0 
+0 
+0 
+0 
+1 
+0 
+1 
+0 
+0 
+1 
+0 
+0 
+1 
+0 
+1 
+0 
+0 
+0 
+1 
+0 
+1 
+1 
+0 
+1 
+1 
+0 
+0 
+1 
+1 
+1 
+1 
+1 
+0 
+0 
+0 
+0 
+1 
+1 
+[ 
+1 
+1 
+0 
+1 
+1 
+1 
+0 
+0 
+0 
+1 
+1 
+1 
+1 
+0 
+o 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STEP3-REDUCTION 
+% PES 
+UNIVERSITY 
+Step 3 — Reduce the State Tables: 
+Some state combinations are never reached during operation.These are called 
+Unreachable States.Removing these states simplifies the FSM. 
+Table 3.19 Reduced next state table 
+Current State 
+Input 
+Next State 
+. 
+' 
+" 
+" 
+= 
+’ 
+Table 3.20 Reduced output table 
+® 
+g 
+g 
+1 
+¢ 
+® 
+Current State 
+Output 
+0 
+0 
+1 
+0 
+0 
+0 
+Unlock 
+0 
+0 
+1 
+1 
+0 
+1 
+0 
+1 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+[ 
+1 
+0 
+1 
+1 
+0 
+0 
+1 
+0 
+0 
+1 
+1 
+0 
+0 
+0 
+0 
+1 
+1 
+1 
+0 
+0 
+1 
+0 
+1 
+1 
+0 
+X 
+X 
+0 
+0 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STEP4-STATE ASSIGNMENT 
+Step 4 — Assign Symbolic State Names: 
+After removing unreachable states, each valid state is assigned a symbolic name. 
+Binary State 
+Symbolic Name 
+00 
+S0 
+01 
+S1 
+10 
+S2 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STEP4-STATE ASSIGNMENT 
+@@ PES 
+UNIVERSITY 
+Step 4 — Assign Symbolic State Names: 
+Table 3.21 Symbolic next state table 
+Current State 
+Input 
+Next State 
+S 
+A 
+S’ 
+Table 3.22 Symbolic output table 
+SO 
+1 
+SO 
+S0 
+2 
+S0 
+Currenrl NEE 
+Output 
+S 
+Unlock 
+SO 
+3 
+S1 
+S1 
+0 
+SO 
+S1 
+1 
+S2 
+St 
+0 
+st 
+2 
+S0 
+52 
+1 
+S1 
+3 
+SO 
+S2 
+X 
+SO 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+STEP5-STATE TRANSITION TABLE 
+PES 
+UNIVERSITY 
+Step 5 — Draw the State Transition Diagram: 
+Reset 
+Using the symbolic tables, the final State Tr: 
+Diagram is constructed. 
+Overall Behaviour: 
+The FSM unlocks the door only after detecting the 
+correct input sequence. 
+After unlocking, it returns to the initial state, 
+ready for the next input sequence 
+DIGITAL LOGIC AND COMPUTER DESIGN
+
+--- [Page 11 of 24] ---
+FSM REVIEW 
+% PES 
+UNIVERSITY 
+FSM Design Procedure 
+General Steps 
+1.ldentify the inputs and outputs. 
+1.Draw the State Transition Diagram. 
+1.Create: 
+State Transition Table 
+*Output Table 
+4.Select a suitable State Encoding. 
+4. Write: 
+*Next-State Equations 
+*Output Equations 
+6.Design the circuit schematic. 
+PES 
+UNIVERSITY 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+In Example the output Unlock is given by 
+Unlock = $; 
+This indicates that the output depends on 
+A) Current input only 
+B) Current state only 
+C) Current input and current state 
+D) Next state only 
+Answer:B 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+e 
+@@ PES 
+UNIVERSITY 
+2.An FSM is implemented using 5 flip-flops with Binary Encoding. 
+What is the maximum number of states that can be represented? 
+A)S 
+B) 25 
+C)31 
+D) 32 
+Answer 
+D 
+Explanation: 
+In Binary Encoding, each flip-flop stores 1 bit. 
+*Number of flip-flops = 5 
+*Number of possible states = 2% = 32 
+DIGITAL LOGIC AND COMPUTER DESIGN 
+Quiz 
+@@ PES 
+UNIVERSITY 
+3.An FSM has 8 states. Using Binary Encoding, how many flip-flops are requirear 
+A)2 
+B) 3 
+C)4 
+D) 8 
+Answer 
+B)3 
+Explanation: 
+Flip—flops = [log, N1 
+llog,8] = [3] = 3 
+PES 
+THANK YOU 
+UNIVERSITY
+
+--- [Page 12 of 24] ---
+DIGITAL LOGIC AND COMPUTER DESIGN 
+UE25CS152B 
+Introduction and Arithmetic Circuits 
+Team DLCD 
+P Es 
+Department of CSE and CSE(AI&ML) 
+UNIVE RSITY 
+L ceicorvrng 
+so v chns§ 
+Topics of Discussion 
+. 
+Operating 
+¢ Introduction 
+Systems Q 
+* Arithmetic Circuits 
+R —— 
+Micro- 
+<« » 
+* Number Systems 
+i 
+| 
+* Sequential Building Blocks 
+* Memory Arrays 
+orcus B 
+. 
+Analog 
+* Logic Arrays 
+oo L 
+Devices 
+—@ 
+Physics % 
+Unit 2 
+- 
+2 
+DIGITAL BUILDING BLOCKS 
+Introduction 
+¢ 
+Digital building blocks: 
+— Gates, multiplexers, decoders, registers, arithmetic circuits, 
+counters, memory arrays, logic arrays 
+¢ 
+Building blocks demonstrate hierarchy, modularity, and regularity: 
+— Hierarchy of simpler components 
+— Well-defined interfaces and functions 
+— Regular structure easily extends to different sizes 
+¢ Will use these building blocks in Chapter 7 to build microprocessor 
+Unit 2 
+‘ 
+3 
+DIGITAL BUILDING BLOCKS 
+1-Bit Adders 
+PES 
+Half 
+Full 
+Adder 
+Adder 
+A 
+B 
+A 
+B 
+Cur\ L/ 
+Cu\ 
+4 
+/Cn 
+s 
+S 
+A 
+B 
+|C, 
+S 
+c, 
+A 
+B|C, 
+S 
+0o 
+o 
+0o 
+0 
+o 
+o 
+1 
+o 
+o0 
+1 
+1 
+0 
+o 
+1 
+o 
+101 
+0o 
+1 
+1 
+1 
+0 
+o0 
+s 
+= 
+1 
+0 
+1 
+Cou = 
+1 
+1 
+o0 
+o 
+11 
+1 
+S 
+= 
+Coul= 
+Unit 2 
+‘ 
+. 
+4 
+DIGITAL BUILDING BLOCKS 
+1-Bit Adders 
+PES 
+Half 
+Full 
+Adder 
+Adder 
+A 
+B 
+A 
+B 
+4 
+CM«\\‘ vl 
+s 
+A 
+B 
+‘ Cox 
+S 
+c, 
+A 
+B|C, S 
+0 
+0 
+‘ 
+0o 
+0 
+0 
+0 
+o 
+‘ 
+CI) 
+0 
+1 
+0 
+1 
+0 
+0 
+1 
+0 
+1
+
+--- [Page 13 of 24] ---
+1 
+0 
+0 
+1 
+0 
+1 
+0 
+0 
+1 
+1 
+1 
+1 
+0 
+0 
+1 
+1 
+1 
+0 
+1 
+0 
+0 
+0 
+1 
+S 
+= 
+1 
+0 
+1 
+1 
+0 
+c 
+= 
+11 
+o0of 
+1 
+o 
+ot 
+11 
+1] 
+1 
+1 
+S 
+= 
+Com: 
+Unit 2 
+i 
+5 
+DIGITAL BUILDING BLOCKS 
+1-Bit Adders 
+PES 
+Half 
+Full 
+Adder 
+Adder 
+A 
+B 
+A 
+B 
+L~ 
+7 
+— 
+— 
+S 
+S 
+A 
+B 
+|C, 
+S 
+c, 
+A 
+B 
+C, 
+S 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+1 
+0 
+1 
+0 
+0 
+1 
+0 
+1 
+1 
+0 
+0 
+1 
+0o 
+1 
+0 
+0 
+1 
+1 
+1 
+1 
+0 
+0o 
+1 
+1 
+1 
+0 
+1 
+0 
+0 
+0 
+1 
+S 
+=A®B 
+1 
+0 
+1 
+1 
+0 
+C.. 
+=AB 
+1 
+1 
+0 
+1 
+0 
+out 
+11 
+1|1 
+1 
+S 
+=A®B®C, 
+C,.=AB+AC,+BC, 
+Unit 2 
+‘ 
+6 
+DIGITAL BUILDING BLOCKS 
+Multibit Adders (CPAs) 
+PES 
+* Types of carry propagate adders (CPAs): 
+— Ripple-carry 
+(slow) 
+— Carry-lookahead 
+(fast) 
+— Prefix 
+(faster) 
+* 
+Carry-lookahead and prefix adders faster for large 
+adders but require more hardware 
+Symbol 
+A 
+B 
+N 
+N 
+Cout 
+Cln 
+N 
+S 
+Unit 2 
+- 
+7 
+! 
+DIGITAL BUILDING BLOCKS 
+Ripple-Carry Adder 
+Ef 
+* Chain 1-bit adders together 
+* Carry ripples through entire chain 
+* Disadvantage: slow 
+Az 
+By 
+A 
+By 
+A 
+B 
+Ay 
+B 
+C 
+- 
+C 
+Sy 
+Sy 
+S, 
+So 
+Unit 2 
+8 
+DIGITAL BUILDING BLOCKS 
+Ripple-Carry Adder Delay 
+Ef 
+tripple = NtFA 
+where t;, is the delay of a 1-bit full adder 
+Unit 2 
+B 
+B 
+- 
+DIGITAL BUILDING BLOCKS 
+Carry-Lookahead Adder 
+'_’_Ef 
+* 
+Compute carry out (C,,) for k-bit blocks using generate and 
+propagate signals 
+* 
+Some definitions:
+
+--- [Page 14 of 24] ---
+— Column i produces a carry out by either generating a carry out or 
+propagating a carry in to the carry out 
+— Generate (G;) and propagate (P;) signals for each column: 
+* 
+Column i will generate a carry out if A; AND B, are both 1. 
+G, =A;B; 
+* 
+Column j will propagate a carry in to the carry out if A; OR B, is 1. 
+P;=A; +B; 
+* 
+The carry out of column i (C) is: 
+C;=A;B; +(A; +B;)C.;=G; +P,C,, 
+Unit 2 
+DIGITAL BUILDING BLOCKS 
+Carry-Lookahead Addition 
+* Step 1: Compute G; and P; for all columns 
+* Step 2: Compute G and P for k-bit blocks 
+* Step 3: C,, propagates through each k-bit 
+propagate/generate block 
+Unit 2 
+DIGITAL BUILDING BLOCKS 
+Carry-Lookahead Adder 
+* Example: 4-bit blocks (G;.,and P;.) : 
+G,.,=G;+P;(G,+P, (G, +P,G,) 
+P3.o = P3P, P,P, 
+* Generally, 
+G;j=G;+P; (G, 
++ P, (G, 
++ P,,G)) 
+P;j= PPy Pi,P; 
+C =G, +P,;C, 
+Unit 2 
+DIGITAL BUILDING BLOCKS 
+32-bit CLA with 4-bit Blocks 
+B 
+A 
+B 
+A 
+31:28 " '31:28 
+27:24 " 727:24 
+‘K_J 
+QO—:U_\O N-UNG)(-‘-UDO 
+¢l 
+I 
+O 
+I\ 
+f 
+|| 
+O 
+o 
+nnj»{:u 
+Unit 2 
+DIGITAL BUILDING BLOCKS 
+Carry-Lookahead Adder Delay 
+For N-bit CLA with k-bit blocks: 
+teia =ty + tog block T (N/k - 1)tAND_OR + ktg, 
+= by 
+delay to generate all P, G; 
+g block 
+- 
+delay to generate all P, G;; 
+— tapor: 
+delay from G, to C,, of final AND/OR gate in k-bit CLA 
+block 
+An N-bit carry-lookahead adder is generally much faster than a 
+ripple-carry adder for N > 16 
+Unit 2 
+DIGITAL BUILDING BLOCKS 
+Prefix Adder 
+UNIVERSITY 
+EEEm 
+11 
+UNIVERSITY 
+T 
+UNIVERSITY 
+EEE 
+UNIVERSITY 
+S Em 
+14 
+PES 
+UNIVERSITY
+
+--- [Page 15 of 24] ---
+¢ 
+Computes carry in (C;,) for each column, then 
+computes sum: 
+5=(A,®B)DC 
+* 
+Computes G and P for 1-, 2-, 4-, 8-bit blocks, etc. 
+until all G; (carry in) known 
+log,N stages 
+Unit 2 
+15 
+DIGITAL BUILDING BLOCKS 
+Prefix Adder 
+Ef 
+* 
+Carry in either generated in a column or propagated from a 
+previous column. 
+* 
+Column -1 holds G, so 
+G,=¢C,P,=0 
+* 
+Carryinto column i = carry out of column j-1: 
+C1=Giyy 
+G,,.1: generate signal spanning columns i-1 to -1 
+* 
+Sum equation: 
+5;=(A,®B)DG.,, 
+* 
+Goal: Quickly compute G,.,, G;.4, G,.1, G3.1, G4y, Gs.g) - 
+(called prefixes) 
+Unit 2 
+16 
+DIGITAL BUILDING BLOCKS 
+Prefix Adder 
+P_Ef 
+* 
+Generate and propagate signals for a block spanning bits 
+iy 
+G =Gy * Py Gyy 
+Pij = PisPyy 
+* 
+Inwords: 
+— Generate: block iij will generate a carry if: 
+* 
+upper part (i:k) generates a carry or 
+* 
+upper part propagates a carry generated in lower 
+part (k-1:j) 
+— Propagate: block i:j will propagate a carry if both the 
+upper and lower parts propagate the carry 
+Unit 2 
+17 
+DIGITAL BUILDING BLOCKS 
+Prefix Adder Schematic 
+PES 
+[ 15 
+\ 1 
+= 
+f 
+Ll 
+i1l 
+‘J’:TJ ) 
+\ 
+hr ) 
+O 
+Unit 2 
+18 
+DIGITAL BUILDING BLOCKS 
+Prefix Adder Delay 
+PES 
+tPA = tpg + IOgZN(tpg_prefix) + tXOR 
+— t,,: delay to produce P; G; (AND or OR gate) 
+-t 
+: delay of black prefix cell (AND-OR gate) 
+pg_prefix* 
+Unit 2 
+19
+
+--- [Page 16 of 24] ---
+DIGITAL BUILDING BLOCKS 
+Adder Delay Comparisons 
+P_Ef 
+Compare delay of: 32-bit ripple-carry, carry-lookahead, and 
+prefix adders 
+* 
+CLA has 4-bit blocks 
+e 
+2-input gate delay = 100 ps; full adder delay = 300 ps 
+Unit 2 
+‘ 
+) 
+20 
+DIGITAL BUILDING BLOCKS 
+Adder Delay Comparisons 
+PES 
+Compare delay of: 32-bit ripple-carry, carry-lookahead, and 
+prefix adders 
+* 
+CLA has 4-bit blocks 
+* 
+2-input gate delay = 100 ps; full adder delay = 300 ps 
+t 
+= Nt,, = 32(300 ps) 
+ripple 
+=9.6 ns 
+taa 
+= thg * tog block t (N/k = L)tanp 
+or * ktpa 
+=[100 + 600 + (7)200 + 4(300)] ps 
+=3.3ns 
+tPA 
+= tpg + IOgZN(tpg_prefix) + tXOR 
+=[100 + log,32(200) + 100] ps 
+Unit 2 
+=12ns 
+. 
+21 
+DIGITAL BUILDING BLOCKS 
+Subtracter 
+fff 
+Symbol 
+Implementation 
+A 
+B 
+N 
+N 
+N 
+Y 
+Unit 2 
+‘ 
+22 
+DIGITAL BUILDING BLOCKS 
+Comparator: Equality 
+e 
+Symbol 
+Implementation 
+Ay 
+B, 
+A 
+B 
+Al 
+s 
+Js 
+B, 
+fi} 
+Equal 
+A1 J}T\‘O— 
+B1 /i 
+Equal 
+P A o 
+Bo /B 
+Unit 2 
+‘ 
+- 
+23 
+DIGITAL BUILDING BLOCKS 
+PES 
+Comparator: LessThan 
+e
+
+--- [Page 17 of 24] ---
+Unit 
+2 
+DIGITAL BUILDING BLOCKS 
+Arithmetic Logic Unit (ALU) 
+24 
+UNIVERSITY 
+L 
+000 
+A&B 
+001 
+A|B 
+010 
+A+B 
+011 
+not used 
+100 
+A& ~B 
+101 
+A|~B 
+110 
+A-B 
+111 
+SLT 
+Unit 2 
+25 
+DIGITAL BUILDING BLOCKS 
+ALU Design 
+UNIVERSITY 
+o 
+000 
+|A&B 
+001 
+|AIB 
+010 
+|A+B 
+011 
+not used 
+Cou 
+100 
+|A&-~B 
+2 
+101 
+|A[-B 
+ok 
+110 
+|A-B 
+\ 
+111 
+|SLT 
+Unit 
+2 
+DIGITAL BUILDING BLOCKS 
+Adder Delay Comparisons 
+UNIVERSITY 
+T 
+Compare delay of: 32-bit ripple-carry, carry-lookahead, and 
+prefix adders 
+* 
+CLA has 4-bit blocks 
+* 
+2-input gate delay = 100 ps; full adder delay = 300 ps 
+t, ripple 
+= NtFA = 32(300 pS) 
+=9.6ns 
+= tpg + tpg_block+ (N/k_ 1)tAND_OR + ktFA 
+=[100 + 600 + (7)200 + 4(300)] ps 
+=3.3ns 
+tPA 
+= tpg + IOgZN(tpg_prefix) + tXOR 
+= [100 + log,32(200) + 100] ps 
+Unit 2 
+=12ns 
+27 
+tCLA 
+DIGITAL BUILDING BLOCKS 
+Set Less Than (SLT) Example 
+UNIVERSITY 
+T 
+* 
+Configure 32-bit ALU for SLT 
+operation: A= 25 and B = 32 
+Unit 2 
+28 
+UNIVERSITY 
+T 
+DIGITAL BUILDING BLOCKS 
+Set Less Than (SLT) Example 
+N 
+N 
+* 
+Configure 32-bit ALU for SLT 
+/ 
+operation: 
+A =25and B =32 
+EN 
+— A< B, so Yshould be 32-bit 
+\= e/ 
+F, 
+representation of 1 (0x00000001) 
+— Fpo=111
+
+--- [Page 18 of 24] ---
+A 
+‘ 
+— F,=1 (adder acts as 
+\ 
+\ 
+AN ,/ 
+‘.; 
+, 
+Cou —\_+ 
+/ 
+1 
+subtracter), so 25 -32 =-7 
+~ns 
+— -7 has 1 in the most significant 
+o - 
+bit (S, = 1) 
+T 1T aN 
+AN 
+/ 
+— Fo=11 multiplexer selects Y 
+\ 
+[% Fro 
+=S, (zero extended) = 
+YN 
+0x00000001. 
+Unit 2 
+- 
+29 
+DIGITAL BUILDING BLOCKS 
+Shifters 
+® 
+Logical shifter: shifts value to left or right and fills empty spaces with 
+0’s 
+— 
+Ex:11001>>2= 
+— 
+Ex:11001<<2= 
+® 
+Arithmetic shifter: same as logical shifter, but on right shift, fills empty 
+spaces with the old most significant bit (msb). 
+— 
+Ex:11001>>>2= 
+— 
+Ex:11001<<<2= 
+® 
+Rotator: rotates bits in a circle, such that bits shifted off one end are 
+shifted into the other end 
+— 
+Ex: 11001 ROR2= 
+— 
+Ex:11001ROL2= 
+Unit 2 
+B 
+730 
+DIGITAL BUILDING BLOCKS 
+Shifters 
+UNIVERSITY 
+T 
+Logical shifter: 
+— Ex: 11001 >>2=00110 
+— Ex: 11001 << 2 =00100 
+e Arithmetic shifter: 
+— Ex: 11001 >>>2=11110 
+— Ex: 11001 <<< 2 =00100 
+* 
+Rotator: 
+— Ex: 11001 ROR 2 =01110 
+— Ex: 11001 ROL2 =00111 
+Unit 2 
+R 
+. 
+DIGITAL BUILDING BLOCKS 
+Shifter Design 
+v 
+R 
+A 
+hamt 
++ 
+1~ 
+shamt,. 
+b 
+, 1:0 
+O:SL 
+4 
+4 
+o ] ! 
+Unit 2 
+<~ 
+32 
+DIGITAL BUILDING BLOCKS 
+Shifters as Multipliers,Dividers 
+UNIVERSITY 
+e 
+® A<<N=Ax2V 
+— Example: 00001 << 2 =00100 (1 x22=4) 
+— Example: 11101 << 2 =10100 (-3 x2%2=-12) 
+& A>>>N=A<2VN 
+— Example: 01000 >>> 2 = 00010 (8 +22=2) 
+— Example: 10000 >>>2 =11100 (-16 + 22=-4) 
+Unit 2 
+o 3 
+DIGITAL BUILDING BLOCKS 
+Multipliers 
+UNIVERSITY 
+T 
+¢ Partial products formed by multiplying a single digit 
+AfthA muldinliav asith manldinlicanA
+
+--- [Page 19 of 24] ---
+Ul LHIT TTTUILIPHICE 
+WILLL Hdiupneaniu 
+e Shifted partial products summed to form result 
+Decimal 
+Binary 
+230 
+multiplicand 
+0101 
+X 4z 
+_x U111 
+460 
+partial 
+0101 
++ 920 
+products 
+0101 
+9660 
+0101 
++ 0000 
+result 
+0100011 
+230 x 42 = 9660 
+5x7=35 
+Umt 2 
+Dspanmemofcsgalld AIML 
+DIGITAL BUILDING BLOCKS 
+4 x 4 Multiplier 
+PES 
+A 
+B 
+AL A 
+A 
+A 
+x 
+B, 
+B, 
+B 
+B 
+AB, AB, AB, AB, 
+AB, AB, AB, AB, 
+AB, AB, AB, AB, 
++ 
+ABABABAB, 
+P, 
+P, 
+P, 
+P, 
+P, 
+P 
+3 
+2 
+P\ 
+P(l 
+Unit 2 
+- 
+35 
+DIGITAL BUILDING BLOCKS 
+4 x 4 Divider 
+PES 
+— 
+- 
+— 
+— 
+YT 
+LA 
+. 
+5M|Cfi 
+“ 
+. 
+D 
+. 
+NR 
+A o 
+=] 
+____/ 
+A/B=Q+R/B 
+Algorithm: 
+R'=0 
+fori=N-1to0 
+R={R << 1.A} 
+D=R-B 
+ifD<0,Q=0,R’=R 
+else 
+Q=1,R=D 
+R’=R 
+Unit 2 
+36 
+MCQs 
+UNIVERSITY 
+oy 
+Q1. What are the different types of Carry 
+propagator adders? 
+a)Ripple carry adders 
+b)Carry lookahead adders 
+c) Prefix adders 
+d)Skip ahead adders 
+Unit 2 
+37 
+MCQs 
+UNIVERSITY 
+T 
+Q1. What are the different types of Carry 
+propagator adders? 
+a)Ripple carry adders 
+b)Carry lookahead adders 
+c) Prefix adders 
+d)Skip ahead adders 
+Unit 2 
+38 
+oo 
+[\
+
+--- [Page 20 of 24] ---
+MCQs 
+&/ 
+Q2. A comparator is used to: 
+a. Add two numbers 
+b. Multiply two numbers 
+c. Determine relative magnitude of two numbers 
+d. Shift 
+a number 
+Unit 2 
+39 
+MCQs 
+PES 
+Q2. A comparator is used to: 
+a. Add two numbers 
+b. Multiply two numbers 
+c. Determine relative magnitude of two numbers 
+d. Shift a number 
+Unit 2 
+40 
+MCQs 
+Q3. Which circuit performs arithmetic and logical 
+operations? 
+a. Decoder 
+b. Multiplexer 
+c. ALU 
+d. Counter 
+Unit 2 
+41 
+MCQs 
+Q3. Which circuit performs arithmetic and logical 
+operations? 
+a. Decoder 
+b. Multiplexer 
+c. ALU 
+d. Counter 
+Unit 2 
+42 
+— 
+THANK YOU 
+D 
+@ 
+Team DLCD 
+PES 
+Department of CSE and CSE(AI&ML) 
+UNIVERSITY 
+oL 
+<anuriiie 
+re vy
+
+--- [Page 21 of 24] ---
+DIGITAL LOGIC AND 
+COMPUTER DESIGN 
+PES 
+DIGITAL BUILDING BLOCKS 
+UNIVERSITY 
+Number Systems 
+IR 
+Team DLCD 
+Department of CSE and AIML 
+L 
+UNIVERSITY 
+per—y 
+DIGITAL BUILDING BLOCKS 
+Number Systems 
+Team DLCD 
+DIGITAL BUILDING BLOCKS 
+Number Systems 
+Numbers we can represent using binary representations 
+-Positive numbers 
+Unsigned binary 
+-Negative numbers 
+Two’s complement 
+Sign/magnitude numbers 
+‘What about fractions? 
+DIGITAL BUILDING BLOCKS 
+Numbers with Fractions 
+Two common notations: 
+— Fixed-point: binary point fixed 
+— Floating-point: binary point floats to 
+the right of the most significant 1 
+DIGITAL BUILDING BLOCKS 
+Fixed-Point Numbers 
+NTVeRSITY 
+sty 
+6.75 using 4 integer bits and 4 fraction bits: 
+01101100 
+0110.1100 
+22+ 21+ 2V4.22=6.75 
+-Binary point is implied 
+-The number of integer and fraction bits must be agreed upon 
+beforehand 
+DIGITAL BUILDING BLOCKS 
+Fixed-Point Number Example 
+NTveRSITY 
+. 
+Represent 7.5, using 4 integer bits 
+and 4 fraction bits. 
+DIGITAL BUILDING BLOCKS 
+Fixed-Point Number Example 
+Represent 7.5, using 4 integer bits 
+and 4 fraction bits. 
+Answer: 01111000 
+DIGITAL BUILDING BLOCKS 
+@ 
+Signed Fixed-Point Numbers 
+PES 
+Representations: 
+nveRsTTY 
+— 
+Sign/magnitude 
+— 
+Two’s complement 
+Example: Represent -7.5, using 4 integer and 4 fraction bits 
+— 
+Sign/magnitude: 
+— 
+Two’s complement: 
+DIGITAL BUILDING BLOCKS 
+Signed Fixed-Point Numbers 
+PE 
+Representations: 
+izl 
+— 
+Sign/magnitude 
+— 
+Two’s complement 
+Example: Represent -7.5,, using 4 integer and 4 fraction bits 
+— 
+Sign/magnitude: 
+11111000 
+— 
+Two’s complement: 
+1.47.5: 
+01111000 
+2. Invert bits: 
+10000111 
+3.Add 1to LSB: 
++ 
+1 
+10001000 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Numbers 
+® 
+Binary point floats to the right of the most significant 1 
+UNIVERSITY 
+® 
+Similar to decimal scientific notation 
+43
+
+--- [Page 22 of 24] ---
+Example: write 273, 
+in scientific notation: 
+273=273 % 102 
+In general, a number s written in scientific notation as: 
++ M x BE 
+— 
+M = mantissa 
+— 
+B =base 
+— 
+E =exponent 
+— 
+Inthe example, 
+M=2.73,B = 10,and E=2 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Numbers 
+1bit 
+8 bits 
+23 bits 
+Sign Exponent 
+Mantissa 
+‘We show three versions —final version is called the IEEE 754 floating-point standard 
+Example: represent the value 228, using a 32-bit floating point representation 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Representation 1 
+PES 
+Example: represent the value 228, using a 32-bit floating point representation 
+vy 
+1. Convert decimal to binary (don’t reverse steps 1 & 21): 228,, = 11100100, 
+2. Write the number in “binary scientific notation”: 11100100, = 1.11001, x 27 
+3. Fill in each field of the 32-bit floating point number: 
+~The sign bit is positive (0) 
+~The 8 exponent bits represent the value 7 
+-The remaining 23 bits are the mantissa 
+1bit 
+s 
+it 
+00000111 
+| 
+111001 
+0000 0000 0000 0000 
+Sign 
+Exponent 
+Mantissa 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Representation 2 
+* 
+First bit of the mantissa is always 1: 
+-228,, = 11100100, = 1.11001 x 27 
+* 
+So, no need to store it: implicit leading 1 
+* 
+Store just fraction bits in 23-bit field 
+1 bit 
+8 bits 
+0| 
+00000111 
+110 0100 0000 0000 0000 0000 
+Sign 
+Exponent 
+Fraction 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Representation 3 
+Biased exponent: bias = 127 (01111111,) 
+— 
+Biased exponent = bias + exponent 
+— 
+Exponentof 
+7 is stored as: 127 + 7 = 134 = 0x 10000110, 
+‘The IEEE 754 32-bit floating-point representation of 228, 
+1 bit 
+8 bits 
+0| 
+10000110 
+110 0100 0000 0000 0000 0000 
+Sign 
+Biased 
+Fraction 
+Exponent 
+In hexadecimal: 0x43640000 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Example 
+Write -58.25,, in floating point (IEEE 754) 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Example 
+PES 
+Write -58.25,, in floating point (IEEE 754) 
+umrveRstTy 
+1. Convert decimal to binary: 58.25,, = 111010.01, 
+2. Write in binary scientific notation: 1.1101001 x 2% 
+3. Fill in fields: 
+Sign bit: 1 (negative) 
+8 exponent bits: (127 + 5) = 132 = 10000100, 
+23 fraction bits: 110 1001 0000 0000 0000 0000 
+1 bit 
+8 bits 
+23 bits 
+‘ 
+1 
+‘ 
+100 0010 0 
+110 1001 0000 0000 0000 0000 
+Sign 
+Exponent 
+Fraction 
+In hexadecimal: 0xC2690000 
+DIGITAL BUILDING BLOCKS 
+Floating-Point: Special Cases 
+Number 
+Sign 
+Exponent Fraction 
+0 
+X 
+00000000 | 00000000000000000000000 
+» 
+0 
+11111111 | 00000000000000000000000 
+- 
+1 
+11111111 
+| 00000000000000000000000 
+NaN 
+X 
+11111111 
+|non-zero 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Precision 
+Single-Precision: 
+= 
+* 
+32-bit 
++ 
+1 sign bit, 8 exponent bits, 23 fraction bits 
+* 
+bias =127 
+Double-Precision: 
+* 
+64-bit 
++ 
+1 sign bit, 11 exponent bits, 52 fraction bits 
++ 
+bias=1023 
+DIGITAL BUILDING BLOCKS 
+Floating-Point: Rounding 
+® 
+Overflow: number too large to be represented 
+* 
+Underflow: number too small to be represented 
+* 
+Rounding modes: 
+- Down 
+-Up 
+- Toward zero 
+- To nearest
+
+--- [Page 23 of 24] ---
+DIGITAL BUILDING BLOCKS 
+Floating-Point: Rounding 
+UNIVERSITY 
+o 
+Example: Round 1.100101 (1.578125) to only 3 fraction bits 
+Down: 1.100 
+Up: 1.101 
+Toward zero: 1.100 
+To nearest: 1.101 (1.625 is closer to 1.578125 than 1.5 is) 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Addition 
+UNIVERSITY 
+o 
+1. Extract exponent and fraction bits 
+2. Prepend leading 1 to form mantissa 
+3. Compare exponents 
+4. Shift smaller mantissa if necessary 
+5. Add mantissas 
+6. Normalize mantissa and adjust exponent if necessary 
+7. Round result 
+8. Assemble exponent and fraction back into floating-point format 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Addition Example 
+UNIVERSITY 
+e 
+Add the following floating-point numbers: 
+0x3FC00000 
+0x40500000 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Addition Example 
+1. Extract exponent and fraction bits 
+gy 
+1bit 
+8 bits 
+23 bits 
+0 
+01111111 
+100 000 
+D000 000 0000 0000 
+Sign 
+Exponent 
+Fraction 
+1bit_ 
+8bits 
+23 bits 
+0 
+1 
+101 0000 0000 000D 0000 0000 
+Sign 
+Exponent 
+Fraction 
+For first number (N1): 
+S=0,E=127,F=.1 
+For second number (N2): 
+S=0,E=128,F=.101 
+2. Prepend leading 1 to form mantissa 
+NI: 
+1.1 
+N2: 
+1.101 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Addition Example 
+3. Compare exponents 
+unverstTY 
+127 — 128 = -1, so shift N1 right by 1 bit 
+4. Shift smaller mantissa if necessary 
+shift N1’s mantissa: 1.1 >>1=0.11 (x2') 
+5. Add mantissas 
+0.11 x2! 
++ 1.101 x 2! 
+10.011 x 2! 
+DIGITAL BUILDING BLOCKS 
+Floating-Point Addition Example 
+6. Normalize mantissa and adjust exponent if necessary 
+fruiiliaiilf 
+10.011 x 2'=1.0011 x 22 
+7. Round result 
+No need (fits in 23 bits) 
+8. Assemble exponent and fraction back into floating-point format 
+S =0,E=2+127 = 129 = 10000001,, 
+F = 001100.. 
+1bit 
+8bits 
+23 bits 
+0| 
+10000001 
+| 
+001 1000 0000 0000 0000 0000 
+Sign 
+Exponent 
+Fraction 
+In hexadecimal: 0x40980000 
+DIGITAL BUILDING BLOCKS 
+MCQs 
+1. Which of the following is NOT a representation for signed fixed- 
+e 
+point numbers? 
+A. Two's Complement 
+B. Sign/Magnitude 
+C. Excess-127 
+D.BothAandB 
+2. In IEEE 754 single-precision floating-point format, how many bits 
+are allocated for the exponent? 
+B.8 
+C.11 
+D.23 
+DIGITAL BUILDING BLOCKS 
+MCQs 
+UNIVERSITY 
+==y 
+3. Which IEEE 754 representation corresponds to NaN (Not a Number)? 
+A. Exponent = 00000000, Fraction = 000...0 
+B. Exponent = 11111111, Fraction = 000...0 
+D. Exponent = 00000000, Fraction # 0 
+4. During floating-point addition, what is the first operation performed after 
+extracting the exponent and fraction bits? 
+A. Normalize the mantissa 
+B. Round the result 
+C. Prepend the implicit leading 1 to form the mantissa 
+D. Compare the exponents 
+DIGITAL BUILDING BLOCKS 
+MCQs 
+@ 
+1. 
+Answer:C. Excess-127 
+BOvERSY 
+Explanation: 
+The PPT lists 
+Sign/| 
+i 
+d 
+igned 
+fixed- 
+point representations. 
+N 
+swer: B. 8 
+Explanation: Single-precision uses 1 sign bit, 8 exponent bits, and 23 fraction 
+(mantissa) bits. 
+w 
+Answer: C. Exponent 
+= 11111111, Fraction # 0 
+Explanation: NaN is represented by an all-ones exponent with a non-zero fraction 
+field. 
+> 
+Answer: C. Prepend the implicit leading 1 to form the mantissa 
+P 
+i 
+racting 
+the 
+fields, the hidden leading 1 is restored before 
+comparing exponents and performing the addition. 
+— 
+THANK YOU 
+Team DLCD 
+Nanartmant nf Camniitar Srianca 2. AINMI
+
+--- [Page 24 of 24] ---
+Ucpal uiiciiu vl LullipuLet OUITIILE X ANVIL

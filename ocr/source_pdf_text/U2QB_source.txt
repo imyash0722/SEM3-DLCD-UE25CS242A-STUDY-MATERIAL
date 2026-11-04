@@ -1,0 +1,69 @@
+================================================================================
+SOURCE PDF DOCUMENT : U2QB.pdf
+SOURCE PATH         : resources/U2QB.pdf
+PAGES               : 2
+WORDS EXTRACTED     : 585
+CHARACTERS          : 3599
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
+--- [Page 1 of 2] ---
+1. Design and explain a three-state divide-by-3 FSM.
+2. Write Verilog code for a divide-by-3 FSM and explain the major blocks.
+3. Develop the state table for a divide-by-3 FSM.
+4. Explain how the divide-by-3 FSM recovers from an invalid state.
+5. Compare a divide-by-3 FSM with a simple modulo-3 counter and discuss duty cycle.
+6. Design a Mealy FSM to detect the pattern 1011 with overlapping detection. Explain 
+the states and transitions.
+7. Write Verilog code for a Mealy FSM that recognizes 1011 with overlapping 
+detection. Explain the major blocks.
+8. Develop the state table for a Mealy 1011 pattern recognizer and explain the output.
+9. Explain how overlapping detection is implemented in a Mealy FSM for 1011.
+10. Compare the hardware and timing characteristics of Mealy and Moore pattern 
+recognizers.
+11. Design a Moore FSM to detect the pattern 1011 with overlapping detection. 
+Explain the states and transitions.
+12. Write Verilog code for a Moore FSM that recognizes 1011 with overlapping 
+detection. Explain the major blocks.
+13. Develop the state table for a Moore 1011 pattern recognizer and explain the 
+output.
+14. Explain how overlapping detection is implemented in a Moore FSM for 1011.
+15. Compare the hardware and timing characteristics of Moore and Mealy pattern 
+recognizers.
+16. Derive the expression for outputs of the half adder and the full adder using SOP 
+from their respective truth tables. 
+17.  Derive the generator and propagator bits as well as the carry out bit for the 4th bit 
+in a 4-bit, in terms of all the lower bits, Ai and Bi where “i" = 3:0 for a carry lookahead 
+adder
+18. What is the delay for a the following types of 32-bit adders? Assuming each input 
+gate delay is 120 ps and that a full adder has 300 ps delay
+a. A ripple carry adder
+b. A carry-lookahead adder with 4-bit blocks
+
+--- [Page 2 of 2] ---
+c.
+A prefix adder
+19. Write the VHDL implementation for a 8-bit multiplier using the multiply(*) 
+operation, also write the synthesized circuit for it.
+20. Design two adders: a 64-bit ripple-carry adder and a 64-bit carry lookahead adder 
+with 4-bit blocks. Use only two-input gates. Each two-input gate is 15 m2, has a 50 ps 
+delay, and has 20 pF of total gate capacitance. You may assume that the static power 
+is negligible. (a) Compare the area, delay, and power of the adders (operating at 100 
+MHz). (b) Discuss the trade-offs between power, area, and delay.
+21. Explain why a designer might choose to use a ripple-carry adder instead of a carry-
+look ahead adder.
+22. Using the 8-step floating-point addition procedure, compute 6.0 + 2.5, 
+showing the renormalization step, and give the final IEEE 754 encoding.
+23.  A floating-point addition produces a positive result of magnitude 4.5 × 10³⁸ 
+before storage, exceeding the text's stated maximum normal magnitude of 
+±3.402824 × 10³⁸. Determine (a) whether overflow occurs, (b) what is stored in 
+round-to-nearest mode, and (c) the resulting 32-bit encoding.
+24. Using 4 integer bits and 4 fraction bits, compute 2.125 + (−1.8125) in two's 
+complement fixed-point notation, showing all conversion and addition steps.
+25. (a) Decode the 32-bit pattern 1 10000101 11010000000000000000000 to its 
+decimal value, showing all steps. (b) Using Table 5.2's special-value rules, state 
+what the patterns 0 00000000 00000000000000000000000 and 0
+11111111 00000000000000000000000 each represent.
+26. Using 5 integer bits and 4 fraction bits, compute −4.375 + (−2.8125) in two's 
+complement fixed-point notation, showing all conversion and addition steps. 
+Then express the result in sign-and-magnitude notation as well.

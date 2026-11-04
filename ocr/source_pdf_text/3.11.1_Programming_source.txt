@@ -1,0 +1,1250 @@
+================================================================================
+SOURCE PDF DOCUMENT : 3.11.1_Programming.pdf
+SOURCE PATH         : resources/u3/3/Slides/3.11.1_Programming.pdf
+PAGES               : 85
+WORDS EXTRACTED     : 6426
+CHARACTERS          : 39142
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
+--- [Page 1 of 85] ---
+DIGITAL LOGIC AND
+COMPUTER DESIGN
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+
+--- [Page 2 of 85] ---
+ARCHITECTURE-Programming
+TEAM DDCO
+Department of CSE and CSE (AI & ML)
+DIGITAL LOGIC AND COMPUTER DESIGN
+
+--- [Page 3 of 85] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC AND COMPUTER DESIGN
+• Arithmetic/Logical Instructions
+• Branching
+• Conditional Statements.
+• Getting Loopy
+• Arrays
+• Function Calls.
+TOPICS
+
+--- [Page 4 of 85] ---
+• High–level languages:
+‒ e.g., C, Java, Python
+‒ Written at higher level of abstraction
+• Common high–level software  constructs:
+‒ if/else statements  for loops
+‒ while loops
+‒ Arrays, function calls
+‒ In this section, we explore how to translate these high-level 
+constructs into MIPS assembly code.
+DIGITAL LOGIC AND COMPUTER DESIGN
+Programming
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 5 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Arithmetic/Logical Instructions
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MIPS provides a variety of arithmetic and logical instructions that are used to implement higher-level 
+programming constructs. Most arithmetic instructions operate on values stored in registers.
+Arithmetic instructions
+add  $t0, $s1, $s2      # $t0 = $s1 + $s2
+sub  $t0, $t3, $t5      # $t0 = $t3 - $t5
+addi $t0, $s3, -12      # $t0 = $s3 - 12
+For example, if $s1 = 25 and $s2 = 10:
+add $t0,$s1,$s2 
+ $t0=35
+⇒
+MIPS also provides separate instructions for multiplication and division, which use the special hi and lo 
+registers.
+
+--- [Page 6 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Arithmetic/Logical Instructions
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MIPS provides four basic logical operations: AND, OR, XOR and NOR. These are R-type instructions and operate bit-
+by-bit on two source registers.
+For example, consider:
+$s1 = 0xFFFF0000
+$s2 = 0x46A1F0B7
+The results are:
+and $s3, $s1, $s2    # $s3 = 0x46A10000
+or  $s4, $s1, $s2    # $s4 = 0xFFFFF0B7
+xor $s5, $s1, $s2    # $s5 = 0xB95EF0B7
+nor $s6, $s1, $s2    # $s6 = 0x00000F48
+AND is useful for masking bits because it can force selected bits to 0. OR can combine bits from two values.
+MIPS does not provide a separate NOT instruction. Instead,
+NOT A=A NOR $0
+
+--- [Page 7 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Logical Instructions: What to Remember
+AND
+Mask bits
+(keep only selected 
+1s)
+OR
+Set / combine bits
+XOR
+Show differences
+between bits
+NOR
+OR first, then invert
+(NOR with $0 = 
+NOT)
+• andi, ori, and xori zero-extend the 16-bit immediate before the operation.
+• Use and for masking, 
+           or for merging fields,
+           xor for bit comparison, 
+           nor for inversion tricks.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 8 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Logical Instructions: Example 1
+1111 1111 1111 1111 0000 0000 0000 0000
+$s1
+$s2 0100 0110 1010 0001 1111 0000 1011 0111
+Assembly Code
+and $s3, $s1, $s2   $s3
+or $s4, $s1, $s2 $s4  xor 
+$s5, $s1, $s2 $s5  nor 
+$s6, $s1, $s2   $s6
+Source Registers
+Result
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 9 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+1111 1111 1111 1111 0000 0000 0000 0000
+$s1
+$s2 0100 0110 1010 0001 1111 0000 1011 0111
+0100 0110 1010 0001 0000 0000 0000 0000
+1111 1111 1111 1111 1111 0000 1011 0111
+1011 1001 0101 1110 1111 0000 1011 0111
+0000 0000 0000 0000 0000 1111 0100 1000
+Assembly Code
+and $s3, $s1, $s2   $s3
+or $s4, $s1, $s2 $s4  xor 
+$s5, $s1, $s2 $s5  nor 
+$s6, $s1, $s2   $s6
+Source Registers
+Result
+Logical Instructions: Example 1
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 10 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Logical Instructions: Example 2
+0000 0000 0000 0000 0000 0000 1111 1111
+$s1
+imm
+Assembly Code
+andi $s2, $s1, 0xFA34  
+ori  $s3, $s1, 0xFA34
+xori $s4, $s1, 0xFA34
+0000 0000 0000 0000 1111 1010 0011 0100
+$s2
+$s3
+$s4
+Source Values
+Result
+zero-extended
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+• Logical operations can also 
+operate 
+on 
+immediates. 
+These I-type instructions 
+are andi, ori, and xori. 
+• nori 
+is 
+not 
+provided, 
+because 
+the 
+same 
+functionality can be easily 
+implemented 
+using 
+the 
+other instructions. 
+• Because these instructions 
+operate on a 32-bit value 
+from a register and a 16-bit 
+immediate, they first zero-
+extend the immediate to 32 
+bits.
+
+--- [Page 11 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Logical Instructions: Example 2
+0000 0000 0000 0000 0000 0000 1111 1111
+$s1
+imm
+Assembly Code
+andi $s2, $s1, 0xFA34  
+ori  $s3, $s1, 0xFA34
+xori $s4, $s1, 0xFA34
+0000 0000 0000 0000 1111 1010 0011 0100
+0000 0000 0000 0000 0000 0000 0011 0100
+0000 0000 0000 0000 1111 1010 1111 1111
+0000 0000 0000 0000 1111 1010 1100 1011
+$s2
+$s3
+$s4
+Source Values
+Result
+zero-extended
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 12 of 85] ---
+• MIPS instruction set has an or instruction as well as a nor instruction, and also 
+an ori instruction, but no nori instruction.
+‒ Why?
+‒ How can nori functionality be implemented?
+DIGITAL LOGIC AND COMPUTER DESIGN
+Think About It
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 13 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Think About It: Why is there no nori?
+• MIPS avoids adding instructions whose 
+behavior can already be built using existing 
+ones.
+• nori would mean: destination = NOT(rs OR 
+immediate).
+• That behavior is already easy to create in two 
+instructions.
+ori  $t0, $s1, 0x00FF
+nor  $t0, $t0, $zero
+Result:
+$t0 = ~( $s1 | 0x00FF )
+Key idea: nor with $zero works like bitwise NOT, so a dedicated nori instruction is unnecessary.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 14 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Shift Instructions
+• Shift instructions shift the value in a register left or right by up to 31 bits.
+• Shift operations multiply or divide by powers of two.
+• MIPS shift operations are sll (shift left logical), srl (shift right logical), and sra (shift 
+right arithmetic).
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 15 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Shift Instructions
+• Left shifts always fill the least significant bits with 0’s.
+• However, right shifts can be either logical (0’s shift into the most significant bits) or 
+arithmetic (the sign bit shifts into the most significant bits).
+• Figure shows the machine code for the R–type instructions sll, srl, and sra.
+• rt (i.e., $s1) holds the 32–bit value to be shifted, and shamt gives the amount by 
+which to shift (4).
+• The shifted result is placed in rd.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 16 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Shift Instructions: Example
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 17 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+•Figure shows the register values for the shift instructions sll, srl, and sra.
+•Shifting a value left by N is equivalent to multiplying it by 2N.
+•Likewise, arithmetically shifting a value right by N is equivalent to dividing it by 2N,
+Shift Instructions: Example
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 18 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Shift Instructions: sll vs srl vs sra
+Instruction
+What it does
+Bits filled in
+Typical use
+sll
+Shift left logical
+0s on the right
+Multiply by 2^n (if 
+no overflow)
+srl
+Shift right logical
+0s on the left
+Unsigned values / 
+bit extraction
+sra
+Shift right arithmetic
+Copies sign bit
+Signed divide by 
+2^n
+Example value:
+10010000
+srl by 2 → 00100100
+sra by 2 → 11100100
+shamt stores the fixed shift 
+amount (0–31).
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 19 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Variable Shift Instructions
+• MIPS also has variable–shift instructions: sllv (shift left logical variable), srlv (shift 
+right logical variable), and srav (shift right arithmetic variable).
+• Figure shows the machine code for these instructions.
+• Variable–shift assembly instructions are of the form sllv rd, rt, rs.
+• The order of rt and rs is reversed from most R–type instructions.
+• rt ($s1) holds the value to be shifted, and the five least significant bits of rs ($s2) 
+give the amount to shift.
+• The shifted result is placed in rd, as before.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 20 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Variable Shift Instructions: Example
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 21 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+• The shamt field is ignored and should be all 0’s.
+• Figure shows register values for each type of variable–shift instruction.
+Variable Shift Instructions: Example
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 22 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Variable Shift: Why rs and rt seem reversed
+• Syntax is sllv rd, rt, rs (and similarly srlv, 
+srav).
+• rt contains the value that will be shifted.
+• The lower 5 bits of rs give the shift amount.
+• rd stores the final result.
+• shamt is ignored because the amount now 
+comes from a register.
+rs
+shift amount
+rt
+value to shift
+rd
+result
+Easy memory tip: the variable amount comes from 
+a register, not from the instruction bits.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 23 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Generating Constants
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+The addi instruction can be used to assign a 16-bit constant to a register.
+For example, to implement:
+int a = 0x4F3C;
+MIPS uses:
+addi $s0, $0, 0x4F3C
+Since $0 always contains zero:
+$s0=0+0x4F3C
+Therefore:
+$s0 = 0x00004F3C
+For a 32-bit constant, a single immediate instruction is not sufficient. MIPS uses lui followed by ori.
+
+--- [Page 24 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Generating a 32-bit Constant
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+To implement:
+int a = 0x6D5E4F3C;
+MIPS divides the constant into two 16-bit parts:
+Upper 16 bits = 0x6D5E
+Lower 16 bits = 0x4F3C
+First, lui loads the upper half: lui $s0, 0x6D5E
+giving: $s0 = 0x6D5E0000
+Then ori inserts the lower half: ori $s0, $s0, 0x4F3C
+giving: $s0 = 0x6D5E4F3C
+Thus:
+lui+ori
+32-bit constant
+⇒
+
+--- [Page 25 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Multiplication and Division
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Multiplication and division differ from the other arithmetic operations because they can produce more 
+than one 32-bit result.
+Multiplying two 32-bit numbers produces a 64-bit product. MIPS stores this result in two special-purpose 
+registers:
+●hi → upper 32 bits
+●lo → lower 32 bits
+mult $s0, $s1
+For division: div $s0, $s1
+the results are:
+●lo → quotient
+●hi → remainder
+The results can be moved to general-purpose registers using: mflo $t0; mfhi $t1
+
+--- [Page 26 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Multiplication and Division: Numerical
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MIPS uses the special HI and LO registers for multiplication and division. For division, LO stores the quotient and HI stores 
+the remainder. For example, if: $s0=20,$s1=6
+div  $s0, $s1
+mflo $t0        # $t0 = 3 (quotient)
+mfhi $t1        # $t1 = 2 (remainder)
+because: 20÷6=3 remainder 2
+For multiplication, two 32-bit numbers produce a 64-bit product. HI stores the upper 32 bits and LO stores the lower 32 
+bits.
+mult $s0, $s1
+mflo $t0        # lower 32 bits
+mfhi $t1        # upper 32 bits
+MIPS also provides mul, which produces a 32-bit result directly in a general-purpose register:
+mul $s1, $s2, $s3       # $s1 = $s2 × $s3
+Remember: div → LO = quotient, HI = remainder; mult → HI:LO = 64-bit product.
+
+--- [Page 27 of 85] ---
+Executing Instructions Out of Sequence
+Modern processors improve performance by changing the normal order of execution 
+when a branch instruction occurs.
+Types of Branch Instructions:
+Conditional Branches
+Execution jumps only if a specified condition is true.
+●beq (Branch if Equal): Branches when two registers contain the same value.
+●bne (Branch if Not Equal): Branches when two registers contain different values.
+DIGITAL LOGIC AND COMPUTER DESIGN
+Branching
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 28 of 85] ---
+Unconditional Branches
+Execution always transfers control to another location.
+●j (Jump): Unconditionally jumps to a specified target address.
+●jr (Jump Register): Jumps to the address stored in a register (commonly used for 
+function returns).
+●jal (Jump and Link): Jumps to a function and saves the return address in the $ra 
+(return address) register.
+DIGITAL LOGIC AND COMPUTER DESIGN
+Branching
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 29 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Conditional branching (BEQ):
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Branch if Equal (beq):
+●Compares the values stored in two registers.
+●If the values are equal, control transfers to the specified label.
+●If the values are not equal, execution continues with the next sequential instruction.
+Syntax:
+beq $rs, $rt, label
+Example Explanation:
+●
+$s0 is initialized to 4.
+●
+$s1 is initialized to 2, then doubled to become 4.
+●
+Since $s0 == $s1, the condition is true.
+●
+The processor branches to the label target.
+●
+The instructions between beq and target are skipped.
+●
+Execution resumes at target, where $s1 becomes 8 (4 + 4).
+
+--- [Page 30 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Conditional branching (BEQ):
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Labels:
+●A label identifies the address of an instruction.
+●It acts as the branch destination.
+●Labels must end with a colon (:) and cannot be reserved keywords.
+Key Takeaway: beq changes the program flow only when the two register values are equal; otherwise, 
+execution proceeds with the next instruction.
+
+--- [Page 31 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+The branch not take (BNE)
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Branch if Not Equal (bne):
+●Compares the values stored in two registers.
+●Branches to the specified label only if the register values are not equal.
+●If the values are equal, execution continues with the next sequential instruction.
+Syntax:
+bne $rs, $rt, label
+Example Explanation
+●
+$s0 is initialized to 4.
+●
+$s1 is initialized to 2, then doubled to become 4.
+●
+Since $s0 == $s1, the condition for bne (not equal) is false.
+●
+The branch is not taken, so execution continues with the next instructions.
+●
+addi updates $s1 from **4 → 5, and subupdates$s1 from **5 → 1.
+●
+Execution eventually reaches the target label, where $s1 becomes 5 (1 + 4).
+
+--- [Page 32 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+The branch not take (BNE)
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Key Takeaway: bne transfers control only when the compared register values are different. If they are 
+equal, execution continues sequentially with the next instruction.
+This matches the beq slide in style while clearly highlighting the difference:
+●beq → Branch when Equal.
+●bne → Branch when Not Equal.
+
+--- [Page 33 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Unconditional Branching (J)
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Jump (j)
+●An unconditional branch transfers control to another instruction without checking any condition.
+●The processor always jumps to the specified target label.
+●Instructions between the j instruction and the target label are skipped.
+Syntax:
+j label
+Example Explanation
+●$s0 is initialized to 4.
+●$s1 is initialized to 1.
+●The instruction j target immediately transfers control to the label target.
+●The instructions sra, addi, and sub are not executed.
+●Execution resumes at target, where $s1 becomes 5 (1 + 4).
+
+--- [Page 34 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Unconditional Branching (J)
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Applications of j
+●Skipping a block of instructions.
+●Implementing loops.
+●Transferring control to another section of a 
+program.
+Key Takeaway: The j instruction always transfers 
+execution to the specified label, regardless of any 
+condition, causing all intermediate instructions to be 
+skipped.
+
+--- [Page 35 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Unconditional Branching (Jr)
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Jump Register (jr)
+●Transfers control to the address stored in a register.
+●The target address is determined at run time, not encoded in the instruction.
+●Unlike j, jr uses a register operand instead of a label.
+●jr is an R-type instruction in the MIPS instruction set.
+Syntax:
+jr $rs
+Example Explanation
+●addi $s0, $0, 0x2010 loads the address 0x00002010 into register $s0.
+●jr $s0 immediately jumps to the address stored in $s0.
+●The instructions at 0x00002008 and 0x0000200C are skipped.
+●Execution resumes at 0x00002010, where lw $s3, 44($s1) is executed.
+
+--- [Page 36 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Unconditional Branching (Jr)
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Applications of jr
+●Returning from functions using jr $ra.
+●Jumping to addresses computed during program execution.
+●Supporting indirect control transfer.
+Key Takeaway: jr transfers control to the address contained in a register, enabling indirect jumps and 
+function returns in MIPS programs.
+
+--- [Page 37 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Conditional statements
+Conditional statements such as if, if/else, and switch/case execute a block of code only when a 
+specified condition is satisfied. 
+In MIPS, these high-level constructs are implemented using conditional branch instructions and 
+labels.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 38 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+IF statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+How an if Statement Works
+●An if statement executes a block of code only when a specified condition is true.
+●In MIPS, this is implemented using conditional branch instructions.
+●The branch instruction checks the opposite condition to skip the if block when the 
+condition is false.
+Example Explanation
+C Code:
+if (i == j)
+    f = g + h;
+f = f - i;
+
+--- [Page 39 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+IF statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Equivalent MIPS Code:
+bne $s3, $s4, L1
+add $s0, $s1, $s2
+L1: sub $s0, $s0, $s3
+●bne checks whether i and j are not equal.
+●If i != j, control jumps to L1, skipping f = g + h.
+●If i == j, the branch is not taken, and f = g + h is executed.
+●After the if block, execution continues with f = f - i.
+Why use bne instead of beq?
+Assembly often tests the opposite condition so that it can skip the if block when the condition is false, 
+resulting in simpler and more efficient code.
+
+--- [Page 40 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+IF/ELSE statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+How an if-else Statement Works
+●An if-else statement executes one of two blocks based on a condition.
+●In MIPS, this is implemented using a conditional branch and an unconditional jump.
+●The conditional branch selects the appropriate block, while the unconditional jump skips the other 
+block after execution.
+Example Explanation
+C Code:
+if (i == j)
+    f = g + h;
+else
+    f = f - i;
+
+--- [Page 41 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+IF/ELSE statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Equivalent MIPS Code:
+bne $s3, $s4, L1
+add $s0, $s1, $s2
+j done
+L1: sub $s0, $s0, $s3
+done:
+●bne checks whether i and j are not equal.
+●If i == j, the branch is not taken, and f = g + h is executed.
+●The j done instruction skips the else block.
+●If i != j, control branches directly to L1, where f = f - i is executed.
+●Execution continues from the label done after either block.
+Key Takeaway: An if-else statement is implemented using a conditional branch to choose the correct 
+block and an unconditional jump to avoid executing the alternate block.
+
+--- [Page 42 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Switch/Case statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+A switch/case selects one of several blocks based on a value. 
+In MIPS, it can be implemented as a series of conditional tests, equivalent to nested if/else statements.
+ If none of the cases match, the default block is executed.
+
+--- [Page 43 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Getting Loopy
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Loops repeatedly execute a block of code as long as a condition is satisfied. 
+Common high-level loop constructs are while and for loops. 
+In MIPS, loops are implemented using comparison, branch, and jump instructions.
+
+--- [Page 44 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+While statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+How a while Loop Works
+●A while loop repeatedly executes a block of code as long as the specified condition is true.
+●In MIPS, the loop is implemented using a conditional branch to exit the loop and an unconditional 
+jump to repeat it.
+●The loop condition is evaluated before each iteration.
+Example Explanation
+C Code
+while (pow != 128) {
+    pow = pow * 2;
+    x = x + 1;  }
+
+--- [Page 45 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+While statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Equivalent MIPS Code
+while:  beq  
+$s0, $t0, done
+        
+sll  
+$s0, $s0, 1
+        
+addi 
+$s1, $s1, 1
+        
+j   
+while
+done:
+●beq checks whether pow == 128.
+●If the condition is true, control branches to done, terminating the loop.
+●If the condition is false, the loop body executes:
+○sll $s0, $s0, 1 multiplies pow by 2 (left shift by 1 bit).
+○addi $s1, $s1, 1 increments x.
+●j while returns control to the beginning of the loop to evaluate the condition again.
+
+--- [Page 46 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+While statement
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+●Why use beq?
+●The original C condition is pow != 128, but the assembly tests the opposite condition 
+(pow == 128) to determine when to exit the loop. This simplifies the loop control.
+Key Takeaway: A while loop in MIPS uses a conditional branch to exit the loop and an 
+unconditional jump to repeat the loop until the termination condition is met.
+
+--- [Page 47 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+For loop
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+A for loop is used to repeatedly execute a block of code when the number of 
+iterations is known or controlled by a loop variable.
+Syntax
+for (initialization; condition; loop operation)
+    
+statement;
+Components of a for Loop
+●Initialization: Executes once before the loop begins.
+●Condition: Evaluated at the start of each iteration. The loop continues while 
+the condition is true.
+●Statement: The block of code executed during each iteration.
+●Loop Operation (Update): Executes at the end of each iteration before the 
+condition is checked again.
+
+--- [Page 48 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+For loop
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Execution Flow
+●Initialization → Condition → Statement → Loop Operation → Condition → … → 
+Exit
+Key Takeaway: A for loop combines initialization, condition checking, and update 
+into a single statement, making it ideal for count-controlled iterations.
+
+--- [Page 49 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+For loop in MIPS
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+How a for Loop Works
+●A for loop performs initialization, checks a condition, executes the loop body, 
+updates the loop variable, and repeats until the condition becomes false.
+●In MIPS, it is implemented using initialization instructions, a conditional branch, an 
+update instruction, and an unconditional jump.
+Example Explanation
+C Code:
+for (i = 0; i != 10; i++) {
+    sum = sum + i;
+}
+
+--- [Page 50 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+For loop in MIPS
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Equivalent MIPS Code:
+addi $s1, $0, 0      # sum = 0
+add  $s0, $0, $0     # i = 0
+addi $t0, $0, 10     # loop limit
+for:  beq  $s0, $t0, done
+      add  $s1, $s1, $s0
+      addi $s0, $s0, 1
+      j    for
+done:
+●addi instructions initialize sum, i, and the loop limit (10).
+●beq checks whether i == 10.
+●If the condition is true, control branches to done, terminating the loop.
+●Otherwise, the loop body adds the current value of i to sum.
+●addi $s0, $s0, 1 increments the loop variable.
+
+--- [Page 51 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+For loop in MIPS
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+●j for returns control to the beginning of the loop for the next iteration.
+Key Takeaway: A for loop in MIPS consists of initialization, condition checking, loop 
+body execution, loop variable update, and an unconditional jump to repeat the loop 
+until the termination condition is met.
+
+--- [Page 52 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Magnitude Comparison Using slt
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+The beq and bne instructions compare whether two values are equal or unequal. For magnitude comparisons, 
+MIPS provides the Set Less Than (slt) instruction.
+slt $t1, $s0, $s1
+The instruction sets $t1 to 1 when $s0 < $s1, otherwise it sets $t1 to 0.
+For example:
+$s0 = 5
+$s1 = 8
+slt $t1, $s0, $s1
+gives:
+5<8
+$t1=1
+⇒
+This can then be combined with beq or bne to implement conditions such as less than, greater than, less than or 
+equal to, and greater than or equal to.
+
+--- [Page 53 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Loop Using slt : Numerical
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+The textbook example adds powers of 2 from 1 to 100:
+C code:
+int sum = 0;
+for (i = 1; i < 101; i = i * 2)
+    sum = sum + i;
+MIPS equivalent: 
+addi $s1, $0, 0       # sum = 0
+addi $s0, $0, 1       # i = 1
+addi $t0, $0, 101
+loop:
+slt  $t1, $s0, $t0    # $t1 = 1 if i < 101
+beq  $t1, $0, done    # if i >= 101, exit
+add  $s1, $s1, $s0    # sum = sum + i
+
+--- [Page 54 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Loop Using slt : Numerical
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+sll  $s0, $s0, 1      # i = i * 2
+j    loop
+done:
+The values added are:
+1+2+4+8+16+32+64=1271+2+4+8+16+32+64=127
+Therefore:
+sum=127
+Key idea: slt converts a magnitude comparison into a 1/0 result, which can then be tested using a branch 
+instruction.
+
+--- [Page 55 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Arrays and Array Indexing
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+An array stores multiple elements of the same type in sequential memory locations. Each element is 
+identified by an index, starting from 0. The address of the first element, array[0], is called the base 
+address.
+For a 32-bit integer array, each element occupies 4 bytes. Therefore:
+Address of array[i]=Base Address+4i
+For example, if the base address is 0x10007000:
+array[0] → 0x10007000
+array[1] → 0x10007004
+array[2] → 0x10007008
+To access an element, MIPS uses the base address and an offset:
+lw $t1, 4($s0)     # loads array[1];  where $s0 contains the base address.
+
+--- [Page 56 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Accessing an Array in MIPS
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Consider: int array[5];
+array[0] = array[0] * 8;
+array[1] = array[1] * 8;
+If the base address is 0x10007000, MIPS first loads this address into $s0:
+lui $s0, 0x1000
+ori $s0, $s0, 0x7000
+Then the elements are accessed using their byte offsets:
+lw  $t1, 0($s0)       # array[0]
+sll $t1, $t1, 3       # multiply by 8
+sw  $t1, 0($s0)
+lw  $t1, 4($s0)       # array[1]
+sll $t1, $t1, 3       # multiply by 8
+sw  $t1, 4($s0)
+Since each integer occupies 4 bytes, array[1] is located 4 bytes after array[0].
+
+--- [Page 57 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Array Access Using a for Loop
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+For a large array, the same instructions should not be repeated for every element. The index can be used to calculate the address 
+of each element.
+For a 1000-element integer array:
+for (i = 0; i < 1000; i++)
+    array[i] = array[i] * 8;
+MIPS calculates the address using:
+sll $t0, $s1, 2       # $t0 = i × 4
+add $t0, $t0, $s0     # address of array[i]
+lw  $t1, 0($t0)
+sll $t1, $t1, 3       # array[i] × 8
+sw  $t1, 0($t0)
+Here, $s0 contains the base address and $s1 contains i.
+Byte offset=i×4
+The shift sll $t0,$s1,2 is used because: i×4=i×2^2
+
+--- [Page 58 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Byte Arrays and Characters
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Characters can be stored in a single byte instead of a 32-bit word. MIPS provides special instructions 
+for accessing byte data:
+lbu    # Load Byte Unsigned
+lb     # Load Byte
+sb     # Store Byte
+lbu zero-extends the loaded byte to 32 bits, while lb sign-extends it. sb stores only the least significant 
+byte of a register into memory.
+For byte arrays, consecutive elements are only 1 byte apart:
+Address of chararray[i]=Base Address+i
+This differs from an integer array, where the offset is 4i.
+
+--- [Page 59 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Character Array: Lowercase to Uppercase Numerical
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Question:
+Convert the following C code into MIPS assembly language:
+char chararray[10];
+int i;
+for (i = 0; i != 10; i = i + 1)
+    chararray[i] = chararray[i] - 32;
+Assume that $s0 already contains the base address of chararray.
+Solution
+addi $s1, $0, 0          # i = 0
+addi $t0, $0, 10         # $t0 = 10
+
+--- [Page 60 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Character Array Numerical
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+loop:
+beq  $t0, $s1, done      # if i == 10, exit
+add  $t1, $s1, $s0       # address of chararray[i]
+lb   $t2, 0($t1)         # load chararray[i]
+addi $t2, $t2, -32       # convert lowercase to uppercase
+sb   $t2, 0($t1)         # store result
+addi $s1, $s1, 1         # i = i + 1
+j    loop
+done:
+
+--- [Page 61 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Character Array Numerical
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Why add $t1, $s1, $s0?
+Each character occupies 1 byte, so the address of chararray[i] is:
+Base Address+i
+For ASCII characters:
+a =0x61, 0x61−0x20=0x41= A
+′ ′
+′ ′
+Thus, subtracting 32 (0x20) converts a lowercase English letter to its corresponding uppercase letter.
+
+--- [Page 62 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Function Calls and Returns
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Functions allow frequently used code to be reused, making programs more modular and readable. A function 
+receives arguments and produces a return value.
+MIPS follows a convention for communication between the caller and callee:
+$a0−$a3→input arguments;  $v0−$v1→return value
+The function is called using jal, which stores the return address in $ra and jumps to the function. The function returns 
+using jr $ra.
+jal simple       # call function
+...
+simple:
+jr $ra           # return to caller
+For example, if jal is at 0x00400200, the next instruction is at 0x00400204. Therefore: $ra=0x00400204\boxed{\
+$ra=0x00400204}
+
+--- [Page 63 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Function Call with Arguments
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Consider the function:
+int diffofsums(int f, int g, int h, int i) {
+    int result;
+    result = (f + g) - (h + i);
+    return result;
+}
+The caller places the four arguments in $a0–$a3:
+addi $a0, $0, 2
+addi $a1, $0, 3
+addi $a2, $0, 4
+addi $a3, $0, 5
+
+--- [Page 64 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Function Call with Arguments
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+jal  diffofsums
+add  $s0, $v0, $0
+The callee performs the calculation and places the result in $v0:
+add $t0, $a0, $a1
+add $t1, $a2, $a3
+sub $s0, $t0, $t1
+add $v0, $s0, $0
+jr  $ra
+Numerically:
+(2+3)−(4+5)=5−9=−4(2+3)-(4+5)=5-9=\boxed{-4}
+Therefore, the function returns −4 in $v0.
+
+--- [Page 65 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Stack in Function Calls
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+The stack is a LIFO memory structure used to store temporary data and local variables during function execution. The 
+MIPS stack grows toward lower memory addresses.
+$sp is the stack pointer and points to the top of the stack.
+If: $sp=0x7FFFFFFC and a function needs two additional words:
+addi $sp, $sp, -8
+then: $sp=0x7FFFFFF4
+because each word occupies 4 bytes.
+A function follows five basic steps when saving registers:
+1. Allocate stack space.
+2. Store registers on the stack.
+3. Execute the function.
+4. Restore the registers.
+5. Deallocate the stack space.
+
+--- [Page 66 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Saving Registers on the Stack
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+A function must preserve registers that the caller depends on. The stack can temporarily store these registers while 
+the function executes.
+For diffofsums, three registers are saved:
+addi $sp, $sp, -12     # space for 3 words
+sw   $s0, 8($sp)
+sw   $t0, 4($sp)
+sw   $t1, 0($sp)
+# function operations
+lw   $t1, 0($sp)
+lw   $t0, 4($sp)
+lw   $s0, 8($sp)
+
+--- [Page 67 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Saving Registers on the Stack
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+addi $sp, $sp, 12
+jr   $ra
+Since each register requires one word: 3×4=12 bytes
+The stack space allocated by a function is called its stack frame.
+
+--- [Page 68 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Preserved and Nonpreserved Registers
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MIPS divides registers into preserved and nonpreserved registers.
+Preserved
+Nonpreserved
+$s0–$s7
+$t0–$t9
+$ra
+$a0–$a3
+$sp
+$v0–$v1
+A callee must save and restore preserved registers that it modifies. Nonpreserved registers may be changed 
+by the callee.
+Therefore, in the improved diffofsums, only $s0 needs to be saved:
+addi $sp, $sp, -4
+sw   $s0, 0($sp)
+# function operations
+
+--- [Page 69 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Preserved and Nonpreserved Registers
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+lw   $s0, 0($sp)
+addi $sp, $sp, 4
+jr   $ra
+Thus, the stack frame requires only:
+1×4=4 bytes​
+
+--- [Page 70 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Recursive Function Calls
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+A leaf function does not call another function, whereas a nonleaf function calls another function. A recursive 
+function is a nonleaf function that calls itself.
+Consider factorial:
+int factorial(int n) {
+    if (n <= 1)
+        return 1;
+    else
+        return n * factorial(n - 1); }
+The recursive relationship is: factorial(n)=n×factorial(n−1)
+with the base case: factorial(1)=1
+For n=3: 3!=3×2×1=6
+Each recursive call creates its own stack frame to preserve $a0 and $ra.
+
+--- [Page 71 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Recursive Factorial in MIPS
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+The textbook implementation saves $a0 and $ra before making the recursive call:
+factorial:
+addi $sp, $sp, -8
+sw   $a0, 4($sp)
+sw   $ra, 0($sp)
+addi $t0, $0, 2
+slt  $t0, $a0, $t0
+beq  $t0, $0, else
+addi $v0, $0, 1
+addi $sp, $sp, 8
+jr   $ra
+else:
+addi $a0, $a0, -1
+jal  factorial
+
+--- [Page 72 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Recursive Factorial in MIPS
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+lw   $ra, 0($sp)
+lw   $a0, 4($sp)
+addi $sp, $sp, 8
+mul  $v0, $a0, $v0
+jr   $ra
+For factorial(3):
+3→2→1
+Then the calls return:
+1→2×1=2→3×2=6
+Each invocation allocates 8 bytes for $a0 and $ra.
+
+--- [Page 73 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+Additional Arguments and Local Variables
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MIPS provides registers $a0–$a3 for the first four input arguments. If a function requires more than four arguments, the 
+additional arguments are passed through the stack.
+First 4 arguments → $a0–$a3
+Additional arguments → Stack
+The caller expands its stack to make room for the additional arguments. A function may also use the stack for local 
+variables and local arrays.
+The callee's stack frame can contain:
+Local variables / arrays
+$s0–$s7 (if needed)
+$a0–$a3 (if needed)
+Return address
+Additional arguments
+An important exception is that when a function has more than four arguments, the callee may access the additional 
+arguments in the caller's stack frame.Key MIPS Function-Call Flow: Arguments→jal→Callee→Return value→jr $ra​
+
+--- [Page 74 of 85] ---
+1. Assume that register $s1 contains 7 and register $s2 contains 4. Consider  the 
+following instruction sequence (the first register is the destination, and  the not 
+instruction inverts each bit):
+nor  $s3, $s0, $s2
+addi $s3, $s2, 1
+add $s3, $s1, $s2
+1. What value gets stored in $s3? What arithmetic operation do above 
+instructions perform on $s1 and $s2 contents?
+DIGITAL LOGIC AND COMPUTER DESIGN
+Think About It
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 75 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q1. What is the primary role of the Program Counter (PC)?
+A) Store arithmetic results
+ B) Hold the address of the next instruction to be executed
+ C) Store data values temporarily
+ D) Decode machine instructions
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 76 of 85] ---
+MCQ
+Q2. Which statement correctly distinguishes assembly code from machine code?
+A) Assembly code is executed directly by the CPU.
+ B) Machine code uses mnemonics such as add and lw.
+ C) Assembly code is human-readable and must be translated into machine code.
+ D) Both are identical representations of a program.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC AND COMPUTER DESIGN
+
+--- [Page 77 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q3. Which MIPS instruction transfers control only when two register values are equal?
+A) bne
+ B) j
+ C) beq
+ D) jr
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 78 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q4. Which instruction is commonly used to return from a function in MIPS?
+A) beq
+ B) j
+ C) jal
+ D) jr
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 79 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q5. In the MIPS implementation of an if-else statement, why is the instruction j done used?
+A) To initialize variables before execution
+ B) To skip the else block after executing the if block
+ C) To compare two registers
+ D) To terminate the program
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 80 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q6. In a MIPS while loop, which instruction causes the loop to repeat?
+A) beq
+ B) addi
+ C) j while
+ D) sub
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 81 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q7. Which sequence correctly represents the execution order of a for loop?
+A) Statement → Initialization → Condition → Update
+ B) Initialization → Condition → Statement → Update
+ C) Condition → Initialization → Update → Statement
+ D) Initialization → Statement → Update → Condition
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 82 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q8. An integer array has base address 0x10007000. What address does the following MIPS 
+code access?
+Assume $s0 = 0x10007000.
+A. 0x10007006
+ B. 0x10007018
+ C. 0x10007024
+ D. 0x10007028
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 83 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+Q9. Consider the following function call:
+addi $a0, $0, 2
+addi $a1, $0, 3
+addi $a2, $0, 4
+addi $a3, $0, 5
+jal  diffofsums
+where the function computes: result = (f + g) - (h + i);
+What value should be returned in $v0?
+A. -4
+ B. 0
+ C. 4
+ D. 14
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+
+--- [Page 84 of 85] ---
+DIGITAL LOGIC AND COMPUTER DESIGN
+MCQ
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+ANSWER KEY:
+Q1: B  Q2: C  Q3: C  Q4: D  Q5: B  Q6: C
+ Q7: B
+ Q8: B
+ Q9: A
+
+--- [Page 85 of 85] ---
+THANK YOU
+Team DLCD
+Department of CSE and CSE(AI & ML)

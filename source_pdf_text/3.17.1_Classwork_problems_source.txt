@@ -1,0 +1,392 @@
+================================================================================
+SOURCE PDF DOCUMENT : 3.17.1_Classwork_problems.pdf
+SOURCE PATH         : resources/u3/3/Slides/3.17.1_Classwork_problems.pdf
+PAGES               : 16
+WORDS EXTRACTED     : 1095
+CHARACTERS          : 5885
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
+--- [Page 1 of 16] ---
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+DIGITAL LOGIC AND 
+COMPUTER DESIGN
+
+--- [Page 2 of 16] ---
+Sequential Building Blocks
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+  
+DIGITAL LOGIC AND COMPUTER DESIGN
+
+--- [Page 3 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.43
+Exercise 5.43: Build a 32-bit synchronous Up/Down counter. The inputs are Reset and Up. When Reset is 1, the outputs are all 0. 
+Otherwise, when Up = 1, the circuit counts up, and when Up = 0, the circuit counts down.
+Given
+●
+Inputs: Reset, Up, CLK
+●
+Output: Q[31:0]
+●
+If Reset = 1 → Q = 0
+●
+If Reset = 0 and Up = 1 → count up
+●
+If Reset = 0 and Up = 0 → count down
+Design
+Use:
+●
+32-bit register
+●
+32-bit adder/subtractor
+●
+MUX
+●
+Constant 1
+
+--- [Page 4 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.43
+The next-state equation is:
+Q+= {
+0 
+Reset=1
+Q+1
+Reset=0, Up=1
+Q−1
+Reset=0, Up=0}
+A convenient implementation is: Q^(+) = Q + (2Up-1)
+or, more practically, use an adder/subtractor controlled by Up.
+Reset here is synchronous - it overrides D on the clock edge, not an immediate async clear.
+
+--- [Page 5 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.44
+Exercise 5.44 Design a 32-bit counter that adds 4 at each clock edge. The counter has reset and clock inputs. Upon reset, the counter 
+output is all 0.
+Given
+●
+Inputs: Reset, CLK
+●
+Output: Q[31:0]
+●
+Reset → Q = 0
+●
+Every clock edge:
+Q^(+) = Q+4
+Design
+Use:
+●
+32-bit register
+●
+32-bit adder
+●
+Constant 4
+
+--- [Page 6 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.51
+Implement the following functions using a single 16 × 3 ROM. Use dot notation to indicate the ROM contents.
+Given:
+A 16 × 3 ROM has:
+●
+4 address inputs: A,B,C,D since 2^(4)=16 addresses
+●
+3 data outputs: X,Y,Z
+Step 1: Determine the ROM contents
+
+--- [Page 7 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.51
+Address
+A B C D
+X
+Y
+Z
+ROM Data (XYZ)
+0
+0000
+1
+0
+0
+100
+1
+0001
+1
+0
+1
+101
+2
+0010
+1
+0
+1
+101
+3
+0011
+1
+0
+1
+101
+4
+0100
+0
+0
+1
+001
+5
+0101
+0
+1
+1
+011
+6
+0110
+0
+0
+1
+001
+7
+0111
+0
+1
+1
+011
+8
+1000
+0
+0
+1
+001
+9
+1001
+0
+0
+1
+001
+10
+1010
+1
+0
+1
+101
+
+--- [Page 8 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.51
+11
+1011
+0
+0
+1
+001
+12
+1100
+1
+1
+1
+111
+13
+1101
+1
+1
+1
+111
+14
+1110
+1
+1
+1
+111
+15
+1111
+1
+1
+1
+111
+Step 2: ROM contents
+Therefore, the 16 × 3 ROM stores:
+100, 101, 101, 101, 001, 011, 001, 011, 001, 001, 101, 001, 111, 111, 111, 111​
+
+--- [Page 9 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.51
+Dot Notation
+In dot notation, place a dot at the intersection of an address row and output column wherever the ROM stores a 1.
+Address ABCDABCD
+X
+Y
+Z
+0000
+●
+0001
+●
+●
+0010
+●
+●
+0011
+●
+●
+0100
+●
+0101
+●
+●
+0110
+●
+0111
+●
+●
+
+--- [Page 10 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 5.51
+1000
+●
+1001
+●
+1010
+●
+●
+1011
+●
+1100
+●
+●
+●
+1101
+●
+●
+●
+1110
+●
+●
+●
+1111
+●
+●
+●
+
+--- [Page 11 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 6.3
+Exercise 6.3: Consider memory storage of a 32-bit word stored at memory word 42 in a byte-addressable memory. (a) 
+What is the byte address of memory word 42? (b) What are the byte addresses that memory word 42 spans? (c) Draw 
+the number 0xFF223344 stored at word 42 in both big-endian and little-endian machines. Your drawing should be 
+similar to Figure 6.4. Clearly label the byte address corresponding to each data byte value.
+Given
+●
+Memory word = 42
+●
+Word size = 32 bits = 4 bytes
+●
+Memory is byte-addressable
+●
+Data = 0xFF223344
+(a) Byte address of memory word 42
+Since each word occupies 4 bytes: Byte address=Word number×4=42×4=168
+Convert 168 to hexadecimal: 0xA8
+Answer:0xA8. So, word 42 starts at byte address 0xA8.
+
+--- [Page 12 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 6.3
+(b) Byte addresses that word 42 spans
+A 32-bit word contains 4 bytes.
+Starting at 0xA8, the four bytes occupy consecutive addresses:
+Byte
+Address
+Byte 0
+0xA8
+Byte 1
+0xA9
+Byte 2
+0xAA
+Byte 3
+0xAB
+Answer: 0xA8, 0xA9, 0xAA, 0xAB​
+
+--- [Page 13 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 6.3
+(c) Store 0xFF223344
+First divide the 32-bit number into its four bytes: FF
+22
+33
+44, where:
+●
+FF = Most Significant Byte (MSB)
+●
+44 = Least Significant Byte (LSB)
+The textbook explains that in big-endian, the MSB is stored at the lower byte address, while in little-endian, the LSB is 
+stored at the lower byte address.
+Big-Endian
+MSB goes to the lowest address. Therefore:
+●
+FF → 0xA8
+●
+22 → 0xA9
+●
+33 → 0xAA
+●
+44 → 0xAB
+
+--- [Page 14 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 6.3
+Little-Endian
+LSB goes to the lowest address.
+Therefore:
+●
+44 → 0xA8
+●
+33 → 0xA9
+●
+22 → 0xAA
+●
+FF → 0xAB
+Finally, 
+Big-endian
+A8:FF, A9:22, AA:33, AB:44
+Little-endian
+A8:44, A9:33, AA:22, AB:FF
+
+--- [Page 15 of 16] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Exercise problems: 6.4
+Exercise 6.4: Repeat Exercise 6.3 for memory storage of a 32-bit word stored at memory word 15 in a byte-
+addressable memory.
+(a) Byte address of memory word 15
+Byte Address=15×4=60= 0x3C (in hexadecimal)
+(b) Byte addresses that memory word 15 spans
+A 32-bit word = 4 bytes, so it spans:
+0x3C, 0x3D, 0x3E, 0x3F
+(c) Store 0xFF223344
+Endian Type
+Byte Address : Data
+Big-endian
+3C:FF, 3D:22, 3E:33, 3F:44
+Little-endian
+3C:44, 3D:33, 3E:22, 3F:FF
+
+--- [Page 16 of 16] ---
+Team DLCD
+Department of CSE and CSE(AI & ML)
+THANK YOU

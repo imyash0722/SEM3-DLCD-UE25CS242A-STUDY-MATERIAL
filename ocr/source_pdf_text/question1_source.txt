@@ -1,0 +1,9 @@
+================================================================================
+SOURCE PDF DOCUMENT : question1.pdf
+SOURCE PATH         : notes/question1.pdf
+PAGES               : 1
+WORDS EXTRACTED     : 0
+CHARACTERS          : 0
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+

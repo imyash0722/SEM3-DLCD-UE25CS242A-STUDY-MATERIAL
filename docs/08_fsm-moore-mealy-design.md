@@ -1,6 +1,6 @@
 # 08. Finite State Machines — Moore vs Mealy, Design Process
 
-> **Source:** Harris & Harris Ch. 3, Unit 2 Slides 2–64
+> **Source:** Harris & Harris Ch. 3, Unit 2 Slides 2–64, Unit 3 FSM Slides
 
 ---
 
@@ -38,31 +38,12 @@ State ───►│ (Combinational)│
           └──────────────┘
 ```
 
----
-
-## Moore vs Mealy
-
-| Property | Moore | Mealy |
-|----------|-------|-------|
-| **Output depends on** | Current state only | Current state + inputs |
-| **Output formula** | Y = g(S) | Y = g(S, X) |
-| **States needed** | More (usually) | Fewer |
-| **Output timing** | State-synchronous | Can be asynchronous |
-| **Glitch immunity** | High | Lower |
-| **Diagram** | Outputs **in** circles | Outputs **on** arcs |
-
----
-
-## FSM Design Procedure
-
-1. **Identify inputs/outputs**
-2. **Draw State Transition Diagram**
-3. **Create State Transition Table**
-4. **Create Output Table**
-5. **Select State Encoding** (Binary, One-Hot, etc.)
-6. **Derive Next-State Equations** (K-maps/inspection)
-7. **Derive Output Equations**
-8. **Draw Circuit Schematic**
+**Working Principle:** On every clock edge, the FSM:
+1. Reads the current state
+2. Accepts the current inputs
+3. Computes the next state
+4. Updates the state register
+5. Produces the required outputs
 
 ---
 
@@ -82,18 +63,41 @@ State ───►│ (Combinational)│
 
 **State Encoding (Binary):** S0=00, S1=01, S2=10, S3=11
 
+**State Transitions:**
+- Reset → S0 (always)
+- S0 → S1: If Tₐ = 0 (Academic Ave has no traffic)
+- S1 → S2: After 5 seconds automatically
+- S2 → S3: If Tᵦ = 0 (Bravado Blvd has no traffic)
+- S3 → S0: After 5 seconds, completing one cycle
+- S0 → S0 when Tₐ = 1 (Academic Ave has traffic)
+- S2 → S2 when Tᵦ = 1 (Bravado Blvd has traffic)
+
 ---
 
-## Divide-by-3 Counter (Moore)
+## Moore vs Mealy
 
-| State | Binary | One-Hot | Output Y |
-|-------|--------|---------|----------|
-| S0 | 00 | 001 | 1 |
-| S1 | 01 | 010 | 0 |
-| S2 | 10 | 100 | 0 |
+| Property | Moore | Mealy |
+|----------|-------|-------|
+| **Output depends on** | Current state only | Current state + inputs |
+| **Output formula** | Y = g(S) | Y = g(S, X) |
+| **States needed** | More (usually) | Fewer |
+| **Output timing** | State-synchronous | Can be asynchronous |
+| **Glitch immunity** | High | Lower |
+| **Diagram** | Outputs **in** circles | Outputs **on** arcs |
 
-**Sequence:** S0 → S1 → S2 → S0 → ...
-**Output:** Y=1 only in S0 (1 cycle out of 3)
+---
+
+## Traffic Light Example (Moore vs Mealy)
+
+### Moore Machine (3 states)
+- States represent the previous input history
+- Output depends only on current state
+- Requires 3 states for the snail pattern recognizer example
+
+### Mealy Machine (2 states)
+- Outputs are generated during state transitions
+- Each transition labeled as `Input / Output`
+- Requires only 2 states for the same pattern recognizer
 
 ---
 
@@ -121,6 +125,118 @@ State ───►│ (Combinational)│
 | S3 | 101 |
 
 **Output:** Detect=1 when in S3 **and** input=1 (on transition)
+
+---
+
+## FSM Design Procedure
+
+1. **Identify inputs/outputs**
+2. **Draw State Transition Diagram**
+3. **Create State Transition Table**
+4. **Create Output Table**
+5. **Select State Encoding** (Binary, One-Hot, etc.)
+6. **Derive Next-State Equations** (K-maps/inspection)
+7. **Derive Output Equations**
+8. **Draw Circuit Schematic**
+
+---
+
+## Divide-by-3 Counter (Moore)
+
+| State | Binary | One-Hot | Output Y |
+|-------|--------|---------|----------|
+| S0 | 00 | 001 | 1 |
+| S1 | 01 | 010 | 0 |
+| S2 | 10 | 100 | 0 |
+
+**Sequence:** S0 → S1 → S2 → S0 → ...
+**Output:** Y=1 only in S0 (1 cycle out of 3)
+
+---
+
+## Pattern Recognizer (1011, Overlapping)
+
+### Moore FSM Verilog Code
+
+```verilog
+module moore_1011 (
+    input  wire clk,
+    input  wire reset,
+    input  wire x,
+    output reg  detect
+);
+
+    localparam S0 = 3'b000,
+               S1 = 3'b001,
+               S2 = 3'b010,
+               S3 = 3'b011,
+               S4 = 3'b100;
+
+    reg [2:0] state, next_state;
+
+    // State Register
+    always @(posedge clk or posedge reset) begin
+        if (reset) state <= S0;
+        else       state <= next_state;
+    end
+
+    // Next State Logic
+    always @(*) begin
+        next_state = S0;
+        case (state)
+            S0: if (x) next_state = S1; else next_state = S0;
+            S1: if (x) next_state = S1; else next_state = S2;
+            S2: if (x) next_state = S3; else next_state = S0;
+            S3: if (x) next_state = S4; else next_state = S2;
+            S4: if (x) next_state = S1; else next_state = S2;  // Overlap recovery
+            default: next_state = S0;
+        endcase
+    end
+
+    // Moore Output Logic
+    always @(*) begin
+        detect = (state == S4);
+    end
+endmodule
+```
+
+---
+
+## Mealy FSM for 1011 (4 states)
+
+```verilog
+module mealy_1011 (
+    input  wire clk,
+    input  wire reset,
+    input  wire x,
+    output reg  detect
+);
+
+    localparam S0 = 2'b00, S1 = 2'b01, S2 = 2'b10, S3 = 2'b11;
+
+    reg [1:0] state, next_state;
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) state <= S0;
+        else       state <= next_state;
+    end
+
+    always @(*) begin
+        next_state = S0;
+        detect = 1'b0;
+        case (state)
+            S0: if (x) next_state = S1; else next_state = S0;
+            S1: if (x) next_state = S1; else next_state = S2;
+            S2: if (x) next_state = S3; else next_state = S0;
+            S3: if (x) begin detect = 1'b1; next_state = S1; end
+                else begin next_state = S2; end
+            default: next_state = S0;
+        endcase
+    end
+endmodule
+```
+
+**Key Difference:** Mealy output `detect` is asserted on transition (S3 + x=1), not in a state.
 
 ---
 

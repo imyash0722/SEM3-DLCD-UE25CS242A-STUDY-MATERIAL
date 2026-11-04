@@ -1,0 +1,540 @@
+================================================================================
+SOURCE PDF DOCUMENT : QB.pdf
+SOURCE PATH         : resources/QB.pdf
+PAGES               : 19
+WORDS EXTRACTED     : 4326
+CHARACTERS          : 26048
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
+--- [Page 1 of 19] ---
+Digital Logic and Computer Design
+UNIT 1 - Question bank(120 questions)
+1. Differentiate between combinational and sequential logic circuits. 
+Support your answer with two real-life analogies other than the 
+automatic-door and ATM examples. 
+2. Explain the rules that must be satisfied for a circuit to be considered a 
+combinational circuit. In particular, discuss why cyclic paths are not 
+permitted. 
+3. State and explain the three rules that must simultaneously hold for a c
+ircuit to be classified as combinational.
+4. Explain why a circuit containing a cyclic feedback path cannot be 
+classified as combinational, even if every individual element within it is 
+itself combinational. 
+5. A circuit is built from three combinational elements E1, E2, and E3, 
+where E3 begins computing only after the outputs of both E1 and E2 
+become valid. Given Delay(E1), Delay(E2), and Delay(E3), derive a 
+general formula for the worst-case propagation delay of the overall circuit
+ and explain your reasoning. 
+6. Define the terms Literal, Implicant, Minterm, and Maxterm, giving 
+one worked example of each for a 3-variable function with inputs a, b, c. 
+7. Implement the Boolean function F = xy + x’y’ + y’z (a) With AND, 
+OR, and inverter gates (b)  With OR and inverter gates (c) With AND and 
+inverter gates (d) (e) With NAND and inverter gates With NOR and 
+inverter gates.
+8. Express the following function as a sum of minterms and as a product 
+of maxterms: F(A, B, C, D) = B’D + A’D + BD.
+9. Express the complement of the following functions in sum‐of
+‐minterms form: ( a ) F(A,B ,C, D) = g(2, 4, 7, 10, 12, 14) (b) F ( x, y, z ) 
+= w(3, 5, 7).
+10. Starting from y = a′bc + ab′c′ + abc′ + abc, minimize the expression u
+sing only Boolean algebra laws (distributive, complement, and identity 
+laws). Show every intermediate step and name the law used at each stage. 
+11. Convert the POS expression y = (a + b + c)(a + b′ + c)(a′ + b + c′) into 
+its equivalent canonical SOP form, and then convert that SOP form back i
+nto POS, showing every step so that the two final expressions match. 
+12. What is meant by "logic minimization"? Describe at least three 
+different metrics that can be used to judge the quality of a Boolean 
+expression or its circuit realization, and state which specific metric is 
+adopted as the standard in this course.
+
+--- [Page 2 of 19] ---
+13. For a three-variable Boolean function, explain how a truth table is 
+converted into canonical SOP form. Include the construction of minterms 
+and Σ-notation. 
+14. For a three-variable Boolean function, explain how canonical POS 
+form is obtained from the rows where the output is 0. Include maxterms a
+nd Π-notation. 
+15. Given a Boolean equation containing several product terms, simplify i
+t using Boolean identities. Explain at every stage which identity is being a
+pplied and compare the gate count before and after minimization.
+16. State the Complement law, Identity law, and Distributive law used in 
+Boolean minimization, and prove each using a truth table. Then apply all 
+three, in sequence, to minimize y = xy′z + xyz + xyz′. 
+17. Convert each of the following expressions into sum of products and p
+roduct of sums: ( a ) ( u + xw )( x + u’v ) (b) x’ + x(x + y’)(y + z’)
+18. Show that the dual of the exclusive‐OR is equal to its complement. 
+19. Show that a positive logic NAND gate is a negative logic NOR gate a
+nd vice versa. 
+20. Write the Boolean equations and draw the logic diagram of the circuit 
+whose outputs are defined by the following truth table:  
+21. Determine whether the following Boolean equation is true or false. 
+x’y’ + x’z + x’z’ = x’z’ + y’z’ + x’z .
+22. Write the following Boolean expressions in sum of products form: 
+(b+d)(a’ +b’ +c).
+23. Write the following Boolean expression in product of sums form: a’b 
++a’c’ +abc.
+24. Simplify the Boolean function F (x, y, z) = Σ(3, 4, 6, 7).
+25. Explain why Boolean-algebra-based minimization becomes 
+increasingly difficult and error-prone as the number of variables in a 
+function increases, and describe how the K-map method overcomes this 
+limitation. 
+26. Explain why Karnaugh-map rows and columns are arranged in Gray-c
+ode order rather than ordinary binary order. Demonstrate how this 
+ordering guarantees that adjacent cells differ in only one variable.
+
+--- [Page 3 of 19] ---
+27. A student groups three cells together in a K-Map because all three 
+cells contain 1. Explain why this grouping is invalid. State the rules 
+governing the number and shape of cells in a valid K-Map group. 
+28. Construct a 3-variable K-Map for   F(A,B,C)=Σ(0,1,2,4,5,6)  and 
+obtain the minimum SOP expression. Clearly identify the groups and 
+explain which variables are eliminated.
+29. Explain the difference between an implicant, prime implicant, and 
+essential prime implicant. Illustrate the difference using a suitable K-Map.
+ 
+30. T Clock A sequential circuit has two JK flip-flops A and B and one 
+input x . The circuit is described by the following flip-flop input 
+equations: JA = x KA= B JB = x KB= A’ (a) Derive the state equations A 
+( t + 1) and B ( t + 1) by substituting the input equations for the J and K v
+ariables. (b) Draw the state diagram of the circuit. 
+31. Starting from state a, and the input sequence 01110010011, determine 
+the output sequence for (a) The state table of the previous problem. (b) 
+The reduced state table from the previous problem. Show that the same o
+utput sequence is obtained for both.
+32. Minimize F(A,B,C)=Σ(0,2,3,4,6,7)  using a K-Map. Identify all useful 
+prime implicants and determine which are essential.
+33. What is the main difference between an initial statement and an 
+always statement in Verilog HDL? 
+34. Explain K-Map wrap-around adjacency. Demonstrate how cells at 
+opposite edges of a K-Map can form a valid group. 
+35. Explain the concept of don't-care conditions. Why can a don't-care 
+cell be treated as either 0 or 1 during minimization? Give an example 
+where assigning a don't-care as 1 produces a substantially simpler 
+expression. 
+36. A seven-segment display accepts a 4-bit input representing decimal 
+digits 0–9. Inputs 10–15 are invalid. Construct the truth table and use K-
+Maps to derive the simplified equation for segment Sa. 
+37. Minimize f(a, b, c, d) = Σ(0, 1, 2, 3, 8, 9, 10, 11) using a 4-variable K-
+map. Derive the simplest SOP expression and explain the reasoning 
+behind every grouping used. 
+38. A PN flip-flop has four operations: clear to 0, no change, complement,
+ and set to 1, when inputs P and N are 00, 01, 10, and 11, respectively. (a) 
+Tabulate the characteristic table. (b)  Derive the characteristic equation. 
+(c) Tabulate the excitation table. (d) Show how the PN flip-flop can be 
+converted to a D flip-flop.
+
+--- [Page 4 of 19] ---
+39. For the following state table 
+(a) Draw the corresponding state diagram.
+(b)  Tabulate the reduced state table. 
+(c) Draw the state diagram corresponding to the reduced state table. 
+40. Explain the differences among a truth table, a state table, a 
+characteristic table, and an excitation table. Also, explain the difference a
+mong a Boolean equation, a state equation, a characteristic equation, and 
+a flip-flop input equation. 
+41. A sequential circuit has one flip-flop Q, two inputs x and y, and one o
+utput S . It consists of a full-adder circuit connected to a D flip-flop, as 
+shown in Fig . Derive the state table and state diagram of the sequential 
+circuit.
+
+--- [Page 5 of 19] ---
+42. Explain why a group of 8 cells eliminates three variables, a group of 4 
+eliminates two variables, and a group of 2 eliminates one variable. Derive 
+this rule logically rather than merely stating it. 
+43. Given a 4-variable K-Map with several 1s and don't-care cells, 
+describe a systematic algorithm for obtaining the minimum SOP 
+expression, starting from identifying the largest possible groups and 
+ending with the selection of required groups.
+44. A sequential circuit has three flip-flops A, B, C ; one input x_in ; and 
+one output y_out . The state diagram is shown in Fig below . The circuit i
+s to be designed by treating the unused states as don’t-care conditions. 
+Analyze the circuit obtained from the design to determine the effect of the 
+unused states. (a)Use D flip-flops in the design. (b) Use JK flip-flops in 
+the design. 
+45. Design the sequential circuit specified by the state diagram of Figure, 
+using T flip-flops. 
+46. Explain the operation of a 2:1 multiplexer using its block diagram, 
+truth table, Boolean equation, and gate-level implementation. 
+47. Derive the relationship between the number of inputs and select lines 
+for a multiplexer. Determine the number of select lines required for 2:1, 4:
+1, 8:1, 16:1, and 32:1 MUXes. Explain three different ways of 
+implementing a 4:1 multiplexer:
+i.
+two-level logic,
+ii.
+tri-state buffers,
+iii.
+hierarchical composition of smaller MUXes.Compare their 
+structures.
+
+--- [Page 6 of 19] ---
+48. Implement Y=A+B using a 2:1 multiplexer. Use one variable as the s
+elect input and derive the required data inputs systematically from the 
+truth table.
+49. Explain the concept of a multiplexer (mux). Derive the general 
+relationship between the number of data inputs N and the number of 
+select lines required (log₂N), and tabulate this relationship for N = 2, 4, 8, 
+and 16. 
+50. Implement Y=A
+B using a 2:1 multiplexer. Explain why your
+⊕
+ 
+selected data-input connections produce XOR.
+51. Explain how a multiplexer can be used as a lookup table to implement 
+an arbitrary Boolean function. Demonstrate the process using a three-
+variable function and an 8:1 MUX. 
+52. Implement a three-variable Boolean function using an 8:1 MUX. 
+Determine the eight data-input values directly from the function's truth 
+table and explain the mapping. 
+53. Implement F(A,B,C)=Σ(1,3,5,7) using a 3:8 decoder and an OR gate. 
+Clearly identify which decoder outputs must be connected to the OR gate 
+and explain why the implementation works.
+54. Compare implementing a Boolean function using a multiplexer versus 
+implementing it using a decoder + OR gate. Discuss the selection 
+mechanism, number of components, flexibility, and how the Boolean 
+function maps onto the hardware. 
+55. Explain the operation of an N-input decoder and why it produces 2N 
+outputs. Explain the meaning of one-hot output and show how decoder 
+outputs correspond to minterms. 
+56. Implement F(A,B,C,D)=Σ(1,3,4,7,9,11,12,15) using a 4:16 decoder 
+and external OR gates. Determine which decoder outputs must be 
+connected.
+57. Implement F(A,B,C)=A′B+AC using a 2:1 MUX. You are allowed to 
+use one inverter. Determine:select input,I0,I1,inverter connection. Then v
+erify your circuit using the truth table.
+58. A decoder is constructed using two levels of logic gates. The first 
+level has a propagation delay of 20ns, and the second level has a 
+propagation delay of 30ns. Determine:
+i.
+the propagation delay,
+ii.
+the critical path,
+iii.
+the contamination delay if the corresponding gate 
+contamination delays are given.
+59. Explain why the longest path determines propagation delay.The 
+textbook includes decoder design problems specifically involving critical 
+path, propagation delay, and contamination delay
+
+--- [Page 7 of 19] ---
+60. Implement the following three Boolean functions using a single 3-
+to-8 decoder: F1(A,B,C)=Σ(1,3,5) F2(A,B,C)=Σ(0,2,6,7) F3(A,B,C)=Σ(2,
+3,6) Determine the decoder-output connections required for each function.
+ Design an 8:1 multiplexer with the shortest possible delay from the data i
+nputs to the output. You are given the available gate types and their 
+propagation/contamination delays. Your answer must include:
+i.
+circuit structure,
+ii.
+critical path,
+iii.
+propagation delay,
+iv.
+contamination delay,
+Justify 
+why your architecture is faster than alternative
+ 
+implementations.
+61. A Boolean function is given by F(A,B,C,D)=Σ(0,2,3,6,7,8,10,14,15). 
+Implement it using a 4:1 MUX with the minimum number of additional g
+ates. You must:
+i.
+select appropriate select variables,
+ii.
+derive each data input,
+iii.
+simplify each data input,
+iv.
+identify the additional gates required,
+v.
+draw the final implementation.
+62. The D latch of Figure is constructed with four NAND gates and an 
+inverter. 
+Consider the following three other ways for obtaining a D latch. In each c
+ase, draw the logic diagram and verify the circuit operation.
+
+--- [Page 8 of 19] ---
+(a) Use NOR gates for the SR latch part and AND gates for the other two. 
+An inverter may be needed.
+(b) Use NOR gates for all four gates. Inverters may be needed.
+(c) Use four NAND gates only (without an inverter). This can be done by 
+connecting the output of the upper gate in Figure (the gate that goes to the 
+SR latch) to the input of the lower gate (instead of the inverter output).
+63. Given the input wave-forms shown in the Figure, sketch the output, Q,
+ of an SR latch.
+64. Given the input wave-forms shown in the Figure, sketch the output, Q,
+ of an SR latch.
+65. Given the input wave-forms shown in Figure, sketch the output, Q, of 
+a D latch.
+66. Given the input wave-forms shown in the Figure, sketch the output, Q,
+ of a D latch.
+
+--- [Page 9 of 19] ---
+67. Design an asynchronously resettable D latch using logic gates.
+68. Design an asynchronously resettable D flip-flop using logic gates.
+69. Explain the differences among a truth table, a state table, a 
+characteristic table, and an excitation table. Also, explain the difference a
+mong a Boolean equation, a state equation,a characteristic equation, and a 
+flip-flop input equation. 
+70. A sequential circuit with two D flip-flops A and B, two inputs, x and 
+y ; and one output z is specified by the following next-state and output 
+equations:
+A(t + 1) = xy’+ xB
+B(t + 1) = xA + xB’
+z = A
+(a) Draw the logic diagram of the circuit.
+(b) List the state table for the sequential circuit.
+(c) Draw the corresponding state diagram.
+71. A sequential circuit has one flip-flop Q, two inputs x and y, and one o
+utput S.It consists of a full-adder circuit connected to a D flip-flop, as 
+shown in the Figure . Derive the state table and state diagram of the 
+sequential circuit.
+
+--- [Page 10 of 19] ---
+72.
+73. Derive the state table and the state diagram of the sequential circuit s
+hown in the Figure.Explain the function that the circuit performs.
+74. For the circuit described by the state diagram of the Figure ,
+
+--- [Page 11 of 19] ---
+(a) Determine the state transitions and output sequence that will be 
+generated when an input sequence of 010110111011110 is applied to the 
+circuit and it is initially in the state 00.
+(b) Find all of the equivalent states in the Figure and draw a simpler, but e
+quivalent, state diagram.
+(c) Using D flip-flops, design the equivalent machine (including its logic 
+diagram) described by the state diagram in (b).
+75. For the following state table
+(a) Draw the corresponding state diagram.
+(b) Tabulate the reduced state table.
+
+--- [Page 12 of 19] ---
+(c) Draw the state diagram corresponding to the reduced state table.
+76. Starting from state a, and the input sequence 01110010011, determine 
+the output sequence for
+(a) The state table of the previous problem.
+(b) The reduced state table from the previous problem. Show that the 
+same output sequence is obtained for both.
+77. Design a sequential circuit with two D flip-flops A and B, and one 
+input x_in .
+(a) When x_in = 0, the state of the circuit remains the same. When x_in = 
+1, the circuit goes through the state transitions from 00 to 01, to 11, to 10, 
+back to 00, and repeats.
+(b) When x_in = 0, the state of the circuit remains the same. When x_in =
+1, the circuit goes through the state transitions from 00 to 11, to 01, to 10, 
+back to 00, and repeats.
+78. Which of the circuits in the Figure  are synchronous sequential 
+circuits? Explain.
+
+--- [Page 13 of 19] ---
+79. Implement a full adder with two 4x1 multiplexers. 
+80. Design a combinational circuit with three inputs, x, y, and z, and three 
+outputs, A, B, and C. When the binary input is 0, 1, 2, or 3, the binary 
+output is one greater than the input. When the binary input is 4, 5, 6, or 7, 
+the binary output is two less than the input. 
+81. A majority circuit is a combinational circuit whose output is equal to 
+1 if the input variables have more 1's than 0's. The output is 0 otherwise. 
+(a)* Design a 3-input majority circuit by finding the circuit's truth table, 
+Boolean equation, and a logic diagram. (b) Write and verify a Verilog 
+gate-level model of the circuit. 
+82. Design a four-bit combinational circuit 2's complementer. (The output 
+generates the 2's complement of the input binary number.) Show that the 
+circuit can be constructed with exclusive-OR gates. Can you predict what 
+the output functions are for a five-bit 2's complementer? 
+83. In an SR latch, both S and R are accidentally asserted high at the 
+same time due to a wiring fault. Predict the resulting outputs Q and Q', 
+and explain why this condition is considered invalid or problematic for 
+circuit design.
+84. You are designing a circuit and need the stored value to change 
+immediately whenever the data input changes, as long as the clock is high
+ Would you choose a D latch or a D flip-flop for this requirement? Justify 
+your choice.
+
+--- [Page 14 of 19] ---
+85. Two flip-flops in a circuit are accidentally connected to two different 
+clock signals, clk1 and clk2, instead of a shared clock. Explain what 
+problems this could cause in a supposedly synchronous system, and how 
+you would fix it.
+86. A system needs all its flip-flops to start from a known state (0) the 
+moment power is turned on, without waiting for a clock edge. Which type 
+of flip-flop input would you use, and how would its internal circuit differ 
+from a standard resettable flip-flop?
+87. A ring oscillator is built using five inverters instead of three, each 
+with a propagation delay of 1 ns. Derive the oscillation period of this 
+circuit and generalize a formula for an odd-numbered inverter loop, 
+explaining why an even number of inverters would not oscillate in the 
+same way.
+88. Ben Bitdiddle has designed the circuit in the Figure  to compute a 
+registered four-input XOR function. Each two-input XOR gate has a 
+propagation delay of 100 ps and a contamination delay of 55 ps. Each 
+flip-flop has a setup time of 60 ps, a hold time of 20 ps, a clock-to-Q 
+maximum delay of 70 ps, and a clock-to-Q minimum delay of 50 ps.
+(a) If there is no clock skew, what is the maximum operating 
+frequency of the circuit?
+(b) How much clock skew can the circuit tolerate if it must operate 
+at 
+2 GHz?
+(c) How much clock skew can the circuit tolerate before it might 
+experience a hold time violation?
+89. Alyssa P. Hacker points out that she can redesign the combinational l
+ogic between the registers to be faster and tolerate more clock skew. Her i
+mproved circuit also uses three two-input XORs, but they are arranged 
+differently. What is her circuit? What is its maximum frequency if there i
+s no clock skew? How much clock skew can the circuit tolerate before it 
+might experience a hold time violation?
+
+--- [Page 15 of 19] ---
+90. Two D flip-flops are connected back-to-back (output of the first 
+feeding the input of the second) and share the same clock signal, but a 
+buffer introduces a small delay between the clock reaching the first and 
+second flip-flop. Analyze whether this circuit will function correctly as a 
+synchronous shift register, and identify the potential failure mode this 
+delay could introduce (hint: consider hold-time violations).
+91. You are asked to design a resettable, enabled D flip-flop that must 
+also synchronously load new data only when EN is high, and reset to 0 
+regardless of D when RESET is high, without introducing clock glitches. 
+Draw a gate-level design combining the enable and reset logic, and justify 
+the order in which the reset and enable conditions should be prioritized.
+92. What is the difference between a latch and a flip-flop? Under what 
+circumstances is each one preferable?
+93. A combinational circuit's output is mistakenly fed back into one of its 
+own inputs without any register in the path, but the designer argues the 
+circuit is "fast and works fine in simulation." Explain, using the concept o
+f race conditions and propagation delay, why this design is unsafe for real 
+hardware even if simulation shows no errors.
+94. Given a synchronous circuit with a feedback path containing exactly 
+one register, and a clock period that is deliberately shortened until errors 
+appear, explain — in terms of combinational propagation delay and setup 
+time — what determines the minimum safe clock period, and derive a 
+general inequality relating clock period, propagation delay, and setup 
+time for correct operation.
+
+--- [Page 16 of 19] ---
+95. Ben Bitdiddle has hundreds of friends coming to his party and needs t
+o bake cookies faster. He is considering using spatial and/or temporal 
+parallelism.
+a)
+Spatial Parallelism: Ben asks Alyssa P. Hacker to help out. She has 
+her own cookie tray and oven.
+b)
+Temporal Parallelism: Ben gets a second cookie tray. Once he puts 
+one cookie tray in the oven, he starts rolling cookies on the other tray 
+rather than waiting for the first tray to bake.
+c)
+What is the throughput and latency using spatial parallelism? Using 
+temporal parallelism? Using both?
+96. Given the input waveforms shown in the Figure, sketch the output Q, 
+of a D flip-flop.
+97. Given the input waveforms shown in the Figure, sketch the output, Q, 
+of a D flip-flop.
+98. Explain why combinational logic circuits cannot "remember" data, 
+and describe how breaking the no-feedback restriction enables storage 
+elements.
+99. Describe the bistable operation of a cross-coupled inverter loop and e
+xplain why it is not practical as a usable memory element.
+
+--- [Page 17 of 19] ---
+100.
+With the help of a circuit diagram, explain the working of an SR 
+latch built from two cross-coupled NOR gates, and describe the 
+significance of its invalid state.
+101.
+ Why is the SR latch considered "awkward," and how does the D 
+latch resolve this problem by separating the concepts of "what" 
+and "when"?
+102.
+Explain the transparent (level-sensitive) behavior of a D latch when 
+CLK = 1 and CLK = 0.
+103.
+ Describe how a D flip-flop is constructed from two back-to-back 
+D latches (master-slave configuration), and explain its operation on the 
+rising clock edge.
+104.
+ Differentiate between a latch and a flip-flop in terms of triggering 
+mechanism, with relevant examples.
+105.
+ Explain the working of an enabled flip-flop and describe two 
+different circuit techniques used to implement it.
+106.
+Describe the difference between a synchronously resettable and an 
+asynchronously resettable flip-flop, with the help of a circuit diagram.
+107.
+What is an N-bit register? Explain its structure and significance as 
+a building block of sequential circuits.
+108.
+Explain how race conditions arise in sequential circuits containing 
+cyclic feedback paths, and describe how inserting registers eliminates 
+them.
+109.
+With reference to the three-inverter loop example, explain what an 
+astable circuit (ring oscillator) is and describe its output behavior over 
+time.
+110.
+ State and explain the four rules that a circuit must satisfy to be 
+classified as a synchronous sequential circuit.
+111.
+Differentiate between synchronous and asynchronous circuit 
+design, and explain why most modern digital systems favor synchronous 
+design.
+112.
+Analyze the classification of different example circuits 
+(combinational, synchronous sequential, or neither) based on the presence 
+of registers and feedback paths.
+
+--- [Page 18 of 19] ---
+113.
+A cross-coupled NAND-based SR latch (S'R' latch) is used in a 
+circuit where both inputs are inadvertently pulled low (S'=0, R'=0) briefly 
+during a glitch. Predict the resulting state of Q and Q', and explain why 
+this differs from the invalid condition of the NOR-based SR latch.
+114.
+You are given a black-box sequential element and told only that its 
+output changes multiple times while the clock is held high. Determine, 
+with reasoning, whether this element is a latch or a flip-flop, and describe 
+an experiment (input pattern) you could apply to confirm your answer.
+115.
+A 4-bit register is built from four D flip-flops sharing a common 
+clock, but one flip-flop's clock line has a broken trace causing it to 
+receive a stuck-low signal. Predict the observable behavior of the 
+register's output bus D3:0 → Q3:0, and explain how this fault could be 
+diagnosed using only input/output waveforms.
+116.
+In a synchronously resettable flip-flop built using an AND gate 
+ahead of the D input, the RESET signal glitches briefly HIGH for a 
+duration shorter than the clock period, occurring while CLK = 0. Explain 
+whether this glitch will affect the stored state, and contrast this with what 
+would happen in an asynchronously resettable design under the same 
+glitch.
+117.
+A designer cascades two enabled flip-flops (Flip-Flop A's output 
+feeds Flip-Flop B's D input) and toggles EN on Flip-Flop A while CLK is 
+HIGH, violating the stated design rule. Explain, using the concept of 
+clock gating, what specific hazard this could introduce into the circuit's b
+ehavior.
+118.
+A digital system needs to load a new value into a flip-flop only 
+once every 4 clock cycles, otherwise retain its current value. Design the r
+equired circuit modification and explain how it behaves using a timing 
+diagram.
+119.
+You are given a D flip-flop and a D latch, both fed the same D and 
+CLK waveforms containing glitches while CLK = 1. Sketch and justify 
+the resulting Q output for each device, explaining why their behavior 
+differs.
+120.
+A synchronous sequential circuit is composed of combinational 
+logic blocks and registers, but a designer accidentally omits a register on 
+one of the feedback paths while keeping registers on all others. Explain w
+hy this circuit fails the formal definition of a synchronous sequential 
+circuit, and predict what kind of behavioral problems could result during 
+operation.
+
+--- [Page 19 of 19] ---
+121.
+Consider a system with two independent clock domains, each 
+synchronous internally, that need to exchange a single data bit. Using the 
+asynchronous-vs-synchronous design concepts discussed, explain why 
+directly connecting a flip-flop output from one clock domain to a flip-flop 
+input in the other domain is risky, and propose a safer approach at a 
+conceptual level.

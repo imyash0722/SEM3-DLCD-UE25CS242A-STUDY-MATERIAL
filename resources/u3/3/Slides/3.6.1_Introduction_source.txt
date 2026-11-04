@@ -1,0 +1,129 @@
+================================================================================
+SOURCE PDF DOCUMENT : 3.6.1_Introduction.pdf
+SOURCE PATH         : resources/u3/3/Slides/3.6.1_Introduction.pdf
+PAGES               : 14
+WORDS EXTRACTED     : 496
+CHARACTERS          : 3292
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
+--- [Page 1 of 14] ---
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+UE25CS251A
+DIGITAL LOGIC AND 
+COMPUTER DESIGN
+
+--- [Page 2 of 14] ---
+ARCHITECTURE-Introduction
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+  DIGITAL LOGIC AND COMPUTER DESIGN
+
+--- [Page 3 of 14] ---
+DIGITAL LOGIC & COMPUTER DESIGN
+• Introduction
+• Assembly Language
+• Machine Language
+• Programming
+• Addressing modes
+• Parallelism
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+TOPICS
+
+--- [Page 4 of 14] ---
+What is Computer Architecture
+    Computer Architecture is the programmer's view of a computer. It defines how software 
+communicates with hardware by specifying:
+• Instruction Set Architecture (ISA)
+• Operand locations (Registers and Memory)
+• Data representation and instruction formats
+Why Study Computer Architecture?
+• Bridges the gap between hardware and software.
+• Determines how programs are executed by the processor.
+• Helps design efficient, compatible, and high-performance computer systems.
+• Provides a foundation for understanding processor organization and programming.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 5 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 6 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 7 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+• Many Architectures Exist: e.g. x86, MIPS, SPARC, and PowerPC
+⚬Each architecture defines its own instruction set
+• Instruction Sets Are Like Dialects: once you learn one, learning another is fairly 
+straightforward
+• Instructions: the words of a computer’s language; even complex applications 
+compile down to simple instructions like add, subtract, and jump
+
+--- [Page 8 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 9 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+• Q1. What is “architecture” as defined in this chapter?
+a.The programmer’s view of a computer, defined by the instruction set and 
+operand locations
+b.The physical arrangement of transistors on a chip
+c.The way registers are wired to the ALU
+d.A hardware description language
+
+--- [Page 10 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+•
+Q2. Which of the following is the human-readable form of instructions?
+a. Machine language
+b. Assembly language
+c. Binary code
+d. Microcode
+
+--- [Page 11 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+•
+Q3. Machine language instructions are ultimately encoded as:
+a. Decimal numbers
+b. ASCII characters
+c. Binary (1’s and 0’s)
+d. Hexadecimal strings only
+
+--- [Page 12 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+• Q4. Who developed the MIPS architecture, and where?
+a.John Hennessy and colleagues at Stanford
+b.Dennis Ritchie at Bell Labs
+c.Gordon Moore at Intel
+d.Alan Turing at Cambridge
+
+--- [Page 13 of 14] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+• Answer Key
+Q1: A     Q2: B     Q3: C     Q4: A
+
+--- [Page 14 of 14] ---
+Team DLCD
+Department of CSE and CSE(AI & ML)
+THANK YOU

@@ -1,0 +1,9 @@
+================================================================================
+SOURCE PDF DOCUMENT : FSM.pdf
+SOURCE PATH         : notes/FSM.pdf
+PAGES               : 24
+WORDS EXTRACTED     : 0
+CHARACTERS          : 0
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+

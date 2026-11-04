@@ -1,0 +1,879 @@
+================================================================================
+SOURCE PDF DOCUMENT : 3.1.1_Sequential_Building_Block.pdf
+SOURCE PATH         : resources/u3/3/Slides/3.1.1_Sequential_Building_Block.pdf
+PAGES               : 48
+WORDS EXTRACTED     : 3765
+CHARACTERS          : 21891
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
+--- [Page 1 of 48] ---
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+UE25CS251A
+DIGITAL LOGIC AND 
+COMPUTER DESIGN
+
+--- [Page 2 of 48] ---
+Sequential Building Blocks
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+  
+DIGITAL LOGIC AND COMPUTER DESIGN
+
+--- [Page 3 of 48] ---
+DIGITAL LOGIC & COMPUTER DESIGN
+• Counters
+• Shift Registers 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+TOPICS
+
+--- [Page 4 of 48] ---
+Sequential building blocks are digital circuits that store information and change their state in response to a clock.
+Unlike combinational circuits, whose outputs depend only on their current inputs, sequential circuits have memory. This 
+memory is generally implemented using flip-flops.
+Two important sequential building blocks discussed in this section are:
+1. Counters 
+A counter stores a binary value and changes that value according to a fixed counting sequence. A binary counter normally 
+increments its stored value by 1 on every rising edge of the clock.
+2. Shift Registers
+A shift register stores multiple bits and moves the stored bits from one flip-flop to another on every clock edge.
+Applications
+●
+Counters → timing, event counting, frequency division
+●
+Shift registers → serial/parallel data conversion and digital testing
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Sequential Building Blocks
+
+--- [Page 5 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+N-bit Binary Counter
+What is a Counter?
+An N-bit binary counter is a sequential arithmetic circuit with:
+●
+A clock input
+●
+A reset input
+●
+An N-bit output Q
+When reset is asserted, the counter is initialized to zero. After reset is released, the counter increments by 1 at every 
+rising edge of the clock.
+General operation: Qnext=Q+1
+Therefore, if the current value is: Q=0101, then at the next rising clock edge: Q=0110
+The counter continues this process until it reaches its maximum value and then wraps around to zero.
+
+--- [Page 6 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+N-bit Binary Counter
+Figure here, shows an N-bit counter composed of an adder and a resettable register.
+On each cycle, the counter adds 1 to the value stored in the register.
+
+--- [Page 7 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Number of States in an N-bit Counter
+How many values can an N-bit counter represent?
+An N-bit binary number can represent: 2^N different combinations.
+Therefore, an N-bit counter has: 2^N possible states
+The values range from: 0 to 2^(N−1)
+Example: 3-bit counter
+Since: 2^3=8
+the counter has 8 states:
+000 → 001 → 010 → 011
+ ↑                                     ↓
+111 ← 110 ← 101 ← 100
+After 111, the next value is: 000  because the counter has exhausted all 8 possible 3-bit combinations.
+
+--- [Page 8 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Number of States in an N-bit Counter
+Example: 8-bit counter
+2^8=256
+So an 8-bit counter counts from: 0 to 255, before returning to 0.
+
+--- [Page 9 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Reset and Clock
+The N-bit binary counter has:
+●
+Clock input
+●
+Reset input
+●
+N-bit output Q
+Reset
+Reset initializes the output to 0.
+Clock
+The counter increments on the:
+rising edge/falling edge of the clock
+Thus: Reset→Q=0 and subsequently, on each rising edge: Q→Q+1
+
+--- [Page 10 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Types of counters
+⮚
+Asynchronous Counter(Ripple Counter) 
+⮚
+Synchronous Counter
+
+--- [Page 11 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Types of counters-Differences
+⮚Asynchronous Counter(Ripple Counter) 
+⮚Synchronous Counter
+
+--- [Page 12 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Types of counters-Differences
+Why T and JK Flip-Flops Are Preferred
+•
+T Flip-Flop (Toggle Flip-Flop)
+• Has a single input (T).
+• When T = 1, the output toggles on each clock edge.
+• This directly divides the clock frequency by 2, making it ideal for 
+counters and frequency dividers.
+• Simple design, minimal logic required.
+•
+JK Flip-Flop
+• More versatile: can perform Set, Reset, Hold, and Toggle depending 
+on J and K inputs.
+• When J = K = 1, it behaves exactly like a T flip-flop (toggle mode).
+• Eliminates the invalid state problem of SR flip-flops.
+• Widely used in counters because of flexibility and reliability.
+
+--- [Page 13 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Types of counters-Asynchronous Counter
+Asynchronous Counter (4 BIT RIPPLE / MOD 4 COUNTER)
+In an asynchronous counter, there is no common 
+(universal) clock for all flip-flops; only the first flip-flop is 
+driven by the main clock, and each subsequent flip-flop is 
+triggered by the output of the previous one, causing the 
+count to ripple through the circuit.
+From the timing diagram, 
+Q0 changes immediately at the falling edge of the clock, 
+Q1 changes at the falling edge of Q0, and the same pattern continues 
+for Q2 and Q3. 
+This step-by-step change creates a ripple effect through the flip-flops, 
+which is why it is called a ripple counter or serial counter. A ripple 
+counter is a cascade of flip-flops where the output of one flip-flop acts 
+as the clock input for the next.
+
+--- [Page 14 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Asynchronous Counter-MOD-4
+Clock 
+Pulse
+Q₃
+Q₂
+Q₁
+Q₀
+Decimal 
+Value
+Reset
+0
+0
+0
+0
+0
+1
+0
+0
+0
+1
+1
+2
+0
+0
+1
+0
+2
+3
+0
+0
+1
+1
+3
+4
+0
+1
+0
+0
+4
+5
+0
+1
+0
+1
+5
+6
+0
+1
+1
+0
+6
+7
+0
+1
+1
+1
+7
+8
+1
+0
+0
+0
+8
+…
+…
+…
+…
+…
+…
+15
+1
+1
+1
+1
+15
+16
+0
+0
+0
+0
+0 (wraps)
+Timing Diagram (as in the image)
+•
+Clock: square wave pulses.
+•
+Q₀: toggles every pulse.
+•
+Q₁: toggles every 2 pulses.
+•
+Q₂: toggles every 4 pulses.
+•
+Q₃: toggles every 8 pulses.
+•
+Together, they form a binary count sequence from 0 → 15.
+
+--- [Page 15 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Asynchronous Counters -Examples
+MOD-2 COUNTER(1-BIT)
+When -ve edge clock pulse is applied and input is given to FF 
+logic 1 then the output state of FF will toggle for every falling 
+edge. The output frequency will be f/2 (If f is clock frequency). 
+It is known as binary or mod -2 counter or bit ripple counter.
+It has 2 unique output states (0 and 1).
+MOD 4 COUNTER(2-BIT)
+When two FFs are connected in series and output of one FF is act as clock 
+for 2nd FF. So the state of 2nd FF will change only when output and 1st FF is 
+logic 1 and falling edge occur. The output frequency of Q1 is f/4(if f is clock 
+frequency). 
+It can generate 4 different unique states. This is known as divide by 4 
+circuits or mod 4 ripple counter. 
+Here output is taken as Q1(MSB) Q0(LSB).
+
+--- [Page 16 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Asynchronous Counters - Examples
+       3 Bit-UP COUNTER
+3 Bit-DOWN COUNTER
+Counter State
+Q’C
+Q’B
+Q’A
+7
+1
+1
+1
+6
+1
+1
+0
+5
+1
+0
+1
+4
+1
+0
+0
+3
+0
+1
+1
+2
+0
+1
+0
+1
+0
+0
+1
+0
+0
+0
+0
+Counter 
+State
+QC
+QB
+QA
+0
+0
+0
+0
+1
+0
+0
+1
+2
+0
+1
+0
+3
+0
+1
+1
+4
+1
+0
+0
+5
+1
+0
+1
+6
+1
+1
+0
+7
+1
+1
+1
+
+--- [Page 17 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Asynchronous Counters -Examples
+Design of 3 Bit Asynchronous UP/DOWN Counter 
+It is used more than separate up or down counter.
+1.
+In this a mode control input (say M) is used for selecting up and down mode.
+2.
+A combinational circuit is required between each pair of flip-flop to decide whether to do up or 
+do down counting.
+Step 1 : Decision for Mode control input -
+Decision for mode control input
+When M = 0, then Y= Q, therefore it will perform Up counting (As 
+discussed above).
+When M = 1, then Y= Q' therefore it will perform Down counting (As 
+discussed above).
+Combinational circuit is required for deciding mode control(i.e., whether 
+counter will perform Up counting or Down counting).
+So the all possible combinations are -
+
+--- [Page 18 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Asynchronous Counters -Examples
+
+--- [Page 19 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Asynchronous Counters -Examples
+Insertion of Combinational logic between every pair of FFs -
+
+--- [Page 20 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Asynchronous Counters -Examples
+Decade Counter
+Counts ten states and then resets to its initial state. The most common decade counter counts from 0 to 9, but it can also be 
+designed to count any ten states within 0 to 15 in a 4-bit counter before resetting. 
+Clock 
+pulse
+Q3
+Q2
+Q1
+Q0
+0
+0
+0
+0
+0
+1
+0
+0
+0
+1
+2
+0
+0
+1
+0
+3
+0
+0
+1
+1
+4
+0
+1
+0
+0
+5
+0
+1
+0
+1
+6
+0
+1
+1
+0
+7
+0
+1
+1
+1
+8
+1
+0
+0
+0
+9
+1
+0
+0
+1
+10
+0
+0
+0
+0
+From the circuit diagram, a NAND gate is connected to Q3 and Q1 and its output is fed to the 
+clear input because the binary representation of 10 is 1010. When Q3 and Q1 both become 1, 
+the NAND gate output goes low, activating the clear input, so the counter resets at 10 and 
+starts counting again from 0.
+
+--- [Page 21 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Synchronous Counters 
+Synchronous Counter 
+Unlike an asynchronous counter, a synchronous 
+counter uses a single global clock that drives all flip-
+flops simultaneously, so all outputs change in parallel. 
+Its main advantage is that it can operate at higher 
+frequencies because it does not suffer from 
+cumulative delay, as the same clock is applied to 
+every flip-flop. Hence, it is also called a parallel 
+counter.
+
+--- [Page 22 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Synchronous Counters -Examples
+Steps to design Synchronous Counters
+
+--- [Page 23 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Synchronous Counters -Examples
+Design 2 bit Synchronous Up Counter
+Step1: Decide the number of Flipflops – 2 (JK)
+Step2: Excitation table of JK FF
+Step3: State Diagram & Circuit ET
+
+--- [Page 24 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Synchronous Counters -Examples
+Step 4: Solve for J1 K1 J2 K2 USING K MAPS
+Step 5: Draw the logic diagram
+
+--- [Page 25 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Synchronous Counters -Examples
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+Design 3 bit Synchronous Up Counter using T FF
+Step1: Decide the number of Flipflops – 3 (T FF)
+Step2: Excitation table of T FF
+Step3: State Diagram & Circuit ET
+INPUT
+OUTPUT
+Qn
+Qn+1
+T
+0
+0
+0
+0
+1
+1
+1
+0
+1
+1
+1
+0
+
+--- [Page 26 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Synchronous Counters -Examples
+Step 4: Solve for T1 T2 T3 USING K MAPS
+Step 5: Draw the logic diagram
+
+--- [Page 27 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+What Is a Shift Register?
+●A chain of flip-flops sharing one clock.
+●On each clock edge, a new bit enters at Sin; every stored bit moves forward one position.
+●The oldest bit exits at Sout.
+●After N cycles, all N bits sit together on parallel outputs Q0...QN-1.
+●Function: converts a serial (one-bit-at-a-time) stream into a parallel N-bit word.
+Shift register symbol
+Shift register schematic
+Shift register with parallel load
+
+--- [Page 28 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Shift Registers
+Scannable flip-flop: (a) schematic, (b) symbol, and (c) N-bit scannable register
+
+--- [Page 29 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Shift Register
+Internal structure:
+●Built from N flip-flops connected in series.
+●Each flip-flop's output feeds the next flip-flop's input.
+●All flip-flops share the same clock signal.
+●Some designs add a reset signal to clear all flip-flops to 0.
+Adding Parallel Load:
+●Basic shift register only does serial-to-parallel.
+●Add a parallel data input D(N-1:0) and a control signal Load to also support 
+parallel-to-serial.
+●When Load = 1: all flip-flops load directly from D (parallel load, one cycle).
+●When Load = 0: register shifts normally (Sin feeds in, bits move forward).
+
+--- [Page 30 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+HDL Description
+always @(posedge clk or posedge rst)
+  if (rst)        q <= 0;
+  else if (load)  q <= data_in;         // parallel load
+  else            q <= {q[N-2:0], sin}; // shift in sin
+assign sout = q[N-1];
+●
+rst clears everything, highest priority.
+●
+load loads the full word from data_in in one cycle.
+●
+Otherwise, bits shift up and sin fills the empty slot.
+●
+sout is always the top bit of the register.
+
+--- [Page 31 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Why Test Sequential Circuits Differently ?
+●Combinational circuits: easy to test, apply input, check output.
+●Sequential circuits: hard since the output depends on internal state.
+●Example: to verify bit 31 of a 32-bit counter flips 0→1, naively need to reset then apply ~2 billion clock 
+pulses.
+●Problem: too many flip-flops to give each one its own test pin.
+Scan Chains: The Solution
+●Connect all flip-flops in the system into one long shift register called a scan chain.
+●Normal mode: each flip-flop loads from its regular D input; scan connections ignored.
+●Test mode: flip-flops shift data serially in/out via Sin/Sout — internal state can be read out or 
+overwritten directly.
+●The mux for switching modes is usually built into the flip-flop itself, forming a "scannable flip-flop."
+
+--- [Page 32 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Type of counters - Ring counters
+Definition
+●
+A ring counter is a shift-register-based 
+counter in which the output of the last flip-
+flop is fed back to the first.
+●
+It consists of n flip-flops connected in a 
+circular manner.
+●
+A single 1 circulates through the flip-flops 
+with each clock pulse.
+Example: 4-bit Ring Counter
+1000 → 0100 → 0010 → 0001 → 1000 → …
+Key Point:
+ For n flip-flops → n valid states → MOD-n 
+counter
+ORI means overriding input:   If PR(preset) = 0 then Q=1
+                                                      If Clr = 0 then Q=0   
+It is used to initialize counters as 1 0 0 0  
+It is used to initialize (preset) the ring counter to a valid starting 
+state.
+
+--- [Page 33 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Type of counters - Ring counters
+Circuit & Working
+4-Bit Ring Counter
+●
+Four flip-flops are connected as a shift register.
+●
+All flip-flops receive a common clock.
+●
+The output of the last flip-flop is connected back to 
+the input of the first.
+●
+The counter must be initialized with a single 1.
+Working: Q0 → Q1 → Q2 → Q3 → Q0
+At every clock pulse, the 1 shifts to the next flip-flop.
+ORI is an initialization/reset-type control signal. It forces the 
+ring counter into its starting state, usually 1000, before normal 
+counting begins.
+So remember:
+ORI = Overriding Input
+ORI = 0 → initialize the counter
+ORI = 1 → normal ring-counter operation
+One important point: ORI is not the clock. It is an overriding 
+control used to establish the initial 1 in the ring.
+
+--- [Page 34 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Type of counters - Ring counters
+Ring Counter Timing/State Table
+
+--- [Page 35 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Type of counters - Ring counters
+Advantages
+●
+Simple circuit design
+●
+Fast operation
+●
+Directly provides decoded outputs
+●
+No additional decoding logic required
+Limitations
+●
+Requires n flip-flops for n states
+●
+More hardware compared with binary counters
+●
+Requires proper initialization
+●
+0000 is an invalid/stuck state
+Applications
+●
+Sequence generation
+●
+Timing and control circuits
+●
+Stepper motor control
+●
+Digital control systems
+●
+Timing signal generation
+A ring counter circulates a single HIGH bit through 
+a series of flip-flops to generate a repeating 
+sequence of states.
+
+--- [Page 36 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Type of counters - Johnson counters
+●A Johnson counter is a modified shift-
+register counter.
+●It is also called a Twisted Ring Counter or 
+Switch-Tail Ring Counter.
+●The complement of the last flip-flop output 
+is fed back to the input of the first flip-flop.
+●For n flip-flops, a Johnson counter has 2n 
+valid states.
+Example:
+ 4-bit Johnson Counter → 8 states
+
+--- [Page 37 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Type of counters - Johnson counters
+4-Bit Johnson Counter
+The complemented output of the last flip-flop is fed 
+back to the first.
+Feedback:
+D₀ = Q₃^(-)
+At every clock pulse, the contents shift by one position.
+Starting from 0000:
+0000 → 1000 → 1100 → 1110 → 1111 → 0111 → 0011 
+→ 0001 → 0000
+Thus, the sequence repeats after 8 clock pulses.
+
+--- [Page 38 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Type of counters - Johnson counters
+Timing Waveforms of a 4-Bit Johnson (Twisted Ring) Counter
+
+--- [Page 39 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Worked Example: Testing a 32-bit Counter
+●Goal: confirm the counter correctly increments.
+●Step 1: Shift in test pattern 0111...111 (32 bits) - 32 cycles.
+●Step 2: Switch to normal mode, run 1 clock cycle (counter increments).
+●Step 3: Shift the result out - 32 cycles ,  verify it reads 1000...000.
+●Total: 65 cycles, instead of ~2 billion.
+
+--- [Page 40 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+1. An N-bit binary counter with reset advances through how many distinct output values before repeating?
+ A) N
+ B) N²
+ C) 2N
+ D) 2^N
+2. In the counter design built from an adder and a resettable register, what value is added to the register's contents on 
+every clock cycle?
+ A) 0
+ B) 1
+ C) N
+ D) Reset value
+
+--- [Page 41 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+1. An N-bit binary counter with reset advances through how many distinct output values before repeating?
+ A) N
+ B) N²
+ C) 2N
+ D) 2^N
+ Answer: D
+2. In the counter design built from an adder and a resettable register, what value is added to the register's contents on 
+every clock cycle?
+ A) 0
+ B) 1
+ C) N
+ D) Reset value
+ Answer: B
+
+--- [Page 42 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+3. In the counter HDL, what has priority when both reset and the clock edge occur?
+ A) The increment (q <= q + 1)
+ B) Reset (q <= 0)
+ C) Neither - output is undefined
+ D) Load
+4. What is the key structural difference between a plain shift register and a shift register with parallel load?
+ A) The plain version has no clock input
+ B) The parallel-load version adds a D input and Load control with a mux before each flip-flop
+ C) The plain version uses combinational logic only
+ D) The parallel-load version removes Sout
+
+--- [Page 43 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+3. In the counter HDL, what has priority when both reset and the clock edge occur?
+ A) The increment (q <= q + 1)
+ B) Reset (q <= 0)
+ C) Neither - output is undefined
+ D) Load
+ Answer: B
+4. What is the key structural difference between a plain shift register and a shift register with parallel load?
+ A) The plain version has no clock input
+ B) The parallel-load version adds a D input and Load control with a mux before each flip-flop
+ C) The plain version uses combinational logic only
+ D) The parallel-load version removes Sout
+ Answer: B
+
+--- [Page 44 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+5. Why is testing sequential circuits harder than testing combinational circuits?
+ A) Sequential circuits have no outputs
+ B) Sequential circuits' outputs depend on internal state reached over many cycles, not just current inputs
+ C) Sequential circuits cannot be clocked
+ D) Sequential circuits use more transistors
+6. In a scan chain, how does a flip-flop behave in normal (non-test) mode?
+ A) It loads from its usual D input; scan connections are ignored
+ B) It always loads from Sin
+ C) It shifts one position per cycle regardless of mode
+ D) It resets every cycle
+
+--- [Page 45 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+5. Why is testing sequential circuits harder than testing combinational circuits?
+ A) Sequential circuits have no outputs
+ B) Sequential circuits' outputs depend on internal state reached over many cycles, not just current inputs
+ C) Sequential circuits cannot be clocked
+ D) Sequential circuits use more transistors
+ Answer: B
+6. In a scan chain, how does a flip-flop behave in normal (non-test) mode?
+ A) It loads from its usual D input; scan connections are ignored
+ B) It always loads from Sin
+ C) It shifts one position per cycle regardless of mode
+ D) It resets every cycle
+ Answer: A
+
+--- [Page 46 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+7. For the 32-bit counter scan-chain test example, what is the total number of cycles needed (shift in + 1 count cycle + 
+shift out)?
+ A) 32
+ B) 33
+ C) 64
+ D) 65
+
+--- [Page 47 of 48] ---
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Questions
+7. For the 32-bit counter scan-chain test example, what is the total number of cycles needed (shift in + 1 count cycle + 
+shift out)?
+ A) 32
+ B) 33
+ C) 64
+ D) 65
+ Answer: D
+
+--- [Page 48 of 48] ---
+Team DLCD
+Department of CSE and CSE(AI & ML)
+THANK YOU

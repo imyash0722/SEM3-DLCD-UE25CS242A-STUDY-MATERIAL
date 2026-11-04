@@ -1,0 +1,9 @@
+================================================================================
+SOURCE PDF DOCUMENT : sequential-2.pdf
+SOURCE PATH         : notes/sequential-2.pdf
+PAGES               : 1
+WORDS EXTRACTED     : 0
+CHARACTERS          : 0
+EXTRACTION MODE     : Direct Native PDF Digital Stream (PyMuPDF)
+================================================================================
+
