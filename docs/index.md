@@ -3,6 +3,9 @@
 > **Complete Study Guide for Digital Logic & Computer Design (Units 1-3)**  
 > **Exam Date:** Check course schedule | **Textbook:** Harris & Harris, *Digital Design and Computer Architecture*
 
+**🌐 Live Site:** https://imyash0722.github.io/SEM3-DLCD-UE25CS242A-STUDY-MATERIAL/
+**📁 Repository:** https://github.com/imyash0722/SEM3-DLCD-UE25CS242A-STUDY-MATERIAL
+
 ---
 
 ## 📚 Navigation
@@ -214,6 +217,13 @@ Mult:        N+M bits
 - **Code Copy** — One-click copy for Verilog examples
 - **Task Lists** — Interactive checkboxes in study checklist
 - **Tabs** — Organized content sections
+
+---
+
+## 🌐 Site Links
+
+**🌐 Live Site:** https://imyash0722.github.io/SEM3-DLCD-UE25CS242A-STUDY-MATERIAL/
+**📁 GitHub Repo:** https://github.com/imyash0722/SEM3-DLCD-UE25CS242A-STUDY-MATERIAL
 
 ---
 
