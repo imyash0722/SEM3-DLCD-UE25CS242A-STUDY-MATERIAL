@@ -1,8 +1,15 @@
 site_name: DLCD Exam Prep — UE25CS242A
 site_description: Complete study guide for Digital Logic & Computer Design covering Units 1-3
+site_author: Course Prep Team
+site_url: https://imyash0722.github.io/SEM3-DLCD-UE25CS242A-STUDY-MATERIAL/
+
+repo_url: https://github.com/imyash0722/SEM3-DLCD-UE25CS242A-STUDY-MATERIAL
+repo_name: GitHub
+
 theme:
   name: zensical
   custom_dir: overrides
+  language: en
   palette:
     - scheme: default
       primary: indigo
@@ -15,52 +22,77 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.tracking
+    - navigation.footer
     - search.highlight
     - search.share
     - content.code.copy
     - content.code.annotate
-    - toc.follow
     - content.tabs.link
+    - toc.follow
     - color.mode
+
 extra_javascript:
   - assets/javascripts/theme-toggle.js
-nav:
-  - Home: index.md
-  - "Unit 1: Combinational & Sequential Logic":
-    - Digital Circuits Introduction: 01_digital-circuits-introduction.md
-    - Boolean Equations: 02_boolean-equations.md
-    - "Logic Minimization & K-Maps (3-Var)": 03_logic-minimization-kmaps-3var.md
-    - "K-Maps (4-Var) & Seven-Segment": 04_kmaps-4var-seven-segment.md
-    - Combinational Building Blocks: 05_combinational-building-blocks.md
-    - "Sequential Basics — Latches": 06_sequential-basics-latches.md
-    - "Flip-Flops & Timing": 07_flipflops-timing-metastability.md
-  - "Unit 2: FSMs & Digital Building Blocks":
-    - Finite State Machines: 08_fsm-moore-mealy-design.md
-    - State Encoding & Factoring: 09_state-encoding-factoring.md
-    - "Arithmetic Circuits — Adders": 10_arithmetic-adders.md
-    - "ALU, Comparators, Shifters": 11_alu-comparator-shifter-multiplier.md
-    - "Number Systems — Fixed-Point": 12_number-systems-fixedpoint.md
-    - "Floating-Point — IEEE 754": 13_floating-point-ieee754.md
-  - "Unit 3: Computer Architecture":
-    - Sequential Building Blocks: 18_sequential-building-blocks.md
-    - Architecture Introduction: 19_computer-architecture-intro.md
-    - Assembly Language: 20_assembly-language.md
-    - Machine Language: 21_machine-language.md
-    - Addressing Modes: 22_addressing-modes.md
-    - Compiling, Assembling & Loading: 23_compiling-assembling-loading.md
-    - Parallelism: 24_parallelism.md
-    - Classwork Problems: 25_classwork-problems.md
-    - Unit 3 MCQ Practice: 26_unit3-mcq-practice.md
-  - Lab & Practice:
-    - Lab Verilog Patterns: 14_lab-verilog-patterns.md
-    - MCQ Practice: 15_mcq-practice-comprehensive.md
-    - Numerical Examples: 16_numerical-examples-full-traces.md
-    - Exam Strategy: 17_exam-strategy-quick-ref.md
+
 markdown_extensions:
-  - pymdownx.tasklist:
-      custom_checkbox: true
+  - admonition
+  - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - toc:
       permalink: true
+  - tables
+  - attr_list
+  - md_in_html
+  - footnotes
+
+nav:
+  - Home: index.md
+  - "Unit 1: Combinational & Sequential Logic":
+      - "Digital Circuits Introduction": 01_digital-circuits-introduction.md
+      - "Boolean Equations": 02_boolean-equations.md
+      - "Logic Minimization & K-Maps (3-Var)": 03_logic-minimization-kmaps-3var.md
+      - "K-Maps (4-Var) & Seven-Segment": 04_kmaps-4var-seven-segment.md
+      - "Combinational Building Blocks": 05_combinational-building-blocks.md
+      - "Sequential Basics — Latches": 06_sequential-basics-latches.md
+      - "Flip-Flops & Timing": 07_flipflops-timing-metastability.md
+  - "Unit 2: FSMs & Digital Building Blocks":
+      - "Finite State Machines": 08_fsm-moore-mealy-design.md
+      - "State Encoding & Factoring": 09_state-encoding-factoring.md
+      - "Arithmetic Circuits — Adders": 10_arithmetic-adders.md
+      - "ALU, Comparators, Shifters": 11_alu-comparator-shifter-multiplier.md
+      - "Number Systems — Fixed-Point": 12_number-systems-fixedpoint.md
+      - "Floating-Point — IEEE 754": 13_floating-point-ieee754.md
+  - "Unit 3: Computer Architecture":
+      - "Sequential Building Blocks": 14_sequential-building-blocks.md
+      - "Architecture Introduction": 15_computer-architecture-intro.md
+      - "Assembly Language": 16_assembly-language.md
+      - "Machine Language": 17_machine-language.md
+      - "Addressing Modes": 18_addressing-modes.md
+      - "Compiling, Assembling & Loading": 19_compiling-assembling-loading.md
+      - "Parallelism": 20_parallelism.md
+      - "Classwork Problems": 21_classwork-problems.md
+      - "Unit 3 MCQ Practice": 22_unit3-mcq-practice.md
+  - "Lab & Practice":
+      - "Lab Verilog Patterns": 23_lab-verilog-patterns.md
+      - "MCQ Practice": 24_mcq-practice-comprehensive.md
+      - "Numerical Examples": 25_numerical-examples-full-traces.md
+      - "Exam Strategy": 26_exam-strategy-quick-ref.md
+
+copyright: "DLCD (UE25CS242A) Study Guide | Based on Harris & Harris, Morris Mano, Patterson & Hennessy"
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/imyash0722

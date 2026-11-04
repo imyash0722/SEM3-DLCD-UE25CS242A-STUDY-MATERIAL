@@ -1,6 +1,6 @@
 # 17. Exam Strategy & Quick Reference Card
 
-> **Exam Date:** Check course schedule | **Course:** DLCD (UE25CS242A)
+> **Exam Date:** Check course schedule | **Course:** DLCD (UE25CS242A / UE25CS152B)
 
 ---
 
@@ -47,9 +47,9 @@
 ### Timing Questions
 1. Identify: tpcq, tpd, tsetup, thold, tccq, tcd
 2. **Setup check:** Tc ≥ tpcq + tpd + tsetup
-3. **Hold check:** tccq + tcd ≥ thold
-4. **Max freq:** 1 / (tpcq + tpd + tsetup)
-5. **Ring osc:** f = 1/(2·N·tpd)
+2. **Hold check:** tccq + tcd ≥ thold
+3. **Max freq:** 1 / (tpcq + tpd + tsetup)
+4. **Ring osc:** f = 1/(2·N·tpd)
 
 ### FSM Questions
 1. **Moore:** output in state circle
@@ -177,6 +177,247 @@
 
 ---
 
+## Worked Examples (Full Traces)
+
+### Example 1: K-Map Minimization (3-Var)
+**Function:** F = Σ(3, 4, 6, 7)
+
+**Step 1: Plot K-map**
+```
+BC
+    00 01 11 10
+A=0  0  0  1  0   (m3=1)
+A=1  0  1  1  1   (m4,m6,m7=1)
+```
+
+**Step 2: Identify Prime Implicants**
+- {m3,m7} vertical → bc (A changes)
+- {m4,m6} horizontal → ac' (B changes)
+
+**Step 3: Essential PIs**
+- m3 only in {m3,m7} → bc essential
+- m4 only in {m4,m6} → ac' essential
+- m6 covered by both, m7 covered by bc
+
+**Result:** F = bc + ac'
+
+---
+
+### Example 2: K-Map with Don't-Cares (4-Var)
+**Function:** F = Σ(0,1,4,5,6) + d(7)
+
+```
+CD
+    00 01 11 10
+00   1  1  X  0
+01   1  1  1  0
+11   0  0  0  0
+10   0  0  0  0
+```
+
+**Groups using X at m7:**
+- {0,1,4,5} → b' (A,C change)
+- {4,5,6,7} → a (B,C change with X)
+
+**Result:** F = a + b'
+
+---
+
+### Example 3: Adder Delay Calculations (32-bit)
+
+**Given:** t_FA = 300ps, t_AND_OR = 200ps, t_pg = 100ps, t_pg_prefix = 200ps, t_XOR = 100ps
+
+**Ripple-Carry:**
+t_RCA = 32 × 300ps = 9600ps = 9.6 ns
+
+**CLA (4-bit blocks):**
+N=32, k=4
+t_pg = 100ps (gen all P,G)
+t_pg_block = 600ps (4-bit block gen)
+(N/k - 1) = 7 block carries
+k·tFA = 4 × 300ps = 1200ps
+
+t_CLA = 100 + 600 + 7×200 + 1200 = 3300ps = 3.3 ns
+
+**Prefix Adder:**
+log₂32 = 5
+t_PA = 100 + 5×200 + 100 = 1200ps = 1.2 ns
+
+---
+
+### Example 4: Fixed-Point Arithmetic (Q4.4)
+
+**Addition:** 2.125 + (-1.8125)
+
+```
+2.125  = 0010.0010
+-1.8125 = 1110.0011  (2's comp: +1.8125=0001.1101 → inv=1110.0010 → +1=1110.0011)
+
+Add:
+  0010.0010
++ 1110.0011
+= 0000.0101  (discard carry out)
+
+Result: 0000.0101 = 0.3125 ✓ (2.125 - 1.8125 = 0.3125)
+```
+
+---
+
+### Example 5: IEEE 754 Encoding (228₁₀ → 0x43640000)
+
+```
+1. 228 = 11100100₂
+2. Normalize: 1.11001₂ × 2⁷
+3. S = 0
+4. E = 7 + 127 = 134 = 10000110₂
+5. F = 11001 000... (23 bits)
+6. Binary: 0 10000110 11001000000000000000000
+7. Hex: 0100 0011 0110 0100 0000 0000 0000 0000 = 0x43640000
+```
+
+---
+
+### Example 6: FP Addition (12.5 + 0.375 = 12.875)
+
+```
+12.5  = 1100.1₂ = 1.1001 × 2³
+0.375 = 0.011₂  = 1.1 × 2⁻²
+
+Align to exp 3:
+0.375 mantissa: 1.1 >> 5 = 0.000011
+
+Add mantissas:
+  1.100100
++ 0.000011
+= 1.100111 (×2³)
+
+Normalize: already 1.xxx
+Round: exact
+Result: S=0, E=3+127=130=10000010, F=100111...
+Hex: 0x40980000
+```
+
+---
+
+### Example 7: Ring Oscillator
+
+**3 Inverters, 2ns each:**
+T = 2 × N × t_pd = 2 × 3 × 2ns = 12ns
+f = 1/T = 83.33 MHz
+
+**5 Inverters, 1ns each:**
+T = 2 × 5 × 1ns = 10ns
+f = 100 MHz
+
+---
+
+### Example 8: State Encoding Comparison
+
+**Divide-by-3: Binary (2 FFs) vs One-Hot (3 FFs)**
+```
+Binary:
+S0=00, S1=01, S2=10
+Next-state logic complex
+
+One-Hot:
+S0=001, S1=010, S2=100
+Next-state = rotate left (simple!)
+```
+
+---
+
+## MCQ Patterns (Comprehensive)
+
+### Unit 1 MCQs (60 Questions)
+
+| # | Question | Answer |
+|---|----------|--------|
+| 1 | Registers in sync circuit share clock because... | Race condition avoidance |
+| 2 | Essential prime implicant definition | Covers minterm no other PI covers |
+| 3 | POS form construction | Product of maxterms for 0 outputs |
+| 4 | D latch vs D FF key difference | Level vs edge triggered |
+| 5 | 4:1 MUX select lines | 2 |
+| 6 | AND gate with feedback (no FF) | Neither combinational nor sync seq |
+| 7 | D latch vs FF with D changing at CLK=1 | Latch tracks all, FF only at edge |
+| 8 | Black box specs | Functional + Timing |
+| 9 | Minterm for 3 vars | Product with all 3 inputs |
+| 10 | 2:1 MUX equation | Y = S'D₀ + SD₁ |
+| ... | ... | ... |
+| 53 | f_max calc 1+3.5+0.5=5ns | 200 MHz |
+| 60 | 5-stage, 200ps each | 500 MHz |
+
+### Unit 2 MCQs (Key Patterns)
+
+| Topic | Pattern |
+|-------|---------|
+| Moore vs Mealy | Moore: state only, Mealy: state+input |
+| 1011 Moore | 5 states |
+| 1011 Mealy | 4 states |
+| Binary Encoding | ⌈log₂K⌉ FFs |
+| One-Hot | K FFs |
+| Factoring | N₁×N₂ → N₁+N₂ states |
+| Adders | RCA=O(N), CLA=parallel, Prefix=O(log N) |
+| FP Add step 2 | Prepend implicit 1 |
+| FP Special | E=0/F≠0=denorm, E=255/F=0=∞ |
+
+---
+
+## Verilog Quick Reference
+
+```verilog
+// D Flip-Flop
+always @(posedge clk or posedge reset) begin
+    if (reset) q <= 1'b0;
+    else       q <= d;
+end
+
+// Enabled D FF (NO CLOCK GATING!)
+always @(posedge clk or posedge reset) begin
+    if (reset) q <= 1'b0;
+    else if (en) q <= d;
+end
+
+// FSM Template (Moore)
+always @(posedge clk or posedge reset) begin
+    if (reset) state <= S0;
+    else       state <= next_state;
+end
+
+always @(*) begin
+    case (state)
+        S0: next_state = x ? S1 : S0;
+        S1: next_state = x ? S2 : S0;
+        default: next_state = S0;
+    endcase
+end
+
+always @(*) begin
+    detect = (state == S4);  // Moore output
+end
+
+// FSM Template (Mealy)
+always @(*) begin
+    case (state)
+        S0: begin
+            next_state = x ? S1 : S0;
+            detect = 1'b0;
+        end
+        S1: begin
+            next_state = x ? S1 : S2;
+            detect = x;
+        end
+    endcase
+end
+```
+
+**Key Rules:**
+- Sequential: Non-blocking (≤) in `@(posedge clk)`
+- Combinational: Blocking (=) in `@(*)`
+- Default case in FSM prevents latches
+- No clock gating (use enable MUX at D)
+
+---
+
 ## Final Tips
 
 1. **Practice numerical problems** with timer
@@ -187,3 +428,8 @@
 6. **Verify IEEE 754** by decoding back to decimal
 7. **Read Verilog code** carefully (blocking vs non-blocking)
 8. **Stay calm** — you know this material!
+
+---
+
+> **Good luck on your exam!** 🎓  
+> *Consistent practice with K-maps, timing analysis, FSM design, number system conversions, MIPS assembly, and pipelining is the key to success.*
