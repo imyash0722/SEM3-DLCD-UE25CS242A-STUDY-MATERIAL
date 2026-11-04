@@ -1,0 +1,1508 @@
+{
+  "lab/week8/comparator.v": {
+    "mtime": 1790822270.49,
+    "seen": 1793780775.8415353,
+    "ast_hash": "9b62d2f78433dadcc669beed77178ba1",
+    "semantic_hash": ""
+  },
+  "lab/week8/comparator_tb.v": {
+    "mtime": 1790822275.67,
+    "seen": 1793780775.8415425,
+    "ast_hash": "469a2b64ca1ea8e87ac7be37483b8e48",
+    "semantic_hash": ""
+  },
+  "lab/week8/prefix_adder.v": {
+    "mtime": 1790822282.07,
+    "seen": 1793780775.8415463,
+    "ast_hash": "12c0a86613e02aec6a2ce0f45d208cfb",
+    "semantic_hash": ""
+  },
+  "lab/week8/prefix_adder_tb.v": {
+    "mtime": 1790822287.91,
+    "seen": 1793780775.8415496,
+    "ast_hash": "e1d5a183197c9b92151e7b229176d23d",
+    "semantic_hash": ""
+  },
+  "overrides/assets/javascripts/theme-toggle.js": {
+    "mtime": 1793560904.43,
+    "seen": 1793780775.8415518,
+    "ast_hash": "1f8c8539010dbc766f6938d64e25fd5a",
+    "semantic_hash": ""
+  },
+  "site/assets/javascripts/bundle.77dd0ce9.min.js": {
+    "mtime": 1793781338.53,
+    "seen": 1793781699.1072896,
+    "ast_hash": "366d69fa8fdc78f68f32105ea7e4491f",
+    "semantic_hash": ""
+  },
+  "site/assets/javascripts/theme-toggle.js": {
+    "mtime": 1793781338.53,
+    "seen": 1793781699.107293,
+    "ast_hash": "1f8c8539010dbc766f6938d64e25fd5a",
+    "semantic_hash": ""
+  },
+  "site/assets/javascripts/workers/search.c47bb847.min.js": {
+    "mtime": 1793781338.53,
+    "seen": 1793781699.1072958,
+    "ast_hash": "5e538ea91ed325909521963abae2d474",
+    "semantic_hash": ""
+  },
+  "site/search.json": {
+    "mtime": 1793781338.56,
+    "seen": 1793781699.1072989,
+    "ast_hash": "27105d50856328b5119a4f14a7fbfff9",
+    "semantic_hash": ""
+  },
+  "zensical.yml": {
+    "mtime": 1793563759.98,
+    "seen": 1793780775.841565,
+    "ast_hash": "f69d925b86ecf18a8e5e4d75c2220e6c",
+    "semantic_hash": ""
+  },
+  "docs/01_digital-circuits-introduction.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415668,
+    "ast_hash": "683db1acabdfadb84f3d7bfda2e279aa",
+    "semantic_hash": ""
+  },
+  "docs/02_boolean-equations.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.84157,
+    "ast_hash": "09d847eae1457311b3a81ca95b6cc663",
+    "semantic_hash": ""
+  },
+  "docs/03_logic-minimization-kmaps-3var.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415725,
+    "ast_hash": "8e4757b1660cd9156ffcfc622a957404",
+    "semantic_hash": ""
+  },
+  "docs/04_kmaps-4var-seven-segment.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415744,
+    "ast_hash": "9d4b83c9cf23cc09d0e9f00547cd4038",
+    "semantic_hash": ""
+  },
+  "docs/05_combinational-building-blocks.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415773,
+    "ast_hash": "9a5e0dbba9761f1aa7e4b7403ad48444",
+    "semantic_hash": ""
+  },
+  "docs/06_sequential-basics-latches.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.841579,
+    "ast_hash": "97ccec4723faa23cef1bdbe0226f08cb",
+    "semantic_hash": ""
+  },
+  "docs/07_flipflops-timing-metastability.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415818,
+    "ast_hash": "688c82a6856cb851caa1c2c5cd4f3dc2",
+    "semantic_hash": ""
+  },
+  "docs/08_fsm-moore-mealy-design.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.841584,
+    "ast_hash": "3ec29134061bdb98c87edd127cc96d57",
+    "semantic_hash": ""
+  },
+  "docs/09_state-encoding-factoring.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.841586,
+    "ast_hash": "19ed3665cd44deb8cb786f76b85e338b",
+    "semantic_hash": ""
+  },
+  "docs/10_arithmetic-adders.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415887,
+    "ast_hash": "48ed18c933143f902236a654f2f44db7",
+    "semantic_hash": ""
+  },
+  "docs/11_alu-comparator-shifter-multiplier.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415911,
+    "ast_hash": "f6670724cc6acaecfdb9ed96a113cf38",
+    "semantic_hash": ""
+  },
+  "docs/12_number-systems-fixedpoint.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415928,
+    "ast_hash": "30bdc456775fd9cbb2c0bf0a86cc1884",
+    "semantic_hash": ""
+  },
+  "docs/13_floating-point-ieee754.md": {
+    "mtime": 1793732823.58,
+    "seen": 1793780775.8415954,
+    "ast_hash": "6bb571bf21e186c5b77c4ea5229bc31d",
+    "semantic_hash": ""
+  },
+  "docs/14_lab-verilog-patterns.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.841598,
+    "ast_hash": "89d156ca2d5090e8c1cf6b7a29f91eed",
+    "semantic_hash": ""
+  },
+  "docs/14_sequential-building-blocks.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416002,
+    "ast_hash": "8e513e8aafe04171aae8c01504d43b71",
+    "semantic_hash": ""
+  },
+  "docs/15_computer-architecture-intro.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416026,
+    "ast_hash": "c200c898b783cfbf2310a2d9246d1ab5",
+    "semantic_hash": ""
+  },
+  "docs/15_mcq-practice-comprehensive.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.841605,
+    "ast_hash": "a8bafb0a6f9b2bb419677b3e66eb6de8",
+    "semantic_hash": ""
+  },
+  "docs/16_assembly-language.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416073,
+    "ast_hash": "84773449128f44bac625488e2284c24c",
+    "semantic_hash": ""
+  },
+  "docs/16_numerical-examples-full-traces.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.8416092,
+    "ast_hash": "a3b00201dfe047d8052f3daffee8baf8",
+    "semantic_hash": ""
+  },
+  "docs/17_exam-strategy-quick-ref.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.841611,
+    "ast_hash": "b4de3bf636d3f3d7b045c377c9c32a65",
+    "semantic_hash": ""
+  },
+  "docs/17_machine-language.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416133,
+    "ast_hash": "8d5afce173717d4bc156321af823c3b2",
+    "semantic_hash": ""
+  },
+  "docs/18_addressing-modes.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416157,
+    "ast_hash": "5eb968b0d6b538a2e09cf645ec336d9c",
+    "semantic_hash": ""
+  },
+  "docs/18_sequential-building-blocks.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.8416176,
+    "ast_hash": "8e513e8aafe04171aae8c01504d43b71",
+    "semantic_hash": ""
+  },
+  "docs/19_compiling-assembling-loading.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416195,
+    "ast_hash": "2752276d5c357dce932867051da152a8",
+    "semantic_hash": ""
+  },
+  "docs/19_computer-architecture-intro.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.841622,
+    "ast_hash": "c200c898b783cfbf2310a2d9246d1ab5",
+    "semantic_hash": ""
+  },
+  "docs/20_assembly-language.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.8416247,
+    "ast_hash": "84773449128f44bac625488e2284c24c",
+    "semantic_hash": ""
+  },
+  "docs/20_parallelism.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416266,
+    "ast_hash": "2f0f4fa2fee422ad09498891e0c2244b",
+    "semantic_hash": ""
+  },
+  "docs/21_classwork-problems.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416293,
+    "ast_hash": "2bd2645dfed54d05bc593c61b27fd882",
+    "semantic_hash": ""
+  },
+  "docs/21_machine-language.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.841631,
+    "ast_hash": "8d5afce173717d4bc156321af823c3b2",
+    "semantic_hash": ""
+  },
+  "docs/22_addressing-modes.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.8416333,
+    "ast_hash": "5eb968b0d6b538a2e09cf645ec336d9c",
+    "semantic_hash": ""
+  },
+  "docs/22_unit3-mcq-practice.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.841636,
+    "ast_hash": "8062a8b5511228836a390e81af47aac3",
+    "semantic_hash": ""
+  },
+  "docs/23_compiling-assembling-loading.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.841638,
+    "ast_hash": "2752276d5c357dce932867051da152a8",
+    "semantic_hash": ""
+  },
+  "docs/23_lab-verilog-patterns.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416407,
+    "ast_hash": "89d156ca2d5090e8c1cf6b7a29f91eed",
+    "semantic_hash": ""
+  },
+  "docs/24_mcq-practice-comprehensive.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.841644,
+    "ast_hash": "a8bafb0a6f9b2bb419677b3e66eb6de8",
+    "semantic_hash": ""
+  },
+  "docs/24_parallelism.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.8416464,
+    "ast_hash": "2f0f4fa2fee422ad09498891e0c2244b",
+    "semantic_hash": ""
+  },
+  "docs/25_classwork-problems.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.8416486,
+    "ast_hash": "2bd2645dfed54d05bc593c61b27fd882",
+    "semantic_hash": ""
+  },
+  "docs/25_numerical-examples-full-traces.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.841651,
+    "ast_hash": "a3b00201dfe047d8052f3daffee8baf8",
+    "semantic_hash": ""
+  },
+  "docs/26_exam-strategy-quick-ref.md": {
+    "mtime": 1793729648.84,
+    "seen": 1793780775.8416536,
+    "ast_hash": "b4de3bf636d3f3d7b045c377c9c32a65",
+    "semantic_hash": ""
+  },
+  "docs/26_unit3-mcq-practice.md": {
+    "mtime": 1793732823.59,
+    "seen": 1793780775.8416557,
+    "ast_hash": "8062a8b5511228836a390e81af47aac3",
+    "semantic_hash": ""
+  },
+  "docs/index.md": {
+    "mtime": 1793776072.76,
+    "seen": 1793780775.841658,
+    "ast_hash": "c0ff626488008039f1149fd9c15cb2b1",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1789998958.2,
+    "seen": 1793780775.8416605,
+    "ast_hash": "8fc064c562adf3db7708a4e9cb5aa550",
+    "semantic_hash": ""
+  },
+  "nemotron_prompt.txt": {
+    "mtime": 1789990382.63,
+    "seen": 1793780775.8416624,
+    "ast_hash": "52e12b4fd57d6c2004f58d8f1727878e",
+    "semantic_hash": ""
+  },
+  "nemotron_website_prompt.txt": {
+    "mtime": 1789993032.98,
+    "seen": 1793780775.841665,
+    "ast_hash": "5db50cbb53ecb5a0c5391dccf1c59529",
+    "semantic_hash": ""
+  },
+  "os_topics/01_digital-circuits-introduction.md": {
+    "mtime": 1793727409.35,
+    "seen": 1793780775.8416674,
+    "ast_hash": "683db1acabdfadb84f3d7bfda2e279aa",
+    "semantic_hash": ""
+  },
+  "os_topics/02_boolean-equations.md": {
+    "mtime": 1793727796.98,
+    "seen": 1793780775.8416696,
+    "ast_hash": "09d847eae1457311b3a81ca95b6cc663",
+    "semantic_hash": ""
+  },
+  "os_topics/03_logic-minimization-kmaps-3var.md": {
+    "mtime": 1793727840.41,
+    "seen": 1793780775.8416722,
+    "ast_hash": "8e4757b1660cd9156ffcfc622a957404",
+    "semantic_hash": ""
+  },
+  "os_topics/04_kmaps-4var-seven-segment.md": {
+    "mtime": 1793727892.77,
+    "seen": 1793780775.8416746,
+    "ast_hash": "9d4b83c9cf23cc09d0e9f00547cd4038",
+    "semantic_hash": ""
+  },
+  "os_topics/05_combinational-building-blocks.md": {
+    "mtime": 1793728226.48,
+    "seen": 1793780775.8416762,
+    "ast_hash": "9a5e0dbba9761f1aa7e4b7403ad48444",
+    "semantic_hash": ""
+  },
+  "os_topics/06_sequential-basics-latches.md": {
+    "mtime": 1793728243.34,
+    "seen": 1793780775.8416789,
+    "ast_hash": "97ccec4723faa23cef1bdbe0226f08cb",
+    "semantic_hash": ""
+  },
+  "os_topics/07_flipflops-timing-metastability.md": {
+    "mtime": 1793728280.41,
+    "seen": 1793780775.8416812,
+    "ast_hash": "688c82a6856cb851caa1c2c5cd4f3dc2",
+    "semantic_hash": ""
+  },
+  "os_topics/08_fsm-moore-mealy-design.md": {
+    "mtime": 1793728325.84,
+    "seen": 1793780775.8416834,
+    "ast_hash": "3ec29134061bdb98c87edd127cc96d57",
+    "semantic_hash": ""
+  },
+  "os_topics/09_state-encoding-factoring.md": {
+    "mtime": 1793728371.16,
+    "seen": 1793780775.8416858,
+    "ast_hash": "19ed3665cd44deb8cb786f76b85e338b",
+    "semantic_hash": ""
+  },
+  "os_topics/10_arithmetic-adders.md": {
+    "mtime": 1793728430.9,
+    "seen": 1793780775.841688,
+    "ast_hash": "48ed18c933143f902236a654f2f44db7",
+    "semantic_hash": ""
+  },
+  "os_topics/11_alu-comparator-shifter-multiplier.md": {
+    "mtime": 1793728470.67,
+    "seen": 1793780775.84169,
+    "ast_hash": "f6670724cc6acaecfdb9ed96a113cf38",
+    "semantic_hash": ""
+  },
+  "os_topics/12_number-systems-fixedpoint.md": {
+    "mtime": 1793728524.88,
+    "seen": 1793780775.8416924,
+    "ast_hash": "30bdc456775fd9cbb2c0bf0a86cc1884",
+    "semantic_hash": ""
+  },
+  "os_topics/13_floating-point-ieee754.md": {
+    "mtime": 1793728554.03,
+    "seen": 1793780775.841695,
+    "ast_hash": "6bb571bf21e186c5b77c4ea5229bc31d",
+    "semantic_hash": ""
+  },
+  "os_topics/14_lab-verilog-patterns.md": {
+    "mtime": 1793728707.93,
+    "seen": 1793780775.841697,
+    "ast_hash": "89d156ca2d5090e8c1cf6b7a29f91eed",
+    "semantic_hash": ""
+  },
+  "os_topics/15_mcq-practice-comprehensive.md": {
+    "mtime": 1793728796.29,
+    "seen": 1793780775.8416994,
+    "ast_hash": "a8bafb0a6f9b2bb419677b3e66eb6de8",
+    "semantic_hash": ""
+  },
+  "os_topics/16_numerical-examples-full-traces.md": {
+    "mtime": 1793728830.32,
+    "seen": 1793780775.8417017,
+    "ast_hash": "a3b00201dfe047d8052f3daffee8baf8",
+    "semantic_hash": ""
+  },
+  "os_topics/17_exam-strategy-quick-ref.md": {
+    "mtime": 1793728872.67,
+    "seen": 1793780775.841704,
+    "ast_hash": "b4de3bf636d3f3d7b045c377c9c32a65",
+    "semantic_hash": ""
+  },
+  "os_topics/18_sequential-building-blocks.md": {
+    "mtime": 1793728917.36,
+    "seen": 1793780775.841706,
+    "ast_hash": "8e513e8aafe04171aae8c01504d43b71",
+    "semantic_hash": ""
+  },
+  "os_topics/19_computer-architecture-intro.md": {
+    "mtime": 1793728951.46,
+    "seen": 1793780775.841709,
+    "ast_hash": "c200c898b783cfbf2310a2d9246d1ab5",
+    "semantic_hash": ""
+  },
+  "os_topics/20_assembly-language.md": {
+    "mtime": 1793729047.31,
+    "seen": 1793780775.8417106,
+    "ast_hash": "84773449128f44bac625488e2284c24c",
+    "semantic_hash": ""
+  },
+  "os_topics/21_machine-language.md": {
+    "mtime": 1793729143.99,
+    "seen": 1793780775.8417132,
+    "ast_hash": "8d5afce173717d4bc156321af823c3b2",
+    "semantic_hash": ""
+  },
+  "os_topics/22_addressing-modes.md": {
+    "mtime": 1793729191.58,
+    "seen": 1793780775.8417156,
+    "ast_hash": "5eb968b0d6b538a2e09cf645ec336d9c",
+    "semantic_hash": ""
+  },
+  "os_topics/23_compiling-assembling-loading.md": {
+    "mtime": 1793729259.67,
+    "seen": 1793780775.8417172,
+    "ast_hash": "2752276d5c357dce932867051da152a8",
+    "semantic_hash": ""
+  },
+  "os_topics/24_parallelism.md": {
+    "mtime": 1793729323.57,
+    "seen": 1793780775.8417199,
+    "ast_hash": "2f0f4fa2fee422ad09498891e0c2244b",
+    "semantic_hash": ""
+  },
+  "os_topics/25_classwork-problems.md": {
+    "mtime": 1793729381.5,
+    "seen": 1793780775.841722,
+    "ast_hash": "2bd2645dfed54d05bc593c61b27fd882",
+    "semantic_hash": ""
+  },
+  "os_topics/26_unit3-mcq-practice.md": {
+    "mtime": 1793729410.52,
+    "seen": 1793780775.8417244,
+    "ast_hash": "8062a8b5511228836a390e81af47aac3",
+    "semantic_hash": ""
+  },
+  "resources/DLCD_Complete_Study_Package.md": {
+    "mtime": 1789990164.94,
+    "seen": 1793780775.841727,
+    "ast_hash": "1063018551cfbbab7a07b585e20775fb",
+    "semantic_hash": ""
+  },
+  "resources/DLCD_Unit_1_Clean_Slides.md": {
+    "mtime": 1789989813.32,
+    "seen": 1793780775.8417292,
+    "ast_hash": "a3069821ae6eba5e19d1204a6afe6a33",
+    "semantic_hash": ""
+  },
+  "resources/DLCD_Unit_1_MCQs.md": {
+    "mtime": 1789989819.43,
+    "seen": 1793780775.8417315,
+    "ast_hash": "526f4fb143b66b86c43b14c615efbb60",
+    "semantic_hash": ""
+  },
+  "resources/DLCD_Unit_1_Question_Bank.md": {
+    "mtime": 1789989816.34,
+    "seen": 1793780775.8417337,
+    "ast_hash": "30697d0bbf8913c0f67a1ba41a4e7862",
+    "semantic_hash": ""
+  },
+  "resources/DLCD_Unit_2_Clean_Slides.md": {
+    "mtime": 1789989813.32,
+    "seen": 1793780775.8417358,
+    "ast_hash": "f4da5ce12c964bf56ec4ae5424490058",
+    "semantic_hash": ""
+  },
+  "resources/DLCD_Unit_2_MCQs.md": {
+    "mtime": 1789989819.43,
+    "seen": 1793780775.8417382,
+    "ast_hash": "8af8614e036286678745deeb7e8966fa",
+    "semantic_hash": ""
+  },
+  "resources/DLCD_Unit_2_Question_Bank.md": {
+    "mtime": 1789990164.94,
+    "seen": 1793780775.8417408,
+    "ast_hash": "8b468217703728dc3b35cf1b69aa3abf",
+    "semantic_hash": ""
+  },
+  "resources/U1U2MCQs.html": {
+    "mtime": 1789989411.95,
+    "seen": 1793780775.8417437,
+    "ast_hash": "96ed7c584119f43c6123016990e074ba",
+    "semantic_hash": ""
+  },
+  "site/01_digital-circuits-introduction/index.html": {
+    "mtime": 1793781338.57,
+    "seen": 1793781699.107594,
+    "ast_hash": "d9a922c879986fd5a0dfeda275e256da",
+    "semantic_hash": ""
+  },
+  "site/02_boolean-equations/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1075969,
+    "ast_hash": "fbe3d31c84b4bc3356d676b642342805",
+    "semantic_hash": ""
+  },
+  "site/03_logic-minimization-kmaps-3var/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1075993,
+    "ast_hash": "a37f4c99efa91cb21436db13c34c0ab2",
+    "semantic_hash": ""
+  },
+  "site/04_kmaps-4var-seven-segment/index.html": {
+    "mtime": 1793781338.57,
+    "seen": 1793781699.1076021,
+    "ast_hash": "c8c4ed8b3487f545685e596055366437",
+    "semantic_hash": ""
+  },
+  "site/05_combinational-building-blocks/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.107605,
+    "ast_hash": "94ae60284e2cfce7556426bd1409793e",
+    "semantic_hash": ""
+  },
+  "site/06_sequential-basics-latches/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076078,
+    "ast_hash": "ddaf8ddcf0e75e5393a1d802a69a100b",
+    "semantic_hash": ""
+  },
+  "site/07_flipflops-timing-metastability/index.html": {
+    "mtime": 1793781338.57,
+    "seen": 1793781699.1076105,
+    "ast_hash": "55b21052dca18569c557acc9e50e4fff",
+    "semantic_hash": ""
+  },
+  "site/08_fsm-moore-mealy-design/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.107613,
+    "ast_hash": "175c99c0bd9559b8b40972e9299d6a8a",
+    "semantic_hash": ""
+  },
+  "site/09_state-encoding-factoring/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076157,
+    "ast_hash": "4b425c842ed62c671ddb2beacfc620bc",
+    "semantic_hash": ""
+  },
+  "site/10_arithmetic-adders/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076183,
+    "ast_hash": "2abd974f7cc503dcf884c77057c500f2",
+    "semantic_hash": ""
+  },
+  "site/11_alu-comparator-shifter-multiplier/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076207,
+    "ast_hash": "9a50beb2efacfba211e23e34b45da8c5",
+    "semantic_hash": ""
+  },
+  "site/12_number-systems-fixedpoint/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076233,
+    "ast_hash": "e48af35ef3ce5a3785a25739e779d2ce",
+    "semantic_hash": ""
+  },
+  "site/13_floating-point-ieee754/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.107626,
+    "ast_hash": "e7e60765f65b08de8ba12a895be19fa3",
+    "semantic_hash": ""
+  },
+  "site/14_lab-verilog-patterns/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076288,
+    "ast_hash": "90aa2fc1138ec3eb518172f3eacacd19",
+    "semantic_hash": ""
+  },
+  "site/14_sequential-building-blocks/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076317,
+    "ast_hash": "8b8ecbf676c81af063f6510e8c620961",
+    "semantic_hash": ""
+  },
+  "site/15_computer-architecture-intro/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076348,
+    "ast_hash": "10a024438d7cb074267c05a918386c84",
+    "semantic_hash": ""
+  },
+  "site/15_mcq-practice-comprehensive/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.107637,
+    "ast_hash": "6a71302632cdcdc5fbfa8aba47f5711a",
+    "semantic_hash": ""
+  },
+  "site/16_assembly-language/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076398,
+    "ast_hash": "e5e978d99dcf0735a5f377d7c9f47fee",
+    "semantic_hash": ""
+  },
+  "site/16_numerical-examples-full-traces/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076427,
+    "ast_hash": "658afb5941bb2feaa7973158f733b2a5",
+    "semantic_hash": ""
+  },
+  "site/17_exam-strategy-quick-ref/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.107645,
+    "ast_hash": "0c235fd2d1cff8f41a09a7a08741fdb5",
+    "semantic_hash": ""
+  },
+  "site/17_machine-language/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076477,
+    "ast_hash": "e2c1b3dc8fddfc1c5ae691ba89345e42",
+    "semantic_hash": ""
+  },
+  "site/18_addressing-modes/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.10765,
+    "ast_hash": "7b5965887584cbc3d8539ddf77143feb",
+    "semantic_hash": ""
+  },
+  "site/18_sequential-building-blocks/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076527,
+    "ast_hash": "d406dfb25de13e85441ae95b1831ed26",
+    "semantic_hash": ""
+  },
+  "site/19_compiling-assembling-loading/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076555,
+    "ast_hash": "88780ad31d5659bb2698883be6283c27",
+    "semantic_hash": ""
+  },
+  "site/19_computer-architecture-intro/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076577,
+    "ast_hash": "49d75acff9d664d7c033728e7f24439b",
+    "semantic_hash": ""
+  },
+  "site/20_assembly-language/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076603,
+    "ast_hash": "fe6e4fbcdb74fcaccc37653cf44dd4e5",
+    "semantic_hash": ""
+  },
+  "site/20_parallelism/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.107663,
+    "ast_hash": "baaac9377eb96472096028ed1ffa6284",
+    "semantic_hash": ""
+  },
+  "site/21_classwork-problems/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076658,
+    "ast_hash": "39301e38b208bcf06b5d8d3fe3f4b587",
+    "semantic_hash": ""
+  },
+  "site/21_machine-language/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.107668,
+    "ast_hash": "9ddf71aef39b311568058d2ef11debfd",
+    "semantic_hash": ""
+  },
+  "site/22_addressing-modes/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076705,
+    "ast_hash": "e1f4f5a507f197e060cfcb181b1128da",
+    "semantic_hash": ""
+  },
+  "site/22_unit3-mcq-practice/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076734,
+    "ast_hash": "c7e78d76342d74c223c0cf7b434fd633",
+    "semantic_hash": ""
+  },
+  "site/23_compiling-assembling-loading/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076756,
+    "ast_hash": "80fbf36ca9b5db990c02314584e61d2e",
+    "semantic_hash": ""
+  },
+  "site/23_lab-verilog-patterns/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076784,
+    "ast_hash": "dc5c8c66cedb1f9755d9a4573877965c",
+    "semantic_hash": ""
+  },
+  "site/24_mcq-practice-comprehensive/index.html": {
+    "mtime": 1793781338.58,
+    "seen": 1793781699.1076813,
+    "ast_hash": "94c1c89e019b56d2d8a77fce84e4a050",
+    "semantic_hash": ""
+  },
+  "site/24_parallelism/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076841,
+    "ast_hash": "40edb40b1efcf4f47fca976f02aad459",
+    "semantic_hash": ""
+  },
+  "site/25_classwork-problems/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076863,
+    "ast_hash": "c68e87f216c5cbfda0cfffe5fb8baab1",
+    "semantic_hash": ""
+  },
+  "site/25_numerical-examples-full-traces/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076891,
+    "ast_hash": "5d8e14bf75443fc4015de560290ab29c",
+    "semantic_hash": ""
+  },
+  "site/26_exam-strategy-quick-ref/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076915,
+    "ast_hash": "1d3159aa996ae66918ad821e220304c4",
+    "semantic_hash": ""
+  },
+  "site/26_unit3-mcq-practice/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076941,
+    "ast_hash": "3fe3dcf4a1c390a8f175dcbedf492901",
+    "semantic_hash": ""
+  },
+  "site/404.html": {
+    "mtime": 1793781338.57,
+    "seen": 1793781699.107697,
+    "ast_hash": "b4794eaf59c819bfc0afe7576500e3cd",
+    "semantic_hash": ""
+  },
+  "site/index.html": {
+    "mtime": 1793781338.59,
+    "seen": 1793781699.1076992,
+    "ast_hash": "c6105e5c1296452a1425539f494a2f02",
+    "semantic_hash": ""
+  },
+  "notes/FSM.pdf": {
+    "mtime": 1789023532.54,
+    "seen": 1793780775.8418398,
+    "ast_hash": "bc5049170f7ec29a37564e9eec348288",
+    "semantic_hash": ""
+  },
+  "notes/U2N1.pdf": {
+    "mtime": 1789990450.35,
+    "seen": 1793780775.8418424,
+    "ast_hash": "fdace4bae17d94dfe7b1b4b885ac875b",
+    "semantic_hash": ""
+  },
+  "notes/U2N2.pdf": {
+    "mtime": 1789990438.18,
+    "seen": 1793780775.8418443,
+    "ast_hash": "47f38d39f4e2981bc91fa5be2e3bca88",
+    "semantic_hash": ""
+  },
+  "resources/DLCD - Unit 1 Combined Slides.pdf": {
+    "mtime": 1789984273.25,
+    "seen": 1793780775.8418465,
+    "ast_hash": "2c139386cb7f064f08d9b3a4218dee40",
+    "semantic_hash": ""
+  },
+  "resources/DLCD - Unit 2 Combined Slides.pdf": {
+    "mtime": 1789984205.17,
+    "seen": 1793780775.8418486,
+    "ast_hash": "e6c52f31273b02a9a1aa216604d2a0b1",
+    "semantic_hash": ""
+  },
+  "resources/U2MCQ3.pdf": {
+    "mtime": 1789989370.0,
+    "seen": 1793780775.841851,
+    "ast_hash": "7a58289843a441448b4529e7f5abc67b",
+    "semantic_hash": ""
+  },
+  "resources/u3/QA/3.1.1_QA.pdf": {
+    "mtime": 1793534152.0,
+    "seen": 1793780775.8418534,
+    "ast_hash": "919088d3993e13ed57b90d6ff9e5ca9b",
+    "semantic_hash": ""
+  },
+  "resources/u3/QB/3.1.1_QB.pdf": {
+    "mtime": 1793534152.0,
+    "seen": 1793780775.8418558,
+    "ast_hash": "d82f8a1e5c69e2841742612b5c89a0ec",
+    "semantic_hash": ""
+  },
+  "notes/question1.jpeg": {
+    "mtime": 1788774604.51,
+    "seen": 1793780775.8418581,
+    "ast_hash": "f7f08f7aa4f1fe056f32db2ba324231b",
+    "semantic_hash": ""
+  },
+  "notes/sequential-1.jpg": {
+    "mtime": 1789984318.37,
+    "seen": 1793780775.841872,
+    "ast_hash": "319cc3b4715610cac7851064d45ea112",
+    "semantic_hash": ""
+  },
+  "notes/sequential-2.jpg": {
+    "mtime": 1789984327.19,
+    "seen": 1793780775.8418741,
+    "ast_hash": "6b3342af5ef70ef4c15920b90a68f546",
+    "semantic_hash": ""
+  },
+  "site/assets/images/favicon.png": {
+    "mtime": 1793781338.53,
+    "seen": 1793781699.1078568,
+    "ast_hash": "370ef648333a78cf59e253f1322c6fdc",
+    "semantic_hash": ""
+  },
+  "output_ocr/ocr_extraction_summary.json": {
+    "mtime": 1793781679.57,
+    "seen": 1793781699.107279,
+    "ast_hash": "4c3ae1a94027178d3cb1314bf9a9dacb",
+    "semantic_hash": ""
+  },
+  "scripts/convert_ocr_extract.py": {
+    "mtime": 1793781217.18,
+    "seen": 1793781699.1072857,
+    "ast_hash": "0161bbbf209ac939bcc5924d9d3e0ffa",
+    "semantic_hash": ""
+  },
+  "lab/week8/PES2UG25CS615_Yashwanth K_DLCDLab8.txt": {
+    "mtime": 1793781242.3,
+    "seen": 1793781699.1073632,
+    "ast_hash": "a2c470fd26acfde16c4ebf1b0e6b0c68",
+    "semantic_hash": ""
+  },
+  "notes/FSM.txt": {
+    "mtime": 1793781388.22,
+    "seen": 1793781699.1073687,
+    "ast_hash": "10f1087c40a291e607fdcdf536d87a82",
+    "semantic_hash": ""
+  },
+  "notes/U2N1.txt": {
+    "mtime": 1793781292.84,
+    "seen": 1793781699.1073716,
+    "ast_hash": "dbb5a002074874546c9d45ac059d3956",
+    "semantic_hash": ""
+  },
+  "notes/U2N2.txt": {
+    "mtime": 1793781268.02,
+    "seen": 1793781699.1073742,
+    "ast_hash": "aadcdaaa48e9227db0e86c527cadf39f",
+    "semantic_hash": ""
+  },
+  "notes/question1.txt": {
+    "mtime": 1793781233.23,
+    "seen": 1793781699.1073763,
+    "ast_hash": "cf3f5ee6c5c3cde63349513c7d2edc01",
+    "semantic_hash": ""
+  },
+  "notes/sequential-1.txt": {
+    "mtime": 1793781234.62,
+    "seen": 1793781699.107379,
+    "ast_hash": "cfeeb50bd84ecee4127c820b1705cbf1",
+    "semantic_hash": ""
+  },
+  "notes/sequential-2.txt": {
+    "mtime": 1793781235.77,
+    "seen": 1793781699.1073818,
+    "ast_hash": "470cb08f32f5e59de685f8b87d0f19f8",
+    "semantic_hash": ""
+  },
+  "output_ocr/README.md": {
+    "mtime": 1793781679.57,
+    "seen": 1793781699.1074224,
+    "ast_hash": "5e73daa8940918e6013230e25273bec5",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Lab_PES2UG25CS615_Yashwanth K_DLCDLab8.txt": {
+    "mtime": 1793781242.3,
+    "seen": 1793781699.1074252,
+    "ast_hash": "a2c470fd26acfde16c4ebf1b0e6b0c68",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Notes_FSM.txt": {
+    "mtime": 1793781388.22,
+    "seen": 1793781699.1074276,
+    "ast_hash": "10f1087c40a291e607fdcdf536d87a82",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Notes_U2N1.txt": {
+    "mtime": 1793781292.84,
+    "seen": 1793781699.1074305,
+    "ast_hash": "dbb5a002074874546c9d45ac059d3956",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Notes_U2N2.txt": {
+    "mtime": 1793781268.01,
+    "seen": 1793781699.1074326,
+    "ast_hash": "aadcdaaa48e9227db0e86c527cadf39f",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Notes_question1.txt": {
+    "mtime": 1793781233.23,
+    "seen": 1793781699.107435,
+    "ast_hash": "cf3f5ee6c5c3cde63349513c7d2edc01",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Notes_sequential-1.txt": {
+    "mtime": 1793781234.62,
+    "seen": 1793781699.1074376,
+    "ast_hash": "cfeeb50bd84ecee4127c820b1705cbf1",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Notes_sequential-2.txt": {
+    "mtime": 1793781235.77,
+    "seen": 1793781699.1074405,
+    "ast_hash": "470cb08f32f5e59de685f8b87d0f19f8",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_DLCD - Unit 1 Combined Slides.txt": {
+    "mtime": 1793781679.57,
+    "seen": 1793781699.1074426,
+    "ast_hash": "7f2f52d756c50444a33db3c0ba798e1f",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_DLCD - Unit 2 Combined Slides.txt": {
+    "mtime": 1793781632.45,
+    "seen": 1793781699.1074452,
+    "ast_hash": "8ec1c5d8650b5e99256d75176cfc7857",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_QB.txt": {
+    "mtime": 1793781307.66,
+    "seen": 1793781699.107448,
+    "ast_hash": "f05e8fbe37c3c16b884ef3e85548cb04",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_U1QB_soln.txt": {
+    "mtime": 1793781441.61,
+    "seen": 1793781699.1074507,
+    "ast_hash": "eab631b48dddfb3b97eae0401df696f2",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_U2MCQ1.txt": {
+    "mtime": 1793781256.66,
+    "seen": 1793781699.1074529,
+    "ast_hash": "8cb5dee6ed9b05dd418c8fdad0b41561",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_U2MCQ2.txt": {
+    "mtime": 1793781245.81,
+    "seen": 1793781699.1074758,
+    "ast_hash": "781656c45824667fc930bbdc81d3786b",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_U2MCQ3.txt": {
+    "mtime": 1793781315.39,
+    "seen": 1793781699.10748,
+    "ast_hash": "da7770d59cdf9252e97c24bff9f607d4",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_U2QB.txt": {
+    "mtime": 1793781237.4,
+    "seen": 1793781699.1074834,
+    "ast_hash": "e6f3ced9abe0965e7b41ad7eb76e846c",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/Resources_U2QB_soln.txt": {
+    "mtime": 1793781250.94,
+    "seen": 1793781699.1074858,
+    "ast_hash": "512fac4eb80c3e0df0be793db0a84684",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Assignment_3.1.1_ASSIGNMENT.txt": {
+    "mtime": 1793781238.87,
+    "seen": 1793781699.1074884,
+    "ast_hash": "b1ee8bf65a9e4da2eee09e842a44009a",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_QA_3.1.1_QA.txt": {
+    "mtime": 1793781403.67,
+    "seen": 1793781699.1074913,
+    "ast_hash": "bf892058bb279a87b6bfdbe5cea56960",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_QB_3.1.1_QB.txt": {
+    "mtime": 1793781282.34,
+    "seen": 1793781699.107494,
+    "ast_hash": "27de9bf29ad3a90354c6be02c9ea50d8",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.1.1_Sequential_Building_Block.txt": {
+    "mtime": 1793781514.2,
+    "seen": 1793781699.1074967,
+    "ast_hash": "ce64db6ce6de7f8c587a05290ce7f85d",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.11.1_Programming.txt": {
+    "mtime": 1793781584.97,
+    "seen": 1793781699.1074996,
+    "ast_hash": "5080e3952381e63fb9247d8d576c1cd8",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.14.1_Addressing_Mode.txt": {
+    "mtime": 1793781429.83,
+    "seen": 1793781699.1075056,
+    "ast_hash": "4614704b5b6c5b4cc9c8ea6527e8ab7c",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.14.2_COM-ASS-LOAD.txt": {
+    "mtime": 1793781416.66,
+    "seen": 1793781699.1075082,
+    "ast_hash": "c0613c7c497b6c53ba1dd44ef0650cf0",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.15.1_Parallelism.txt": {
+    "mtime": 1793781470.73,
+    "seen": 1793781699.1075106,
+    "ast_hash": "9b8a740cded64b8fc1deae3d2dc9b69e",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.17.1_Classwork_problems.txt": {
+    "mtime": 1793781299.88,
+    "seen": 1793781699.1075134,
+    "ast_hash": "5bec084360d9a439ccd48635da7d77ce",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.3.1_Memory_Arrays.txt": {
+    "mtime": 1793781490.52,
+    "seen": 1793781699.1075158,
+    "ast_hash": "a6d4ca6733a312b0045b85772638faef",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.6.1_Introduction.txt": {
+    "mtime": 1793781276.08,
+    "seen": 1793781699.1075182,
+    "ast_hash": "27b9e80d687c3cbc94648ff99ea6da3e",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.7.1_Assembly_Language.txt": {
+    "mtime": 1793781540.75,
+    "seen": 1793781699.1075206,
+    "ast_hash": "711030a4be4853448da8097c4a8e8c1e",
+    "semantic_hash": ""
+  },
+  "output_ocr/text/U3_Slides_3.9.1_Machine_Language.txt": {
+    "mtime": 1793781456.6,
+    "seen": 1793781699.1075234,
+    "ast_hash": "a49f8bfb166ca7ac28952fd6c9eb72e9",
+    "semantic_hash": ""
+  },
+  "resources/DLCD - Unit 1 Combined Slides.txt": {
+    "mtime": 1793781679.57,
+    "seen": 1793781699.1075258,
+    "ast_hash": "7f2f52d756c50444a33db3c0ba798e1f",
+    "semantic_hash": ""
+  },
+  "resources/DLCD - Unit 2 Combined Slides.txt": {
+    "mtime": 1793781632.45,
+    "seen": 1793781699.1075287,
+    "ast_hash": "8ec1c5d8650b5e99256d75176cfc7857",
+    "semantic_hash": ""
+  },
+  "resources/QB.txt": {
+    "mtime": 1793781307.67,
+    "seen": 1793781699.1075425,
+    "ast_hash": "f05e8fbe37c3c16b884ef3e85548cb04",
+    "semantic_hash": ""
+  },
+  "resources/U1QB_soln.txt": {
+    "mtime": 1793781441.61,
+    "seen": 1793781699.107545,
+    "ast_hash": "eab631b48dddfb3b97eae0401df696f2",
+    "semantic_hash": ""
+  },
+  "resources/U2MCQ1.txt": {
+    "mtime": 1793781256.66,
+    "seen": 1793781699.1075492,
+    "ast_hash": "8cb5dee6ed9b05dd418c8fdad0b41561",
+    "semantic_hash": ""
+  },
+  "resources/U2MCQ2.txt": {
+    "mtime": 1793781245.81,
+    "seen": 1793781699.1075516,
+    "ast_hash": "781656c45824667fc930bbdc81d3786b",
+    "semantic_hash": ""
+  },
+  "resources/U2MCQ3.txt": {
+    "mtime": 1793781315.39,
+    "seen": 1793781699.1075542,
+    "ast_hash": "da7770d59cdf9252e97c24bff9f607d4",
+    "semantic_hash": ""
+  },
+  "resources/U2QB.txt": {
+    "mtime": 1793781237.4,
+    "seen": 1793781699.1075568,
+    "ast_hash": "e6f3ced9abe0965e7b41ad7eb76e846c",
+    "semantic_hash": ""
+  },
+  "resources/U2QB_soln.txt": {
+    "mtime": 1793781250.94,
+    "seen": 1793781699.1075597,
+    "ast_hash": "512fac4eb80c3e0df0be793db0a84684",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Assignments/3.1.1_ASSIGNMENT.txt": {
+    "mtime": 1793781238.87,
+    "seen": 1793781699.107562,
+    "ast_hash": "b1ee8bf65a9e4da2eee09e842a44009a",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.1.1_Sequential_Building_Block.txt": {
+    "mtime": 1793781514.2,
+    "seen": 1793781699.1075642,
+    "ast_hash": "ce64db6ce6de7f8c587a05290ce7f85d",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.11.1_Programming.txt": {
+    "mtime": 1793781584.97,
+    "seen": 1793781699.1075668,
+    "ast_hash": "5080e3952381e63fb9247d8d576c1cd8",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.14.1_Addressing_Mode.txt": {
+    "mtime": 1793781429.83,
+    "seen": 1793781699.1075692,
+    "ast_hash": "4614704b5b6c5b4cc9c8ea6527e8ab7c",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.14.2_COM-ASS-LOAD.txt": {
+    "mtime": 1793781416.66,
+    "seen": 1793781699.1075716,
+    "ast_hash": "c0613c7c497b6c53ba1dd44ef0650cf0",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.15.1_Parallelism.txt": {
+    "mtime": 1793781470.73,
+    "seen": 1793781699.1075745,
+    "ast_hash": "9b8a740cded64b8fc1deae3d2dc9b69e",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.17.1_Classwork_problems.txt": {
+    "mtime": 1793781299.88,
+    "seen": 1793781699.1075768,
+    "ast_hash": "5bec084360d9a439ccd48635da7d77ce",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.3.1_Memory_Arrays.txt": {
+    "mtime": 1793781490.52,
+    "seen": 1793781699.1075792,
+    "ast_hash": "a6d4ca6733a312b0045b85772638faef",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.6.1_Introduction.txt": {
+    "mtime": 1793781276.08,
+    "seen": 1793781699.1075816,
+    "ast_hash": "27b9e80d687c3cbc94648ff99ea6da3e",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.7.1_Assembly_Language.txt": {
+    "mtime": 1793781540.75,
+    "seen": 1793781699.107584,
+    "ast_hash": "711030a4be4853448da8097c4a8e8c1e",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.9.1_Machine_Language.txt": {
+    "mtime": 1793781456.6,
+    "seen": 1793781699.1075869,
+    "ast_hash": "a49f8bfb166ca7ac28952fd6c9eb72e9",
+    "semantic_hash": ""
+  },
+  "resources/u3/QA/3.1.1_QA.txt": {
+    "mtime": 1793781403.67,
+    "seen": 1793781699.107589,
+    "ast_hash": "bf892058bb279a87b6bfdbe5cea56960",
+    "semantic_hash": ""
+  },
+  "resources/u3/QB/3.1.1_QB.txt": {
+    "mtime": 1793781282.34,
+    "seen": 1793781699.1075916,
+    "ast_hash": "27de9bf29ad3a90354c6be02c9ea50d8",
+    "semantic_hash": ""
+  },
+  "lab/week8/PES2UG25CS615_Yashwanth K_DLCDLab8.pdf": {
+    "mtime": 1793781129.93,
+    "seen": 1793781699.1077018,
+    "ast_hash": "5f9a7259c0a2e4d5d263bf92600f5513",
+    "semantic_hash": ""
+  },
+  "notes/question1.pdf": {
+    "mtime": 1793781155.09,
+    "seen": 1793781699.1077085,
+    "ast_hash": "0a0943f98e2e2db61e4e03863b7f6a40",
+    "semantic_hash": ""
+  },
+  "notes/sequential-1.pdf": {
+    "mtime": 1793781155.09,
+    "seen": 1793781699.1077113,
+    "ast_hash": "ee5146dfa12bdc7b8d936236a965f0af",
+    "semantic_hash": ""
+  },
+  "notes/sequential-2.pdf": {
+    "mtime": 1793781155.09,
+    "seen": 1793781699.1077135,
+    "ast_hash": "1df57d2bac26040a61f9e403960905ef",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Lab_PES2UG25CS615_Yashwanth K_DLCDLab8_ocr.pdf": {
+    "mtime": 1793781242.0,
+    "seen": 1793781699.1077158,
+    "ast_hash": "ea2966bf94699b9952f83f44148f5fab",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Notes_FSM_ocr.pdf": {
+    "mtime": 1793781383.68,
+    "seen": 1793781699.1077185,
+    "ast_hash": "b437895d5cccde43558c0e170bf8cb8f",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Notes_U2N1_ocr.pdf": {
+    "mtime": 1793781292.23,
+    "seen": 1793781699.1077213,
+    "ast_hash": "e544cc2683502e6df3d338f881b7e702",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Notes_U2N2_ocr.pdf": {
+    "mtime": 1793781267.42,
+    "seen": 1793781699.1077235,
+    "ast_hash": "3cdd5592aab2429569d457e08d01fed9",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Notes_question1_ocr.pdf": {
+    "mtime": 1793781233.06,
+    "seen": 1793781699.1077259,
+    "ast_hash": "d13787cb23cdc2b5008902f424345b4d",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Notes_sequential-1_ocr.pdf": {
+    "mtime": 1793781234.45,
+    "seen": 1793781699.107729,
+    "ast_hash": "742c17c21a9f34385ea9186544ec6499",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Notes_sequential-2_ocr.pdf": {
+    "mtime": 1793781235.56,
+    "seen": 1793781699.107731,
+    "ast_hash": "eab77cebf5070232764aa8e0d40aa111",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_DLCD - Unit 1 Combined Slides_ocr.pdf": {
+    "mtime": 1793781678.76,
+    "seen": 1793781699.1077335,
+    "ast_hash": "2eb94019c8095a5157ad7353bf762b38",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_DLCD - Unit 2 Combined Slides_ocr.pdf": {
+    "mtime": 1793781631.79,
+    "seen": 1793781699.107736,
+    "ast_hash": "aa4310f08c3c82f027aa340b63e644be",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_QB_ocr.pdf": {
+    "mtime": 1793781307.45,
+    "seen": 1793781699.107739,
+    "ast_hash": "000e41d1c067a89f8efa9f44afd21a24",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_U1QB_soln_ocr.pdf": {
+    "mtime": 1793781441.38,
+    "seen": 1793781699.107741,
+    "ast_hash": "d3b9bfe6f5f96aa9d2df5e8873bce287",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_U2MCQ1_ocr.pdf": {
+    "mtime": 1793781256.39,
+    "seen": 1793781699.1077437,
+    "ast_hash": "ea8d759efe7941fc801229181b0910b4",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_U2MCQ2_ocr.pdf": {
+    "mtime": 1793781245.6,
+    "seen": 1793781699.1077466,
+    "ast_hash": "2e3b834946b61abc2f071a616b26902f",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_U2MCQ3_ocr.pdf": {
+    "mtime": 1793781315.17,
+    "seen": 1793781699.1077487,
+    "ast_hash": "c95fa506d17b0c8d9177f881600e51ea",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_U2QB_ocr.pdf": {
+    "mtime": 1793781237.22,
+    "seen": 1793781699.1077516,
+    "ast_hash": "84eb5202476435a71171b72b6460ec9b",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/Resources_U2QB_soln_ocr.pdf": {
+    "mtime": 1793781250.68,
+    "seen": 1793781699.1077545,
+    "ast_hash": "dc72fb12cd311e583ac6e853a118331c",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Assignment_3.1.1_ASSIGNMENT_ocr.pdf": {
+    "mtime": 1793781238.71,
+    "seen": 1793781699.1077573,
+    "ast_hash": "e4c1f3bd06528b5ff43503d1bb90801b",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_QA_3.1.1_QA_ocr.pdf": {
+    "mtime": 1793781403.4,
+    "seen": 1793781699.1077604,
+    "ast_hash": "c1a7890b84ea083163489570b4d204a3",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_QB_3.1.1_QB_ocr.pdf": {
+    "mtime": 1793781282.12,
+    "seen": 1793781699.1077633,
+    "ast_hash": "7df07526ac5f8291a532fc3ecf00125c",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.1.1_Sequential_Building_Block_ocr.pdf": {
+    "mtime": 1793781513.71,
+    "seen": 1793781699.107766,
+    "ast_hash": "43f39704023ad361de03a5c252e7c773",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.11.1_Programming_ocr.pdf": {
+    "mtime": 1793781584.49,
+    "seen": 1793781699.107769,
+    "ast_hash": "4281565fadc6c4a21bf1604db9793cd1",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.14.1_Addressing_Mode_ocr.pdf": {
+    "mtime": 1793781429.51,
+    "seen": 1793781699.1077716,
+    "ast_hash": "8d2630c35f85db909b07c9fb5331442d",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.14.2_COM-ASS-LOAD_ocr.pdf": {
+    "mtime": 1793781416.38,
+    "seen": 1793781699.1077747,
+    "ast_hash": "da97be7a484b3d7632d03814ca40330e",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.15.1_Parallelism_ocr.pdf": {
+    "mtime": 1793781470.51,
+    "seen": 1793781699.1077776,
+    "ast_hash": "6b96b4edf30122fb6282b1fc2d90e324",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.17.1_Classwork_problems_ocr.pdf": {
+    "mtime": 1793781299.63,
+    "seen": 1793781699.107781,
+    "ast_hash": "009bc2f10a6b17e14a7d5080a36f054f",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.3.1_Memory_Arrays_ocr.pdf": {
+    "mtime": 1793781490.04,
+    "seen": 1793781699.107783,
+    "ast_hash": "2876347e2e955eb2ffb2d50f11fd7b45",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.6.1_Introduction_ocr.pdf": {
+    "mtime": 1793781275.87,
+    "seen": 1793781699.107786,
+    "ast_hash": "878e0499822172934686db6aefb28e8c",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.7.1_Assembly_Language_ocr.pdf": {
+    "mtime": 1793781540.46,
+    "seen": 1793781699.1077888,
+    "ast_hash": "66ee2ac148e86325fb7d70ccf45df6a0",
+    "semantic_hash": ""
+  },
+  "output_ocr/pdfs/U3_Slides_3.9.1_Machine_Language_ocr.pdf": {
+    "mtime": 1793781456.32,
+    "seen": 1793781699.107792,
+    "ast_hash": "4466b026ecbe6846a9db261561130cf6",
+    "semantic_hash": ""
+  },
+  "resources/QB.pdf": {
+    "mtime": 1793781130.66,
+    "seen": 1793781699.107798,
+    "ast_hash": "f42595611e108ae7f7c077dab989fdc9",
+    "semantic_hash": ""
+  },
+  "resources/U1QB_soln.pdf": {
+    "mtime": 1793781131.2,
+    "seen": 1793781699.1078007,
+    "ast_hash": "9121875dead5c9e2bbd04826b1583f86",
+    "semantic_hash": ""
+  },
+  "resources/U2MCQ1.pdf": {
+    "mtime": 1793781131.74,
+    "seen": 1793781699.1078036,
+    "ast_hash": "9cbe38655827f4f1cf42c1786591dba1",
+    "semantic_hash": ""
+  },
+  "resources/U2MCQ2.pdf": {
+    "mtime": 1793781132.31,
+    "seen": 1793781699.1078064,
+    "ast_hash": "651c5a62f128f85befac23c9d1b8a76c",
+    "semantic_hash": ""
+  },
+  "resources/U2QB.pdf": {
+    "mtime": 1793781132.8,
+    "seen": 1793781699.1078112,
+    "ast_hash": "e40f119c3223f3bb7afc1b85399c40f0",
+    "semantic_hash": ""
+  },
+  "resources/U2QB_soln.pdf": {
+    "mtime": 1793781133.34,
+    "seen": 1793781699.107814,
+    "ast_hash": "8022ed7cd382ceff69cf7acd3d9ec88e",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Assignments/3.1.1_ASSIGNMENT.pdf": {
+    "mtime": 1793781133.8,
+    "seen": 1793781699.107817,
+    "ast_hash": "4eb78770bc530973d209f3ba0229d5b0",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.1.1_Sequential_Building_Block.pdf": {
+    "mtime": 1793781138.19,
+    "seen": 1793781699.1078198,
+    "ast_hash": "148be43f10e01f3361ebe192899c40ff",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.11.1_Programming.pdf": {
+    "mtime": 1793781151.19,
+    "seen": 1793781699.107823,
+    "ast_hash": "83151e24e793c024d387b43370ce6989",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.14.1_Addressing_Mode.pdf": {
+    "mtime": 1793781152.05,
+    "seen": 1793781699.1078258,
+    "ast_hash": "ed8885e80facdc2712a6aad168170a15",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.14.2_COM-ASS-LOAD.pdf": {
+    "mtime": 1793781153.12,
+    "seen": 1793781699.1078284,
+    "ast_hash": "7b8d584fe91057138bf780ab97540a8f",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.15.1_Parallelism.pdf": {
+    "mtime": 1793781154.14,
+    "seen": 1793781699.1078315,
+    "ast_hash": "793beb580059ff099bc98b04e79cf5ce",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.17.1_Classwork_problems.pdf": {
+    "mtime": 1793781155.02,
+    "seen": 1793781699.1078343,
+    "ast_hash": "66b50e6ac9351a65eec09cf654eb27d7",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.3.1_Memory_Arrays.pdf": {
+    "mtime": 1793781140.05,
+    "seen": 1793781699.1078372,
+    "ast_hash": "92cdbfc95fcc0a043fbdbd63d4c0b37f",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.6.1_Introduction.pdf": {
+    "mtime": 1793781140.97,
+    "seen": 1793781699.10784,
+    "ast_hash": "34052451845f33332b73138c141419cd",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.7.1_Assembly_Language.pdf": {
+    "mtime": 1793781142.65,
+    "seen": 1793781699.107843,
+    "ast_hash": "47d1aee141e6993cfded4cb28df1d13c",
+    "semantic_hash": ""
+  },
+  "resources/u3/3/Slides/3.9.1_Machine_Language.pdf": {
+    "mtime": 1793781145.53,
+    "seen": 1793781699.1078455,
+    "ast_hash": "c22c367110f1919086cbf7b58753df8d",
+    "semantic_hash": ""
+  }
+}

@@ -1,0 +1,791 @@
+================================================================================
+ORIGINAL DOCUMENT : U2MCQ3.pdf
+OCR PDF FILE      : Resources_U2MCQ3_ocr.pdf
+TOTAL PAGES       : 21
+WORD COUNT        : 2514
+CHARACTER COUNT   : 15476
+DATE EXTRACTED    : 2026-11-04 14:05:15
+================================================================================
+
+--- [Page 1 of 21] ---
+MCQs on Number Systems 
+1. In a fixed-point number system, the position of the binary point is: 
+A. Changed during every arithmetic operation 
+B. Fixed at a predetermined position 
+C. Always placed after the least significant bit 
+D. Stored separately in memory 
+Answer: B. Fixed at a predetermined position 
+Explanation: In fixed-point representation, the binary point has an implied fixed position agreed 
+upon when interpreting the bits. 
+2. An 8-bit fixed-point number has 4 integer bits and 4 fractional bits. Where is the implied binary 
+point in 01101100? 
+A. 0.1101100 
+B. 01.101100 
+C. 011.01100 
+D. 0110.1100 
+Answer: D. 0110.1100 
+Explanation: Four bits are assigned to the integer part and four to the fractional part: 0110.1100 
+3. What is the decimal value of the unsigned fixed-point number 0110.1100? 
+A. 6.25 
+B. 6.50 
+C. 6.75 
+D. 6.875 
+Answer: C. 6.75 
+Explanation: 
+0110.1100 
+= 22 + 21 + 2−1 + 2−2 
+= 4 + 2 + 0.5 + 0.25 = 6.75 
+4. In the fixed-point number 0010.0110, the weight of the rightmost bit is: 
+A. 2−1 
+B. 2−2 
+C. 2−3 
+D. 2−4 
+Answer: D. 2−4 
+Explanation: With four fractional bits, their weights are: 
+2−1, 2−2, 2−3, 2−4 
+5. What is the decimal value of the fractional binary number 0.1000₂? 
+A. 0.25 
+B. 0.5
+
+--- [Page 2 of 21] ---
+C. 0.75 
+D. 1.0 
+Answer: B. 0.5 
+Explanation: 
+0.10002 = 1 × 2−1 = 0.5 
+6. What is the binary fixed-point representation of 𝟎. 𝟕𝟓𝟏𝟎using four fractional bits? 
+A. 0000.0011 
+B. 0000.0110 
+C. 0000.1100 
+D. 0000.1110 
+Answer: C. 0000.1100 
+Explanation: 
+0.75 = 0.5 + 0.25 
+= 2−1 + 2−2 
+ 
+Therefore: 
+0.7510 = 0000.11002 
+7. Which notation can be used to represent signed fixed-point numbers? 
+A. Only unsigned binary 
+B. Only BCD 
+C. Two’s complement or sign-magnitude 
+D. Gray code only 
+Answer: C. Two’s complement or sign-magnitude 
+8. In sign-magnitude representation, the most significant bit generally represents: 
+A. Fraction 
+B. Sign 
+C. Binary point 
+D. Least significant value 
+Answer: B. Sign 
+Explanation: Usually: 
+• 
+0 → positive  
+• 
+1 → negative  
+ 
+9. Which binary fraction represents 𝟎. 𝟔𝟐𝟓𝟏𝟎? 
+A. 0.1000 
+B. 0.1010
+
+--- [Page 3 of 21] ---
+C. 0.1100 
+D. 0.1110 
+Answer: B. 0.1010 
+Explanation: 
+0.10102 = 2−1 + 2−3 
+= 0.5 + 0.125 = 0.625 
+10. In an 8-bit fixed-point representation with four fractional bits, the smallest fractional place 
+value is: 
+A. 2−1 
+B. 2−2 
+C. 2−4 
+D. 2−8 
+Answer: C. 2−4 
+2−4 = 1
+16 = 0.0625 
+11. What is the decimal value of the unsigned fixed-point number 0101.1010₂? 
+A. 5.25 
+B. 5.5 
+C. 5.625 
+D. 5.75 
+Answer: C. 5.625 
+Explanation: 
+Integer part: 
+01012 = 5 
+ 
+Fraction: 
+. 10102 = 0.5 + 0.125 = 0.625 
+ 
+Therefore: 
+5 + 0.625 = 5.625 
+12. What is the decimal value of 0011.0110₂ when interpreted as an unsigned fixed-point number? 
+A. 3.25 
+B. 3.375 
+C. 3.5 
+D. 3.75 
+Answer: B. 3.375 
+Explanation: 
+0011.0110
+
+--- [Page 4 of 21] ---
+= 2 + 1 + 0.25 + 0.125 
+= 3.375 
+13. The absolute value +𝟐. 𝟑𝟕𝟓is represented as: 
+0010.0110 
+What is the sign-magnitude representation of −2.375? 
+A. 0010.0110 
+B. 1010.0110 
+C. 1101.1010 
+D. 1110.0110 
+Answer: B. 1010.0110 
+Explanation: In sign-magnitude representation, only the sign bit changes: 
+0010.0110 →1010.0110 
+14. The positive fixed-point value +𝟐. 𝟑𝟕𝟓 is: 
+0010.0110 
+What is its 8-bit two’s complement representation for −2.375? 
+A. 1010.0110 
+B. 1101.1001 
+C. 1101.1010 
+D. 1110.0110 
+Answer: C. 1101.1010 
+Explanation: 
+Start with: 
+0010 0110 
+Invert: 
+1101 1001 
+Add 1: 
+1101 1010 
+Therefore: 
+−2.375 = 1101.1010 
+ 
+15. Which statement correctly distinguishes sign-magnitude from two’s complement? 
+A. Both are always identical for negative numbers 
+B. Sign-magnitude changes the sign bit, while two’s complement involves inversion and adding 1 
+C. Two’s complement changes only the sign bit 
+D. Sign-magnitude requires inversion and adding 1 
+Answer: B
+
+--- [Page 5 of 21] ---
+16. What is the fixed-point binary representation of 𝟎. 𝟑𝟕𝟓𝟏𝟎using four fractional bits? 
+A. 0000.0011 
+B. 0000.0110 
+C. 0000.1010 
+D. 0000.1100 
+Answer: B. 0000.0110 
+Explanation: 
+0.375 = 0.25 + 0.125 
+= 2−2 + 2−3 
+ 
+Therefore: 0.375 = 0.01102 
+17. Consider the fixed-point number: 
+0010.1011 
+What is its unsigned decimal value? 
+A. 2.625 
+B. 2.6875 
+C. 2.75 
+D. 2.8125 
+Answer: B. 2.6875 
+Explanation: 
+0010.1011 
+= 2 + 0.5 + 0.125 + 0.0625 
+= 2.6875 
+18. Why is two’s complement generally preferred for signed fixed-point arithmetic? 
+A. It eliminates fractional bits 
+B. It allows signed addition to be performed using ordinary binary addition 
+C. It requires no sign bit 
+D. It increases the number of bits automatically 
+Answer: B 
+Explanation: Two’s complement allows positive and negative numbers to be added using the same 
+binary addition circuitry. 
+19. In an 8-bit fixed-point format with four fractional bits, what bit pattern represents +𝟎. 𝟕𝟓? 
+A. 0000 0011 
+B. 0000 0110 
+C. 0000 1100 
+D. 0001 1000 
+Answer: C. 0000 1100
+
+--- [Page 6 of 21] ---
+Because: 
+0.75 = 0.11002 
+20. In an 8-bit fixed-point system with 4 integer bits and 4 fractional bits, +𝟎. 𝟔𝟐𝟓is represented 
+as: 
+0000.1010 
+What is −0.625in two’s complement? 
+A. 1000.1010 
+B. 1111.0101 
+C. 1111.0110 
+D. 1000.0110 
+Answer: C. 1111.0110 
+Explanation: 
+Positive: 
+0000 1010 
+Invert: 
+1111 0101 
+Add 1: 
+1111 0110 
+Therefore: 
+−0.625 = 1111.0110 
+ 
+21. Perform the fixed-point addition: 
+0000.1100 + 1111.0110 
+ 
+using 8-bit two’s complement arithmetic. 
+A. 0000.0010 
+B. 0000.0110 
+C. 1111.0010 
+D. 10000.0010 
+Answer: A. 0000.0010 
+Explanation: 
+The numbers represent: 
+0000.1100 = +0.75 
+1111.0110 = −0.625
+
+--- [Page 7 of 21] ---
+So: 
+0.75 −0.625 = 0.125 
+ 
+and: 
+0.125 = 0000.0010 
+ 
+Binary addition produces a carry beyond the 8-bit result, which is discarded. 
+22. A bit pattern 01101100 is stored in memory. Can we determine its fixed-point decimal value 
+without knowing the binary-point position? 
+A. Yes, it is always 108 
+B. Yes, it is always 6.75 
+C. No, the binary-point position must be known 
+D. No, fixed-point values cannot be converted to decimal 
+Answer: C 
+Explanation: The bits themselves do not store the binary point. 
+For example: 
+01101100 
+could be interpreted as: 
+0110.1100 
+or 
+011.01100 
+or 
+01.101100 
+Each interpretation gives a different numerical value. 
+23. Suppose the bit pattern is: 
+00110100 
+If interpreted with 4 fractional bits, it becomes: 
+0011.0100 
+What is its decimal value? 
+A. 3.125 
+B. 3.25 
+C. 3.5 
+D. 3.75 
+Answer: B. 3.25
+
+--- [Page 8 of 21] ---
+Explanation: 
+0011.0100 
+= 3 + 2−2 
+= 3 + 0.25 = 3.25 
+24. The same bit pattern 00110100 is now interpreted with only 2 fractional bits. What is its value? 
+A. 3.25 
+B. 6.5 
+C. 13 
+D. 52 
+Answer: C. 13 
+Explanation: 
+With two fractional bits: 
+001101.00 
+0011012 = 13 
+ 
+Therefore: 
+001101.002 = 13 
+ 
+This demonstrates that the same bits can represent different values depending on the assumed 
+binary-point position. 
+25. Which of the following correctly represents −𝟐. 𝟑𝟕𝟓in 8-bit fixed-point two’s complement, 
+assuming four fractional bits? 
+A. 1010.0110 
+B. 1101.1010 
+C. 0010.0110 
+D. 1101.0110 
+Answer: B. 1101.1010 
+26. An 8-bit fixed-point two’s complement number has four fractional bits. What is the value of the 
+least significant bit? 
+A. 1 
+B. 0.5 
+C. 0.125 
+D. 0.0625 
+Answer: D. 0.0625 
+Explanation: 
+The rightmost bit has weight: 
+2−4 = 1
+16 = 0.0625
+
+--- [Page 9 of 21] ---
+This is also the resolution/step size of this fixed-point format 
+27. Which statement about fixed-point numbers is FALSE? 
+A. The binary point is usually implied rather than physically stored 
+B. Two’s complement can represent negative fixed-point numbers 
+C. The interpretation of the bits depends on the agreed binary-point position 
+D. The location of the binary point can always be determined by examining only the stored bits 
+Answer: D 
+Explanation: A fixed-point number is physically just a collection of bits. The bit pattern itself does 
+not tell us where the implied binary point is located. 
+28. The main advantage of floating-point representation over fixed-point representation is that 
+floating-point can: 
+A. Represent only integers 
+B. Represent a much wider range of very large and very small numbers 
+C. Eliminate the need for binary numbers 
+D. Represent only positive numbers 
+Answer: B 
+Explanation 
+In fixed-point representation, the number of integer and fractional bits is fixed. 
+Floating-point allows the binary point to effectively “float” by using an exponent. 
+Therefore, it can represent both: 
+• 
+Very large numbers  
+• 
+Very small numbers  
+ 
+29. A floating-point number is analogous to: 
+A. Boolean algebra 
+B. Scientific notation 
+C. Gray code 
+D. Two's complement only 
+Answer: B 
+Explanation 
+Consider decimal scientific notation: 
+4500 = 4.5 × 103 
+ 
+Similarly, binary floating-point notation can be written as:
+
+--- [Page 10 of 21] ---
+101002 = 1.01002 × 24 
+ 
+Thus, floating-point representation works similarly to scientific notation. 
+30. IEEE 754 single-precision floating-point representation uses how many bits? 
+A. 16 bits 
+B. 32 bits 
+C. 48 bits 
+D. 64 bits 
+Answer: B. 32 bits 
+1+8+23=32 bits 
+1 – sign bit 
+8 – exponent 
+23 – Fraction 
+31. What does a sign bit of 0 indicate for an ordinary IEEE 754 floating-point number? 
+A. Negative 
+B. Positive 
+C. Infinity 
+D. NaN 
+Answer: B. Positive 
+Explanation 
+The sign convention is: 
+0 →positive 
+1 →negative 
+32. What is the bias used in IEEE 754 single-precision floating-point representation? 
+A. 63 
+B. 127 
+C. 128 
+D. 1023 
+Answer: B. 127 
+Explanation 
+For normal single-precision numbers: 
+𝐸biased = 𝐸actual + 127 
+33. If the actual exponent is −𝟑, what is the biased exponent? 
+A. 124 
+B. 127 
+C. 130 
+D. 131
+
+--- [Page 11 of 21] ---
+Answer: A. 124 
+Explanation 
+𝐸biased = −3 + 127 
+= 124 
+ 
+In binary: 
+12410 = 011111002 
+ 
+34. Convert 𝟐𝟎𝟏𝟎into normalized binary scientific notation. 
+A. 1.01 × 24 
+B. 1.01 × 23 
+C. 10.1 × 24 
+D. 1.1 × 25 
+Answer: A 
+Explanation 
+First convert 20 to binary: 
+2010 = 101002 
+ 
+Normalize: 
+101002 = 1.01002 × 24 
+ 
+Therefore: 
+1.012 × 24 
+ 
+35. What is the normalized binary representation of 𝟏𝟐𝟏𝟎? 
+A. 1.1 × 23 
+B. 1.1 × 22 
+C. 1.01 × 23 
+D. 1.11 × 22 
+Answer: A 
+Explanation 
+1210 = 11002 
+ 
+Move the binary point: 
+11002 = 1.1002 × 23
+
+--- [Page 12 of 21] ---
+Therefore: 
+1.12 × 23 
+ 
+36. The number 𝟏. 𝟏𝟎𝟏𝟐× 𝟐𝟒has an actual exponent of: 
+A. 1 
+B. 4 
+C. 101 
+D. 131 
+Answer: B. 4 
+Explanation 
+In: 
+𝑀× 2𝐸 
+ 
+the exponent is 𝐸. 
+Therefore: 
+𝐸= 4 
+ 
+Its biased exponent would be: 
+4 + 127 = 131 
+ 
+Do not confuse actual exponent = 4 with biased exponent = 131. 
+37. Why is the leading 1 of a normalized binary floating-point number usually not stored? 
+A. It is always 0 
+B. It is always 1 for normalized nonzero binary numbers 
+C. It represents the sign 
+D. It represents the exponent 
+Answer: B 
+Explanation 
+A normalized binary number has the form: 
+1. 𝑥𝑥𝑥𝑥𝑥× 2𝐸 
+ 
+The digit before the binary point is always: 
+1 
+ 
+Therefore, storing it would waste one bit.
+
+--- [Page 13 of 21] ---
+It is assumed automatically and is called the: 
+implicit leading one 
+ 
+38. What is the biased exponent for an actual exponent of +𝟏𝟎? 
+A. 117 
+B. 127 
+C. 137 
+D. 138 
+Answer: C. 137 
+Explanation 
+10 + 127 = 137 
+ 
+In binary: 
+13710 = 100010012 
+ 
+39. An IEEE 754 single-precision number has biased exponent 𝟏𝟑𝟎. What is its actual exponent? 
+A. 3 
+B. −3 
+C. 130 
+D. 257 
+Answer: A. 3 
+Explanation 
+To recover the actual exponent: 
+𝐸= 𝐸biased −127 
+ 
+Therefore: 
+130 −127 = 3 
+ 
+40. An IEEE 754 single-precision number has biased exponent 10000010₂. What is the actual 
+exponent? 
+A. 2 
+B. 3 
+C. 129 
+D. 130 
+Answer: B. 3 
+Explanation 
+First convert:
+
+--- [Page 14 of 21] ---
+100000102 = 13010 
+ 
+Then subtract the bias: 
+130 −127 = 3 
+ 
+Therefore: 
+𝐸= 3 
+ 
+41 What is the normalized binary representation of 𝟒𝟎𝟏𝟎? 
+A. 1.01 × 25 
+B. 1.01 × 24 
+C. 1.1 × 25 
+D. 1.001 × 25 
+Answer: A 
+Explanation 
+Convert 40 to binary: 
+4010 = 1010002 
+ 
+Normalize: 
+1010002 = 1.010002 × 25 
+ 
+Therefore: 
+1.012 × 25 
+ 
+42. For 𝟒𝟎𝟏𝟎= 𝟏. 𝟎𝟏𝟐× 𝟐𝟓, what is the biased exponent? 
+A. 5 
+B. 127 
+C. 130 
+D. 132 
+Answer: D. 132 
+Explanation 
+Actual exponent: 
+𝐸= 5 
+ 
+Bias:
+
+--- [Page 15 of 21] ---
+127 
+ 
+Therefore: 
+5 + 127 = 132 
+ 
+And: 
+13210 = 100001002 
+ 
+43. Which is the correct IEEE 754 representation of +𝟒𝟎𝟏𝟎? 
+A. 0 10000100 01000000000000000000000 
+B. 0 00000101 01000000000000000000000 
+C. 1 10000100 01000000000000000000000 
+D. 0 10000100 10100000000000000000000 
+Answer: A 
+Explanation 
+Step 1: 
+40 = 1010002 
+ 
+Step 2: Normalize: 
+1.01000 × 25 
+ 
+Step 3: Sign: 
+0 
+ 
+Step 4: Biased exponent: 
+5 + 127 = 132 = 10000100 
+ 
+Step 5: Remove implicit leading 1: 
+1. 01000 
+ 
+Fraction: 
+01000000000000000000000 
+Final: 
+0 10000100 01000000000000000000000
+
+--- [Page 16 of 21] ---
+44. Convert 𝟏𝟖. 𝟓𝟏𝟎to normalized binary notation. 
+A. 1.00101 × 24 
+B. 1.01001 × 24 
+C. 1.00101 × 25 
+D. 1.101 × 23 
+Answer: A 
+Explanation 
+Integer part: 
+1810 = 100102 
+ 
+Fraction: 
+0.5 = 0.12 
+ 
+Therefore: 
+18.5 = 10010.12 
+ 
+Normalize: 
+10010.1 = 1.00101 × 24 
+ 
+45 Which is the correct IEEE 754 single-precision representation of −𝟏𝟖. 𝟓? 
+A. 1 10000011 00101000000000000000000 
+B. 0 10000011 00101000000000000000000 
+C. 1 00000100 00101000000000000000000 
+D. 1 10000011 10010100000000000000000 
+Answer: A 
+Explanation 
+We found: 
+18.5 = 10010.12 
+ 
+Normalize: 
+1.00101 × 24 
+ 
+Since negative: 
+𝑆= 1 
+ 
+Biased exponent:
+
+--- [Page 17 of 21] ---
+4 + 127 = 131 
+131 = 100000112 
+ 
+Fraction after removing the implicit 1: 
+00101 
+ 
+Pad to 23 bits: 
+00101000000000000000000 
+Therefore: 
+1 10000011 00101000000000000000000 
+ 
+46. Decode: 
+1 10000001 01000000000000000000000 
+A. −2.5 
+B. −5 
+C. +5 
+D. −10 
+Answer: B. −5 
+Explanation 
+Sign: 
+𝑆= 1 ⇒negative 
+ 
+Exponent: 
+100000012 = 129 
+ 
+Actual exponent: 
+129 −127 = 2 
+ 
+Fraction: 
+010000... 
+Restore implicit leading 1: 
+1.012 
+1.012 = 1.25 
+ 
+Therefore:
+
+--- [Page 18 of 21] ---
+1.25 × 22 = 5 
+ 
+Apply sign: 
+−5 
+ 
+47. A normalized binary number is: 
+1.011012 × 2−4 
+ 
+What is its biased exponent in single precision? 
+A. 123 
+B. 124 
+C. 127 
+D. 131 
+Answer: A. 123 
+Explanation 
+𝐸= −4 
+ 
+Therefore: 
+𝐸biased = −4 + 127 
+= 123 
+ 
+In binary: 
+123 = 011110112 
+ 
+ 
+48. Convert 𝟏𝟎. 𝟐𝟓𝟏𝟎to normalized binary notation. 
+A. 1.01001 × 23 
+B. 1.00101 × 23 
+C. 1.0101 × 23 
+D. 1.01001 × 24 
+Answer: A 
+Explanation 
+Integer: 
+10 = 10102 
+ 
+Fraction:
+
+--- [Page 19 of 21] ---
+0.25 = 0.012 
+ 
+Therefore: 
+10.25 = 1010.012 
+ 
+Normalize: 
+1010.01 = 1.01001 × 23 
+ 
+49 In IEEE 754 single precision, which exponent pattern is reserved for zero and subnormal 
+numbers? 
+A. All 0s 
+B. All 1s 
+C. 10000000 
+D. 01111111 
+Answer: A. All 0s 
+Explanation 
+An exponent field of: 
+00000000 
+is reserved for: 
+• 
+Zero  
+• 
+Subnormal numbers  
+For exact zero, the fraction is also all zeros. 
+50. Which exponent pattern is used for infinity and NaN? 
+A. All 0s 
+B. All 1s 
+C. Alternating 1s and 0s 
+D. 01111111 
+Answer: B. All 1s 
+Explanation 
+Exponent: 
+11111111 
+is reserved for special values. 
+If fraction = all 0s: 
+±∞
+
+--- [Page 20 of 21] ---
+If fraction ≠ 0: 
+𝑁𝑎𝑁 
+ 
+51. Approximately how many significant decimal digits does double precision provide? 
+A. 7 
+B. 8 
+C. 15 
+D. 64 
+Answer: C. About 15 digits 
+52 A student sees the exponent field 10000101₂ in a normal single-precision number and 
+concludes that the actual exponent is 133. What is the correct actual exponent? 
+A. 6 
+B. 127 
+C. 133 
+D. 260 
+Answer: A. 6 
+Explanation 
+First: 
+100001012 = 133 
+ 
+But 133 is the biased exponent, not the actual exponent. 
+Therefore: 
+𝐸= 133 −127 
+𝐸= 6 
+ 
+This is an important distinction: 
+Stored exponent ≠Actual exponent 
+ 
+for normal IEEE 754 numbers. 
+53 The IEEE 754 representation of a normal number begins: 
+0 10000100 10100000000000000000000 
+What is its decimal value? 
+A. 26 
+B. 52 
+C. 13 
+D. 104
+
+--- [Page 21 of 21] ---
+Answer: B. 52 
+Explanation 
+Exponent: 
+100001002 = 132 
+ 
+Actual exponent: 
+132 −127 = 5 
+ 
+Fraction: 
+101... 
+Restore implicit 1: 
+1.1012 
+ 
+Convert: 
+1.1012 = 1 + 0.5 + 0.125 = 1.625 
+ 
+Now: 
+1.625 × 25 
+= 1.625 × 32 
+52

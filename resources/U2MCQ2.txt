@@ -1,0 +1,267 @@
+================================================================================
+ORIGINAL DOCUMENT : U2MCQ2.docx
+OCR PDF FILE      : Resources_U2MCQ2_ocr.pdf
+TOTAL PAGES       : 6
+WORD COUNT        : 1411
+CHARACTER COUNT   : 6916
+DATE EXTRACTED    : 2026-11-04 14:04:05
+================================================================================
+
+--- [Page 1 of 6] ---
+MCQs for unit -2
+1.
+What are the different types of Carry propagator adders?
+a.
+Ripple carry adders
+b.
+Carry lookahead adders
+c.
+Prefix adders
+d.
+Skip ahead adders
+2.
+What is the delay in the ripple carry adder, given tFA is the delay of 1 full adder?
+a.
+N x tFA 
+b.
+tFA
+c.
+(N-1) x tFA
+d.
+None of the above
+3.
+What is the N-bit delay of a prefix adder?
+a.
+tPA = tpg  + log2N(tpg-prefix) + tXOR
+b.
+tPA = N X tpg 
+c.
+tPA = tpg  + log2N 
+d.
+tPA = tpg  +  tXOR
+4.
+What is the Sum output of a Half Adder?
+a. A + B
+b. A ⊕ B
+c. AB
+d. A̅B + AB̅
+5.
+What is the Carry output of a Half Adder?
+a. A + B
+b. AB
+c. A ⊕ B
+d. A̅B
+6.
+What is the Sum output of a Full Adder?
+a. A + B + Cin
+b. A ⊕ B ⊕ Cin
+c. AB + Cin
+d. A ⊕ B
+7.
+What is the Carry output of a Full Adder?
+a. A ⊕ B ⊕ Cin
+b. AB + ACin + BCin
+c. AB + Cin
+d. A + B + Cin
+8.
+ A Carry-Lookahead Adder improves speed by:
+a. Reducing the number of bits
+b. Using fewer gates
+c. Computing carries in parallel
+d. Removing carries
+
+--- [Page 2 of 6] ---
+9.
+The generate signal for bit i is:
+a. Pi = Ai ⊕ Bi
+b. Gi = AiBi
+c. Gi = Ai + Bi
+d. Gi = Ai − Bi
+10. The propagate signal for bit i in the Harris text is:
+a. Pi = AiBi
+b. Pi = Ai + Bi
+c. Pi = Ai ⊕ Bi
+d. Pi = Ai − Bi
+11. The carry equation for a Carry-Lookahead Adder is:
+a. Ci = GiPi
+b. Ci = Gi + PiCi-1
+c. Ci = Ai + Bi
+d. Ci = Pi + Ci-1
+12. Which adder generally provides the fastest performance for large word sizes?
+a. Ripple Carry Adder
+b. Carry Skip Adder
+c. Prefix Adder
+d. Serial Adder
+13. A Carry-Lookahead Adder improves speed by:
+a. Reducing the number of bits
+b. Using fewer gates
+c. Computing carries in parallel
+d. Removing carries
+14. Which circuit performs arithmetic and logical operations?
+a. Decoder
+b. Multiplexer
+c. ALU
+d. Counter
+15. Logical left shift by one bit is equivalent to:
+a. Division by 2
+b. Multiplication by 2
+c. Multiplication by 4
+d. No change
+16. A comparator is used to:
+a. Add two numbers
+b. Multiply two numbers
+c. Determine relative magnitude of two numbers
+d. Shift a number
+
+--- [Page 3 of 6] ---
+17. In binary multiplication, each partial product is generated using:
+a. XOR gates only
+b. AND operations between multiplicand and multiplier bits
+c. OR gates only
+d. NOT gates only
+18. Which adder has delay proportional to log₂N?
+a. Ripple Carry Adder
+b. Serial Adder
+c. Prefix Adder
+d. Half Adder
+19.  You are designing a 32-bit processor for a low-cost embedded device. The propagation delay of a 
+full adder is 300 ps, and each two-input gate delay is 100 ps. Which adder implementation would 
+you choose if minimizing delay is the primary goal, and what would be the approximate delay?
+A. Ripple-Carry Adder, 9.6 ns
+B. Carry-Lookahead Adder (4-bit blocks), 3.3 ns
+C. Prefix Adder, 1.2 ns
+D. Ripple-Carry Adder, 3.3 ns
+        Answer: C. Prefix Adder, 1.2 ns 
+Reasoning: Ripple-Carry delay = 32×300=9.6ns. CLA delay = 3.3 ns. Prefix Adder delay = 
+100+log2 (32)×200+100=1.2ns. Fastest option is Prefix Adder.
+20. You are implementing subtraction in an ALU. To compute Y = A - B, which hardware 
+configuration is correct?
+A. Invert bits of B, add 1, then add to A with Cin = 1
+B. Directly subtract B from A using a comparator
+C. Use a ripple-carry adder with Cin = 0
+D. Use XOR gates to flip A and add B
+Answer:  A. Invert bits of B, add 1, then add to A with Cin = 1
+Reasoning: Two’s complement subtraction is performed by inverting B, adding 1, and then adding 
+to A.
+21.  You need to multiply a binary number 0000112by 16 using minimal hardware. Which operation 
+achieves this?
+A. Arithmetic Right Shift by 4 
+B. Logical Left Shift by 4 
+C. Rotate Left by 4 
+D. Add 16 repeatedly
+Answer: B. Logical Left Shift by 4 
+Reasoning: 
+Left shift by N bits multiplies the number by
+ 2
+N. Here, 
+0000112<<4=1100002=4810.
+22.  A designer computes A – B and checks sign bit. Q: If sign bit = 1, what does it mean?
+A) A > B
+B) A < B
+C) A = B
+D) Overflow
+
+--- [Page 4 of 6] ---
+Ans: B
+Explanation: Negative result → A < B.
+23.  ALU configured with F2 = 1, F1:0 = 10. Q: What operation occurs?
+A) A + B
+B) A – B
+C) A OR B
+D) SLT
+Ans: B
+Explanation: F2 inverts B and adds 1 → subtraction.
+ 24.  11001 LSR 2. Q: Result?
+A) 00110
+B) 11110
+C) 01110
+D) 00100
+Ans: A
+Explanation: Logical shift right fills with 0s → 00110.
+25.  In two’s complement addition, A = 0111 (7), B = 0100 (4). Q: What is the overflow flag?
+A) 0
+B) 1
+C) Depends on carry-in
+D) Undefined 
+Ans: B 
+Explanation: 7 + 4 = 11 → binary 1011 (negative in 4-bit signed). Overflow occurs when adding 
+two positives yields a negative.
+26.  A 32 × 32 multiplier is implemented. Q: What is product size?
+A) 32 bits
+B) 64 bits
+C) 128 bits
+D) 16 bits 
+Ans: B 
+Explanation: N × N multiplier → 2N-bit result → 64 bits.
+27.  A 16-bit logical shifter is built. Q: How many multiplexers are required?
+A) 16 × 16
+B) 16 × 4
+C) 16 × log₂16
+D) 16 × 1 
+Ans: A 
+Explanation: Each bit requires a 16:1 multiplexer → 16 × 16.
+28.  A CPU designer chooses between CLA and Prefix adder for a 128-bit ALU. Q: Why might prefix 
+adder be chosen despite higher hardware cost?
+A) Lower power consumption
+B) Logarithmic delay scaling
+C) Smaller area footprint
+D) Easier HDL coding 
+Ans: B 
+Explanation: Prefix adder delay ∝ log₂N, critical for wide adders in CPUs.
+
+--- [Page 5 of 6] ---
+29.  A 64-bit ripple-carry adder has tFA = 250 ps. A 64-bit CLA with 8-bit blocks has tpg = 100 ps, 
+tpg_block = 800 ps, tAND_OR = 200 ps, and tFA = 250 ps. Q: Which design is faster and why?
+A) Ripple-carry, because fewer gates
+B) CLA, because carry computed in parallel
+C) Ripple-carry, because linear delay is smaller
+D) Both equal 
+Ans: B 
+Explanation: Ripple delay = 64 × 250 ps = 16 ns. CLA delay ≈ 100 + 800 + (64/8 – 1) × 200 + (8 × 
+250) = 3.9 ns. CLA is much faster.
+30.  A = 25, B = 32, F2:0 = 111. Q: What is Y?
+A) 0
+B) 1
+C) 25
+D) 32 
+Ans: B 
+Explanation: SLT → Y = 1 if A < B.
+31.  A 4-bit comparator checks if A = B. Q: Which gate is used per bit?
+A) XOR
+B) XNOR
+C) AND
+D) OR 
+Ans: B 
+Explanation: XNOR checks equality per bit.
+32.  To compute A – B, the designer inverts B and adds 1. Q: Which input must be set in CPA?
+A) Cin = 0
+B) Cin = 1
+C) Cout = 1
+D) None 
+Ans: B 
+Explanation: Subtraction = A + (¬B + 1) → Cin = 1.
+33.  A 32-bit CLA with 4-bit blocks is designed. Q: Why is it faster than ripple-carry?
+A) Uses fewer gates
+B) Computes carry in parallel using generate/propagate
+C) Eliminates carry completely
+D) Uses XOR only 
+Ans: B 
+Explanation: CLA precomputes carry using G and P signals.
+34.  A circuit designer wants to add two 1-bit numbers but doesn’t care about carry-in. Q: Which 
+outputs does the half adder produce?
+A) Sum only
+B) Carry only
+C) Sum and Carry-out
+D) Sum, Carry-in, Carry-out 
+Ans: C 
+Explanation: Half adder → S = A ⊕ B, Cout = A·B. No Cin input.
+
+--- [Page 6 of 6] ---
+35.  In two’s complement addition, A = 0111 (7), B = 0100 (4). Q: What is the overflow flag?
+A) 0
+B) 1
+C) Depends on carry-in
+D) Undefined 
+Ans: B 
+Explanation: 7 + 4 = 11 → binary 1011 (negative in 4-bit signed). Overflow occurs when adding 
+two positives yields a negative.

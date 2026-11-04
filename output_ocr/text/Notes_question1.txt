@@ -1,0 +1,22 @@
+================================================================================
+ORIGINAL DOCUMENT : question1.jpeg
+OCR PDF FILE      : Notes_question1_ocr.pdf
+TOTAL PAGES       : 1
+WORD COUNT        : 131
+CHARACTER COUNT   : 817
+DATE EXTRACTED    : 2026-11-04 14:03:53
+================================================================================
+
+--- [Page 1 of 1] ---
+VRS wasts TR 0020 
+- 
+Exercise 3.26 You have been enlisted to design a soda machine dispenser for yo 
+department lounge. Sodas are partially subsidized by the student chapter of the 
+IEEE. so they cost only 25 cents. The machine accepts nickels, dimes, and quarter;, 
+When enough coins have been inserted, it dispenses the soda and returns any 
+necessary change. Design an FSM controller for the soda machine. The FSM inpus 
+are Nickel, Dime, and Quarter, indicating which coin was inserted. Assume that 
+exactly one coin is inserted on each cycle. The outputs are Dispense, ReturnNicke, 
+ReturnDime, and ReturnTwoDimes. When the FSM reaches 25 cents, it asserts 
+Dispense and the necessary Return outputs required to deliver the appropriate 
+change. Then it should be ready to start accepting coins for another soda.

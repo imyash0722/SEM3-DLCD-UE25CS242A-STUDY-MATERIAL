@@ -1,0 +1,280 @@
+================================================================================
+ORIGINAL DOCUMENT : 3.6.1_Introduction.pptx
+OCR PDF FILE      : U3_Slides_3.6.1_Introduction_ocr.pdf
+TOTAL PAGES       : 14
+WORD COUNT        : 822
+CHARACTER COUNT   : 5626
+DATE EXTRACTED    : 2026-11-04 14:04:36
+================================================================================
+
+--- [Page 1 of 14] ---
+PES 
+UNIVERSITY 
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+UE25CS251A
+DIGITAL LOGIC AND 
+COMPUTER DESIGN
+
+--- [Page 2 of 14] ---
+PES 
+UNIVERSITY 
+ARCHITECTURE-Introduction
+TEAM DLCD
+Department of CSE and CSE (AI & ML)
+  DIGITAL LOGIC AND COMPUTER DESIGN
+
+--- [Page 3 of 14] ---
+PES 
+UNIVERSITY 
+Application 
+|>"hello 
+Software 
+|world!” 
+Operating 
+Systems 
+Micro- 4 
+architecture < 
+Digital 
+Circuits 
+Analog 
+Circuits 
+»- 
+o 
+b3 
+Physics 
+DIGITAL LOGIC & COMPUTER DESIGN
+• Introduction
+• Assembly Language
+• Machine Language
+• Programming
+• Addressing modes
+• Parallelism
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+TOPICS
+
+--- [Page 4 of 14] ---
+PES 
+UNIVERSITY 
+What is Computer Architecture
+    Computer Architecture is the programmer's view of a computer. It defines how software 
+communicates with hardware by specifying:
+• Instruction Set Architecture (ISA)
+• Operand locations (Registers and Memory)
+• Data representation and instruction formats
+Why Study Computer Architecture?
+• Bridges the gap between hardware and software.
+• Determines how programs are executed by the processor.
+• Helps design efficient, compatible, and high-performance computer systems.
+• Provides a foundation for understanding processor organization and programming.
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 5 of 14] ---
+PES 
+UNIVERSITY 
+Architecture vs. Microarchitecture 
+Computer Architecture 
+Microarchitecture 
+Defines how the processor is 
+Defines what the processor does 
+implemented 
+Visible to programmers 
+Internal hardware organization 
+Includes ALU, datapath, control unit, 
+Includes ISA, registers and memory 
+pipeline, cache 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 6 of 14] ---
+ARCHITECTURE vs MICROARCHITECTURE 
+[ 
+Another Real-World Analogy: 
+A RESTAURANT 
+| 
+F 
+ARCHITECTURE 
+| 
+MICROARCHITECTURE 
+Similar to the menu and services 
+- 
+Similar to the kitchen operations and 
+offered to the customer. 
+' 
+processes that make the service possible. 
+INGREDIENT 
+MANAGEMENT 
+COOKING 
+KITCHEN 
+PROCESS 
+EQUIPMENT 
+(CPUL) 
+i 
+(Hardware Units) 
+@ APPETIZERS 
+) 
+MAIN COURSE 
+\ 
+| 
+N—" 
+A ome-in 
+= ;’i 
+BEVERAGES 
+[‘j TAKEAWAY 
+- 
+E 
+DESSERTS 
+SLL HOME DELIVERY 
+Focuses on what the customer sees 
+Focuses on how the service is delivered 
+and interacts with. 
+behind the scenes. 
+It defines the interface and experience. 
+It defines the internal implementation 
+and hardware details. 
+COORDINATION 
+& TIMING 
+(Control Unit) 
+\II 
+‘Q: In Short: 
+Architecture is WHAT the customer gets. 
+| 
+Microarchitecture is HOW it is made possible. 
+” 
+PES 
+UNIVERSITY 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 7 of 14] ---
+PES 
+UNIVERSITY 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+• Many Architectures Exist: e.g. x86, MIPS, SPARC, and PowerPC
+⚬Each architecture defines its own instruction set
+• Instruction Sets Are Like Dialects: once you learn one, learning another is fairly 
+straightforward
+• Instructions: the words of a computer’s language; even complex applications 
+compile down to simple instructions like add, subtract, and jump
+
+--- [Page 8 of 14] ---
+PES 
+UNIVERSITY 
+Real-World Processor Architectures 
+Many architectures exist, such as x86, MIPS, SPARC and PowerPC. 
+Each architecture defines its own instruction set. 
+Used in most PCs and 
+Used in gaming consoles, 
+desktop computers 
+m networking and embedded systems 
+Examples: Intel, AMD 
+Examples: Nintendo, Cisco, Silicon Graphics 
+C 
+* 
+[ =] 
+Used in workstations 
+Used in computers 
+T 
+and servers 
+D 
+and systems 
+== 
+Examples: Sun Microsystems 
+. 
+— 
+Examples: IBM, Apple 
+)& 
+Instruction sets are like different dialects. 
+'.Q.» 
+Once you learn one, learning another is fairly straightforward! 
+[ %) 
+Real-World Analog 
+= e 
+. 
+is the internal 
+_— 
+engine design 
+'0 
+used to implement 
+those controls. 
+Architecture 
+is similar to the 
+controls available 
+to a car driver. 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+DIGITAL LOGIC & COMPUTER DESIGN
+Introduction
+
+--- [Page 9 of 14] ---
+PES 
+UNIVERSITY 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+• Q1. What is “architecture” as defined in this chapter?
+a.The programmer’s view of a computer, defined by the instruction set and 
+operand locations
+b.The physical arrangement of transistors on a chip
+c.The way registers are wired to the ALU
+d.A hardware description language
+
+--- [Page 10 of 14] ---
+PES 
+UNIVERSITY 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+•
+Q2. Which of the following is the human-readable form of instructions?
+a. Machine language
+b. Assembly language
+c. Binary code
+d. Microcode
+
+--- [Page 11 of 14] ---
+PES 
+UNIVERSITY 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+•
+Q3. Machine language instructions are ultimately encoded as:
+a. Decimal numbers
+b. ASCII characters
+c. Binary (1’s and 0’s)
+d. Hexadecimal strings only
+
+--- [Page 12 of 14] ---
+PES 
+UNIVERSITY 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+• Q4. Who developed the MIPS architecture, and where?
+a.John Hennessy and colleagues at Stanford
+b.Dennis Ritchie at Bell Labs
+c.Gordon Moore at Intel
+d.Alan Turing at Cambridge
+
+--- [Page 13 of 14] ---
+PES 
+UNIVERSITY 
+© Elsevier, Digital Design and Computer Architecture, 2nd Ed., 2012.
+MCQ
+DIGITAL LOGIC & COMPUTER DESIGN
+• Answer Key
+Q1: A     Q2: B     Q3: C     Q4: A
+
+--- [Page 14 of 14] ---
+PES 
+UNIVERSITY 
+CELEBRATING SO YEARS 
+Team DLCD
+Department of CSE and CSE(AI & ML)
+THANK YOU
